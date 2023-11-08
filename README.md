@@ -2,8 +2,8 @@
 
 ## For developement
 
-` npm install ``
- ` npm run dev ```
+`npm install`
+`npm run dev`
 
 ## Expanding the ESLint configuration
 

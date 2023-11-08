@@ -1,6 +1,6 @@
 # Inovasi Frontend
 
-## For developement
+## For development
 
 `npm install`
 `npm run dev`

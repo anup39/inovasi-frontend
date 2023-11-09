@@ -1,15 +1,18 @@
 // #Note Use Tailewind classes anywhere already configured
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/commoncomp/NavBar';
+import DashBoard from '../components/DashBoard';
+import MapContainer from '../components/MapContainer';
+import Layout from './Layout';
 
 export default function Login() {
   const navigate = useNavigate();
   return (
-    <div className='mx-5'>
-      <NavBar />
-      <h1 className='text-1xl '>Login page</h1>
+    <Layout>
+      <DashBoard />
+      <MapContainer />
+      {/* <h1 className='text-1xl '>Login page</h1> */}
 
-      <div className='flex'>
+      {/* <div className='flex'>
         <button
           className='text-3xl font-bold underline text-blue-600'
           onClick={() => navigate('/map')}
@@ -28,7 +31,7 @@ export default function Login() {
         >
           Register
         </button>
-      </div>
-    </div>
+      </div> */}
+    </Layout>
   );
 }

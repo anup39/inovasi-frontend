@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 function NavBar() {
   return (
-    <div className='flex justify-between px-5 items-center py-3 bg-white'>
+    <div className='flex justify-between px-5 items-center py-1 bg-white'>
       <div className='font-bold'>@ InovasiAgriplot </div>
       <div className='flex justify-center items-center space-x-4'>
         <div className='iconDiv relative pr-5'>

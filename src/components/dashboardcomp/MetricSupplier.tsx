@@ -1,6 +1,6 @@
 import MapContainer from '../MapContainer';
 import Table from './Table';
-import MetricContainer from './MetricContainer';
+import MetricContainer from './SupplierPlantation';
 import Layout from '../commoncomp/Layout';
 import SearchButton from '../../pages/SearchButton';
 

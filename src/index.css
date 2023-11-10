@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #F0EFF4;
+}
+
+.menuLink:hover {
+    .menu-svg {
+        filter: invert();
+    }
+}

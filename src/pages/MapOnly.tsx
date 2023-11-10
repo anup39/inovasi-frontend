@@ -1,10 +1,13 @@
-import MapContainer from '../components/MapContainer';
-import Layout from './Layout';
+// import MapContainer from '../components/MapContainer';
+import Layout from "./Layout";
+import MapSection from "./MapSection";
 
 function MapOnly() {
   return (
     <Layout>
-      <MapContainer />
+      {/* <MapContainer />
+       */}
+      <MapSection />
     </Layout>
   );
 }

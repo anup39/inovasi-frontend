@@ -1,5 +1,5 @@
 import MapContainer from "../components/MapContainer";
-// import Table from '../components/Table';
+// import Table from "../components/Table";
 import MetricContainer from "../components/metricSupplier/MetricContainer";
 import Layout from "./Layout";
 import SearchButton from "./SearchButton";

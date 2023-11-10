@@ -1,12 +1,10 @@
-import NavBar from "../components/commoncomp/NavBar";
-import Graphs from "../components/dashboardcomp/Graphs";
+import Graphs from '../components/dashboardcomp/Graphs';
+import Layout from '../components/commoncomp/Layout';
 
 export default function Dashboard() {
   return (
-    <div>
-      <NavBar />
-      Other elements here .....
+    <Layout>
       <Graphs />
-    </div>
+    </Layout>
   );
 }

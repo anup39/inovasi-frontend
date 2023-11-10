@@ -1,8 +1,8 @@
-import MapContainer from '../components/MapContainer';
-import Table from '../components/Table';
-import MetricContainer from '../components/metricSupplier/MetricContainer';
-import Layout from './Layout';
-import SearchButton from './SearchButton';
+import MapContainer from '../MapContainer';
+import Table from './Table';
+import MetricContainer from './MetricContainer';
+import Layout from '../commoncomp/Layout';
+import SearchButton from '../../pages/SearchButton';
 
 function MetricSupplier() {
   return (

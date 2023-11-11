@@ -1,42 +1,53 @@
 const theads = [
-  'Mill Name',
-  'Region',
-  'Country',
-  'Group Company',
-  'Company',
-  'RSPO Certified',
+  "Mill Name",
+  "Region",
+  "Country",
+  "Group Company",
+  "Company",
+  "RSPO Certified",
 ];
 const data = [
   [
-    'Batu Lintang',
-    'Kedah',
-    'Malaysia',
-    'Kuala Lumpur Kepong Behad',
-    'Kuala Lambur Kepong Behad (KLK Batu Lintang)',
-    'IP',
-    <a className='text-blue-600 underline' href='#'>
+    "Batu Lintang",
+    "Kedah",
+    "Malaysia",
+    "Kuala Lumpur Kepong Behad",
+    "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+    "IP",
+    <a className="text-blue-600 underline" href="#">
       Details
     </a>,
   ],
   [
-    'Batu Lintang',
-    'Kedah',
-    'Malaysia',
-    'Kuala Lumpur Kepong Behad',
-    'Kuala Lambur Kepong Behad (KLK Batu Lintang)',
-    'IP',
-    <a className='text-blue-600 underline' href='#'>
+    "Batu Lintang",
+    "Kedah",
+    "Malaysia",
+    "Kuala Lumpur Kepong Behad",
+    "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+    "IP",
+    <a className="text-blue-600 underline" href="#">
       Details
     </a>,
   ],
   [
-    'Batu Lintang',
-    'Kedah',
-    'Malaysia',
-    'Kuala Lumpur Kepong Behad',
+    "Batu Lintang",
+    "Kedah",
+    "Malaysia",
+    "Kuala Lumpur Kepong Behad",
     `Kuala Lambur Kepong Behad (KLK Batu Lintang)`,
-    'IP',
-    <a className='text-blue-600 underline' href='#'>
+    "IP",
+    <a className="text-blue-600 underline" href="#">
+      Details
+    </a>,
+  ],
+  [
+    "Batu Lintang",
+    "Kedah",
+    "Malaysia",
+    "Kuala Lumpur Kepong Behad",
+    `Kuala Lambur Kepong Behad (KLK Batu Lintang)`,
+    "IP",
+    <a className="text-blue-600 underline" href="#">
       Details
     </a>,
   ],
@@ -46,10 +57,10 @@ const data = [
 
 function TableHeaders({ headers }) {
   return (
-    <thead className='text-left bg-[#FAFAFA] shadow'>
+    <thead className="text-left bg-[#FAFAFA] shadow">
       <tr>
         {headers.map((header, index) => (
-          <th key={index} className='py-2 px-4 border-b'>
+          <th key={index} className="py-2 px-4 border-b">
             {header}
           </th>
         ))}
@@ -60,14 +71,14 @@ function TableHeaders({ headers }) {
 
 function Table({ headers, data }) {
   return (
-    <div className='bg-gray-100 py-6'>
-      <table className='min-w-full bg-white '>
+    <div className="bg-gray-100 py-6">
+      <table className="min-w-full bg-white ">
         <TableHeaders headers={headers} />
         <tbody>
           {data.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className='py-5 px-4 border-b'>
+                <td key={cellIndex} className="py-5 px-4 border-b">
                   {cell}
                 </td>
               ))}

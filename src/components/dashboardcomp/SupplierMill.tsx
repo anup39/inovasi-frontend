@@ -1,3 +1,4 @@
+import MapSection from '../../pages/MapSection';
 import Dropdown from '../commoncomp/Dropdown';
 import Layout from '../commoncomp/Layout';
 import SimpleTable from './Table';
@@ -8,10 +9,9 @@ function SupplierMill() {
 
   return (
     <Layout>
-      <p>Map Container</p>
-      {/* <div className='h-32'>
+      <div className='mt-4'>
         <MapSection />
-      </div> */}
+      </div>
       <div className='mx-4 my-3'>
         <Dropdown options={optionsReporting} placeholder='Metric' />
       </div>

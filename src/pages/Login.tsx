@@ -1,7 +1,4 @@
-// #Note Use Tailewind classes anywhere already configured
-import { useNavigate } from "react-router-dom";
-
-export default function Login() {
-  const navigate = useNavigate();
-  return <div>login</div>;
+function Login() {
+  return <div>Login</div>;
 }
+export default Login;

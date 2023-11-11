@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .dashItems {
+        @apply rounded-md text-white p-5;
+    }
+
+    .commonSizing {
+        @apply pl-3 pr-3 lg:pr-12 flex flex-col items-start;
+    }
+}

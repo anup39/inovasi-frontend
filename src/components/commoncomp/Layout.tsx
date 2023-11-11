@@ -1,5 +1,5 @@
-import Menu from '../components/commoncomp/Menu';
-import NavBar from '../components/commoncomp/NavBar';
+import Menu from './Menu';
+import NavBar from './NavBar';
 
 function Layout({ children }) {
   return (

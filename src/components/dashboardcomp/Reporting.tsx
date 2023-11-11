@@ -1,11 +1,15 @@
-import Layout from "../../pages/Layout";
 import MapSection from "../../pages/MapSection";
-export default function Reporting() {
+import Layout from "../commoncomp/Layout";
+
+function Reporting() {
   return (
-    <Layout>
-      {/* <MapContainer />
-       */}
-      <MapSection />
-    </Layout>
+    <div className="overflow-hidden ">
+      <Layout>
+        <div className="border-[15px] border-white rounded-md m-3 h-[500px]">
+          <MapSection />
+        </div>
+      </Layout>
+    </div>
   );
 }
+export default Reporting;

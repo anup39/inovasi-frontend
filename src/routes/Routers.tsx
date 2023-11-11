@@ -11,10 +11,9 @@ export default function Routers() {
     <Router>
       <Routes>
         <Route path="/" element={<DashBoard />} />
-        <Route path="/reporting" element={<Reporting />} />
-        <Route path="/supplierplantation" element={<SupplierPlantation />} />
         <Route path="/suppliermill" element={<SupplierMill />} />
-        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/supplierplantation" element={<SupplierPlantation />} />
+        <Route path="/reporting" element={<Reporting />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </Router>

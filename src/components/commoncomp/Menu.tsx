@@ -3,7 +3,7 @@ import "../../css/common/Menu.css";
 function Menu() {
   const navigate = useNavigate();
 
-  function handleClick(path) {
+  function handleClick(path: string) {
     navigate(path);
     // setMenuOpen(false);
   }

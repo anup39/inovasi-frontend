@@ -1,6 +1,8 @@
 import Dropdown from "../commoncomp/Dropdown";
 import Layout from "../commoncomp/Layout";
 // import MapSection from '../../pages/MapSection';
+import pie_chart_api from "../../utils/constants";
+import PieChart from "./PieChart";
 
 function SupplierPlantation() {
   const optionsReporting = ["Metric", "Mill Supplier"];
@@ -17,19 +19,35 @@ function SupplierPlantation() {
       <div className="space-x-4  flex">
         <div className="rounded-sm bg-white w-1/4 py-3 px-4">
           <h1 className="font-semibold">Supply Base Region</h1>
-          {/* Add piechart here */}
+          <PieChart
+            data={pie_chart_api.supplybaseregion}
+            width_={300}
+            height_={300}
+          />
         </div>
         <div className="rounded-sm bg-white w-1/4 py-3 px-4">
           <h1 className="font-semibold">Supplier Type</h1>
-          {/* Add piechart here */}
+          <PieChart
+            data={pie_chart_api.rspocertified}
+            width_={300}
+            height_={300}
+          />
         </div>
         <div className="rounded-sm bg-white w-1/4 py-3 px-4">
           <h1 className="font-semibold">RSPO Certified</h1>
-          {/* Add piechart here */}
+          <PieChart
+            data={pie_chart_api.suppliertype}
+            width_={300}
+            height_={300}
+          />
         </div>
         <div className="rounded-sm bg-white w-1/4 py-3 px-4">
           <h1 className="font-semibold">Supplier Risk</h1>
-          {/* Add piechart here */}
+          <PieChart
+            data={pie_chart_api.supplybaseregion}
+            width_={300}
+            height_={300}
+          />
         </div>
       </div>
     </Layout>

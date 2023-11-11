@@ -1,4 +1,6 @@
 import "../../css/dashborad/DashBoardItem.css";
+import PieChart from "./PieChart";
+import pie_chart_api from "../../utils/constants";
 
 function DashBoardItem() {
   return (
@@ -29,21 +31,35 @@ function DashBoardItem() {
         </div>
       </div>
       <div className="bg-white  dashItems">
-        <div className=" ">
+        <div className="">
           <h1 className="text-black font-bold">Supply Base Region</h1>
-          {/* Pie Chart Here */}
+          <PieChart
+            data={pie_chart_api.supplybaseregion}
+            width_={200}
+            height_={200}
+          />
         </div>
       </div>
       <div className="bg-white  dashItems">
         <div className="">
           <h1 className="text-black font-bold">Supplier Type</h1>
           {/* Pie Chart Here */}
+          <PieChart
+            data={pie_chart_api.suppliertype}
+            width_={200}
+            height_={200}
+          />
         </div>
       </div>
       <div className="bg-white  dashItems ">
         <div className=" ">
           <h1 className="text-black font-bold">RSPO Certified</h1>
           {/* Pie Chart Here */}
+          <PieChart
+            data={pie_chart_api.rspocertified}
+            width_={200}
+            height_={200}
+          />
         </div>
       </div>
     </div>

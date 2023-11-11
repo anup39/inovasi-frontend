@@ -1,7 +1,11 @@
-import Menu from './Menu';
-import NavBar from './NavBar';
+import Menu from "./Menu";
+import NavBar from "./NavBar";
 
-function Layout({ children }) {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+function Layout({ children }: LayoutProps) {
   return (
     <>
       <NavBar />
@@ -10,4 +14,5 @@ function Layout({ children }) {
     </>
   );
 }
+
 export default Layout;

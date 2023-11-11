@@ -1,5 +1,5 @@
-import MapSection from "../../pages/MapSection";
-import Layout from "../commoncomp/Layout";
+import MapSection from "./MapSection";
+import Layout from "../components/commoncomp/Layout";
 
 function Reporting() {
   return (

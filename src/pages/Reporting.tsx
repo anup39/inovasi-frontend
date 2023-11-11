@@ -1,11 +1,11 @@
-import MapSection from "./MapSection";
-import Layout from "../components/commoncomp/Layout";
+import MapSection from './MapSection';
+import Layout from '../components/commoncomp/Layout';
 
 function Reporting() {
   return (
-    <div className="overflow-hidden ">
+    <div className='overflow-hidden '>
       <Layout>
-        <div className="border-[15px] border-white rounded-md m-3 h-[500px]">
+        <div className='pt-7'>
           <MapSection />
         </div>
       </Layout>

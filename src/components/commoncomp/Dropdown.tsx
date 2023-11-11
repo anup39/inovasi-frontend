@@ -9,10 +9,6 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string>("");
 
-  console.log(options, "options");
-  console.log(placeholder, "place holder");
-  console.log(selectedItem, selectedItem);
-
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
     setIsOpen(false);

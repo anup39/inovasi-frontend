@@ -1,4 +1,4 @@
-import Dropdown from "./Dropdown";
+import Dropdown from "../commoncomp/Dropdown";
 import Layout from "../commoncomp/Layout";
 // import MapSection from '../../pages/MapSection';
 

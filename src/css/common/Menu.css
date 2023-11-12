@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
+    .mobileMenuBtn {
+        @apply uppercase font-semibold text-2xl py-3 px-6 pl-2 hover:bg-black rounded-full;
+    }
+
+
     .commonPropBtn {
         @apply flex items-center gap-2 px-8 pr-16 py-3 rounded-3xl hover:text-white hover:bg-[#2A2A2A];
     }

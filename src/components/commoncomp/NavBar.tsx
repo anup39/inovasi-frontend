@@ -20,7 +20,7 @@ function NavBar() {
           <h1 className='font-semibold text-lg'>Renee McKelvey</h1>
           <p className='text-sm text-gray-400'>Company Name</p>
         </div>
-        <img className='w-10 h-10' src='src\assets\osgeo_nepal.png' alt='' />{' '}
+        <img className='w-10 h-10' src='osgeo_nepal.png' alt='' />{' '}
       </div>
     </div>
   );

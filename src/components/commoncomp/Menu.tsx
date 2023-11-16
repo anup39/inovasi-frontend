@@ -38,7 +38,7 @@ function Menu() {
           >
             <img
               className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='src\assets\HomeMenu.svg'
+              src='HomeMenu.svg'
               alt='Home Icon'
             />
             <span>home</span>
@@ -51,7 +51,7 @@ function Menu() {
           >
             <img
               className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='src\assets\supplierMill.svg'
+              src='supplierMill.svg'
               alt='Home Icon'
             />
             <span>Supplier Mill</span>
@@ -64,7 +64,7 @@ function Menu() {
           >
             <img
               className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='src\assets\supplierPlantation.svg'
+              src='supplierPlantation.svg'
               alt='Home Icon'
             />
             <span>Supplier Plantation</span>
@@ -77,7 +77,7 @@ function Menu() {
           >
             <img
               className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='src\assets\reporting.svg'
+              src='Reporting.svg'
               alt='Home Icon'
             />
             <span>Reporting</span>
@@ -93,7 +93,7 @@ function Menu() {
         >
           <img
             className='menu-svg scale-110 '
-            src='src\assets\HomeMenu.svg'
+            src='HomeMenu.svg'
             alt='Home Icon'
           />
           <h1 className='font-semibold'>Home</h1>
@@ -106,7 +106,7 @@ function Menu() {
         >
           <img
             className='menu-svg scale-110'
-            src='src\assets\supplierMill.svg'
+            src='supplierMill.svg'
             alt='supplierMill Icon'
           />
           <h1 className='font-semibold'>Supplier Mill</h1>
@@ -119,7 +119,7 @@ function Menu() {
         >
           <img
             className='menu-svg menu-svg scale-110  filter hover:invert'
-            src='src\assets\supplierPlantation.svg'
+            src='supplierPlantation.svg'
             alt='supplierPlantation Icon'
           />
           <h1 className='font-semibold'>Supplier Plantation</h1>
@@ -132,7 +132,7 @@ function Menu() {
         >
           <img
             className='menu-svg scale-110  hover:fill-white'
-            src='src\assets\Reporting.svg'
+            src='Reporting.svg'
             alt='Reporting Icon'
           />
           <h1 className='font-semibold'>Reporting</h1>

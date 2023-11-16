@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
+
 interface PieChartProps {
   data: { label: string; value: number }[];
   width_: number;
   height_: number;
+
 }
 
 const PieChart: React.FC<PieChartProps> = ({ data, width_, height_ }) => {
@@ -20,6 +22,7 @@ const PieChart: React.FC<PieChartProps> = ({ data, width_, height_ }) => {
     const height = height_;
     const radius = Math.min(width, height) / 2;
 
+
     // Clear previous chart
     d3.select(chartRef.current).select("svg").remove();
 
@@ -33,7 +36,7 @@ const PieChart: React.FC<PieChartProps> = ({ data, width_, height_ }) => {
       .append("g")
       .attr("transform", `translate(${width / 2},${height / 2})`);
 
-    const arc = d3
+    const arc :any = d3
       .arc()
       .outerRadius(radius - 10)
       .innerRadius(0);
@@ -50,6 +53,7 @@ const PieChart: React.FC<PieChartProps> = ({ data, width_, height_ }) => {
       .append("g")
       .attr("class", "arc")
       .on("mouseover", function (e, d) {
+        console.log(e,'e')
         setHoveredData(d.data);
       })
       .on("mouseout", function () {

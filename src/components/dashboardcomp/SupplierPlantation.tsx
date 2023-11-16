@@ -3,7 +3,7 @@ import Layout from '../commoncomp/Layout';
 // import MapSection from '../../pages/MapSection';
 import pie_chart_api from '../../utils/constants';
 import PieChart from './PieChart';
-import Pagination from '../commoncomp/PageNumbers';
+// import Pagination from '../commoncomp/PageNumbers';
 import MapSection from '../../pages/MapSection';
 
 function SupplierPlantation() {

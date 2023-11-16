@@ -1,61 +1,9 @@
-const theads = [
-  "Mill Name",
-  "Region",
-  "Country",
-  "Group Company",
-  "Company",
-  "RSPO Certified",
-];
-const data = [
-  [
-    "Batu Lintang",
-    "Kedah",
-    "Malaysia",
-    "Kuala Lumpur Kepong Behad",
-    "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
-    "IP",
-    <a className="text-blue-600 underline" href="#">
-      Details
-    </a>,
-  ],
-  [
-    "Batu Lintang",
-    "Kedah",
-    "Malaysia",
-    "Kuala Lumpur Kepong Behad",
-    "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
-    "IP",
-    <a className="text-blue-600 underline" href="#">
-      Details
-    </a>,
-  ],
-  [
-    "Batu Lintang",
-    "Kedah",
-    "Malaysia",
-    "Kuala Lumpur Kepong Behad",
-    `Kuala Lambur Kepong Behad (KLK Batu Lintang)`,
-    "IP",
-    <a className="text-blue-600 underline" href="#">
-      Details
-    </a>,
-  ],
-  [
-    "Batu Lintang",
-    "Kedah",
-    "Malaysia",
-    "Kuala Lumpur Kepong Behad",
-    `Kuala Lambur Kepong Behad (KLK Batu Lintang)`,
-    "IP",
-    <a className="text-blue-600 underline" href="#">
-      Details
-    </a>,
-  ],
+interface TableProps {
+  headers: string[];
+  data?: (string | JSX.Element)[][];
+}
 
-  // Add more rows as needed
-];
-
-function TableHeaders({ headers }) {
+function TableHeaders({ headers }: { headers: string[] }) {
   return (
     <thead className="text-left bg-[#FAFAFA] shadow">
       <tr>
@@ -69,13 +17,13 @@ function TableHeaders({ headers }) {
   );
 }
 
-function Table({ headers, data }) {
+function Table({ headers, data }: TableProps) {
   return (
     <div className="bg-gray-100 py-6">
       <table className="min-w-full bg-white ">
         <TableHeaders headers={headers} />
         <tbody>
-          {data.map((row, rowIndex) => (
+          {data && data.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex} className="py-5 px-4 border-b">
@@ -91,6 +39,31 @@ function Table({ headers, data }) {
 }
 
 function SimpleTable() {
+  const theads = [
+    "Mill Name",
+    "Region",
+    "Country",
+    "Group Company",
+    "Company",
+    "RSPO Certified",
+  ];
+
+  const data: TableProps["data"] = [
+    [
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
+      <a className="text-blue-600 underline" href="#">
+        Details
+      </a>,
+    ],
+    // ...other rows
+  ];
+
   return <Table headers={theads} data={data} />;
 }
+
 export default SimpleTable;

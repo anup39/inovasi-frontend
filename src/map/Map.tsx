@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 import "../css/map/Map.scss";
+// @ts-ignore
 import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 import GeocoderApi from "../maputils/GeocoderApi";
@@ -42,7 +43,8 @@ export default function MapComponent({ refObj }: MapProps) {
       });
 
       geocoder.addTo(refObj.current!);
-      geocoder.on("result", function (ev) {
+      geocoder.on("result", function (ev 
+        :any) {
         const coords = ev.result.geometry.coordinates;
         map.flyTo({ center: coords });
       });

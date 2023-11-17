@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.individualItems {
+    @apply space-y-5;
+}
+
+
+
+.innerContainer {
+    @apply flex flex-col p-7 gap-7 md:flex-row;
+}
+
+.innerContainer p {
+    @apply text-sm max-w-md;
+}

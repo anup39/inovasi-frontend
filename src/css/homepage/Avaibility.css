@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.svgUpperDiv {
+    @apply space-y-4 cursor-pointer;
+}
+
+.svgInnerDiv {
+    @apply flex flex-col justify-center items-center;
+}
+
+.svgInnerDiv img {
+    @apply mb-4;
+}

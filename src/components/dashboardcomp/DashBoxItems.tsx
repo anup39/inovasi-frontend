@@ -17,7 +17,7 @@ function DashBoxItems() {
       name: "Facilities",
       total: 7,
       selected: true,
-      bgcolor: "#10767A",
+      bgcolor: "#018C79",
       imagesrc: "Facilities.svg",
     },
     {
@@ -33,7 +33,7 @@ function DashBoxItems() {
       name: "Mill Supplier",
       total: 30,
       selected: false,
-      bgcolor: "#2A2A2A",
+      bgcolor: "#018C79",
       imagesrc: "Mill Supplier.svg",
     },
     // Other items...
@@ -44,7 +44,7 @@ function DashBoxItems() {
       if (item.id === clickedItem.id) {
         return { ...item, bgcolor: "#CCB848", selected: true };
       } else {
-        return { ...item, bgcolor: "#10767A", selected: false };
+        return { ...item, bgcolor: "#018C79", selected: false };
       }
     });
     setItems(updatedItems);
@@ -52,21 +52,23 @@ function DashBoxItems() {
 
   return (
     <div className="flex w-1/2 flex-col items-center py-7 gap-6 lg:flex-row justify-end">
-      {items.map((item) => (
-        <div
-          key={item.id}
-          onClick={() => handleCurrentSelectedItem(item)}
-          className={`${
-            item.selected ? "bg-[#CCB848]" : `bg-[${item.bgcolor}]`
-          } dashItems hover:cursor-pointer`}
-        >
-          <div className="commonSizing">
-            <img src={item.imagesrc} alt="" />
-            <p>{item.name}</p>
-            <p className="font-bold">{item.total}</p>
-          </div>
-        </div>
-      ))}
+      {items
+        ? items.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => handleCurrentSelectedItem(item)}
+              className={`${
+                item.selected ? "bg-[#CCB848]" : `bg-[${item.bgcolor}]`
+              } dashItems hover:cursor-pointer`}
+            >
+              <div className="commonSizing">
+                <img src={item.imagesrc} alt="" />
+                <p>{item.name}</p>
+                <p className="font-bold">{item.total}</p>
+              </div>
+            </div>
+          ))
+        : null}
     </div>
   );
 }

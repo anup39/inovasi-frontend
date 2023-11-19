@@ -6,6 +6,7 @@ import Reporting from "../pages/Reporting";
 import SupplierPlantation from "../components/dashboardcomp/SupplierPlantation";
 import SupplierMill from "../components/dashboardcomp/SupplierMill";
 import HomePage from "../pages/HomePage";
+import Upload from "../pages/Upload";
 
 export default function Routers() {
   return (
@@ -17,6 +18,7 @@ export default function Routers() {
         <Route path="/supplierplantation" element={<SupplierPlantation />} />
         <Route path="/reporting" element={<Reporting />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/upload" element={<Upload />} />
       </Routes>
     </Router>
   );

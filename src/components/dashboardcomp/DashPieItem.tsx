@@ -31,7 +31,7 @@ function DashPieItem() {
       <div className="bg-white  dashItems ">
         <div className="p-2 ">
           <h1 className="text-black font-bold">RSPO Certified</h1>
-          {/* Pie Chart Here */}
+
           <PieChart
             data={pie_chart_api.rspocertified}
             width_={180}

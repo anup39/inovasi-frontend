@@ -1,4 +1,4 @@
-import Pagination from '../commoncomp/Pagination';
+import Pagination from "../commoncomp/Pagination";
 
 interface TableProps {
   headers: string[];
@@ -7,10 +7,10 @@ interface TableProps {
 
 function TableHeaders({ headers }: { headers: string[] }) {
   return (
-    <thead className='text-left bg-[#FAFAFA] shadow'>
+    <thead className="text-left bg-[#FAFAFA] shadow">
       <tr>
         {headers.map((header, index) => (
-          <th key={index} className='py-5 px-4 border-b'>
+          <th key={index} className="py-5 px-4 border-b">
             {header}
           </th>
         ))}
@@ -21,15 +21,15 @@ function TableHeaders({ headers }: { headers: string[] }) {
 
 function Table({ headers, data }: TableProps) {
   return (
-    <div className='bg-white py-6'>
-      <table className='min-w-full bg-white '>
+    <div className="bg-white py-6">
+      <table className="min-w-full bg-white ">
         <TableHeaders headers={headers} />
         <tbody>
           {data &&
             data.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {row.map((cell, cellIndex) => (
-                  <td key={cellIndex} className='py-6 px-4 border-b'>
+                  <td key={cellIndex} className="py-6 px-4 border-b">
                     {cell}
                   </td>
                 ))}
@@ -44,50 +44,50 @@ function Table({ headers, data }: TableProps) {
 
 function SimpleTable() {
   const theads = [
-    'Company',
-    'Commoditied',
-    'Country',
-    'Vol Sales to EU',
-    'Nr of facilities in EU',
+    "Company",
+    "Commoditied",
+    "Country",
+    "Vol Sales to EU",
+    "Nr of facilities in EU",
   ];
 
-  const data: TableProps['data'] = [
+  const data: TableProps["data"] = [
     [
-      'Neste Oyj (Neste Corporation)',
-      'Oil Palm',
-      'Finland',
-      '1,128,088',
-      'Yes',
-      <a className='text-blue-600 underline' href='#'>
+      "Neste Oyj (Neste Corporation)",
+      "Oil Palm",
+      "Finland",
+      "1,128,088",
+      "Yes",
+      <a className="text-blue-600 underline" href="#">
         Options
       </a>,
-      <a className='text-blue-600 underline' href='#'>
+      <a className="text-blue-600 underline" href="#">
         Details
       </a>,
     ],
     [
-      'Neste Oyj (Neste Corporation)',
-      'Oil Palm',
-      'Finland',
-      '1,128,088',
-      'Yes',
-      <a className='text-blue-600 underline' href='#'>
+      "Neste Oyj (Neste Corporation)",
+      "Oil Palm",
+      "Finland",
+      "1,128,088",
+      "Yes",
+      <a className="text-blue-600 underline" href="#">
         Options
       </a>,
-      <a className='text-blue-600 underline' href='#'>
+      <a className="text-blue-600 underline" href="#">
         Details
       </a>,
     ],
     [
-      'Neste Oyj (Neste Corporation)',
-      'Oil Palm',
-      'Finland',
-      '1,128,088',
-      'Yes',
-      <a className='text-blue-600 underline' href='#'>
+      "Neste Oyj (Neste Corporation)",
+      "Oil Palm",
+      "Finland",
+      "1,128,088",
+      "Yes",
+      <a className="text-blue-600 underline" href="#">
         Options
       </a>,
-      <a className='text-blue-600 underline' href='#'>
+      <a className="text-blue-600 underline" href="#">
         Details
       </a>,
     ],

@@ -2,11 +2,23 @@ import "../../css/homepage/HomeFeatures.css";
 
 function HomeFeatures() {
   return (
+
+    <div className='w-screen bg-[#F7F7F7] flex '>
+      <div className='innerContainer'>
+        <div className='individualItems'>
+          <img
+            className='scale-9'
+            src='../../../public/mapplingsupplierhome.svg'
+            alt=''
+          />
+          <h1 className='font-semibold'>Mapping Suppliers</h1>
+
     <div className="w-screen bg-[#F7F7F7] flex ">
       <div className="innerContainer">
         <div className="individualItems">
           <img className="scale-90" src="mapplingsupplierhome.svg" alt="" />
           <h1 className="font-semibold">Mapping Suppliers</h1>
+
           <p>
             Agriplot long-term datasets provide comprehensive supplyshed
             supplier mapping from smallholder plots to the corporate estate

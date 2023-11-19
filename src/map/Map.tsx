@@ -19,7 +19,7 @@ export default function MapComponent({ refObj }: MapProps) {
   useEffect(() => {
     const map = new maplibregl.Map({
       container: mapContainer.current!,
-      style: `https://api.maptiler.com/maps/satellite/style.json?key=${
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${
         import.meta.env.VITE_MAPTILER_TOKEN
       }`,
       center: [103.8574, 2.2739],
@@ -43,8 +43,7 @@ export default function MapComponent({ refObj }: MapProps) {
       });
 
       geocoder.addTo(refObj.current!);
-      geocoder.on("result", function (ev 
-        :any) {
+      geocoder.on("result", function (ev: any) {
         const coords = ev.result.geometry.coordinates;
         map.flyTo({ center: coords });
       });

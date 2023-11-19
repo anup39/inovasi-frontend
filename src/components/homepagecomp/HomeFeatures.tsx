@@ -6,7 +6,7 @@ function HomeFeatures() {
       <div className='innerContainer'>
         <div className='individualItems'>
           <img
-            className='scale-90'
+            className='scale-9'
             src='../../../public/mapplingsupplierhome.svg'
             alt=''
           />

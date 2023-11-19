@@ -1,24 +1,24 @@
-import { useState } from "react";
-// import "../css/upload/upload.css";
+import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import NavBar from "../components/commoncomp/NavBar";
 
 export default function Upload() {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [sheetname, setsheetname] = useState("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [sheetname, setsheetname] = useState<string>("");
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setSelectedFile(event.target.files[0]);
+    }
   };
 
-  const handleFacilityUpload = (event) => {
+  const handleFacilityUpload = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (selectedFile) {
-      console.log(sheetname, "sheetname");
-      console.log("File uploaded:", selectedFile);
+    if (selectedFile && sheetname) {
       const data = new FormData();
       data.append("file", selectedFile);
+      data.append("sheet", sheetname);
       axios
         .post(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/upload-facility/`,
@@ -29,7 +29,7 @@ export default function Upload() {
         });
       // Perform operations with the file here
     } else {
-      console.log("No file uploaded");
+      console.log("No file uploaded and sheet name also");
     }
   };
 
@@ -47,7 +47,7 @@ export default function Upload() {
                 id="text-input"
                 type="text"
                 name="sheet_name"
-                className="w-full border-black-300 rounded-md mt-1 focus:border-blue-500 focus:ring-blue-500 "
+                className="w-full border-yellow-300 rounded-md mt-1 focus:border-yellow-500 focus:ring-yellow-500 "
                 onChange={(event) => {
                   setsheetname(event.target.value);
                 }}
@@ -68,7 +68,7 @@ export default function Upload() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-[#CCB848] text-white rounded-md py-2 px-4 hover:bg-blue-600"
+                className="w-full bg-[#CCB848] text-white rounded-md py-2 px-4 hover:bg-[#89C461]"
               >
                 Submit
               </button>

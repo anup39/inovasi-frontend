@@ -1,32 +1,27 @@
-import React, { useState } from "react";
 import "../../css/dashborad/DashBoardItem.css";
 import PieChart from "./PieChart";
-import pie_chart_api from "../../utils/constants";
-
-interface Item {
-  id: number;
-  name: string;
-  selected: boolean;
-}
 
 function DashPieItem() {
-  const [items, setItems] = useState<Item[]>([
+  const items = [
     {
       id: 1,
       name: "Supply Base Region",
       selected: false,
+      distinct: "country",
     },
     {
       id: 2,
       name: "Supplier Type",
       selected: false,
+      distinct: "type",
     },
     {
       id: 3,
       name: "RSPO Certified",
       selected: false,
+      distinct: "rspo",
     },
-  ]);
+  ];
 
   return (
     <div className="flex flex-col w-1/2 items-center py-7 gap-6 lg:flex-row">
@@ -35,19 +30,16 @@ function DashPieItem() {
           <div>
             <div className="p-2">
               <h1 className="text-black font-bold">{item.name}</h1>
-              <PieChart
-                data={
-                  item.name === "Supply Base Region"
-                    ? pie_chart_api.supplybaseregion
-                    : item.name === "Supplier Type"
-                    ? pie_chart_api.suppliertype
-                    : item.name === "RSPO Certified"
-                    ? pie_chart_api.rspocertified
-                    : []
-                }
-                width_={180}
-                height_={180}
-              />
+
+              <PieChart data={item} width_={180} height_={180} />
+              {/* <Box
+                sx={{
+                  marginLeft: "40%",
+                  marginTop: "30%",
+                }}
+              >
+                <CircularProgress sx={{ color: "#2A2A2A" }} />
+              </Box> */}
             </div>
           </div>
         </div>

@@ -1,5 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/dashborad/DashBoardItem.css";
+import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
+import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
+import { useDispatch } from "react-redux";
+import { setpiechartfor } from "../../reducers/Auth";
+import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+
+interface DashBoxItemsProps {
+  map: Map | null;
+}
 
 interface Item {
   id: number;
@@ -10,12 +19,13 @@ interface Item {
   imagesrc: string;
 }
 
-function DashBoxItems() {
+const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
+  const dispatch = useDispatch();
   const [items, setItems] = useState<Item[]>([
     {
       id: 1,
       name: "Facilities",
-      total: 7,
+      total: 299,
       selected: true,
       bgcolor: "#018C79",
       imagesrc: "Facilities.svg",
@@ -23,7 +33,7 @@ function DashBoxItems() {
     {
       id: 2,
       name: "Refinery Supplier",
-      total: 30,
+      total: 1034,
       selected: false,
       bgcolor: "#018C79",
       imagesrc: "Refinery Supplier.svg",
@@ -31,7 +41,7 @@ function DashBoxItems() {
     {
       id: 3,
       name: "Mill Supplier",
-      total: 30,
+      total: 2381,
       selected: false,
       bgcolor: "#018C79",
       imagesrc: "Mill Supplier.svg",
@@ -39,9 +49,102 @@ function DashBoxItems() {
     // Other items...
   ]);
 
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "facility-layer",
+          sourceId: "facility",
+          url: `${import.meta.env.VITE_API_MAP_URL}/app_facility/{z}/{x}/{y}`,
+          source_layer: "app_facility",
+          showPopup: true,
+          style: {
+            fill_color: "red",
+            fill_opacity: 0,
+            stroke_color: "",
+          },
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+        });
+      });
+    }
+  }, [map]);
+
   const handleCurrentSelectedItem = (clickedItem: Item) => {
     const updatedItems = items.map((item) => {
       if (item.id === clickedItem.id) {
+        if (item.name == "Facilities") {
+          if (map) {
+            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
+            AddLayerAndSourceToMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+              url: `${
+                import.meta.env.VITE_API_MAP_URL
+              }/app_facility/{z}/{x}/{y}`,
+              source_layer: "app_facility",
+              showPopup: true,
+              style: {
+                fill_color: "red",
+                fill_opacity: 0,
+                stroke_color: "",
+              },
+              zoomToLayer: true,
+              center: [103.8574, 2.2739],
+              fillType: "point",
+            });
+          }
+          dispatch(setpiechartfor("facility"));
+        }
+        if (item.name == "Refinery Supplier") {
+          if (map) {
+            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
+            AddLayerAndSourceToMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+              url: `${
+                import.meta.env.VITE_API_MAP_URL
+              }/app_refinery/{z}/{x}/{y}`,
+              source_layer: "app_refinery",
+              showPopup: true,
+              style: {
+                fill_color: "green",
+                fill_opacity: 0,
+                stroke_color: "",
+              },
+              zoomToLayer: true,
+              center: [103.8574, 2.2739],
+              fillType: "point",
+            });
+          }
+          dispatch(setpiechartfor("refinery"));
+        }
+        if (item.name == "Mill Supplier") {
+          if (map) {
+            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            AddLayerAndSourceToMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+              url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+              source_layer: "app_mill",
+              showPopup: true,
+              style: {
+                fill_color: "blue",
+                fill_opacity: 0,
+                stroke_color: "",
+              },
+              zoomToLayer: true,
+              center: [103.8574, 2.2739],
+              fillType: "point",
+            });
+          }
+          dispatch(setpiechartfor("mill"));
+        }
         return { ...item, bgcolor: "#CCB848", selected: true };
       } else {
         return { ...item, bgcolor: "#018C79", selected: false };
@@ -71,6 +174,6 @@ function DashBoxItems() {
         : null}
     </div>
   );
-}
+};
 
 export default DashBoxItems;

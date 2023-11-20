@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 function HomeHero() {
+  const navigate = useNavigate();
   return (
     <div className=" p-6 flex flex-col mx-auto lg:flex-row lg:pb-64">
       <div className="flex flex-col mb-8 lg:mb-0  space-y-7 ml-0 lg:space-y-10 lg:w-1/2  lg:mt-36 lg:ml-6 z-20">
@@ -11,7 +13,12 @@ function HomeHero() {
           making it effortless for your business.
         </p>
         <div className="flex items-center justify-center w-full space-x-4 lg:justify-start z-20">
-          <button className="py-2 px-5 bg-[#009CA0] text-white">Demo</button>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="py-2 px-5 bg-[#009CA0] text-white"
+          >
+            Demo
+          </button>
           <button className="py-2 px-4 border border-black">Learn More</button>
         </div>
       </div>

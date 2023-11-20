@@ -10,14 +10,10 @@ function Testimonials() {
       </div>
       <div className="flex">
         <button>
-          <img
-            className="scale-[1.5] mr-10"
-            src="public\prevTestimony.svg"
-            alt=""
-          />
+          <img className="scale-[1.5] mr-10" src="prevTestimony.svg" alt="" />
         </button>
         <div className="border border-gray-300 border-1 flex p-7 max-w-3xl rounded-lg">
-          <img src="public\testimonyphoto.png" alt="" />
+          <img src="testimonyphoto.png" alt="" />
           <div className="p-7 space-y-5">
             <p className="">
               Agriplot's Due Diligence System has been a game-changer for our
@@ -29,11 +25,7 @@ function Testimonials() {
           </div>
         </div>
         <button>
-          <img
-            className="scale-[1.5] ml-10"
-            src="public\nextTestimony.svg"
-            alt=""
-          />
+          <img className="scale-[1.5] ml-10" src="nextTestimony.svg" alt="" />
         </button>
       </div>
       <div className="space-x-3">

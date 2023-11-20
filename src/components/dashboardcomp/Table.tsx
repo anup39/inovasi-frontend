@@ -61,6 +61,28 @@ function SimpleTable() {
         Details
       </a>,
     ],
+    [
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
+      <a className="text-blue-600 underline" href="#">
+        Details
+      </a>,
+    ],
+    [
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
+      <a className="text-blue-600 underline" href="#">
+        Details
+      </a>,
+    ],
     // ...other rows
   ];
 

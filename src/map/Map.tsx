@@ -2,9 +2,9 @@ import { useRef, useEffect } from "react";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 import "../css/map/Map.scss";
 // @ts-ignore
-import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
+// import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
-import GeocoderApi from "../maputils/GeocoderApi";
+// import GeocoderApi from "../maputils/GeocoderApi";
 // import { useDispatch } from "react-redux";
 // import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 
@@ -14,6 +14,7 @@ interface MapProps {
   onSetMap: (evmap: Map) => void;
 }
 
+// @ts-ignore
 export default function MapComponent({ refObj, map, onSetMap }: MapProps) {
   // const dispatch = useDispatch();
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -35,21 +36,21 @@ export default function MapComponent({ refObj, map, onSetMap }: MapProps) {
     };
   }, []);
 
-  useEffect(() => {
-    if (map) {
-      const geocoder = new MaplibreGeocoder(GeocoderApi, {
-        maplibregl: maplibregl,
-        showResultsWhileTyping: true,
-        flyTo: true,
-      });
+  // useEffect(() => {
+  //   if (map) {
+  //     const geocoder = new MaplibreGeocoder(GeocoderApi, {
+  //       maplibregl: maplibregl,
+  //       showResultsWhileTyping: true,
+  //       flyTo: true,
+  //     });
 
-      geocoder.addTo(refObj.current!);
-      geocoder.on("result", function (ev: any) {
-        const coords = ev.result.geometry.coordinates;
-        map.flyTo({ center: coords });
-      });
-    }
-  }, [map, refObj]);
+  //     geocoder.addTo(refObj.current!);
+  //     geocoder.on("result", function (ev: any) {
+  //       const coords = ev.result.geometry.coordinates;
+  //       map.flyTo({ center: coords });
+  //     });
+  //   }
+  // }, [map, refObj]);
 
   return <div ref={mapContainer} id="map" className="map" />;
 }

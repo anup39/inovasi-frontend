@@ -18,7 +18,7 @@ function Menu() {
       {/* Hamburger Icon */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className={`z-30 block focus:outline-none absolute right-4 top-4 
+        className={`z-30 block focus:outline-none absolute right-4 top-4 lg:hidden
       hamburger ${isMenuOpen ? 'open' : ''}`}
       >
         <span className='hamburger-top'></span>
@@ -84,7 +84,7 @@ function Menu() {
           </button>
         </div>
       </div>
-      <div className=' gap-6 py-2 hidden md:flex'>
+      <div className=' gap-6 py-2 hidden lg:flex'>
         <button
           onClick={() => handleClick('/')}
           className={`menuLink commonPropBtn ${

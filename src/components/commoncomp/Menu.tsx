@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../../css/common/Menu.css";
-
 function Menu() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

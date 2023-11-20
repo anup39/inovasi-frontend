@@ -20,12 +20,16 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<DashBoard map={map} onSetMap={onSetMap} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/dashboard"
+          element={<DashBoard map={map} onSetMap={onSetMap} />}
+        />
         <Route
           path="/suppliermill"
           element={<SupplierMill map={map} onSetMap={onSetMap} />}
         />
-        <Route path="/homepage" element={<HomePage />} />
+
         <Route
           path="/supplierplantation"
           element={<SupplierPlantation map={map} onSetMap={onSetMap} />}

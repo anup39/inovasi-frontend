@@ -1,4 +1,4 @@
-import Menu from "./Menu";
+// import Menu from "./Menu";
 import NavBar from "./NavBar";
 
 interface LayoutProps {
@@ -9,7 +9,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <>
       <NavBar />
-      <Menu />
+      {/* <Menu /> */}
       {children}
     </>
   );

@@ -23,15 +23,16 @@ function Table({ headers, data }: TableProps) {
       <table className="min-w-full bg-white ">
         <TableHeaders headers={headers} />
         <tbody>
-          {data && data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="py-5 px-4 border-b">
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {data &&
+            data.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex} className="py-5 px-4 border-b">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
@@ -49,6 +50,28 @@ function SimpleTable() {
   ];
 
   const data: TableProps["data"] = [
+    [
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
+      <a className="text-blue-600 underline" href="#">
+        Details
+      </a>,
+    ],
+    [
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
+      <a className="text-blue-600 underline" href="#">
+        Details
+      </a>,
+    ],
     [
       "Batu Lintang",
       "Kedah",

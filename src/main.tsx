@@ -5,8 +5,7 @@ import "./index.css";
 import { store } from "./store";
 import { Provider } from "react-redux";
 
-
-const root_ :any= document.getElementById("root")
+const root_: any = document.getElementById("root");
 
 ReactDOM.createRoot(root_).render(
   <React.StrictMode>

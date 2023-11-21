@@ -8,17 +8,17 @@ function Testimonials() {
           making it effortless for your business.
         </p>
       </div>
-      <div className='flex'>
+      <div className='flex scale-90 lg:scale-100'>
         <button>
-          <img
-            className='scale-[1.5] mr-10'
-            src='public\prevTestimony.svg'
-            alt=''
-          />
+          <img className='scale-[1.5] mr-10' src='prevTestimony.svg' alt='' />
         </button>
-        <div className='border border-gray-300 border-1 flex p-7 max-w-3xl rounded-lg'>
-          <img src='public\testimonyphoto.png' alt='' />
-          <div className='p-7 space-y-5'>
+        <div className='border border-gray-300 border-1 flex flex-col lg:flex-row p-0 lg:p-7 max-w-xl lg:max-w-3xl rounded-lg'>
+          <img
+            src='testimonyphoto.png'
+            alt=''
+            className='scale-75 lg:scale-100'
+          />
+          <div className='px-7 py-3 space-y-3 lg:space-y-6'>
             <p className=''>
               Agriplot's Due Diligence System has been a game-changer for our
               agricultural business. It's made compliance with regulations a
@@ -29,11 +29,7 @@ function Testimonials() {
           </div>
         </div>
         <button>
-          <img
-            className='scale-[1.5] ml-10'
-            src='public\nextTestimony.svg'
-            alt=''
-          />
+          <img className='scale-[1.5] ml-10' src='nextTestimony.svg' alt='' />
         </button>
       </div>
       <div className='space-x-3'>

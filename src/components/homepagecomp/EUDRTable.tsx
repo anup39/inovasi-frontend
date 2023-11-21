@@ -37,7 +37,7 @@ function Table({ headers, data }: TableProps) {
             ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination totalPages={11} />
     </div>
   );
 }

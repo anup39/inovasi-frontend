@@ -1,5 +1,5 @@
 import "../../css/dashborad/DashBoardItem.css";
-import PieChart from "./PieChart";
+import PieChartComp from "./PieChartComp";
 
 function DashPieItem() {
   const items = [
@@ -31,7 +31,7 @@ function DashPieItem() {
             <div className="p-2">
               <h1 className="text-black font-bold">{item.name}</h1>
 
-              <PieChart data={item} width_={180} height_={180} />
+              <PieChartComp data={item} width_={180} height_={180} />
               {/* <Box
                 sx={{
                   marginLeft: "40%",

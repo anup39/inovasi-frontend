@@ -17,10 +17,10 @@ function NavBar() {
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <h1 className="font-semibold text-lg">Renee McKelvey</h1>
+          <h1 className="font-semibold text-lg">Inovasi Digital</h1>
           <p className="text-sm text-gray-400">Company Name</p>
         </div>
-        <img className="w-10 h-10" src="osgeo_nepal.png" alt="" />{" "}
+        <img className="w-10 h-10" src="testimonyphoto.png" alt="" />{" "}
       </div>
     </div>
   );

@@ -3,13 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
-    .dashItems {
-        @apply rounded-md text-white aspect-square w-full max-w-[200px];
-    }
+  .dashItems {
+    @apply rounded-md text-white aspect-square w-full max-w-[200px];
+  }
 
-    .commonSizing {
-        @apply px-3 lg:pr-12 flex flex-col items-start gap-9 py-8;
-    }
-
-
+  .commonSizing {
+    @apply px-3 lg:pr-12 flex flex-col items-start gap-9 py-8;
+  }
 }

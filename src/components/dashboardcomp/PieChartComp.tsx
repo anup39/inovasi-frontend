@@ -17,10 +17,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
 }) => {
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: any) => state.auth.piechartfor);
-  // console.log(piedata, "piedatat");
 
   useEffect(() => {
-    console.log(piechartfor, data.distinct);
     axios
       .get(
         `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
@@ -28,7 +26,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         }/`
       )
       .then((res) => {
-        console.log(res.data);
         setpieData(res.data);
       });
   }, [data.distinct, piechartfor]);

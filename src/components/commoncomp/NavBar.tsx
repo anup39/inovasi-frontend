@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import Menu from "./Menu";
 function NavBar() {
   return (
-    <div className="flex justify-between px-5 items-center py-1 bg-white">
+    <div className="flex justify-between px-5 items-center py-1 bg-white ">
       <img
         className="w-20"
         src="https://maps.agriplot.earth/assets/logolong-bbde4d32.png"
         alt=""
       />
+      <Menu />
 
       <div className="flex justify-center items-center space-x-4">
         <div className="iconDiv relative pr-5">

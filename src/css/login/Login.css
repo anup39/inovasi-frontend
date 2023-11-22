@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 form>input {
-    @apply p-2 border border-gray-300
+    @apply p-2 mr-16 border border-gray-300
 }

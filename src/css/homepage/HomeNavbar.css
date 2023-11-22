@@ -1,5 +1,9 @@
 .mobileMenuButton {
-    @apply uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-full text-lightGreen;
+    @apply uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen;
+}
+
+.mobileDiv {
+    @apply border-b-2 border-b-lightGreen py-2;
 }
 
 .hamburger {

@@ -84,7 +84,7 @@ function Menu() {
           </button>
         </div>
       </div>
-      <div className=' gap-6 py-2 hidden lg:flex'>
+      <div className='gap-7 py-1 hidden lg:flex'>
         <button
           onClick={() => handleClick('/dashboard')}
           className={`menuLink commonPropBtn ${

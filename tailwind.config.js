@@ -15,6 +15,7 @@ export default {
         darkGreen: '#018C79',
         creamGray: '#FAFAFA',
         lightGray: '#F7F7F7',
+        bgBlack: '#2A2A2A',
       },
     },
   },

@@ -1,32 +1,32 @@
-import { useEffect } from "react";
-import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
-import MapSection from "../../pages/MapSection";
-import PieChartComp from "./PieChartComp";
-import Layout from "../commoncomp/Layout";
+import { useEffect } from 'react';
+import AddLayerAndSourceToMap from '../../maputils/AddSourceAndLayer';
+import MapSection from '../../pages/MapSection';
+import PieChartComp from './PieChartComp';
+import Layout from '../commoncomp/Layout';
 // import SimpleTable from "./Table";
-import TableComp from "./TableComp";
+import TableComp from './TableComp';
 // import MapSection from '../../pages/MapSection';
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
-import { useSelector } from "react-redux";
+import { Map } from 'maplibre-gl'; // Import 'Map' from 'maplibre-gl'
+import { useSelector } from 'react-redux';
 
 const items = [
   {
     id: 1,
-    name: "Supply Base Region",
+    name: 'Supply Base Region',
     selected: false,
-    distinct: "country",
+    distinct: 'country',
   },
   {
     id: 2,
-    name: "Supplier Type",
+    name: 'Supplier Type',
     selected: false,
-    distinct: "type",
+    distinct: 'type',
   },
   {
     id: 3,
-    name: "RSPO Certified",
+    name: 'RSPO Certified',
     selected: false,
-    distinct: "rspo",
+    distinct: 'rspo',
   },
 ];
 
@@ -42,22 +42,22 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   useEffect(() => {
     if (map) {
-      map.on("load", () => {
+      map.on('load', () => {
         AddLayerAndSourceToMap({
           map: map,
-          layerId: "mill-layer",
-          sourceId: "mill",
+          layerId: 'mill-layer',
+          sourceId: 'mill',
           url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-          source_layer: "app_mill",
+          source_layer: 'app_mill',
           showPopup: true,
           style: {
-            fill_color: "blue",
+            fill_color: 'blue',
             fill_opacity: 0,
-            stroke_color: "",
+            stroke_color: '',
           },
           zoomToLayer: true,
           center: [103.8574, 2.2739],
-          fillType: "point",
+          fillType: 'point',
         });
       });
     }
@@ -65,22 +65,20 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   return (
     <Layout>
-      <div className="mt-4 mb-2">
-        <MapSection map={map} onSetMap={onSetMap} component={"mill"} />
+      <div className='mt-4 mb-2'>
+        <MapSection map={map} onSetMap={onSetMap} component={'mill'} />
       </div>
-      {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+      {selectedDataFormat && selectedDataFormat === 'Supplier Mill' ? (
         <TableComp />
       ) : (
         // <div className="flex flex-col w-1/2 items-center justify  py-7 gap-8 lg:flex-row">
-        <div className="flex">
+        <div className='flex flex-col lg:flex-row my-5 items-center justify-center gap-8'>
           {items.map((item) => (
-            <div key={item.id} className="bg-white mx-8">
-              <div>
-                <div className="p-2">
-                  <h1 className="text-black font-bold">{item.name}</h1>
+            <div key={item.id} className='bg-white flex '>
+              <div className='p-2'>
+                <h1 className='text-black font-bold'>{item.name}</h1>
 
-                  <PieChartComp data={item} width_={200} height_={200} />
-                </div>
+                <PieChartComp data={item} width_={200} height_={200} />
               </div>
             </div>
           ))}

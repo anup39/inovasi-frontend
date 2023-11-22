@@ -43,27 +43,27 @@ function HomeNavbar() {
           isMenuOpen ? '' : 'hidden'
         }`}
       >
-        <div className='border-b-2 border-b-lightGreen py-2'>
+        <div className='mobileDiv'>
           <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-4 '>
             <span>login</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-lightGreen py-2'>
+        <div className='mobileDiv'>
           <button className='mobileMenuButton '>
             <span>home</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-lightGreen py-2'>
+        <div className='mobileDiv'>
           <button className='mobileMenuButton'>
             <span>feature</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-lightGreen py-2'>
+        <div className='mobileDiv'>
           <button className='mobileMenuButton'>
             <span>news</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-lightGreen py-2'>
+        <div className='mobileDiv'>
           <button className='mobileMenuButton'>
             <span>about</span>
           </button>

@@ -218,7 +218,7 @@ export default function TableComp() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  console.log(rows, "rowsßß");
+  //   console.log(rows, "rowsßß");
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,

@@ -40,7 +40,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     (state) => state.displaySettings.selectedDataFormat
   );
 
-  console.log(selectedDataFormat, "selected data format");
   useEffect(() => {
     if (map) {
       map.on("load", () => {

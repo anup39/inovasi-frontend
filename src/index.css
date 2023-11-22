@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-    background-color: #F0EFF4;
+  background-color: #f0eff4;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  font-weight: 800 !important;
 }

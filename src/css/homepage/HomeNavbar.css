@@ -1,9 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .mobileMenuButton {
-    @apply uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-full text-[#009CA0];
+    @apply uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-full text-lightGreen;
 }
 
 .hamburger {

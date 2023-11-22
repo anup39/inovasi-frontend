@@ -1,14 +1,34 @@
 import { useEffect } from "react";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import MapSection from "../../pages/MapSection";
-import DashPieItem from "./DashPieItem";
-
+import PieChartComp from "./PieChartComp";
 import Layout from "../commoncomp/Layout";
 // import SimpleTable from "./Table";
 import TableComp from "./TableComp";
 // import MapSection from '../../pages/MapSection';
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
 import { useSelector } from "react-redux";
+
+const items = [
+  {
+    id: 1,
+    name: "Supply Base Region",
+    selected: false,
+    distinct: "country",
+  },
+  {
+    id: 2,
+    name: "Supplier Type",
+    selected: false,
+    distinct: "type",
+  },
+  {
+    id: 3,
+    name: "RSPO Certified",
+    selected: false,
+    distinct: "rspo",
+  },
+];
 
 interface SupplierMillProps {
   map: Map | null;
@@ -52,7 +72,20 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
         <TableComp />
       ) : (
-        <DashPieItem />
+        // <div className="flex flex-col w-1/2 items-center justify  py-7 gap-8 lg:flex-row">
+        <div className="flex">
+          {items.map((item) => (
+            <div key={item.id} className="bg-white mx-8">
+              <div>
+                <div className="p-2">
+                  <h1 className="text-black font-bold">{item.name}</h1>
+
+                  <PieChartComp data={item} width_={200} height_={200} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </Layout>
   );

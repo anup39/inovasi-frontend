@@ -16,9 +16,11 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
-  const [selectedDataFormat, setselectedDataFormat] = useSelector(
+  const selectedDataFormat = useSelector(
     (state) => state.displaySettings.selectedDataFormat
   );
+
+  console.log(selectedDataFormat, "selected data format");
   useEffect(() => {
     if (map) {
       map.on("load", () => {
@@ -45,10 +47,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <div className="mt-4 mb-2">
-        <MapSection map={map} onSetMap={onSetMap} component={"mill supplier"} />
+        <MapSection map={map} onSetMap={onSetMap} component={"mill"} />
       </div>
-      <DashPieItem />
-      <TableComp />
+      {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+        <TableComp />
+      ) : (
+        <DashPieItem />
+      )}
     </Layout>
   );
 };

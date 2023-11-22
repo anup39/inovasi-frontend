@@ -37,7 +37,7 @@ export default function MapComponent({
     });
 
     onSetMap(map_);
-    if (component === "mill supplier") {
+    if (component === "mill") {
       map_.addControl(new SelectDataFormatControl(), "top-left");
     }
 

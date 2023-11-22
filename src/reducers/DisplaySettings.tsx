@@ -7,7 +7,7 @@ interface DisplaySettingsState {
 }
 
 const initialState: DisplaySettingsState = {
-  selectedDataFormat: "supplier_table",
+  selectedDataFormat: "Supplier Mill",
 };
 
 export const DisplaySettings = createSlice({

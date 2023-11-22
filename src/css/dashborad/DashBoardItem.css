@@ -4,10 +4,10 @@
 
 @layer utilities {
   .dashItems {
-    @apply rounded-md text-white aspect-square w-full max-w-[200px];
+    @apply rounded-md text-white w-full max-w-[200px] my-auto;
   }
 
   .commonSizing {
-    @apply px-3 lg:pr-12 flex flex-col items-start gap-9 py-8;
+    @apply px-3 flex flex-col items-start gap-4 py-3 h-36 min-w-[125px];
   }
 }

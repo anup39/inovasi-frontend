@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 function HomeHero() {
   const navigate = useNavigate();
   return (
-    <div className=' p-6 flex flex-col mx-auto lg:flex-row lg:pb-64'>
-      <div className='flex flex-col mb-8 lg:mb-0  space-y-7 ml-0 lg:space-y-10 lg:w-1/2  lg:mt-36 lg:ml-6 z-20'>
+    <div className=' p-6 flex flex-col lg:items-center mx-auto lg:flex-row lg:pb-64 mt=0 lg:mt-20'>
+      <div className='flex flex-col mb-8 lg:mb-0  space-y-7 ml-0 lg:space-y-10 lg:w-1/2  lg:ml-6 z-20'>
         <h1 className='font-bold lg:max-w-lg text-3xl lg:text-4xl text-center lg:text-left'>
           Ensure compliance regulation effortlessly with Agriplot's Due
           Diligenge System
@@ -23,18 +23,18 @@ function HomeHero() {
         </div>
       </div>
       <img
-        className='absolute top-[110px] opacity-20 left-[25%] z-5 scale-110 lg:hidden'
+        className='absolute top-[95px] opacity-20 left-[25%] z-5 scale-110 lg:top-[120px] lg:opacity-100 lg:left-[46%]'
         src='homeherobackground.png'
         alt=''
       />
       <div className='relative mx-auto lg:mx-0 lg:mb-0 lg:w-1/2'>
-        <img
+        {/* <img
           className='absolute top-0 z-5 scale-90 hidden lg:block'
           src='homeherobackground.png'
           alt=''
-        />
+        /> */}
         <img
-          className=' relative lg:top-32 lg:left-20 top-0 left-0 z-10 overflow-x-visible'
+          className=' lg:top-32 lg:left-20 top-0 left-0 z-10 overflow-x-visible'
           src='homeherotablet.png'
           alt=''
         />

@@ -7,7 +7,7 @@ interface TableProps {
 
 function TableHeaders({ headers }: { headers: string[] }) {
   return (
-    <thead className='text-left bg-[#FAFAFA] shadow'>
+    <thead className='text-left bg-creamGray shadow'>
       <tr>
         {headers.map((header, index) => (
           <th key={index} className='py-5 px-4 border-b'>

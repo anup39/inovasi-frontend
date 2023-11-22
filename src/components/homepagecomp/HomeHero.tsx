@@ -15,7 +15,7 @@ function HomeHero() {
         <div className='flex items-center justify-center w-full space-x-4 lg:justify-start z-20'>
           <button
             onClick={() => navigate('/dashboard')}
-            className='py-2 px-5 bg-[#009CA0] text-white'
+            className='py-2 px-5 bg-lightGreen text-white'
           >
             Demo
           </button>

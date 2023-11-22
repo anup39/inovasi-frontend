@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .upperSvg {
-    @apply space-y-7 p-6 px-8 opacity-[0.6] cursor-pointer bg-[#282828];
+    @apply space-y-7 p-6 px-8 opacity-[0.6] cursor-pointer bg-semiBlack;
 }
 
 .innerSvg {
@@ -15,7 +15,7 @@
 }
 
 .innerSvgContainer {
-    @apply bg-[#018C79] w-full;
+    @apply bg-darkGreen w-full;
 }
 
 .innerSvg .paraNum {

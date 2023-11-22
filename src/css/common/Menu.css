@@ -4,9 +4,8 @@
 
 @layer utilities {
     .mobileMenuBtn {
-        @apply uppercase font-semibold text-2xl py-3 px-6 pl-2 hover:bg-black rounded-full;
+        @apply uppercase font-semibold text-2xl px-6 pl-2 hover:bg-black rounded-full;
     }
-
 
     .commonPropBtn {
         @apply flex items-center gap-2 px-8 pr-16 py-3 rounded-3xl hover:text-white hover:bg-[#2A2A2A];
@@ -34,6 +33,7 @@
     height: 24px;
     transition: all 0.25s;
     position: relative;
+    @apply z-30 block focus:outline-none absolute left-4 top-4 lg:hidden;
 }
 
 .hamburger-top,
@@ -63,7 +63,7 @@
     transform: rotate(90deg);
     transform: translateY(0px);
     position: fixed;
-    top: 50px;
+    top: 70px;
     right: 25px;
 }
 

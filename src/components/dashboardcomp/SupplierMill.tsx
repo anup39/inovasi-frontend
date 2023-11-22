@@ -1,13 +1,27 @@
+<<<<<<< HEAD
+import { useEffect, useState } from "react";
+import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
+import MapSection from "../../pages/MapSection";
+import PieChartComp from "./PieChartComp";
+import Layout from "../commoncomp/Layout";
+=======
 import { useEffect } from 'react';
 import AddLayerAndSourceToMap from '../../maputils/AddSourceAndLayer';
 import MapSection from '../../pages/MapSection';
 import PieChartComp from './PieChartComp';
 import Layout from '../commoncomp/Layout';
+>>>>>>> ab562b1b68c077ced9ea4d563594573badf5260b
 // import SimpleTable from "./Table";
 import TableComp from './TableComp';
 // import MapSection from '../../pages/MapSection';
+<<<<<<< HEAD
+import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { useSelector } from "react-redux";
+import axios from "axios";
+=======
 import { Map } from 'maplibre-gl'; // Import 'Map' from 'maplibre-gl'
 import { useSelector } from 'react-redux';
+>>>>>>> ab562b1b68c077ced9ea4d563594573badf5260b
 
 const items = [
   {
@@ -36,6 +50,9 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
+  const [tableColumn, settableColumn] = useState([]);
+  const [tableData, settableData] = useState([]);
+
   const selectedDataFormat = useSelector(
     (state) => state.displaySettings.selectedDataFormat
   );
@@ -63,13 +80,27 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
   }, [map]);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/mill/`)
+      .then((res) => {
+        settableColumn(res.data.columns);
+      });
+
+    axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
+      settableData(res.data);
+    });
+  }, []);
+
   return (
     <Layout>
       <div className='mt-4 mb-2'>
         <MapSection map={map} onSetMap={onSetMap} component={'mill'} />
       </div>
-      {selectedDataFormat && selectedDataFormat === 'Supplier Mill' ? (
-        <TableComp />
+      {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+        <>
+          <TableComp tableColumn={tableColumn} tableData={tableData} />
+        </>
       ) : (
         // <div className="flex flex-col w-1/2 items-center justify  py-7 gap-8 lg:flex-row">
         <div className='flex flex-col lg:flex-row my-5 items-center justify-center gap-8'>

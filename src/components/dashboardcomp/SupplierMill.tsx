@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import MapSection from "../../pages/MapSection";
-import Dropdown from "../commoncomp/Dropdown";
+import DashPieItem from "./DashPieItem";
+
 import Layout from "../commoncomp/Layout";
-import SimpleTable from "./Table";
+// import SimpleTable from "./Table";
+import TableComp from "./TableComp";
 // import MapSection from '../../pages/MapSection';
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { useSelector } from "react-redux";
 
 interface SupplierMillProps {
   map: Map | null;
@@ -13,8 +16,9 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
-  const optionsReporting = ["Metric", "Mill Supplier"];
-
+  const [selectedDataFormat, setselectedDataFormat] = useSelector(
+    (state) => state.displaySettings.selectedDataFormat
+  );
   useEffect(() => {
     if (map) {
       map.on("load", () => {
@@ -40,27 +44,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   return (
     <Layout>
-      <div className="mt-4">
-        <MapSection map={map} onSetMap={onSetMap} />
+      <div className="mt-4 mb-2">
+        <MapSection map={map} onSetMap={onSetMap} component={"mill supplier"} />
       </div>
-      <div className="mx-4 my-3">
-        <Dropdown options={optionsReporting} placeholder="Metric" />
-      </div>
-      {/* <div className="space-x-4  flex">
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supply Mill Region</h1>
-        </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supplier Type</h1>
-        </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">RSPO Certified</h1>
-        </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supplier Risk</h1>
-        </div>
-      </div> */}
-      <SimpleTable />
+      <DashPieItem />
+      <TableComp />
     </Layout>
   );
 };

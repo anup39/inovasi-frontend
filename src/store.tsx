@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Auth from "./reducers/Auth";
+import DisplaySettings from "./reducers/DisplaySettings";
 
 export const store = configureStore({
   reducer: {
     auth: Auth,
+    displaySettings: DisplaySettings,
   },
 });
 

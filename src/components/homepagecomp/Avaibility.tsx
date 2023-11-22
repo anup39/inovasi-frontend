@@ -10,29 +10,29 @@ function Avaibility() {
       <div className='flex flex-row lg:flex-col py-3 bg-[#018C79] rounded-lg'>
         <div className='upperContainer '>
           <div className='upperSvg '>
-            <img src='public\palm.svg' alt='' />
+            <img src='palm.svg' alt='' />
             <p>Palm</p>
           </div>
           <div className='upperSvg'>
-            <img src='public\rubber.svg' alt='' />
+            <img src='rubber.svg' alt='' />
             <p>Rubber</p>
           </div>
           <div className='upperSvg'>
-            <img src='public\soy.svg' alt='' />
+            <img src='soy.svg' alt='' />
             <p>Soy</p>
           </div>
           <div className='upperSvg'>
-            <img src='public\cocoa.svg' alt='' />
+            <img src='cocoa.svg' alt='' />
             <p>Cocoa</p>
           </div>
           <div className='upperSvg'>
-            <img src='public\coffee.svg' alt='' />
+            <img src='coffee.svg' alt='' />
             <p>Coffee</p>
           </div>
         </div>
         <div className='innerSvgContainer flex flex-col justify-center'>
           <div className='innerSvg'>
-            <img src='public\countries.svg' alt='' />
+            <img src='countries.svg' alt='' />
             <p className='paraNum'>32</p>
             <p className='paraText'>Countries</p>
           </div>

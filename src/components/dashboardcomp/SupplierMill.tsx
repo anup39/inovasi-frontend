@@ -1,11 +1,34 @@
 import { useEffect } from "react";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import MapSection from "../../pages/MapSection";
-import Dropdown from "../commoncomp/Dropdown";
+import PieChartComp from "./PieChartComp";
 import Layout from "../commoncomp/Layout";
-import SimpleTable from "./Table";
+// import SimpleTable from "./Table";
+import TableComp from "./TableComp";
 // import MapSection from '../../pages/MapSection';
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { useSelector } from "react-redux";
+
+const items = [
+  {
+    id: 1,
+    name: "Supply Base Region",
+    selected: false,
+    distinct: "country",
+  },
+  {
+    id: 2,
+    name: "Supplier Type",
+    selected: false,
+    distinct: "type",
+  },
+  {
+    id: 3,
+    name: "RSPO Certified",
+    selected: false,
+    distinct: "rspo",
+  },
+];
 
 interface SupplierMillProps {
   map: Map | null;
@@ -13,7 +36,9 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
-  const optionsReporting = ["Metric", "Mill Supplier"];
+  const selectedDataFormat = useSelector(
+    (state) => state.displaySettings.selectedDataFormat
+  );
 
   useEffect(() => {
     if (map) {
@@ -40,27 +65,27 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   return (
     <Layout>
-      <div className="mt-4">
-        <MapSection map={map} onSetMap={onSetMap} />
+      <div className="mt-4 mb-2">
+        <MapSection map={map} onSetMap={onSetMap} component={"mill"} />
       </div>
-      <div className="mx-4 my-3">
-        <Dropdown options={optionsReporting} placeholder="Metric" />
-      </div>
-      {/* <div className="space-x-4  flex">
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supply Mill Region</h1>
+      {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+        <TableComp />
+      ) : (
+        // <div className="flex flex-col w-1/2 items-center justify  py-7 gap-8 lg:flex-row">
+        <div className="flex">
+          {items.map((item) => (
+            <div key={item.id} className="bg-white mx-8">
+              <div>
+                <div className="p-2">
+                  <h1 className="text-black font-bold">{item.name}</h1>
+
+                  <PieChartComp data={item} width_={200} height_={200} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supplier Type</h1>
-        </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">RSPO Certified</h1>
-        </div>
-        <div className="rounded-sm bg-white w-1/4 py-3 px-4">
-          <h1 className="font-semibold">Supplier Risk</h1>
-        </div>
-      </div> */}
-      <SimpleTable />
+      )}
     </Layout>
   );
 };

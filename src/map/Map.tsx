@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 import "../css/map/Map.scss";
+import SelectDataFormatControl from "../components/dashboardcomp/SelectDataFormatControl";
 // @ts-ignore
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
@@ -12,10 +13,16 @@ interface MapProps {
   map: Map | null;
   refObj: React.RefObject<HTMLDivElement>;
   onSetMap: (evmap: Map) => void;
+  component: string;
 }
 
 // @ts-ignore
-export default function MapComponent({ refObj, map, onSetMap }: MapProps) {
+export default function MapComponent({
+  refObj,
+  map,
+  onSetMap,
+  component,
+}: MapProps) {
   // const dispatch = useDispatch();
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -30,6 +37,9 @@ export default function MapComponent({ refObj, map, onSetMap }: MapProps) {
     });
 
     onSetMap(map_);
+    if (component === "mill") {
+      map_.addControl(new SelectDataFormatControl(), "top-left");
+    }
 
     return () => {
       map_.remove();

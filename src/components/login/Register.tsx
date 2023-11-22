@@ -5,12 +5,12 @@ function Register() {
     <div className='h-screen flex justify-center items-center bg-zinc-700'>
       <div className='flex relative'>
         <img
-          className='object-fit w-1/2 googleIcon.svgblock'
-          src='registerImage.png'
+          className='object-fit w-1/2 public\googleIcon.svgblock'
+          src='public\registerImage.png'
           alt=''
         />
         <div className='absolute top-10 left-10 bg-white p-1 rounded-md'>
-          <img src='ivovasi-Logo.png' alt='' />
+          <img src='public\ivovasi-Logo.png' alt='' />
         </div>
         <div className='flex flex-col  bg-white px-10 w-full lg:w-1/2 py-10'>
           <h1 className='text-2xl px-3 font-semibold '>Register</h1>
@@ -41,7 +41,7 @@ function Register() {
               <div className='absolute bottom-0 left-40 flex justify-center '>
                 <img
                   className=' h-6 aspect-square inline'
-                  src='fileUpload.svg'
+                  src='public\fileUpload.svg'
                   alt=''
                 />
                 <div className='flex gap-1'>
@@ -56,7 +56,11 @@ function Register() {
             <h1>
               or Quick Sign-up with :
               <span>
-                <img className='inline px-3' src='googleIcon.svg' alt='' />
+                <img
+                  className='inline px-3'
+                  src='public\googleIcon.svg'
+                  alt=''
+                />
               </span>
             </h1>
           </form>

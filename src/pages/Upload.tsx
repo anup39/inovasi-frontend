@@ -24,9 +24,7 @@ export default function Upload() {
           `${import.meta.env.VITE_API_DASHBOARD_URL}/upload-facility/`,
           data
         )
-        .then((res) => {
-          console.log(res, "res");
-        });
+        .then((res) => {});
       // Perform operations with the file here
     } else {
       console.log("No file uploaded and sheet name also");

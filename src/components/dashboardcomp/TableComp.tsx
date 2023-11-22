@@ -109,7 +109,7 @@ const headCells: readonly HeadCell[] = [
   {
     id: "name",
     numeric: false,
-    disablePadding: true,
+    disablePadding: false,
     label: "Dessert (100g serving)",
   },
   {
@@ -217,6 +217,8 @@ export default function TableComp() {
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  console.log(rows, "rowsßß");
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,

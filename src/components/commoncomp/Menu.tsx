@@ -14,80 +14,64 @@ function Menu() {
     setIsMenuOpen(false);
   }
   return (
-    <div className='relative '>
-      {/* Hamburger Icon */}
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className={`z-30 block focus:outline-none absolute -left-12 top-9 lg:hidden
-      hamburger ${isMenuOpen ? 'open' : ''}`}
-      >
-        <span className='hamburger-top'></span>
-        <span className='hamburger-middle'></span>
-        <span className='hamburger-bottom'></span>
-      </button>
+    <div>
+      <div className=''>
+        {/* Hamburger Icon */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={`z-40 absolute block focus:outline-none  lg:hidden hamburger ${
+            isMenuOpen ? 'open' : ''
+          }`}
+        >
+          <span className='hamburger-top'></span>
+          <span className='hamburger-middle'></span>
+          <span className='hamburger-bottom'></span>
+        </button>
+      </div>
       {/* mobile menu */}
       <div
-        className={`inset-0 opacity-90  bg-gray-700 absolute text-center border-b  pt-12 h-screen z-20 text-white ${
+        className={`inset-0 opacity-90  bg-gray-950 absolute text-center border-b  pt-12 h-screen z-30 text-white ${
           isMenuOpen ? '' : 'hidden'
         }`}
       >
-        <div className='border-b-2 border-b-gray-400 py-2 '>
+        <div className='border-b-2 border-b-lightGreen py-2'>
           <button
-            className='mobileMenuBtn'
             onClick={() => handleMobileClick('/dashboard')}
+            className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-sm text-lightGreen '
           >
-            <img
-              className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='HomeMenu.svg'
-              alt='Home Icon'
-            />
             <span>home</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-gray-400 py-2'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
           <button
-            className='mobileMenuBtn'
             onClick={() => handleMobileClick('/supplierMill')}
+            className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen '
           >
-            <img
-              className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='supplierMill.svg'
-              alt='Home Icon'
-            />
-            <span>Supplier Mill</span>
+            <span>supplier mill</span>
           </button>
         </div>
-        <div className='border-b-2 border-b-gray-400 py-2'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
           <button
-            className='mobileMenuBtn'
             onClick={() => handleMobileClick('/supplierPlantation')}
+            className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'
           >
-            <img
-              className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='supplierPlantation.svg'
-              alt='Home Icon'
-            />
-            <span>Supplier Plantation</span>
+            <span>supplier plantation</span>
           </button>
         </div>
         <div className='py-2'>
           <button
-            className='mobileMenuBtn'
             onClick={() => handleMobileClick('/reporting')}
+            className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'
           >
-            <img
-              className='menu-svg scale-110 filter invert inline-block px-2 pb-1 '
-              src='Reporting.svg'
-              alt='Home Icon'
-            />
-            <span>Reporting</span>
+            <span>reporting</span>
           </button>
         </div>
       </div>
+      {/* menulink and active class properties are at css file, they are used to control the svg colors when hovered */}
       <div className='gap-7 py-1 hidden lg:flex'>
         <button
           onClick={() => handleClick('/dashboard')}
-          className={`menuLink commonPropBtn ${
+          className={`menuLink flex items-center gap-2 px-3 py-3 rounded-3xl hover:text-white hover:bg-bgBlack ${
             location.pathname === '/' ? 'active' : ''
           }`}
         >
@@ -100,7 +84,7 @@ function Menu() {
         </button>
         <button
           onClick={() => handleClick('/supplierMill')}
-          className={`menuLink commonPropBtn ${
+          className={`menuLink flex items-center gap-2 px-3 py-3 rounded-3xl hover:text-white hover:bg-bgBlack ${
             location.pathname === '/supplierMill' ? 'active' : ''
           }`}
         >
@@ -113,7 +97,7 @@ function Menu() {
         </button>
         <button
           onClick={() => handleClick('/supplierPlantation')}
-          className={`menuLink commonPropBtn ${
+          className={`menuLink flex items-center gap-2 px-3 py-3 rounded-3xl hover:text-white hover:bg-bgBlack ${
             location.pathname === '/supplierPlantation' ? 'active' : ''
           }`}
         >
@@ -126,7 +110,7 @@ function Menu() {
         </button>
         <button
           onClick={() => handleClick('/reporting')}
-          className={`menuLink commonPropBtn ${
+          className={`menuLink flex items-center gap-2 px-3 py-3 rounded-3xl hover:text-white hover:bg-bgBlack ${
             location.pathname === '/reporting' ? 'active' : ''
           }`}
         >

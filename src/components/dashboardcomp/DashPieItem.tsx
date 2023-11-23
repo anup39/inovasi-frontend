@@ -1,4 +1,3 @@
-import '../../css/dashborad/DashBoardItem.css';
 import PieChartComp from './PieChartComp';
 
 function DashPieItem() {
@@ -24,9 +23,9 @@ function DashPieItem() {
   ];
 
   return (
-    <div className='flex flex-col items-center py-1 gap-6 lg:flex-row'>
+    <div className='flex items-center py-1 gap-6 lg:flex-row'>
       {items.map((item) => (
-        <div key={item.id} className='bg-white dashItems'>
+        <div key={item.id} className='bg-white rounded-md text-white my-auto'>
           <div>
             <div className='p-1'>
               <h1 className='text-black font-bold'>{item.name}</h1>

@@ -33,7 +33,7 @@ function Register() {
               id='fileInput'
             />
             <label
-              className='w-36 h-36 bg-gray-100 cursor-pointer flex justify-center items-center border-2 border-gray-200'
+              className='w-24 h-24 lg:w-36 lg:h-36 bg-gray-100 cursor-pointer flex justify-center items-center border-2 border-gray-200'
               htmlFor='fileInput'
             >
               <div className='text-center space-y-2'>

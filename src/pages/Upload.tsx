@@ -5,6 +5,7 @@ import NavBar from "../components/commoncomp/NavBar";
 export default function Upload() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [sheetname, setsheetname] = useState<string>("");
+  const [actual, setactual] = useState<string>("");
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -19,6 +20,7 @@ export default function Upload() {
       const data = new FormData();
       data.append("file", selectedFile);
       data.append("sheet", sheetname);
+      data.append("actual", actual);
       axios
         .post(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/upload-facility/`,
@@ -48,6 +50,20 @@ export default function Upload() {
                 className="w-full border-yellow-300 rounded-md mt-1 focus:border-yellow-500 focus:ring-yellow-500 "
                 onChange={(event) => {
                   setsheetname(event.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="text-input-actual" className="block text-white">
+                Actual Supplier
+              </label>
+              <input
+                id="text-input-actual"
+                type="text"
+                name="actual"
+                className="w-full border-yellow-300 rounded-md mt-1 focus:border-yellow-500 focus:ring-yellow-500 "
+                onChange={(event) => {
+                  setactual(event.target.value);
                 }}
               />
             </div>

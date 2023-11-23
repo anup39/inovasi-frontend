@@ -2,10 +2,14 @@ import axios from "axios";
 import maplibregl from "maplibre-gl";
 
 // @ts-ignore
-function getPopupHTML(properties) {
+function getPopupHTML(properties, trace) {
   let html = "";
+
+  if (trace) {
+    html = `<button id="trace-plot-button">Trace Plantation</button><br>`;
+  }
   for (const [key, value] of Object.entries(properties)) {
-    html += `<b>${key}:</b> ${value}<br>`;
+    html += `<b>${key}:</b> ${value}<br> `;
   }
   return html;
 }
@@ -31,6 +35,8 @@ function AddLayerAndSourceToMap({
   center,
   // @ts-ignore
   fillType,
+  // @ts-ignore
+  trace,
 }) {
   // Rest of your component code remains unchanged
   if (zoomToLayer) {
@@ -95,7 +101,7 @@ function AddLayerAndSourceToMap({
       const feature = features[0];
       new maplibregl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(getPopupHTML(feature.properties))
+        .setHTML(getPopupHTML(feature.properties, trace))
         .addTo(map);
     });
   }

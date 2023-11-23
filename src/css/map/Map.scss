@@ -6,6 +6,25 @@
 //   border-radius: 10px;
 // }
 
+.maplibregl-popup-content {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+#trace-plot-button {
+  background-color: #15999D;
+  border: 1px solid bisque;
+  border-radius: 4px;
+  height: 30px;
+  width: 100%;
+  color: white;
+}
+
+
+.maplibregl-popup-close-button {
+  right: 4px;
+}
+
 .maplibregl-ctrl-group {
   background-color: #1976d2;
 }

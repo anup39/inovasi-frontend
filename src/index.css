@@ -13,3 +13,8 @@ body {
 .MuiDataGrid-columnHeaderTitle {
   font-weight: 800 !important;
 }
+
+.MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-menuIcon {
+  width: auto;
+  visibility: visible;
+}

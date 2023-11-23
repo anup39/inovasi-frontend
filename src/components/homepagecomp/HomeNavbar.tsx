@@ -24,9 +24,10 @@ function HomeNavbar() {
         </div>
         <div className='relative pr-5 pb-5'>
           {/* Mobile Hamburger */}
+          {/* The class hamburger has some css applied for styling which can be found at css file */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`z-40 block absolute focus:outline-none lg:hidden hamburger ${
+            className={`z-40 block absolute top-0 focus:outline-none lg:hidden hamburger ${
               isMenuOpen ? 'open' : ''
             }`}
           >
@@ -43,33 +44,33 @@ function HomeNavbar() {
           isMenuOpen ? '' : 'hidden'
         }`}
       >
-        <div className='mobileDiv'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
           <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-4 '>
             <span>login</span>
           </button>
         </div>
-        <div className='mobileDiv'>
-          <button className='mobileMenuButton '>
+        <div className='border-b-2 border-b-lightGreen py-2'>
+          <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen '>
             <span>home</span>
           </button>
         </div>
-        <div className='mobileDiv'>
-          <button className='mobileMenuButton'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
+          <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'>
             <span>feature</span>
           </button>
         </div>
-        <div className='mobileDiv'>
-          <button className='mobileMenuButton'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
+          <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'>
             <span>news</span>
           </button>
         </div>
-        <div className='mobileDiv'>
-          <button className='mobileMenuButton'>
+        <div className='border-b-2 border-b-lightGreen py-2'>
+          <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'>
             <span>about</span>
           </button>
         </div>
         <div className=' py-2'>
-          <button className='mobileMenuButton'>
+          <button className='uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 text-lightGreen'>
             <span>Testimonials</span>
           </button>
         </div>

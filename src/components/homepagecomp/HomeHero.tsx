@@ -28,11 +28,6 @@ function HomeHero() {
         alt=''
       />
       <div className='relative mx-auto lg:mx-0 lg:mb-0 lg:w-1/2'>
-        {/* <img
-          className='absolute top-0 z-5 scale-90 hidden lg:block'
-          src='homeherobackground.png'
-          alt=''
-        /> */}
         <img
           className=' lg:top-32 lg:left-20 top-0 left-0 z-10 overflow-x-visible'
           src='homeherotablet.png'

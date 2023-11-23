@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../css/dashborad/DashBoardItem.css';
 import AddLayerAndSourceToMap from '../../maputils/AddSourceAndLayer';
 import RemoveSourceAndLayerFromMap from '../../maputils/RemoveSourceAndLayer';
 import { useDispatch } from 'react-redux';
@@ -154,21 +153,21 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className='flex flex-col lg:flex-row items-center gap-3'>
+    <div className='flex items-center gap-3'>
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              className={`${
+              className={`rounded-md md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[190px] lg:aspect-square ${
                 item.selected ? 'bg-[#CCB848]' : `bg-[${item.bgcolor}]`
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}
             >
-              <div className='commonSizing'>
+              <div className='@apply px-4 flex flex-col items-start gap-4 py-5 '>
                 <img src={item.imagesrc} alt='' />
-                <p className='whitespace-nowrap'>{item.name}</p>
-                <p className='font-bold'>{item.total}</p>
+                <p className=' text-white'>{item.name}</p>
+                <p className='font-bold text-white'>{item.total}</p>
               </div>
             </div>
           ))

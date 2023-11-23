@@ -16,7 +16,7 @@ const MapSection: React.FC<MapSectionProps> = ({
 }) => {
   const searchRef = useRef(null);
   return (
-    <div className='relative '>
+    <div className='relative h-full'>
       <MapComp
         refObj={searchRef}
         map={map}

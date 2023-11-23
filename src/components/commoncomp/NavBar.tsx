@@ -4,7 +4,7 @@ import Menu from './Menu';
 function NavBar() {
   return (
     <div className='flex justify-between px-5 items-center bg-white '>
-      <div className='flex items-center'>
+      <div className='flex items-center flex-row-reverse lg:flex-row gap-8'>
         <img
           className='h-8'
           src='https://maps.agriplot.earth/assets/logolong-bbde4d32.png'

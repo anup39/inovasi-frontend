@@ -1,10 +1,10 @@
-import { useRef, useEffect } from 'react';
-import maplibregl, { Map } from 'maplibre-gl'; // Import 'Map' type from 'maplibre-gl'
-import '../css/map/Map.scss';
-import SelectDataFormatControl from '../components/dashboardcomp/SelectDataFormatControl';
+import { useRef, useEffect } from "react";
+import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
+import "../css/map/Map.scss";
+import SelectDataFormatControl from "../components/dashboardcomp/SelectDataFormatControl";
 // @ts-ignore
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
-import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
+import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 // import { useDispatch } from "react-redux";
 // import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
@@ -37,8 +37,8 @@ export default function MapComponent({
     });
 
     onSetMap(map_);
-    if (component === 'mill') {
-      map_.addControl(new SelectDataFormatControl(), 'top-left');
+    if (component === "mill") {
+      map_.addControl(new SelectDataFormatControl(), "top-left");
     }
 
     return () => {
@@ -65,8 +65,8 @@ export default function MapComponent({
   return (
     <div
       ref={mapContainer}
-      id='map'
-      className='rounded-lg flex-grow mx-10 border-[10px] border-white h-full'
+      id="map"
+      className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
     />
   );
 }

@@ -8,6 +8,7 @@ export default function DataGridDemo({ tableColumn, tableData }) {
   return (
     <Box sx={{ height: 350, width: "100%" }}>
       <DataGrid
+        hideFooter={false}
         rows={rows}
         columns={columns}
         initialState={{

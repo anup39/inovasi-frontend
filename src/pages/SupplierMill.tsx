@@ -8,6 +8,7 @@ import { Map } from "maplibre-gl";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
+import { RootState } from "../store";
 
 const items = [
   {
@@ -40,7 +41,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [tableData, settableData] = useState([]);
 
   const selectedDataFormat = useSelector(
-    (state) => state.displaySettings.selectedDataFormat
+    (state: RootState) => state.displaySettings.selectedDataFormat
   );
 
   useEffect(() => {

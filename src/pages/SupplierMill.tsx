@@ -55,7 +55,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           showPopup: true,
           style: {
             fill_color: "blue",
-            fill_opacity: 0,
+            fill_opacity: "0",
             stroke_color: "",
           },
           zoomToLayer: true,

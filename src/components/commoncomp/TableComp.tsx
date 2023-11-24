@@ -86,8 +86,6 @@ export default function DataGridDemo({
         pageSizeOptions={[5]}
         checkboxSelection={true}
         disableRowSelectionOnClick
-        disableColumnSelector={false}
-        ////@ts-ignore
         onRowSelectionModelChange={handleonRowSelectionModelChange}
       />
     </Box>

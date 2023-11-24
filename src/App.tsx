@@ -13,7 +13,6 @@ function App() {
 
   return (
     <div>
-      <Toast />
       <Routers map={map} onSetMap={onSetMap} />
     </div>
   );

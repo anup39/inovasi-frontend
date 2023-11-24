@@ -7,6 +7,7 @@ import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Toast from "../components/commoncomp/Toast";
 
 const items = [
   {
@@ -81,6 +82,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   return (
     <Layout>
+      <Toast />
       <div className="flex flex-col h-screen">
         <div className="mt-4 mb-2 flex-1">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />

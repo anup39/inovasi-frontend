@@ -2,6 +2,7 @@ import Layout from "../components/commoncomp/Layout";
 import DashBoardItem from "../components/dashboardcomp/DashBoardItem";
 import MapComponent from "../map/Map";
 import { Map } from "maplibre-gl";
+import Toast from "../components/commoncomp/Toast";
 
 interface DashboardHomeProps {
   map: Map | null;
@@ -12,6 +13,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   return (
     <div className="flex flex-col h-screen">
       <Layout>
+        <Toast />
         <DashBoardItem map={map} />
         <div className=" overflow-hidden flex-1">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />

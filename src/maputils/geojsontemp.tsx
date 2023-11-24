@@ -1,10 +1,13 @@
-const createPointGeojson = (coordinates: [], properties: object) => {
-  const geojson = {
+const createPointGeojson = (coordinates: [number, number]) => {
+  const geojson: GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    GeoJSON.GeoJsonProperties
+  > = {
     type: "FeatureCollection",
     features: [
       {
         type: "Feature",
-        properties: properties,
+        properties: {},
         geometry: {
           coordinates: coordinates,
           type: "Point",

@@ -6,7 +6,7 @@ import {
   SourceSpecification,
   CircleLayerSpecification,
   LayerSpecification,
-  IControl,
+  GeoJSONSource,
 } from "maplibre-gl";
 
 interface AddLayerProps {
@@ -72,7 +72,6 @@ function AddLayerAndSourceToMap({
         "circle-stroke-width": 1,
         "circle-stroke-color": "black",
       },
-      cluster: true,
     };
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
@@ -85,7 +84,7 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "fill-color": style.fill_color,
-        "fill-opacity": style.fill_opacity,
+        "fill-opacity": parseInt(style.fill_opacity),
         "fill-outline-color": style.stroke_color,
       },
     };
@@ -94,24 +93,21 @@ function AddLayerAndSourceToMap({
   }
 
   if (showPopup) {
-    map.on("click", layerId, (e: any) => {
+    map.on("click", layerId, (e) => {
       const features = map.queryRenderedFeatures(e.point);
       if (!features.length) {
         return;
       }
-      const feature: any = features[0];
+      const feature = features[0];
       const long: string = component + "_" + "long";
       const lat: string = component + "_" + "lat";
-      const geojson: object = createPointGeojson(
-        [
-          parseFloat(feature.properties[long]),
-          parseFloat(feature.properties[lat]),
-        ],
-        {}
-      );
+      const geojson = createPointGeojson([
+        parseFloat(feature.properties[long]),
+        parseFloat(feature.properties[lat]),
+      ]);
 
       if (map.getSource("point") && map.getLayer("point-layer")) {
-        const source = map.getSource("point");
+        const source = map.getSource("point") as GeoJSONSource;
         source.setData(geojson);
         map.setLayoutProperty("point-layer", "visibility", "visible");
         map.flyTo({
@@ -121,7 +117,7 @@ function AddLayerAndSourceToMap({
           ],
         });
       }
-      const popup_name: IControl = "PopupControl";
+      const popup_name: string = "PopupControl";
       const popup_index = map._controls.indexOf(popup_name);
       if (popup_index) {
         map._controls[map._controls.length - 1].updatepopup(

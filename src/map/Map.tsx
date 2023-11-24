@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import maplibregl, { Map, IControl } from "maplibre-gl";
+import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 import SelectDataFormatControl from "./SelectDataFormatControl";
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
@@ -61,7 +61,10 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       });
 
       // Points from Table
-      map_.addSource("point-table", { type: "geojson", data: geojson });
+      map_.addSource("point-table", {
+        type: "geojson",
+        data: geojson,
+      } as GeoJSONSourceOptions);
       map_.addLayer({
         id: "point-table-layer",
         type: "circle",

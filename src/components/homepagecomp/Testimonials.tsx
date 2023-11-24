@@ -1,6 +1,6 @@
 function Testimonials() {
   return (
-    <div className="flex items-center justify-center my-7 flex-col">
+    <div className="flex items-center justify-center mt-2 mb-5 flex-col">
       <div className="text-center space-y-6 py-6">
         <h1 className="text-4xl font-bold">Testimonials</h1>
         <p className="max-w-md">

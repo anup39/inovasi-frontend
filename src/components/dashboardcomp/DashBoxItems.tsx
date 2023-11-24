@@ -236,7 +236,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              className={`rounded-md md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[190px] lg:aspect-square ${
+              className={`rounded-md min-w-[110px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[190px] lg:aspect-square ${
                 item.selected ? "bg-[#CCB848]" : `bg-[${item.bgcolor}]`
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}

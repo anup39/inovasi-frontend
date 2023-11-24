@@ -51,7 +51,7 @@ export default function DataGridDemo({
       const bounds = new maplibregl.LngLatBounds() as LngLatBoundsLike;
 
       geojson.features.forEach((feature: any) => {
-        // @ts-ignore
+        //// @ts-ignore
         bounds.extend(feature.geometry.coordinates);
       });
 
@@ -87,7 +87,7 @@ export default function DataGridDemo({
         checkboxSelection={true}
         disableRowSelectionOnClick
         disableColumnSelector={false}
-        // @ts-ignore
+        ////@ts-ignore
         onRowSelectionModelChange={handleonRowSelectionModelChange}
       />
     </Box>

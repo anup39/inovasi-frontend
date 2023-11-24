@@ -1,6 +1,6 @@
 import Dropdown from "../components/commoncomp/Dropdown";
 import Layout from "../components/commoncomp/Layout";
-import MapSection from "./MapSection";
+import MapComponent from "../map/Map";
 import { Map } from "maplibre-gl";
 import Pagination from "../components/commoncomp/Pagination";
 
@@ -18,7 +18,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
     <Layout>
       <div className="flex flex-col h-[90vh]">
         <div className="flex-1">
-          <MapSection
+          <MapComponent
             map={map}
             onSetMap={onSetMap}
             component="supplier-plantation"

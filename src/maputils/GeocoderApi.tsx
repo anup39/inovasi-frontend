@@ -5,7 +5,7 @@ interface GeoFeature {
     coordinates: number[];
   };
   place_name: string;
-  properties: object; // Adjust the type as needed
+  properties: object;
   text: string;
   place_type: string[];
   center: number[];

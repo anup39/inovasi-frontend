@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
-import MapSection from "./MapSection";
+import MapComponent from "../map/Map";
 import PieChartComp from "../components/commoncomp/PieChartComp";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
@@ -83,7 +83,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     <Layout>
       <div className="flex flex-col h-screen">
         <div className="mt-4 mb-2 flex-1">
-          <MapSection map={map} onSetMap={onSetMap} component={"mill"} />
+          <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
           <>

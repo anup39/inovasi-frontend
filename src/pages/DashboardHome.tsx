@@ -1,6 +1,6 @@
 import Layout from "../components/commoncomp/Layout";
 import DashBoardItem from "../components/dashboardcomp/DashBoardItem";
-import MapSection from "./MapSection";
+import MapComponent from "../map/Map";
 import { Map } from "maplibre-gl";
 
 interface DashboardHomeProps {
@@ -14,9 +14,9 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
       <Layout>
         <DashBoardItem map={map} />
         <div className=" overflow-hidden flex-1">
-          <MapSection map={map} onSetMap={onSetMap} component="dashboard" />
+          <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
-      </Layout>{" "}
+      </Layout>
     </div>
   );
 };

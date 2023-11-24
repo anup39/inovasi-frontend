@@ -1,13 +1,11 @@
 import { useRef, useEffect } from "react";
-import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
+import maplibregl, { Map } from "maplibre-gl";
 import "../css/map/Map.scss";
 import SelectDataFormatControl from "./SelectDataFormatControl";
 // @ts-ignore
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
-// import { useDispatch } from "react-redux";
-// import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import PopupControl from "./PopupControl";
 
 const geojson = {
@@ -25,19 +23,12 @@ const geojson = {
 };
 interface MapProps {
   map: Map | null;
-  refObj: React.RefObject<HTMLDivElement>;
   onSetMap: (evmap: Map) => void;
   component: string;
 }
 
 // @ts-ignore
-export default function MapComponent({
-  refObj,
-  map,
-  onSetMap,
-  component,
-}: MapProps) {
-  // const dispatch = useDispatch();
+export default function MapComponent({ onSetMap, component }: MapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -95,10 +86,12 @@ export default function MapComponent({
   // }, [map]);
 
   return (
-    <div
-      ref={mapContainer}
-      id="map"
-      className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
-    />
+    <div className="relative h-full">
+      <div
+        ref={mapContainer}
+        id="map"
+        className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
+      />
+    </div>
   );
 }

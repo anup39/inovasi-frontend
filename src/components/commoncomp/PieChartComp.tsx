@@ -44,6 +44,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         outerRadius={80}
         fill="#82ca9d"
       >
+        {/* @ts-ignore */}
         {piedata.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
         ))}

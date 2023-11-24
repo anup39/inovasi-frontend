@@ -1,38 +1,45 @@
-import ReactDOM from "react-dom/client";
+import { render } from "react-dom";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import Popup from "../components/commoncomp/Popup";
+import { Map } from "maplibre-gl";
 
 export default class PopupControl {
-  onAdd(map) {
+  private _map: Map | undefined;
+  private _container: HTMLDivElement | null = null;
+  private _properties: any = {}; // Update the type according to your properties structure
+  private _trace: boolean = false;
+
+  onAdd(map: Map) {
     this._map = map;
     this._container = document.createElement("div");
-    this._container.className = "maplibregl-ctrl ";
-    this._properties = {};
-    this._trace = false;
-    this._root = ReactDOM.createRoot(this._container);
-    this._root.render(
-      <Provider store={store}>
-        <Popup properties={this._properties} trace={this._trace} />
-      </Provider>
-    );
+    this._container.className = "maplibregl-ctrl";
+
+    if (this._container) {
+      this.renderPopup();
+    }
 
     return this._container;
   }
 
-  updatepopup(properties, trace) {
+  updatePopup(properties: any, trace: boolean) {
     this._properties = properties;
     this._trace = trace;
 
-    if (this._root) {
-      const updatedPopup = (
+    this.renderPopup();
+  }
+
+  private renderPopup() {
+    if (this._container) {
+      render(
         <Provider store={store}>
           <Popup properties={this._properties} trace={this._trace} />
-        </Provider>
+        </Provider>,
+        this._container
       );
-      this._root.render(updatedPopup);
     }
   }
+
   onRemove() {
     if (this._container && this._container.parentNode) {
       this._container.parentNode.removeChild(this._container);

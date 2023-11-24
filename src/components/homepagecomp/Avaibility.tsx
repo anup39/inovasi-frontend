@@ -21,7 +21,7 @@ function Avaibility() {
           <div
             onClick={() => handleClick("Palm")}
             className={`flex flex-col items-center gap-3 justify-center py-5 h-full  ${
-              isActive === "Palm" ? "bg-darkGreen" : ""
+              isActive === "Palm" ? "md:bg-darkGreen" : ""
             } px-8  md:rounded-t-lg cursor-pointer`}
           >
             <img className="h-10 w-10" src="palm.svg" alt="" />
@@ -30,7 +30,7 @@ function Avaibility() {
           <div
             onClick={() => handleClick("Rubber")}
             className={`flex flex-col items-center gap-3 justify-center py-5 h-full  ${
-              isActive === "Rubber" ? "bg-darkGreen" : ""
+              isActive === "Rubber" ? "md:bg-darkGreen" : ""
             } px-8  md:rounded-t-lg cursor-pointer`}
           >
             <img className="h-10 w-10" src="rubber.svg" alt="" />
@@ -41,7 +41,7 @@ function Avaibility() {
           <div
             onClick={() => handleClick("Soy")}
             className={`flex flex-col items-center gap-3 justify-center py-5 h-full  ${
-              isActive === "Soy" ? "bg-darkGreen" : ""
+              isActive === "Soy" ? "md:bg-darkGreen" : ""
             } px-8 md:rounded-t-lg cursor-pointer`}
           >
             <img className="h-10 w-10" src="soy.svg" alt="" />
@@ -50,7 +50,7 @@ function Avaibility() {
           <div
             onClick={() => handleClick("Cocoa")}
             className={`flex flex-col items-center gap-3 justify-center py-5 h-full  ${
-              isActive === "Cocoa" ? "bg-darkGreen" : ""
+              isActive === "Cocoa" ? "md:bg-darkGreen" : ""
             } px-8 md:rounded-t-lg cursor-pointer`}
           >
             <img className="h-10 w-10" src="cocoa.svg" alt="" />
@@ -61,7 +61,7 @@ function Avaibility() {
           <div
             onClick={() => handleClick("Coffee")}
             className={`flex flex-col items-center gap-3 justify-center py-5 h-full ${
-              isActive === "Coffee" ? "bg-darkGreen" : ""
+              isActive === "Coffee" ? "md:bg-darkGreen" : ""
             } px-8 md:rounded-t-lg cursor-pointer`}
           >
             <img className="h-10 w-10" src="coffee.svg" alt="" />

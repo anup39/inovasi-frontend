@@ -59,6 +59,7 @@ export default function DataGridDemo({ tableColumn, tableData, map }) {
             },
           });
           map.fitBounds(bounds, { padding });
+          console.log(map);
         }
       }
     }

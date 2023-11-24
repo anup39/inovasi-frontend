@@ -10,6 +10,19 @@ import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import PopupControl from "../components/dashboardcomp/PopupControl";
 
+const geojson = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        coordinates: [0, 0],
+        type: "Point",
+      },
+    },
+  ],
+};
 interface MapProps {
   map: Map | null;
   refObj: React.RefObject<HTMLDivElement>;
@@ -42,7 +55,34 @@ export default function MapComponent({
       map_.addControl(new SelectDataFormatControl(), "top-right");
     }
 
-    map_.addControl(new PopupControl(), "bottom-left");
+    // Point on click
+    map_.on("load", () => {
+      map_.addControl(new PopupControl(), "bottom-left");
+      map_.addSource("point", { type: "geojson", data: geojson });
+      map_.addLayer({
+        id: "point-layer",
+        type: "circle",
+        source: "point",
+        paint: {
+          "circle-radius": 8,
+          "circle-color": "#233430",
+        },
+      });
+
+      // Points from Table
+      map_.addSource("point-table", { type: "geojson", data: geojson });
+      map_.addLayer({
+        id: "point-table-layer",
+        type: "circle",
+        source: "point-table",
+        paint: {
+          "circle-radius": 8,
+          "circle-color": "#233430",
+        },
+      });
+      map_.setLayoutProperty("point-layer", "visibility", "none");
+      map_.setLayoutProperty("point-table-layer", "visibility", "none");
+    });
 
     return () => {
       map_.remove();

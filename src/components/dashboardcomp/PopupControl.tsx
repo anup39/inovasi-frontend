@@ -9,25 +9,27 @@ export default class PopupControl {
     this._container = document.createElement("div");
     this._container.className = "maplibregl-ctrl ";
     this._properties = {};
+    this._trace = false;
     this._root = ReactDOM.createRoot(this._container);
     this._root.render(
       <Provider store={store}>
-        <Popup properties={this._properties} />
+        <Popup properties={this._properties} trace={this._trace} />
       </Provider>
     );
 
     return this._container;
   }
 
-  updatepopup(properties) {
+  updatepopup(properties, trace) {
     this._properties = properties;
+    this._trace = trace;
 
     if (this._root) {
       // Create a new JSX element with updated properties and re-render
       console.log(this._root);
       const updatedPopup = (
         <Provider store={store}>
-          <Popup properties={this._properties} />
+          <Popup properties={this._properties} trace={this._trace} />
         </Provider>
       );
 

@@ -2,6 +2,7 @@ import MapComp from "../map/Map";
 import { useRef } from "react";
 import Search from "../components/mapcomp/Search";
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import Toast from "../components/commoncomp/Toast";
 
 interface MapSectionProps {
   map: Map | null;
@@ -23,6 +24,7 @@ const MapSection: React.FC<MapSectionProps> = ({
         onSetMap={onSetMap}
         component={component}
       />
+      <Toast />
       <div className="absolute top-10 right-20">
         <Search refObj={searchRef} />
       </div>

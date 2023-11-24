@@ -1,5 +1,6 @@
 import axios from "axios";
-import PopupControl from "../components/dashboardcomp/PopupControl";
+import RemoveSourceAndLayerFromMap from "./RemoveSourceAndLayer";
+import createPointGeojson from "./geojsontemp";
 
 function AddLayerAndSourceToMap({
   // @ts-ignore
@@ -24,6 +25,8 @@ function AddLayerAndSourceToMap({
   fillType,
   // @ts-ignore
   trace,
+  // @ts-ignore
+  component,
 }) {
   // Rest of your component code remains unchanged
 
@@ -87,12 +90,60 @@ function AddLayerAndSourceToMap({
         return;
       }
       const feature = features[0];
+      console.log(feature.properties);
+      const long = component + "_" + "long";
+      const lat = component + "_" + "lat";
+      console.log(feature.properties[long]);
+      const geojson = createPointGeojson(
+        [
+          parseFloat(feature.properties[long]),
+          parseFloat(feature.properties[lat]),
+        ],
+        feature.properties
+      );
+
+      console.log(geojson, "geojson");
+
+      if (map.getSource("point") && map.getLayer("point-layer")) {
+        const source = map.getSource("point");
+        console.log(source, "source");
+        // Update the data property of the source with the new URL
+        source.setData(geojson);
+
+        map.flyTo({
+          center: [
+            parseFloat(feature.properties[long]),
+            parseFloat(feature.properties[lat]),
+          ],
+        });
+      } else {
+        map.addSource("point", { type: "geojson", data: geojson });
+        map.addLayer({
+          id: "point-layer",
+          type: "circle",
+          source: "point",
+          paint: {
+            "circle-radius": 8,
+            "circle-color": "#233430",
+          },
+        });
+        map.flyTo({
+          center: [
+            parseFloat(feature.properties[long]),
+            parseFloat(feature.properties[lat]),
+          ],
+        });
+      }
       console.log(map);
+
       const popup_index = map._controls.indexOf("PopupControl");
       console.log(popup_index);
 
       if (popup_index) {
-        map._controls[map._controls.length - 1].updatepopup(feature.properties);
+        map._controls[map._controls.length - 1].updatepopup(
+          feature.properties,
+          trace
+        );
       }
     });
   }

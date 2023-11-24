@@ -63,6 +63,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           center: [103.8574, 2.2739],
           fillType: "point",
           trace: true,
+          component: "mill",
         });
       });
     }

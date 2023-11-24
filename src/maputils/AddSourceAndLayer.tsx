@@ -120,7 +120,7 @@ function AddLayerAndSourceToMap({
       const popup_name: string = "PopupControl";
       const popup_index = map._controls.indexOf(popup_name);
       if (popup_index) {
-        map._controls[map._controls.length - 1].updatepopup(
+        map._controls[map._controls.length - 1].updatePopup(
           feature.properties,
           trace
         );

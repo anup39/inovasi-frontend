@@ -1,11 +1,21 @@
-//// @ts-ignore
-const RemoveSourceAndLayerFromMap = (map, layerId, sourceId) => {
+import { Map, LayerSpecification } from "maplibre-gl";
+interface RemoveLayerProps {
+  map: Map;
+  layerId: string;
+  sourceId: string;
+}
+const RemoveSourceAndLayerFromMap = ({
+  map,
+  layerId,
+  sourceId,
+}: RemoveLayerProps) => {
   const style = map.getStyle();
-  const existingLayer = style.layers.find((layer: any) => layer.id === layerId);
+  const existingLayer = style.layers.find(
+    (layer: LayerSpecification) => layer.id === layerId
+  );
   const existingSource = style.sources[sourceId];
 
   if (existingLayer) {
-    map.off("click", layerId);
     map.removeLayer(layerId);
   }
 

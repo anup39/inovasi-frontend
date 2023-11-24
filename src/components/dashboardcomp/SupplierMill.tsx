@@ -89,7 +89,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
           <>
-            <TableComp tableColumn={tableColumn} tableData={tableData} />
+            <TableComp
+              tableColumn={tableColumn}
+              tableData={tableData}
+              map={map}
+            />
           </>
         ) : (
           <div className="flex flex-col lg:flex-row my-2 items-center justify-center gap-8">

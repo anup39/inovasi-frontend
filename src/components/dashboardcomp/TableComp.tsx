@@ -5,6 +5,19 @@ export default function DataGridDemo({ tableColumn, tableData }) {
   const columns: GridColDef[] = tableColumn;
 
   const rows = tableData;
+  const handleOnCellClick = (params, event, details) => {
+    console.log(params, "params");
+    console.log(event, "event");
+    console.log(details, "details");
+  };
+  const handleonRowSelectionModelChange = (rows, details) => {
+    console.log(rows, "rows");
+    // console.log(tableData, "table data");
+    // console.log(details, "details");
+    if (rows.length > 0) {
+      console.log("add layer to maps");
+    }
+  };
   return (
     <Box sx={{ height: 350, width: "100%" }}>
       <DataGrid
@@ -19,8 +32,12 @@ export default function DataGridDemo({ tableColumn, tableData }) {
           },
         }}
         pageSizeOptions={[5]}
-        checkboxSelection
+        checkboxSelection={true}
         disableRowSelectionOnClick
+        disableColumnSelector={false}
+        // onCellClick={handleOnCellClick}
+        onRowSelectionModelChange={handleonRowSelectionModelChange}
+        // onCellDoubleClick={handleOnCellClick}
       />
     </Box>
   );

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import maplibregl, { Map, LngLatBoundsLike } from "maplibre-gl";
+import maplibregl, { Map, GeoJSONSource, LngLatBounds } from "maplibre-gl";
 
 interface DataItem {
   id: number;
@@ -66,15 +66,20 @@ export default function DataGridDemo({
     if (rows.length > 0 && map) {
       const geojson = getGeoJSON(tableData, rows, component);
       const padding = { top: 25, bottom: 25, left: 25, right: 25 };
-      const bounds = new maplibregl.LngLatBounds() as LngLatBoundsLike;
+      const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
 
       geojson.features.forEach((feature) => {
-        //// @ts-ignore
-        bounds.extend(feature.geometry.coordinates);
+        if (feature.geometry.type === "Point") {
+          const pointCoordinates = feature.geometry.coordinates as [
+            number,
+            number
+          ];
+          bounds.extend(pointCoordinates);
+        }
       });
 
       if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
-        const source: any = map.getSource("point-table");
+        const source = map.getSource("point-table") as GeoJSONSource;
         source.setData(geojson);
         map.fitBounds(bounds, { padding });
         map.setLayoutProperty("point-table-layer", "visibility", "visible");

@@ -1,5 +1,4 @@
-import ReactDOM from "react-dom/client";
-import { ReactNode } from "react";
+import ReactDOM, { Root } from "react-dom/client";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import Popup from "../components/commoncomp/Popup";
@@ -13,7 +12,7 @@ export default class PopupControl {
     [key: string]: number | string;
   };
   private _trace: boolean = false;
-  private _root: ReactNode;
+  private _root: Root | undefined;
 
   onAdd(map: Map) {
     this._map = map;

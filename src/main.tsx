@@ -1,11 +1,11 @@
 import React, { ReactNode } from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM, { Root } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { store } from "./store";
 import { Provider } from "react-redux";
 
-const root_ = document.getElementById("root");
+const root_: HTMLDivElement = document.getElementById("root");
 
 ReactDOM.createRoot(root_).render(
   <React.StrictMode>

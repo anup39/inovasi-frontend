@@ -60,7 +60,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           showPopup: true,
           style: {
             fill_color: "red",
-            fill_opacity: 0,
+            fill_opacity: "0",
             stroke_color: "",
           },
           zoomToLayer: true,
@@ -96,7 +96,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatepopup({}, false);
+            map._controls[map._controls.length - 1].updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,
@@ -109,7 +109,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "red",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,
@@ -141,7 +141,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatepopup({}, false);
+            map._controls[map._controls.length - 1].updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,
@@ -154,7 +154,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "green",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,
@@ -186,7 +186,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatepopup({}, false);
+            map._controls[map._controls.length - 1].updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,
@@ -197,7 +197,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "blue",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,

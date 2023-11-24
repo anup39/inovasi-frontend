@@ -77,7 +77,7 @@ export default function MapComponent({
         source: "point-table",
         paint: {
           "circle-radius": 9,
-          "circle-color": "#233430",
+          "circle-color": "red",
         },
       });
       map_.setLayoutProperty("point-layer", "visibility", "none");

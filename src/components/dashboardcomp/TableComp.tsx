@@ -34,7 +34,7 @@ export default function DataGridDemo({ tableColumn, tableData, map }) {
   const columns: GridColDef[] = tableColumn;
 
   const handleonRowSelectionModelChange = (rows, details) => {
-    if (rows.length >= 0) {
+    if (rows.length > 0) {
       const geojson = getGeoJSON(tableData, rows);
       const padding = { top: 25, bottom: 25, left: 25, right: 25 };
       const bounds = new maplibregl.LngLatBounds();
@@ -46,18 +46,14 @@ export default function DataGridDemo({ tableColumn, tableData, map }) {
           const source = map.getSource("point-table");
           source.setData(geojson);
           map.fitBounds(bounds, { padding });
-        } else {
-          map.addSource("point-table", { type: "geojson", data: geojson });
-          map.addLayer({
-            id: "point-table-layer",
-            type: "circle",
-            source: "point-table",
-            paint: {
-              "circle-radius": 8,
-              "circle-color": "#233430",
-            },
-          });
-          map.fitBounds(bounds, { padding });
+          map.setLayoutProperty("point-table-layer", "visibility", "visible");
+        }
+      }
+    }
+    if (rows.length == 0) {
+      if (map) {
+        if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
+          map.setLayoutProperty("point-table-layer", "visibility", "none");
         }
       }
     }

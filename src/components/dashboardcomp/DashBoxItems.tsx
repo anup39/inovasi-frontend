@@ -3,7 +3,7 @@ import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../../reducers/Auth";
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { Map } from "maplibre-gl";
 
 interface DashBoxItemsProps {
   map: Map | null;

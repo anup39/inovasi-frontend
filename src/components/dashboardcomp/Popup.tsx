@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const Popup = ({ properties, trace }) => {
+interface PopupProps {
+  properties: { mill_eq_id: string };
+  trace: boolean;
+}
+
+const Popup = ({ properties, trace }: PopupProps) => {
   const propertyElements = Object.entries(properties).map(([key, value]) => (
     <div key={key} className="mb-2 truncate">
       <strong className="mr-1">{key}:</strong> {value}

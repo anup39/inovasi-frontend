@@ -1,6 +1,6 @@
-import MapSection from "./MapSection";
+import MapComponent from "../map/Map";
 import Layout from "../components/commoncomp/Layout";
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { Map } from "maplibre-gl";
 
 interface ReportingProps {
   map: Map | null;
@@ -11,7 +11,7 @@ const Reporting: React.FC<ReportingProps> = ({ map, onSetMap }) => {
     <div className="overflow-hidden ">
       <Layout>
         <div className="pt-7">
-          <MapSection map={map} onSetMap={onSetMap} />
+          <MapComponent map={map} onSetMap={onSetMap} component="reporting" />
         </div>
       </Layout>
     </div>

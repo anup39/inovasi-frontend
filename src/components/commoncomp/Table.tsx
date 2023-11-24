@@ -1,5 +1,3 @@
-import Pagination from "../commoncomp/Pagination";
-
 interface TableProps {
   headers: string[];
   data?: (string | JSX.Element)[][];
@@ -10,7 +8,7 @@ function TableHeaders({ headers }: { headers: string[] }) {
     <thead className="text-left bg-creamGray shadow">
       <tr>
         {headers.map((header, index) => (
-          <th key={index} className="py-5 px-4 border-b">
+          <th key={index} className="py-2 px-4 border-b">
             {header}
           </th>
         ))}
@@ -21,7 +19,7 @@ function TableHeaders({ headers }: { headers: string[] }) {
 
 function Table({ headers, data }: TableProps) {
   return (
-    <div className="bg-white py-6">
+    <div className="bg-gray-100 py-6">
       <table className="min-w-full bg-white ">
         <TableHeaders headers={headers} />
         <tbody>
@@ -29,7 +27,7 @@ function Table({ headers, data }: TableProps) {
             data.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {row.map((cell, cellIndex) => (
-                  <td key={cellIndex} className="py-6 px-4 border-b">
+                  <td key={cellIndex} className="py-5 px-4 border-b">
                     {cell}
                   </td>
                 ))}
@@ -37,56 +35,50 @@ function Table({ headers, data }: TableProps) {
             ))}
         </tbody>
       </table>
-      <Pagination totalPages={11} />
     </div>
   );
 }
 
 function SimpleTable() {
   const theads = [
-    "Company",
-    "Commoditied",
+    "Mill Name",
+    "Region",
     "Country",
-    "Vol Sales to EU",
-    "Nr of facilities in EU",
+    "Group Company",
+    "Company",
+    "RSPO Certified",
   ];
 
   const data: TableProps["data"] = [
     [
-      "Neste Oyj (Neste Corporation)",
-      "Oil Palm",
-      "Finland",
-      "1,128,088",
-      "Yes",
-      <a className="text-blue-600 underline" href="#">
-        Options
-      </a>,
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
       <a className="text-blue-600 underline" href="#">
         Details
       </a>,
     ],
     [
-      "Neste Oyj (Neste Corporation)",
-      "Oil Palm",
-      "Finland",
-      "1,128,088",
-      "Yes",
-      <a className="text-blue-600 underline" href="#">
-        Options
-      </a>,
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
       <a className="text-blue-600 underline" href="#">
         Details
       </a>,
     ],
     [
-      "Neste Oyj (Neste Corporation)",
-      "Oil Palm",
-      "Finland",
-      "1,128,088",
-      "Yes",
-      <a className="text-blue-600 underline" href="#">
-        Options
-      </a>,
+      "Batu Lintang",
+      "Kedah",
+      "Malaysia",
+      "Kuala Lumpur Kepong Behad",
+      "Kuala Lambur Kepong Behad (KLK Batu Lintang)",
+      "IP",
       <a className="text-blue-600 underline" href="#">
         Details
       </a>,

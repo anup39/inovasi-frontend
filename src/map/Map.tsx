@@ -1,29 +1,32 @@
 import { useRef, useEffect } from "react";
-import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
+import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
-import SelectDataFormatControl from "../components/dashboardcomp/SelectDataFormatControl";
-// @ts-ignore
+import SelectDataFormatControl from "./SelectDataFormatControl";
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
-// import { useDispatch } from "react-redux";
-// import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+import PopupControl from "./PopupControl";
 
+const geojson = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        coordinates: [0, 0],
+        type: "Point",
+      },
+    },
+  ],
+};
 interface MapProps {
   map: Map | null;
-  refObj: React.RefObject<HTMLDivElement>;
   onSetMap: (evmap: Map) => void;
   component: string;
 }
 
-// @ts-ignore
-export default function MapComponent({
-  refObj,
-  map,
-  onSetMap,
-  component,
-}: MapProps) {
-  // const dispatch = useDispatch();
+export default function MapComponent({ onSetMap, component }: MapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,8 +41,45 @@ export default function MapComponent({
 
     onSetMap(map_);
     if (component === "mill") {
-      map_.addControl(new SelectDataFormatControl(), "top-left");
+      const selectDataformat_control: IControl = new SelectDataFormatControl();
+      map_.addControl(selectDataformat_control, "top-right");
     }
+
+    // Point on click
+    map_.on("load", () => {
+      const popup_control: IControl = new PopupControl();
+      map_.addControl(popup_control, "bottom-left");
+      map_.addSource("point", {
+        type: "geojson",
+        data: geojson,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "point-layer",
+        type: "circle",
+        source: "point",
+        paint: {
+          "circle-radius": 9,
+          "circle-color": "#233430",
+        },
+      });
+
+      // Points from Table
+      map_.addSource("point-table", {
+        type: "geojson",
+        data: geojson,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "point-table-layer",
+        type: "circle",
+        source: "point-table",
+        paint: {
+          "circle-radius": 9,
+          "circle-color": "red",
+        },
+      });
+      map_.setLayoutProperty("point-layer", "visibility", "none");
+      map_.setLayoutProperty("point-table-layer", "visibility", "none");
+    });
 
     return () => {
       map_.remove();
@@ -48,25 +88,16 @@ export default function MapComponent({
 
   // useEffect(() => {
   //   if (map) {
-  //     const geocoder = new MaplibreGeocoder(GeocoderApi, {
-  //       maplibregl: maplibregl,
-  //       showResultsWhileTyping: true,
-  //       flyTo: true,
-  //     });
-
-  //     geocoder.addTo(refObj.current!);
-  //     geocoder.on("result", function (ev: any) {
-  //       const coords = ev.result.geometry.coordinates;
-  //       map.flyTo({ center: coords });
-  //     });
   //   }
-  // }, [map, refObj]);
+  // }, [map]);
 
   return (
-    <div
-      ref={mapContainer}
-      id="map"
-      className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
-    />
+    <div className="relative h-full">
+      <div
+        ref={mapContainer}
+        id="map"
+        className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
+      />
+    </div>
   );
 }

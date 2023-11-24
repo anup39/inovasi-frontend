@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
-import MapSection from "../../pages/MapSection";
-import PieChartComp from "./PieChartComp";
-import Layout from "../commoncomp/Layout";
-// import SimpleTable from "./Table";
-import TableComp from "./TableComp";
-// import MapSection from '../../pages/MapSection';
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+import MapComponent from "../map/Map";
+import PieChartComp from "../components/commoncomp/PieChartComp";
+import Layout from "../components/commoncomp/Layout";
+import TableComp from "../components/commoncomp/TableComp";
+import { Map } from "maplibre-gl";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Toast from "../components/commoncomp/Toast";
+import { RootState } from "../store";
 
 const items = [
   {
@@ -41,7 +41,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [tableData, settableData] = useState([]);
 
   const selectedDataFormat = useSelector(
-    (state) => state.displaySettings.selectedDataFormat
+    (state: RootState) => state.displaySettings.selectedDataFormat
   );
 
   useEffect(() => {
@@ -56,13 +56,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           showPopup: true,
           style: {
             fill_color: "blue",
-            fill_opacity: 0,
+            fill_opacity: "0",
             stroke_color: "",
           },
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
           trace: true,
+          component: "mill",
         });
       });
     }
@@ -82,13 +83,19 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   return (
     <Layout>
+      <Toast />
       <div className="flex flex-col h-screen">
         <div className="mt-4 mb-2 flex-1">
-          <MapSection map={map} onSetMap={onSetMap} component={"mill"} />
+          <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
           <>
-            <TableComp tableColumn={tableColumn} tableData={tableData} />
+            <TableComp
+              tableColumn={tableColumn}
+              tableData={tableData}
+              map={map}
+              component={"mill"}
+            />
           </>
         ) : (
           <div className="flex flex-col lg:flex-row my-2 items-center justify-center gap-8">

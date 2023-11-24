@@ -3,6 +3,7 @@ import { PieChart, Pie, Tooltip, Cell } from "recharts";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import colors from "../../utils/color";
+import { RootState } from "../../store";
 
 interface PieChartCompProps {
   data: { id: number; name: string; selected: boolean; distinct: string };
@@ -16,7 +17,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
 }) => {
   const [piedata, setpieData] = useState([]);
-  const piechartfor = useSelector((state: any) => state.auth.piechartfor);
+  const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
   useEffect(() => {
     axios
@@ -43,6 +44,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         outerRadius={80}
         fill="#82ca9d"
       >
+        {/* @ts-ignore */}
         {piedata.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
         ))}

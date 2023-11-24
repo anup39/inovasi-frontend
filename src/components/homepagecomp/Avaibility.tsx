@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Avaibility() {
   const [isActive, setIsActive] = useState("Palm");
-  function handleClick(index) {
+  function handleClick(index: string) {
     setIsActive(index);
   }
   return (

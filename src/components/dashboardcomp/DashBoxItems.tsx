@@ -3,7 +3,7 @@ import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../../reducers/Auth";
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { IControl, Map } from "maplibre-gl";
 
 interface DashBoxItemsProps {
   map: Map | null;
@@ -60,13 +60,14 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           showPopup: true,
           style: {
             fill_color: "red",
-            fill_opacity: 0,
+            fill_opacity: "0",
             stroke_color: "",
           },
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
           trace: false,
+          component: "facilities",
         });
       });
     }
@@ -77,7 +78,30 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
       if (item.id === clickedItem.id) {
         if (item.name == "Facilities") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
+
             AddLayerAndSourceToMap({
               map: map,
               layerId: "facility-layer",
@@ -89,20 +113,44 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "red",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
               trace: false,
+              component: "facilities",
             });
           }
           dispatch(setpiechartfor("facility"));
         }
         if (item.name == "Refinery Supplier") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
+
             AddLayerAndSourceToMap({
               map: map,
               layerId: "refinery-layer",
@@ -114,20 +162,44 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "green",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
               trace: false,
+              component: "refinery",
             });
           }
           dispatch(setpiechartfor("refinery"));
         }
         if (item.name == "Mill Supplier") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
+
             AddLayerAndSourceToMap({
               map: map,
               layerId: "mill-layer",
@@ -137,13 +209,14 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
               showPopup: true,
               style: {
                 fill_color: "blue",
-                fill_opacity: 0,
+                fill_opacity: "0",
                 stroke_color: "",
               },
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
               trace: false,
+              component: "mill",
             });
           }
           dispatch(setpiechartfor("mill"));

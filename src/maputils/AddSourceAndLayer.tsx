@@ -1,44 +1,46 @@
 import axios from "axios";
-import maplibregl from "maplibre-gl";
+import createPointGeojson from "./geojsontemp";
+import {
+  Map,
+  LngLatLike,
+  SourceSpecification,
+  CircleLayerSpecification,
+  LayerSpecification,
+  GeoJSONSource,
+  IControl,
+} from "maplibre-gl";
 
-// @ts-ignore
-function getPopupHTML(properties, trace) {
-  let html = "";
-
-  if (trace) {
-    html = `<button id="trace-plot-button">Trace Plantation</button><br>`;
-  }
-  for (const [key, value] of Object.entries(properties)) {
-    html += `<b>${key}:</b> ${value}<br> `;
-  }
-  return html;
+interface AddLayerProps {
+  map: Map;
+  layerId: string;
+  sourceId: string;
+  url: string;
+  source_layer: string;
+  showPopup: boolean;
+  style: { fill_color: string; fill_opacity: string; stroke_color: string };
+  zoomToLayer: boolean;
+  center: LngLatLike;
+  fillType: string;
+  trace: boolean;
+  component: string;
 }
 
 function AddLayerAndSourceToMap({
-  // @ts-ignore
   map,
-  // @ts-ignore
   layerId,
-  // @ts-ignore
   sourceId,
-  // @ts-ignore
   url,
-  // @ts-ignore
   source_layer,
-  // @ts-ignore
   showPopup,
-  // @ts-ignore
   style,
-  // @ts-ignore
   zoomToLayer,
-  // @ts-ignore
   center,
-  // @ts-ignore
   fillType,
-  // @ts-ignore
   trace,
-}) {
+  component,
+}: AddLayerProps) {
   // Rest of your component code remains unchanged
+
   if (zoomToLayer) {
     axios
       .get(`${import.meta.env.VITE_API_MAP_URL}/${source_layer}`)
@@ -51,7 +53,7 @@ function AddLayerAndSourceToMap({
       .catch(function () {});
   }
 
-  const newSource = {
+  const newSource: SourceSpecification = {
     type: "vector",
     tiles: [url],
   };
@@ -59,7 +61,7 @@ function AddLayerAndSourceToMap({
   map.addSource(sourceId, newSource);
 
   if (fillType && fillType === "point") {
-    const newLayer = {
+    const newLayer: CircleLayerSpecification = {
       id: layerId,
       type: "circle",
       source: sourceId,
@@ -71,12 +73,11 @@ function AddLayerAndSourceToMap({
         "circle-stroke-width": 1,
         "circle-stroke-color": "black",
       },
-      cluster: true,
     };
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   } else {
-    const newLayer = {
+    const newLayer: LayerSpecification = {
       id: layerId,
       type: "fill",
       source: sourceId,
@@ -84,7 +85,7 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "fill-color": style.fill_color,
-        "fill-opacity": style.fill_opacity,
+        "fill-opacity": parseInt(style.fill_opacity),
         "fill-outline-color": style.stroke_color,
       },
     };
@@ -93,16 +94,39 @@ function AddLayerAndSourceToMap({
   }
 
   if (showPopup) {
-    map.on("click", layerId, (e: any) => {
+    map.on("click", layerId, (e) => {
       const features = map.queryRenderedFeatures(e.point);
       if (!features.length) {
         return;
       }
       const feature = features[0];
-      new maplibregl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(getPopupHTML(feature.properties, trace))
-        .addTo(map);
+      const long: string = component + "_" + "long";
+      const lat: string = component + "_" + "lat";
+      const geojson = createPointGeojson([
+        parseFloat(feature.properties[long]),
+        parseFloat(feature.properties[lat]),
+      ]);
+
+      if (map.getSource("point") && map.getLayer("point-layer")) {
+        const source = map.getSource("point") as GeoJSONSource;
+        source.setData(geojson);
+        map.setLayoutProperty("point-layer", "visibility", "visible");
+        map.flyTo({
+          center: [
+            parseFloat(feature.properties[long]),
+            parseFloat(feature.properties[lat]),
+          ],
+        });
+      }
+      const popup_name: string = "PopupControl";
+      // @ts-ignore
+      const popup_index = map._controls.indexOf(popup_name);
+
+      if (popup_index) {
+        const popup_control: IControl = map._controls[map._controls.length - 1];
+        // @ts-ignore
+        popup_control.updatePopup(feature.properties, trace);
+      }
     });
   }
 }

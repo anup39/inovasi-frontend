@@ -93,6 +93,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               tableColumn={tableColumn}
               tableData={tableData}
               map={map}
+              component={"mill"}
             />
           </>
         ) : (

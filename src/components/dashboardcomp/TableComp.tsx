@@ -13,15 +13,15 @@ const getGeoJSON = (data, indices, component) => {
   });
   const features = filteredData.map((item) => {
     // const { mill_lat, mill_long, ...properties } = item;
+    const long = component + "_" + "long";
+    const lat = component + "_" + "lat";
+    console.log(long, lat);
     return {
       type: "Feature",
       properties: {},
       geometry: {
         type: "Point",
-        coordinates: [
-          parseFloat(item[component + "_" + "long"]),
-          parseFloat(item[component + "_" + "lat"]),
-        ],
+        coordinates: [parseFloat(item[long]), parseFloat(item[lat])],
       },
     };
   });

@@ -3,10 +3,8 @@ import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import MapSection from "../../pages/MapSection";
 import PieChartComp from "./PieChartComp";
 import Layout from "../commoncomp/Layout";
-// import SimpleTable from "./Table";
 import TableComp from "./TableComp";
-// import MapSection from '../../pages/MapSection';
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { Map } from "maplibre-gl";
 import { useSelector } from "react-redux";
 import axios from "axios";
 

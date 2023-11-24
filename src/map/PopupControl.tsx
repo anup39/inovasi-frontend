@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
-import { store } from "../../store";
+import { store } from "../store";
 import { Provider } from "react-redux";
-import Popup from "./Popup";
+import Popup from "../components/commoncomp/Popup";
 
 export default class PopupControl {
   onAdd(map) {

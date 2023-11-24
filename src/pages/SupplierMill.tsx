@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
-import MapSection from "../../pages/MapSection";
-import PieChartComp from "./PieChartComp";
-import Layout from "../commoncomp/Layout";
-import TableComp from "./TableComp";
+import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+import MapSection from "./MapSection";
+import PieChartComp from "../components/commoncomp/PieChartComp";
+import Layout from "../components/commoncomp/Layout";
+import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
 import { useSelector } from "react-redux";
 import axios from "axios";

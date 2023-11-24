@@ -1,8 +1,8 @@
-import Dropdown from "../commoncomp/Dropdown";
-import Layout from "../commoncomp/Layout";
-import MapSection from "../../pages/MapSection";
+import Dropdown from "../components/commoncomp/Dropdown";
+import Layout from "../components/commoncomp/Layout";
+import MapSection from "./MapSection";
 import { Map } from "maplibre-gl";
-import Pagination from "../commoncomp/Pagination";
+import Pagination from "../components/commoncomp/Pagination";
 
 interface SupplierPlantationProps {
   map: Map | null;

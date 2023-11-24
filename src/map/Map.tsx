@@ -1,14 +1,14 @@
 import { useRef, useEffect } from "react";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 import "../css/map/Map.scss";
-import SelectDataFormatControl from "../components/dashboardcomp/SelectDataFormatControl";
+import SelectDataFormatControl from "./SelectDataFormatControl";
 // @ts-ignore
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 // import { useDispatch } from "react-redux";
 // import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
-import PopupControl from "../components/dashboardcomp/PopupControl";
+import PopupControl from "./PopupControl";
 
 const geojson = {
   type: "FeatureCollection",

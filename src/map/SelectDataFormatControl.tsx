@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
-import Dropdown from "../commoncomp/Dropdown";
-import { store } from "../../store";
+import Dropdown from "../components/commoncomp/Dropdown";
+import { store } from "../store";
 import { Provider } from "react-redux";
 
 const optionsReporting = ["Supplier Mill", "Metric"];

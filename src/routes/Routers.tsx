@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Login from '../pages/Login';
-import DashBoard from "../pages/Dashboard";
+import DashBoardHome from "../pages/DashboardHome";
 import Register from "../pages/Register";
 import Reporting from "../pages/Reporting";
 import SupplierPlantation from "../pages/SupplierPlantation";
@@ -23,9 +23,10 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/dashboard"
-          element={<DashBoard map={map} onSetMap={onSetMap} />}
+          element={<DashBoardHome map={map} onSetMap={onSetMap} />}
         />
         <Route
           path="/suppliermill"
@@ -40,7 +41,6 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           path="/reporting"
           element={<Reporting map={map} onSetMap={onSetMap} />}
         />
-        <Route path="/register" element={<Register />} />
         <Route path="/upload" element={<Upload />} />
       </Routes>
     </Router>

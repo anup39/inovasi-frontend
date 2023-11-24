@@ -1,6 +1,6 @@
 import MapComponent from "../map/Map";
 import Layout from "../components/commoncomp/Layout";
-import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import { Map } from "maplibre-gl";
 
 interface ReportingProps {
   map: Map | null;

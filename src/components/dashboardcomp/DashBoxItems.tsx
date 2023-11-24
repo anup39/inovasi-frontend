@@ -78,9 +78,21 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
       if (item.id === clickedItem.id) {
         if (item.name == "Facilities") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
-            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
-            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
@@ -111,9 +123,21 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         }
         if (item.name == "Refinery Supplier") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
-            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
-            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
@@ -144,9 +168,21 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         }
         if (item.name == "Mill Supplier") {
           if (map) {
-            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
-            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
-            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "facility-layer",
+              sourceId: "facility",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "refinery-layer",
+              sourceId: "refinery",
+            });
+            RemoveSourceAndLayerFromMap({
+              map: map,
+              layerId: "mill-layer",
+              sourceId: "mill",
+            });
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }

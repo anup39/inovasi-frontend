@@ -1,8 +1,7 @@
 import { useRef, useEffect } from "react";
-import maplibregl, { Map } from "maplibre-gl";
+import maplibregl, { Map, IControl } from "maplibre-gl";
 import "../css/map/Map.scss";
 import SelectDataFormatControl from "./SelectDataFormatControl";
-// @ts-ignore
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
@@ -27,7 +26,6 @@ interface MapProps {
   component: string;
 }
 
-// @ts-ignore
 export default function MapComponent({ onSetMap, component }: MapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -43,12 +41,14 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
 
     onSetMap(map_);
     if (component === "mill") {
-      map_.addControl(new SelectDataFormatControl(), "top-right");
+      const selectDataformat_control: IControl = new SelectDataFormatControl();
+      map_.addControl(selectDataformat_control, "top-right");
     }
 
     // Point on click
     map_.on("load", () => {
-      map_.addControl(new PopupControl(), "bottom-left");
+      const popup_control: IControl = new PopupControl();
+      map_.addControl(popup_control, "bottom-left");
       map_.addSource("point", { type: "geojson", data: geojson });
       map_.addLayer({
         id: "point-layer",

@@ -1,33 +1,43 @@
 import axios from "axios";
-import RemoveSourceAndLayerFromMap from "./RemoveSourceAndLayer";
 import createPointGeojson from "./geojsontemp";
+import {
+  Map,
+  LngLatLike,
+  SourceSpecification,
+  CircleLayerSpecification,
+  LayerSpecification,
+  IControl,
+} from "maplibre-gl";
+
+interface AddLayerProps {
+  map: Map;
+  layerId: string;
+  sourceId: string;
+  url: string;
+  source_layer: string;
+  showPopup: boolean;
+  style: { fill_color: string; fill_opacity: string; stroke_color: string };
+  zoomToLayer: boolean;
+  center: LngLatLike;
+  fillType: string;
+  trace: boolean;
+  component: string;
+}
 
 function AddLayerAndSourceToMap({
-  // @ts-ignore
   map,
-  // @ts-ignore
   layerId,
-  // @ts-ignore
   sourceId,
-  // @ts-ignore
   url,
-  // @ts-ignore
   source_layer,
-  // @ts-ignore
   showPopup,
-  // @ts-ignore
   style,
-  // @ts-ignore
   zoomToLayer,
-  // @ts-ignore
   center,
-  // @ts-ignore
   fillType,
-  // @ts-ignore
   trace,
-  // @ts-ignore
   component,
-}) {
+}: AddLayerProps) {
   // Rest of your component code remains unchanged
 
   if (zoomToLayer) {
@@ -42,7 +52,7 @@ function AddLayerAndSourceToMap({
       .catch(function () {});
   }
 
-  const newSource = {
+  const newSource: SourceSpecification = {
     type: "vector",
     tiles: [url],
   };
@@ -50,7 +60,7 @@ function AddLayerAndSourceToMap({
   map.addSource(sourceId, newSource);
 
   if (fillType && fillType === "point") {
-    const newLayer = {
+    const newLayer: CircleLayerSpecification = {
       id: layerId,
       type: "circle",
       source: sourceId,
@@ -67,7 +77,7 @@ function AddLayerAndSourceToMap({
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   } else {
-    const newLayer = {
+    const newLayer: LayerSpecification = {
       id: layerId,
       type: "fill",
       source: sourceId,
@@ -89,10 +99,10 @@ function AddLayerAndSourceToMap({
       if (!features.length) {
         return;
       }
-      const feature = features[0];
-      const long = component + "_" + "long";
-      const lat = component + "_" + "lat";
-      const geojson = createPointGeojson(
+      const feature: any = features[0];
+      const long: string = component + "_" + "long";
+      const lat: string = component + "_" + "lat";
+      const geojson: object = createPointGeojson(
         [
           parseFloat(feature.properties[long]),
           parseFloat(feature.properties[lat]),
@@ -111,7 +121,8 @@ function AddLayerAndSourceToMap({
           ],
         });
       }
-      const popup_index = map._controls.indexOf("PopupControl");
+      const popup_name: IControl = "PopupControl";
+      const popup_index = map._controls.indexOf(popup_name);
       if (popup_index) {
         map._controls[map._controls.length - 1].updatepopup(
           feature.properties,

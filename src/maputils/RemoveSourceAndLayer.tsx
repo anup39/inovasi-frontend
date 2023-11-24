@@ -1,4 +1,4 @@
-// @ts-ignore
+//// @ts-ignore
 const RemoveSourceAndLayerFromMap = (map, layerId, sourceId) => {
   const style = map.getStyle();
   const existingLayer = style.layers.find((layer: any) => layer.id === layerId);

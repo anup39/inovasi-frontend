@@ -11,7 +11,7 @@ const Reporting: React.FC<ReportingProps> = ({ map, onSetMap }) => {
     <div className="overflow-hidden ">
       <Layout>
         <div className="pt-7">
-          <MapSection map={map} onSetMap={onSetMap} />
+          <MapSection map={map} onSetMap={onSetMap} component="reporting" />
         </div>
       </Layout>
     </div>

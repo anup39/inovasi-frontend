@@ -23,7 +23,7 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-center w-40 rounded-md border border-gray-300 px-4 py-2 bg-white text-sm  text-gray-700 focus:outline-none font-semibold "
+          className="inline-flex justify-center w-40 rounded-md border border-gray-300 px-4 py-2 bg-[#2A2A2A] text-sm  text-white  font-semibold hover:bg-black"
         >
           {selectedItem || placeholder}
           <svg

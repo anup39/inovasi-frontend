@@ -8,6 +8,7 @@ import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 // import { useDispatch } from "react-redux";
 // import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+import PopupControl from "../components/dashboardcomp/PopupControl";
 
 interface MapProps {
   map: Map | null;
@@ -38,8 +39,10 @@ export default function MapComponent({
 
     onSetMap(map_);
     if (component === "mill") {
-      map_.addControl(new SelectDataFormatControl(), "top-left");
+      map_.addControl(new SelectDataFormatControl(), "top-right");
     }
+
+    map_.addControl(new PopupControl(), "bottom-left");
 
     return () => {
       map_.remove();
@@ -48,19 +51,8 @@ export default function MapComponent({
 
   // useEffect(() => {
   //   if (map) {
-  //     const geocoder = new MaplibreGeocoder(GeocoderApi, {
-  //       maplibregl: maplibregl,
-  //       showResultsWhileTyping: true,
-  //       flyTo: true,
-  //     });
-
-  //     geocoder.addTo(refObj.current!);
-  //     geocoder.on("result", function (ev: any) {
-  //       const coords = ev.result.geometry.coordinates;
-  //       map.flyTo({ center: coords });
-  //     });
   //   }
-  // }, [map, refObj]);
+  // }, [map]);
 
   return (
     <div

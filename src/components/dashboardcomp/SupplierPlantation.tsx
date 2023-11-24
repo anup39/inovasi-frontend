@@ -1,12 +1,12 @@
-import Dropdown from '../commoncomp/Dropdown';
-import Layout from '../commoncomp/Layout';
+import Dropdown from "../commoncomp/Dropdown";
+import Layout from "../commoncomp/Layout";
 // import MapSection from '../../pages/MapSection';
 // import pie_chart_api from "../../utils/constants";
 // import PieChart from "./PieChart";
 // import Pagination from '../commoncomp/PageNumbers';
-import MapSection from '../../pages/MapSection';
-import { Map } from 'maplibre-gl'; // Import 'Map' from 'maplibre-gl'
-import Pagination from '../commoncomp/Pagination';
+import MapSection from "../../pages/MapSection";
+import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
+import Pagination from "../commoncomp/Pagination";
 
 interface SupplierPlantationProps {
   map: Map | null;
@@ -16,19 +16,23 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   map,
   onSetMap,
 }) => {
-  const optionsReporting = ['Metric', 'Mill Supplier'];
+  const optionsReporting = ["Metric", "Mill Supplier"];
 
   return (
     <Layout>
-      <div className='flex flex-col h-[90vh]'>
-        <div className='flex-1'>
-          <MapSection map={map} onSetMap={onSetMap} />
+      <div className="flex flex-col h-[90vh]">
+        <div className="flex-1">
+          <MapSection
+            map={map}
+            onSetMap={onSetMap}
+            component="supplier-plantation"
+          />
         </div>
         {/* <div className='h-32'>
         <MapSection />
       </div> */}
-        <div className='mx-4 my-3 flex justify-between items-center'>
-          <Dropdown options={optionsReporting} placeholder='Metric' />
+        <div className="mx-4 my-3 flex justify-between items-center">
+          <Dropdown options={optionsReporting} placeholder="Metric" />
           <Pagination totalPages={50} />
         </div>
         {/* <div className="space-x-4  flex">

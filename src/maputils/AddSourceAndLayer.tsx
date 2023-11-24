@@ -1,18 +1,5 @@
 import axios from "axios";
-import maplibregl from "maplibre-gl";
-
-// @ts-ignore
-function getPopupHTML(properties, trace) {
-  let html = "";
-
-  if (trace) {
-    html = `<button id="trace-plot-button">Trace Plantation</button><br>`;
-  }
-  for (const [key, value] of Object.entries(properties)) {
-    html += `<b>${key}:</b> ${value}<br> `;
-  }
-  return html;
-}
+import PopupControl from "../components/dashboardcomp/PopupControl";
 
 function AddLayerAndSourceToMap({
   // @ts-ignore
@@ -39,6 +26,7 @@ function AddLayerAndSourceToMap({
   trace,
 }) {
   // Rest of your component code remains unchanged
+
   if (zoomToLayer) {
     axios
       .get(`${import.meta.env.VITE_API_MAP_URL}/${source_layer}`)
@@ -99,10 +87,13 @@ function AddLayerAndSourceToMap({
         return;
       }
       const feature = features[0];
-      new maplibregl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(getPopupHTML(feature.properties, trace))
-        .addTo(map);
+      console.log(map);
+      const popup_index = map._controls.indexOf("PopupControl");
+      console.log(popup_index);
+
+      if (popup_index) {
+        map._controls[map._controls.length - 1].updatepopup(feature.properties);
+      }
     });
   }
 }

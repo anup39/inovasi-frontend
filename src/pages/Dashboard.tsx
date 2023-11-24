@@ -15,7 +15,7 @@ const DashBoard: React.FC<DashboardProps> = ({ map, onSetMap }) => {
         <DashBoardItem map={map} />
         {/* flex-1 will allow us to take all remaining height without overflowing */}
         <div className=" overflow-hidden flex-1">
-          <MapSection map={map} onSetMap={onSetMap} />
+          <MapSection map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </Layout>{" "}
     </div>

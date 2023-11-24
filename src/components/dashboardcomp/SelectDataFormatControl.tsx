@@ -8,7 +8,7 @@ export default class SelectDataFormatControl {
   onAdd(map) {
     this._map = map;
     this._container = document.createElement("div");
-    this._container.className = "maplibregl-ctrl maplibregl-ctrl-draw";
+    this._container.className = "maplibregl-ctrl ";
     ReactDOM.createRoot(this._container).render(
       <Provider store={store}>
         <Dropdown options={optionsReporting} placeholder="Supplier Mill" />

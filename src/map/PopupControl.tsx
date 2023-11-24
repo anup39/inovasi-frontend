@@ -5,10 +5,12 @@ import Popup from "../components/commoncomp/Popup";
 import { Map } from "maplibre-gl";
 
 export default class PopupControl {
+  // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
   private _properties!: {
     id: number;
+    // @ts-ignore
     [key: string]: number | string;
   };
   private _trace: boolean = false;
@@ -29,7 +31,11 @@ export default class PopupControl {
   }
 
   updatePopup(
-    properties: { [key: string]: number | string; id: number },
+    properties: {
+      id: number;
+      // @ts-ignore
+      [key: string]: number | string;
+    },
     trace: boolean
   ) {
     this._properties = properties;

@@ -3,7 +3,7 @@ import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../../reducers/Auth";
-import { Map } from "maplibre-gl";
+import { IControl, Map } from "maplibre-gl";
 
 interface DashBoxItemsProps {
   map: Map | null;
@@ -96,7 +96,11 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatePopup({}, false);
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,
@@ -141,7 +145,11 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatePopup({}, false);
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,
@@ -186,7 +194,11 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             if (map.getSource("point") && map.getLayer("point-layer")) {
               map.setLayoutProperty("point-layer", "visibility", "none");
             }
-            map._controls[map._controls.length - 1].updatePopup({}, false);
+            const popup_control: IControl =
+              map._controls[map._controls.length - 1];
+
+            // @ts-ignore
+            popup_control.updatePopup({}, false);
 
             AddLayerAndSourceToMap({
               map: map,

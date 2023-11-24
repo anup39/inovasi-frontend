@@ -3,6 +3,7 @@ import axios from "axios";
 interface PopupProps {
   properties: {
     id: number;
+    // @ts-ignore
     [key: string]: number | string;
   };
   trace: boolean;

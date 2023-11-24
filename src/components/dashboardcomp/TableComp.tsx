@@ -41,7 +41,6 @@ export default function DataGridDemo({ tableColumn, tableData, map }) {
       geojson.features.forEach((feature) => {
         bounds.extend(feature.geometry.coordinates);
       });
-      // console.log(geojson, "geojson");
       if (map) {
         if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
           const source = map.getSource("point-table");
@@ -59,7 +58,6 @@ export default function DataGridDemo({ tableColumn, tableData, map }) {
             },
           });
           map.fitBounds(bounds, { padding });
-          console.log(map);
         }
       }
     }

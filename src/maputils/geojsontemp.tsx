@@ -4,7 +4,7 @@ const createPointGeojson = (coordinates, properties) => {
     features: [
       {
         type: "Feature",
-        properties: {},
+        properties: properties,
         geometry: {
           coordinates: coordinates,
           type: "Point",

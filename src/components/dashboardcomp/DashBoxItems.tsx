@@ -70,12 +70,6 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           component: "facilities",
         });
       });
-      // const popup_index = map._controls.indexOf("PopupControl");
-      // console.log(popup_index);
-
-      // if (popup_index) {
-      map._controls[map._controls.length - 1].updatepopup({}, false);
-      // }
     }
   }, [map]);
 
@@ -85,7 +79,11 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         if (item.name == "Facilities") {
           if (map) {
             RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
-            RemoveSourceAndLayerFromMap(map, "point-layer", "point");
+            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
+            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
             map._controls[map._controls.length - 1].updatepopup({}, false);
 
             AddLayerAndSourceToMap({
@@ -113,8 +111,12 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         }
         if (item.name == "Refinery Supplier") {
           if (map) {
+            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
             RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
-            RemoveSourceAndLayerFromMap(map, "point-layer", "point");
+            RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
             map._controls[map._controls.length - 1].updatepopup({}, false);
 
             AddLayerAndSourceToMap({
@@ -142,8 +144,12 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         }
         if (item.name == "Mill Supplier") {
           if (map) {
+            RemoveSourceAndLayerFromMap(map, "facility-layer", "facility");
+            RemoveSourceAndLayerFromMap(map, "refinery-layer", "refinery");
             RemoveSourceAndLayerFromMap(map, "mill-layer", "mill");
-            RemoveSourceAndLayerFromMap(map, "point-layer", "point");
+            if (map.getSource("point") && map.getLayer("point-layer")) {
+              map.setLayoutProperty("point-layer", "visibility", "none");
+            }
             map._controls[map._controls.length - 1].updatepopup({}, false);
 
             AddLayerAndSourceToMap({

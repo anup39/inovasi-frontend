@@ -25,15 +25,11 @@ export default class PopupControl {
     this._trace = trace;
 
     if (this._root) {
-      // Create a new JSX element with updated properties and re-render
-      console.log(this._root);
       const updatedPopup = (
         <Provider store={store}>
           <Popup properties={this._properties} trace={this._trace} />
         </Provider>
       );
-
-      // Update the root with the new content
       this._root.render(updatedPopup);
     }
   }

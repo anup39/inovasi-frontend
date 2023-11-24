@@ -64,7 +64,7 @@ export default function MapComponent({
         type: "circle",
         source: "point",
         paint: {
-          "circle-radius": 8,
+          "circle-radius": 9,
           "circle-color": "#233430",
         },
       });
@@ -76,7 +76,7 @@ export default function MapComponent({
         type: "circle",
         source: "point-table",
         paint: {
-          "circle-radius": 8,
+          "circle-radius": 9,
           "circle-color": "#233430",
         },
       });

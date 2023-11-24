@@ -97,16 +97,13 @@ function AddLayerAndSourceToMap({
           parseFloat(feature.properties[long]),
           parseFloat(feature.properties[lat]),
         ],
-        feature.properties
+        {}
       );
 
       if (map.getSource("point") && map.getLayer("point-layer")) {
         const source = map.getSource("point");
-        console.log(source, "source");
-        // Update the data property of the source with the new URL
         source.setData(geojson);
         map.setLayoutProperty("point-layer", "visibility", "visible");
-
         map.flyTo({
           center: [
             parseFloat(feature.properties[long]),
@@ -114,11 +111,7 @@ function AddLayerAndSourceToMap({
           ],
         });
       }
-      console.log(map);
-
       const popup_index = map._controls.indexOf("PopupControl");
-      console.log(popup_index);
-
       if (popup_index) {
         map._controls[map._controls.length - 1].updatepopup(
           feature.properties,

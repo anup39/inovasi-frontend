@@ -6,11 +6,7 @@ function HomeNavbar() {
   return (
     <div className="py-5 px-9 flex justify-between items-center">
       <div>
-        <img
-          src="https://maps.agriplot.earth/assets/logolong-bbde4d32.png"
-          alt="mainlogo"
-          className="w-20"
-        />
+        <img src="ivovasi-Logo.png" alt="mainlogo" className="w-20" />
       </div>
       {/* Menu */}
       <div>

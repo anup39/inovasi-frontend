@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 
-const getGeoJSON = (data, indice, component) => {
+const getGeoJSON = (data, indices, component) => {
   const filteredData = [];
   indices.forEach((index) => {
     data.forEach((item) => {

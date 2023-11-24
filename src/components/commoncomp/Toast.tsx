@@ -1,20 +1,28 @@
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
-import React from "react";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store";
 import { setshowToast } from "../../reducers/DisplaySettings";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 export default function Toast() {
-  const dispatch = useDispatch();
-  const showToast = useSelector((state) => state.displaySettings.showToast);
-  const toastMessage = useSelector(
-    (state) => state.displaySettings.toastMessage
+  const dispatch: AppDispatch = useDispatch();
+  const showToast: boolean = useSelector(
+    (state: RootState) => state.displaySettings.showToast
   );
-  const toastType = useSelector((state) => state.displaySettings.toastType);
+  const toastMessage: string = useSelector(
+    (state: RootState) => state.displaySettings.toastMessage
+  );
+  const toastType: "success" | "error" | "warning" | "info" = useSelector(
+    (state: RootState) => state.displaySettings.toastType
+  ) as "success" | "error" | "warning" | "info";
 
   const handleToastClose = () => {
     dispatch(setshowToast(false));

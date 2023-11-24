@@ -1,7 +1,10 @@
 import axios from "axios";
 
 interface PopupProps {
-  properties: { mill_eq_id: string };
+  properties: {
+    id: number;
+    [key: string]: number | string;
+  };
   trace: boolean;
 }
 

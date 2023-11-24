@@ -29,7 +29,7 @@ export default function Upload() {
         .then(() => {});
       // Perform operations with the file here
     } else {
-      console.log("No file uploaded and sheet name also");
+      alert("No file uploaded and sheet name also");
     }
   };
 

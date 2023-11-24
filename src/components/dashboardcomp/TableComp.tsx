@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import maplibregl, { Map } from "maplibre-gl"; // Import 'Map' type from 'maplibre-gl'
 
-const getGeoJSON = (data, indices) => {
+const getGeoJSON = (data, indice, component) => {
   const filteredData = [];
   indices.forEach((index) => {
     data.forEach((item) => {
@@ -12,13 +12,16 @@ const getGeoJSON = (data, indices) => {
     });
   });
   const features = filteredData.map((item) => {
-    const { mill_lat, mill_long, ...properties } = item;
+    // const { mill_lat, mill_long, ...properties } = item;
     return {
       type: "Feature",
-      properties: properties,
+      properties: {},
       geometry: {
         type: "Point",
-        coordinates: [parseFloat(item.mill_long), parseFloat(item.mill_lat)],
+        coordinates: [
+          parseFloat(item[component + "_" + "long"]),
+          parseFloat(item[component + "_" + "lat"]),
+        ],
       },
     };
   });
@@ -30,12 +33,17 @@ const getGeoJSON = (data, indices) => {
   return geojson;
 };
 
-export default function DataGridDemo({ tableColumn, tableData, map }) {
+export default function DataGridDemo({
+  tableColumn,
+  tableData,
+  map,
+  component,
+}) {
   const columns: GridColDef[] = tableColumn;
 
   const handleonRowSelectionModelChange = (rows, details) => {
     if (rows.length > 0) {
-      const geojson = getGeoJSON(tableData, rows);
+      const geojson = getGeoJSON(tableData, rows, component);
       const padding = { top: 25, bottom: 25, left: 25, right: 25 };
       const bounds = new maplibregl.LngLatBounds();
       geojson.features.forEach((feature) => {

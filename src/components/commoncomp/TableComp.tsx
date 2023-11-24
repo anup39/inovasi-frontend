@@ -4,7 +4,7 @@ import maplibregl, { Map, LngLatBoundsLike } from "maplibre-gl";
 
 interface DataItem {
   id: number;
-  [key: string]: any; // Any other key can have any value
+  [key: string]: unknown;
 }
 
 interface DataGridDemoProps {
@@ -14,24 +14,42 @@ interface DataGridDemoProps {
   component: string;
 }
 
-const getGeoJSON = (data: DataItem[], indices: number[], component: string) => {
+type PointFeature = {
+  type: "Feature";
+  properties: Record<string, string>;
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+};
+
+const getGeoJSON = (
+  data: DataItem[],
+  indices: number[],
+  component: string
+): GeoJSON.FeatureCollection<GeoJSON.Geometry, GeoJSON.GeoJsonProperties> => {
   const filteredData = data.filter((item) => indices.includes(item.id));
 
-  const features = filteredData.map((item) => {
-    const long = `${component}_long`;
-    const lat = `${component}_lat`;
+  const features: PointFeature[] = filteredData.map((item) => {
+    const longKey = `${component}_long`;
+    const latKey = `${component}_lat`;
 
+    const long = parseFloat(String(item[longKey as keyof typeof item]));
+    const lat = parseFloat(String(item[latKey as keyof typeof item]));
     return {
       type: "Feature",
       properties: {},
       geometry: {
         type: "Point",
-        coordinates: [parseFloat(item[long]), parseFloat(item[lat])],
+        coordinates: [long, lat],
       },
     };
   });
 
-  const geojson = {
+  const geojson: GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    GeoJSON.GeoJsonProperties
+  > = {
     type: "FeatureCollection",
     features: features,
   };
@@ -46,11 +64,11 @@ export default function DataGridDemo({
 }: DataGridDemoProps) {
   const handleonRowSelectionModelChange = (rows: number[]) => {
     if (rows.length > 0 && map) {
-      const geojson: any = getGeoJSON(tableData, rows, component);
+      const geojson = getGeoJSON(tableData, rows, component);
       const padding = { top: 25, bottom: 25, left: 25, right: 25 };
       const bounds = new maplibregl.LngLatBounds() as LngLatBoundsLike;
 
-      geojson.features.forEach((feature: any) => {
+      geojson.features.forEach((feature) => {
         //// @ts-ignore
         bounds.extend(feature.geometry.coordinates);
       });

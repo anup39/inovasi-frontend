@@ -9,7 +9,7 @@ import HomePage from "../pages/HomePage";
 import Upload from "../pages/Upload";
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
 import { useEffect } from "react";
-import Login from "../pages/LoginPage";
+import Login from "../pages/Login";
 
 interface RoutersProps {
   map: Map | null;

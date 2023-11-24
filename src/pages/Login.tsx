@@ -1,4 +1,4 @@
-import "../../css/login/Login.css";
+import "../css/login/Login.css";
 
 function Login() {
   return (

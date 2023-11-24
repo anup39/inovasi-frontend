@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowId } from "@mui/x-data-grid";
 import maplibregl, { Map, GeoJSONSource, LngLatBounds } from "maplibre-gl";
 
 interface DataItem {
@@ -62,9 +62,12 @@ export default function DataGridDemo({
   map,
   component,
 }: DataGridDemoProps) {
-  const handleonRowSelectionModelChange = (rows: number[]) => {
+  const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (rows.length > 0 && map) {
-      const geojson = getGeoJSON(tableData, rows, component);
+      const numericRows: number[] = rows.map((rowId) =>
+        parseInt(rowId as string, 10)
+      );
+      const geojson = getGeoJSON(tableData, numericRows, component);
       const padding = { top: 25, bottom: 25, left: 25, right: 25 };
       const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
 

@@ -23,9 +23,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           sourceId: "agriplot",
           url: `${
             import.meta.env.VITE_API_MAP_URL
-          }/function_zxy_query_app_agriplot_by_estateids_and_wkt/{z}/{x}/{y}?estateids=["GEL13244","GEL13245","GEL07588"]&geometry_wkt=`,
+          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=["GEL13244","GEL13245","GEL07588"]`,
 
-          source_layer: "function_zxy_query_app_agriplot_by_estateids_and_wkt",
+          source_layer: "function_zxy_query_app_agriplot_by_estateids",
           showPopup: true,
           style: {
             fill_color: "red",

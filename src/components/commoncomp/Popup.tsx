@@ -1,4 +1,10 @@
 import axios from "axios";
+import {
+  settoastType,
+  settoastMessage,
+  setshowToast,
+} from "../../reducers/DisplaySettings";
+import { useDispatch } from "react-redux";
 
 interface PopupProps {
   properties: {
@@ -10,6 +16,7 @@ interface PopupProps {
 }
 
 const Popup = ({ properties, trace }: PopupProps) => {
+  const dispatch = useDispatch();
   const propertyElements = Object.entries(properties).map(([key, value]) => (
     <div key={key} className="mb-2 truncate">
       <strong className="mr-1">{key}:</strong> {value}
@@ -26,6 +33,18 @@ const Popup = ({ properties, trace }: PopupProps) => {
       )
       .then((res) => {
         console.log(res.data);
+        if (res.data.length == 0) {
+          dispatch(setshowToast(true));
+          dispatch(
+            settoastMessage(
+              "No Agriplot for this mill supplier yet. Try another"
+            )
+          );
+          dispatch(settoastType("info"));
+        }
+        if (res.data.length > 0) {
+          window.location.replace("/supplierPlantation");
+        }
       });
   };
 

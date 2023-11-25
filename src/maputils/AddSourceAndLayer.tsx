@@ -46,9 +46,13 @@ function AddLayerAndSourceToMap({
       .get(`${import.meta.env.VITE_API_MAP_URL}/${source_layer}`)
       .then(function (response) {
         const bounds = response.data.bounds;
-        map.fitBounds(bounds);
+
         if (bounds && bounds.length === 4) {
-          // map.flyTo({ center: center });
+          if (fillType === "point") {
+            map.flyTo({ center: center });
+          } else {
+            map.fitBounds(bounds);
+          }
         }
       })
       .catch(function () {});

@@ -21,10 +21,12 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           map: map,
           layerId: "agriplot-layer",
           sourceId: "agriplot",
-          url: `${import.meta.env.VITE_API_MAP_URL}/app_agriplot/{z}/{x}/{y}`,
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=["GEL13244","GEL13245","GEL07588"]`,
 
-          source_layer: "app_agriplot",
-          showPopup: false,
+          source_layer: "function_zxy_query_app_agriplot_by_estateids",
+          showPopup: true,
           style: {
             fill_color: "red",
             fill_opacity: "0",

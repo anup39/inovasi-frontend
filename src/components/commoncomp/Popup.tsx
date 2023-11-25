@@ -42,6 +42,9 @@ const Popup = ({ properties, trace }: PopupProps) => {
           );
           dispatch(settoastType("info"));
         }
+        if (res.data.length > 0) {
+          window.location.replace("/supplierPlantation");
+        }
       });
   };
 

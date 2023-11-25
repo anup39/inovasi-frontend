@@ -46,8 +46,13 @@ function AddLayerAndSourceToMap({
       .get(`${import.meta.env.VITE_API_MAP_URL}/${source_layer}`)
       .then(function (response) {
         const bounds = response.data.bounds;
+
         if (bounds && bounds.length === 4) {
-          map.flyTo({ center: center });
+          if (fillType === "point") {
+            map.flyTo({ center: center });
+          } else {
+            map.fitBounds(bounds);
+          }
         }
       })
       .catch(function () {});
@@ -85,7 +90,7 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "fill-color": style.fill_color,
-        "fill-opacity": parseInt(style.fill_opacity),
+        "fill-opacity": 0.4,
         "fill-outline-color": style.stroke_color,
       },
     };
@@ -100,24 +105,27 @@ function AddLayerAndSourceToMap({
         return;
       }
       const feature = features[0];
-      const long: string = component + "_" + "long";
-      const lat: string = component + "_" + "lat";
-      const geojson = createPointGeojson([
-        parseFloat(feature.properties[long]),
-        parseFloat(feature.properties[lat]),
-      ]);
+      if (fillType === "point") {
+        const long: string = component + "_" + "long";
+        const lat: string = component + "_" + "lat";
+        const geojson = createPointGeojson([
+          parseFloat(feature.properties[long]),
+          parseFloat(feature.properties[lat]),
+        ]);
 
-      if (map.getSource("point") && map.getLayer("point-layer")) {
-        const source = map.getSource("point") as GeoJSONSource;
-        source.setData(geojson);
-        map.setLayoutProperty("point-layer", "visibility", "visible");
-        map.flyTo({
-          center: [
-            parseFloat(feature.properties[long]),
-            parseFloat(feature.properties[lat]),
-          ],
-        });
+        if (map.getSource("point") && map.getLayer("point-layer")) {
+          const source = map.getSource("point") as GeoJSONSource;
+          source.setData(geojson);
+          map.setLayoutProperty("point-layer", "visibility", "visible");
+          map.flyTo({
+            center: [
+              parseFloat(feature.properties[long]),
+              parseFloat(feature.properties[lat]),
+            ],
+          });
+        }
       }
+
       const popup_name: string = "PopupControl";
       // @ts-ignore
       const popup_index = map._controls.indexOf(popup_name);

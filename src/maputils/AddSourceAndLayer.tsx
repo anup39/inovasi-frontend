@@ -1,12 +1,10 @@
 import axios from "axios";
-import createPointGeojson from "./geojsontemp";
 import {
   Map,
   LngLatLike,
   SourceSpecification,
   CircleLayerSpecification,
   LayerSpecification,
-  GeoJSONSource,
   IControl,
 } from "maplibre-gl";
 

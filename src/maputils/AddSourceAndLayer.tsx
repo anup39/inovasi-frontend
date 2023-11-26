@@ -91,12 +91,7 @@ function AddLayerAndSourceToMap({
       paint: {
         "fill-color": style.fill_color,
         "fill-outline-color": style.stroke_color,
-        "fill-opacity": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          1,
-          0.7,
-        ],
+        "fill-opacity": 0.5,
       },
     };
     map.addLayer(newLayer);

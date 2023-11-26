@@ -22,6 +22,28 @@ const geojson = {
     },
   ],
 };
+
+const geojson_polygon = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        coordinates: [
+          [
+            [103.07963129020129, 2.2135193939425193],
+            [103.07963129020129, 2.102400759033472],
+            [103.19865174285263, 2.102400759033472],
+            [103.19865174285263, 2.2135193939425193],
+            [103.07963129020129, 2.2135193939425193],
+          ],
+        ],
+        type: "Polygon",
+      },
+    },
+  ],
+};
 interface MapProps {
   map: Map | null;
   onSetMap: (evmap: Map) => void;
@@ -53,10 +75,11 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       map_.addControl(buffer_control, "top-left");
     }
 
-    // Point on click
     map_.on("load", () => {
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-left");
+      // Point on click
+
       map_.addSource("point", {
         type: "geojson",
         data: geojson,
@@ -85,8 +108,42 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
           "circle-color": "red",
         },
       });
+
+      // Polygon on click
+
+      map_.addSource("polygon", {
+        type: "geojson",
+        data: geojson_polygon,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "polygon-layer",
+        type: "fill",
+        source: "polygon",
+        paint: {
+          "fill-color": "#233430",
+          "fill-opacity": 0.5,
+        },
+      });
+
+      // Polygon from Table
+      map_.addSource("polygon-table", {
+        type: "geojson",
+        data: geojson_polygon,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "polygon-table-layer",
+        type: "fill",
+        source: "polygon-table",
+        paint: {
+          "fill-color": "red",
+          "fill-opacity": 0.5,
+        },
+      });
+
       map_.setLayoutProperty("point-layer", "visibility", "none");
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
+      map_.setLayoutProperty("polygon-layer", "visibility", "none");
+      map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
     });
 
     return () => {

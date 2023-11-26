@@ -55,7 +55,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
               if (res.data.length > 0) {
                 localStorage.setItem("estateids", JSON.stringify(estateids));
                 localStorage.setItem("mill_name", properties.mill_name);
-                localStorage.setItem("mill_id", properties.id);
+                localStorage.setItem("mill_id", properties.mill_eq_id);
                 localStorage.setItem("mill_long", properties.mill_long);
                 localStorage.setItem("mill_lat", properties.mill_lat);
 

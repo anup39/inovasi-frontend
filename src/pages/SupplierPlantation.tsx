@@ -28,6 +28,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   useEffect(() => {
     if (map) {
       map.on("load", () => {
+        // map.flyTo({ center: [103.05, 2.25] });
+        map.flyTo({ center: [103.05, 2.25], zoom: 15 });
+
         AddLayerAndSourceToMap({
           map: map,
           layerId: "agriplot-layer",
@@ -43,17 +46,35 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             fill_opacity: "0",
             stroke_color: "black",
           },
-          zoomToLayer: true,
+          zoomToLayer: false,
           center: [103.8574, 2.2739],
           fillType: "fill",
           trace: false,
           component: "agriplot",
         });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "mill-layer-single",
+          sourceId: "mill-single",
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_mill_by_millid/{z}/{x}/{y}?millid=${mill_id}`,
+          source_layer: "function_zxy_query_app_mill_by_millid",
+          showPopup: true,
+          style: {
+            fill_color: "blue",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          zoomToLayer: false,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+          trace: false,
+          component: "mill",
+        });
       });
-      map.flyTo({ center: [parseFloat(mill_long), parseFloat(mill_lat)] });
-      map.zoomTo(18);
     }
-  }, [map, estateids, mill_lat, mill_long]);
+  }, [map, estateids, mill_lat, mill_long, mill_id]);
 
   useEffect(() => {
     axios

@@ -75,7 +75,12 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "circle-color": style.fill_color,
-        "circle-radius": 4,
+        "circle-radius": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          13,
+          4,
+        ],
         "circle-stroke-width": 1,
         "circle-stroke-color": [
           "case",
@@ -108,39 +113,59 @@ function AddLayerAndSourceToMap({
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   }
+  let hoveredStateId = null;
 
   if (showPopup) {
-    map.on("click", layerId, (e) => {
+    map.on("mousemove", layerId, (e) => {
       const features = map.queryRenderedFeatures(e.point);
       if (!features.length) {
         return;
-      }
-      const feature = features[0];
+      } else {
+        const feature = features[0];
+        const popup_name: string = "PopupControl";
+        // @ts-ignore
+        const popup_index = map._controls.indexOf(popup_name);
 
-      if (features.length > 0) {
-        const clickedFeature = features[0];
-        // Implement your logic to highlight the feature
-        // You may change its style or apply a visual effect
-        // For example, change the outline color
+        if (popup_index) {
+          const popup_control: IControl =
+            map._controls[map._controls.length - 1];
+          // @ts-ignore
+          popup_control.updatePopup(feature.properties, trace);
+        }
+      }
+      if (e.features.length > 0) {
+        if (hoveredStateId) {
+          map.setFeatureState(
+            {
+              source: sourceId,
+              id: hoveredStateId,
+              sourceLayer: source_layer,
+            },
+            { hover: false }
+          );
+        }
+        hoveredStateId = e.features[0].id;
         map.setFeatureState(
           {
-            source: clickedFeature.source,
-            id: clickedFeature.id,
+            source: sourceId,
+            id: hoveredStateId,
             sourceLayer: source_layer,
           },
           { hover: true }
         );
-        // }
       }
+    });
 
-      const popup_name: string = "PopupControl";
-      // @ts-ignore
-      const popup_index = map._controls.indexOf(popup_name);
-
-      if (popup_index) {
-        const popup_control: IControl = map._controls[map._controls.length - 1];
-        // @ts-ignore
-        popup_control.updatePopup(feature.properties, trace);
+    map.on("mouseleave", layerId, () => {
+      if (hoveredStateId) {
+        map.setFeatureState(
+          {
+            source: sourceId,
+            id: hoveredStateId,
+            sourceLayer: source_layer,
+          },
+          { hover: false }
+        );
       }
     });
   }

@@ -61,6 +61,7 @@ function AddLayerAndSourceToMap({
   const newSource: SourceSpecification = {
     type: "vector",
     tiles: [url],
+    promoteId: "id",
   };
 
   map.addSource(sourceId, newSource);
@@ -76,7 +77,12 @@ function AddLayerAndSourceToMap({
         "circle-color": style.fill_color,
         "circle-radius": 4,
         "circle-stroke-width": 1,
-        "circle-stroke-color": "black",
+        "circle-stroke-color": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          "red",
+          "black",
+        ],
       },
     };
     map.addLayer(newLayer);
@@ -91,7 +97,12 @@ function AddLayerAndSourceToMap({
       paint: {
         "fill-color": style.fill_color,
         "fill-outline-color": style.stroke_color,
-        "fill-opacity": 0.5,
+        "fill-opacity": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          1,
+          0.5,
+        ],
       },
     };
     map.addLayer(newLayer);
@@ -105,25 +116,21 @@ function AddLayerAndSourceToMap({
         return;
       }
       const feature = features[0];
-      if (fillType === "point") {
-        const long: string = component + "_" + "long";
-        const lat: string = component + "_" + "lat";
-        const geojson = createPointGeojson([
-          parseFloat(feature.properties[long]),
-          parseFloat(feature.properties[lat]),
-        ]);
 
-        if (map.getSource("point") && map.getLayer("point-layer")) {
-          const source = map.getSource("point") as GeoJSONSource;
-          source.setData(geojson);
-          map.setLayoutProperty("point-layer", "visibility", "visible");
-          map.flyTo({
-            center: [
-              parseFloat(feature.properties[long]),
-              parseFloat(feature.properties[lat]),
-            ],
-          });
-        }
+      if (features.length > 0) {
+        const clickedFeature = features[0];
+        // Implement your logic to highlight the feature
+        // You may change its style or apply a visual effect
+        // For example, change the outline color
+        map.setFeatureState(
+          {
+            source: clickedFeature.source,
+            id: clickedFeature.id,
+            sourceLayer: source_layer,
+          },
+          { hover: true }
+        );
+        // }
       }
 
       const popup_name: string = "PopupControl";

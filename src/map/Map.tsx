@@ -80,20 +80,6 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       map_.addControl(popup_control, "bottom-left");
       // Point on click
 
-      map_.addSource("point", {
-        type: "geojson",
-        data: geojson,
-      } as GeoJSONSourceOptions);
-      map_.addLayer({
-        id: "point-layer",
-        type: "circle",
-        source: "point",
-        paint: {
-          "circle-radius": 9,
-          "circle-color": "#233430",
-        },
-      });
-
       // Points from Table
       map_.addSource("point-table", {
         type: "geojson",
@@ -106,22 +92,6 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         paint: {
           "circle-radius": 9,
           "circle-color": "red",
-        },
-      });
-
-      // Polygon on click
-
-      map_.addSource("polygon", {
-        type: "geojson",
-        data: geojson_polygon,
-      } as GeoJSONSourceOptions);
-      map_.addLayer({
-        id: "polygon-layer",
-        type: "fill",
-        source: "polygon",
-        paint: {
-          "fill-color": "#233430",
-          "fill-opacity": 0.5,
         },
       });
 
@@ -140,9 +110,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      map_.setLayoutProperty("point-layer", "visibility", "none");
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
-      map_.setLayoutProperty("polygon-layer", "visibility", "none");
       map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
     });
 

@@ -10,6 +10,7 @@ function makeRadius(lngLatArray, radiusInMeters) {
   return buffered;
 }
 const Buffer: React.FC = ({ map }) => {
+  const estateids = localStorage.getItem("estateids");
   const mill_name: string | null = localStorage.getItem("mill_name");
   const mill_lat = localStorage.getItem("mill_lat");
   const mill_long = localStorage.getItem("mill_long");
@@ -31,7 +32,29 @@ const Buffer: React.FC = ({ map }) => {
       source.setData(buffered);
 
       map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+      AddLayerAndSourceToMap({
+        map: map,
+        layerId: "agriplot-wkt-layer",
+        sourceId: "agriplot-wkt",
+        url: `${
+          import.meta.env.VITE_API_MAP_URL
+        }/function_zxy_query_app_agriplot_by_estateids_and_wkt/{z}/{x}/{y}?estateids=${estateids}`,
+
+        source_layer: "function_zxy_query_app_agriplot_by_estateids_and_wkt",
+        showPopup: true,
+        style: {
+          fill_color: "green",
+          fill_opacity: "0",
+          stroke_color: "black",
+        },
+        zoomToLayer: false,
+        center: [103.8574, 2.2739],
+        fillType: "fill",
+        trace: false,
+        component: "agriplot",
+      });
     }
+
     console.log(buffered, "buffered");
   };
 

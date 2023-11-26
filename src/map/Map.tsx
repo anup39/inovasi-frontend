@@ -110,6 +110,23 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
+      // Polygon from Table
+      map_.addSource("polygon-radius", {
+        type: "geojson",
+        data: geojson_polygon,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "polygon-radius-layer",
+        type: "fill",
+        source: "polygon-radius",
+        paint: {
+          "fill-color": "red",
+          "fill-opacity": 0.5,
+        },
+      });
+
+      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
+
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
       map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
     });

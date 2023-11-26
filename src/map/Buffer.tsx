@@ -16,7 +16,12 @@ export default function Buffer() {
         ></input>
       </div>
       <div className="text-white text-lg">
-        <input type="submit" className="text-black bg-red-500"></input>
+        <input
+          type="number"
+          min={1}
+          max={500}
+          className="text-black bg-red-500"
+        />
       </div>
     </form>
   );

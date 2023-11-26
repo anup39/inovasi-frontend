@@ -14,7 +14,7 @@ export default class BufferControl {
     this._container.className = "maplibregl-ctrl ";
     ReactDOM.createRoot(this._container).render(
       <Provider store={store}>
-        <Buffer />
+        <Buffer map={this._map} />
       </Provider>
     );
     return this._container;

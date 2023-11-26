@@ -42,7 +42,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           source_layer: "function_zxy_query_app_agriplot_by_estateids",
           showPopup: true,
           style: {
-            fill_color: "red",
+            fill_color: "green",
             fill_opacity: "0",
             stroke_color: "black",
           },

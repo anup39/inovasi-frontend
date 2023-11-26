@@ -9,6 +9,23 @@ function makeRadius(lngLatArray, radiusInMeters) {
   var buffered = turf.buffer(point, radiusInMeters, { units: "meters" });
   return buffered;
 }
+
+const convertCoordinatesToWKT = (coordinates) => {
+  return coordinates.map(([lon, lat]) => `${lon} ${lat}`).join(", ");
+};
+const convertGeoJSONToWKT = (geojson) => {
+  const geometryType = geojson.geometry.type;
+
+  if (geometryType !== "Polygon") {
+    throw new Error("Unsupported geometry type. Only Polygon is supported.");
+  }
+
+  const coordinates = geojson.geometry.coordinates[0];
+  const wktGeometry = `POLYGON ((${convertCoordinatesToWKT(coordinates)}))`;
+
+  return wktGeometry;
+};
+
 const Buffer: React.FC = ({ map }) => {
   const estateids = localStorage.getItem("estateids");
   const mill_name: string | null = localStorage.getItem("mill_name");
@@ -32,26 +49,42 @@ const Buffer: React.FC = ({ map }) => {
       source.setData(buffered);
 
       map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
-      AddLayerAndSourceToMap({
-        map: map,
-        layerId: "agriplot-wkt-layer",
-        sourceId: "agriplot-wkt",
-        url: `${
-          import.meta.env.VITE_API_MAP_URL
-        }/function_zxy_query_app_agriplot_by_estateids_and_wkt/{z}/{x}/{y}?estateids=${estateids}`,
+      const wkt_final = convertGeoJSONToWKT(buffered);
+      if (map.getSource("agriplot-wkt") && map.getLayer("agriplot-wkt-layer")) {
+        const source = map.getSource("agriplot-wkt");
+        source.setTiles([
+          `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_agriplot_by_estateids_and_wkt/{z}/{x}/{y}?estateids=${estateids}&geometry_wkt=${wkt_final}`,
+        ]);
+      } else {
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "agriplot-wkt-layer",
+          sourceId: "agriplot-wkt",
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_agriplot_by_estateids_and_wkt/{z}/{x}/{y}?estateids=${estateids}&geometry_wkt=${wkt_final}`,
 
-        source_layer: "function_zxy_query_app_agriplot_by_estateids_and_wkt",
-        showPopup: true,
-        style: {
-          fill_color: "green",
-          fill_opacity: "0",
-          stroke_color: "black",
-        },
-        zoomToLayer: false,
-        center: [103.8574, 2.2739],
-        fillType: "fill",
-        trace: false,
-        component: "agriplot",
+          source_layer: "function_zxy_query_app_agriplot_by_estateids_and_wkt",
+          showPopup: true,
+          style: {
+            fill_color: "green",
+            fill_opacity: "0",
+            stroke_color: "black",
+          },
+          zoomToLayer: false,
+          center: [103.8574, 2.2739],
+          fillType: "fill",
+          trace: false,
+          component: "agriplot",
+        });
+      }
+
+      RemoveSourceAndLayerFromMap({
+        map,
+        layerId: "agriplot-layer",
+        sourceId: "agriplot",
       });
     }
 

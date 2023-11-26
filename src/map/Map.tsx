@@ -125,7 +125,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      map_.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
 
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
       map_.setLayoutProperty("polygon-table-layer", "visibility", "none");

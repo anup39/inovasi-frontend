@@ -37,8 +37,8 @@ const Buffer: React.FC = ({ map }) => {
     } else {
       RemoveSourceAndLayerFromMap({
         map,
-        sourceId: "plantedoutsidelandregistration-layer",
-        layerId: "plantedoutsidelandregistration",
+        sourceId: "plantedoutsidelandregistration",
+        layerId: "plantedoutsidelandregistration-layer",
       });
     }
   };

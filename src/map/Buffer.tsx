@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../maputils/RemoveSourceAndLayer";
 import * as turf from "@turf/turf";
+import { GeoJSONSource } from "maplibre-gl";
 
 function makeRadius(lngLatArray, radiusInMeters) {
   var point = turf.point(lngLatArray);
@@ -22,6 +23,15 @@ const Buffer: React.FC = ({ map }) => {
       [parseFloat(mill_long), parseFloat(mill_lat)],
       radius * 1000
     );
+    if (
+      map.getSource("polygon-radius") &&
+      map.getLayer("polygon-radius-layer")
+    ) {
+      const source = map.getSource("polygon-radius") as GeoJSONSource;
+      source.setData(buffered);
+
+      map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+    }
     console.log(buffered, "buffered");
   };
 

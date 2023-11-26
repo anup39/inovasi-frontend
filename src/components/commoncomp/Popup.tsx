@@ -17,6 +17,7 @@ interface PopupProps {
 
 const Popup = ({ properties, trace }: PopupProps) => {
   const dispatch = useDispatch();
+  // const navigation = useNavigation();
   const propertyElements = Object.entries(properties).map(([key, value]) => (
     <div key={key} className="mb-2 truncate">
       <strong className="mr-1">{key}:</strong> {value}
@@ -32,18 +33,43 @@ const Popup = ({ properties, trace }: PopupProps) => {
         }`
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.length == 0) {
           dispatch(setshowToast(true));
           dispatch(
             settoastMessage(
-              "No Agriplot for this mill supplier yet. Try another"
+              "No  Agriplot (TTP not found) for this mill supplier yet. Try another"
             )
           );
           dispatch(settoastType("info"));
         }
         if (res.data.length > 0) {
-          window.location.replace("/supplierPlantation");
+          console.log(JSON.stringify(res.data), "res data");
+          const estateids = res.data;
+          axios
+            .get(
+              `${
+                import.meta.env.VITE_API_DASHBOARD_URL
+              }/agriplot-result/?estateids=${JSON.stringify(estateids)}`
+            )
+            .then((res) => {
+              if (res.data.length > 0) {
+                localStorage.setItem("estateids", JSON.stringify(estateids));
+                localStorage.setItem("mill_name", properties.mill_name);
+                localStorage.setItem("mill_id", properties.mill_eq_id);
+                localStorage.setItem("mill_long", properties.mill_long);
+                localStorage.setItem("mill_lat", properties.mill_lat);
+
+                window.location.replace(`/supplierplantation`);
+              } else {
+                dispatch(setshowToast(true));
+                dispatch(
+                  settoastMessage(
+                    "No Agriplot for this mill supplier yet. Try another"
+                  )
+                );
+                dispatch(settoastType("info"));
+              }
+            });
         }
       });
   };

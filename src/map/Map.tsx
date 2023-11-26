@@ -2,10 +2,12 @@ import { useRef, useEffect } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 import SelectDataFormatControl from "./SelectDataFormatControl";
+import BufferControl from "./BufferControl";
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
+// import LabelControl from "./LabelControl";
 
 const geojson = {
   type: "FeatureCollection",
@@ -16,6 +18,28 @@ const geojson = {
       geometry: {
         coordinates: [0, 0],
         type: "Point",
+      },
+    },
+  ],
+};
+
+const geojson_polygon = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        coordinates: [
+          [
+            [103.07963129020129, 2.2135193939425193],
+            [103.07963129020129, 2.102400759033472],
+            [103.19865174285263, 2.102400759033472],
+            [103.19865174285263, 2.2135193939425193],
+            [103.07963129020129, 2.2135193939425193],
+          ],
+        ],
+        type: "Polygon",
       },
     },
   ],
@@ -40,28 +64,21 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     onSetMap(map_);
-    if (component === "mill") {
+    if (component === "mill" || component === "supplier-plantation") {
       const selectDataformat_control: IControl = new SelectDataFormatControl();
       map_.addControl(selectDataformat_control, "top-right");
     }
+    if (component === "supplier-plantation") {
+      // const label_control: IControl = new LabelControl();
+      // map_.addControl(label_control, "top-left");
+      const buffer_control: IControl = new BufferControl();
+      map_.addControl(buffer_control, "top-left");
+    }
 
-    // Point on click
     map_.on("load", () => {
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-left");
-      map_.addSource("point", {
-        type: "geojson",
-        data: geojson,
-      } as GeoJSONSourceOptions);
-      map_.addLayer({
-        id: "point-layer",
-        type: "circle",
-        source: "point",
-        paint: {
-          "circle-radius": 9,
-          "circle-color": "#233430",
-        },
-      });
+      // Point on click
 
       // Points from Table
       map_.addSource("point-table", {
@@ -77,8 +94,24 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
           "circle-color": "red",
         },
       });
-      map_.setLayoutProperty("point-layer", "visibility", "none");
+
+      // Polygon from Table
+      map_.addSource("polygon-table", {
+        type: "geojson",
+        data: geojson_polygon,
+      } as GeoJSONSourceOptions);
+      map_.addLayer({
+        id: "polygon-table-layer",
+        type: "fill",
+        source: "polygon-table",
+        paint: {
+          "fill-color": "red",
+          "fill-opacity": 0.5,
+        },
+      });
+
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
+      map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
     });
 
     return () => {

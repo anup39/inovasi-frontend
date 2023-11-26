@@ -1,12 +1,10 @@
 import axios from "axios";
-import createPointGeojson from "./geojsontemp";
 import {
   Map,
   LngLatLike,
   SourceSpecification,
   CircleLayerSpecification,
   LayerSpecification,
-  GeoJSONSource,
   IControl,
 } from "maplibre-gl";
 
@@ -61,6 +59,7 @@ function AddLayerAndSourceToMap({
   const newSource: SourceSpecification = {
     type: "vector",
     tiles: [url],
+    promoteId: "id",
   };
 
   map.addSource(sourceId, newSource);
@@ -74,9 +73,19 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "circle-color": style.fill_color,
-        "circle-radius": 4,
+        "circle-radius": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          13,
+          4,
+        ],
         "circle-stroke-width": 1,
-        "circle-stroke-color": "black",
+        "circle-stroke-color": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          "red",
+          "black",
+        ],
       },
     };
     map.addLayer(newLayer);
@@ -90,50 +99,71 @@ function AddLayerAndSourceToMap({
       layout: {},
       paint: {
         "fill-color": style.fill_color,
-        "fill-opacity": 0.4,
         "fill-outline-color": style.stroke_color,
+        "fill-opacity": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          1,
+          0.5,
+        ],
       },
     };
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   }
+  let hoveredStateId = null;
 
   if (showPopup) {
-    map.on("click", layerId, (e) => {
+    map.on("mousemove", layerId, (e) => {
       const features = map.queryRenderedFeatures(e.point);
       if (!features.length) {
         return;
-      }
-      const feature = features[0];
-      if (fillType === "point") {
-        const long: string = component + "_" + "long";
-        const lat: string = component + "_" + "lat";
-        const geojson = createPointGeojson([
-          parseFloat(feature.properties[long]),
-          parseFloat(feature.properties[lat]),
-        ]);
+      } else {
+        const feature = features[0];
+        const popup_name: string = "PopupControl";
+        // @ts-ignore
+        const popup_index = map._controls.indexOf(popup_name);
 
-        if (map.getSource("point") && map.getLayer("point-layer")) {
-          const source = map.getSource("point") as GeoJSONSource;
-          source.setData(geojson);
-          map.setLayoutProperty("point-layer", "visibility", "visible");
-          map.flyTo({
-            center: [
-              parseFloat(feature.properties[long]),
-              parseFloat(feature.properties[lat]),
-            ],
-          });
+        if (popup_index) {
+          const popup_control: IControl =
+            map._controls[map._controls.length - 1];
+          // @ts-ignore
+          popup_control.updatePopup(feature.properties, trace);
         }
       }
+      if (e.features.length > 0) {
+        if (hoveredStateId) {
+          map.setFeatureState(
+            {
+              source: sourceId,
+              id: hoveredStateId,
+              sourceLayer: source_layer,
+            },
+            { hover: false }
+          );
+        }
+        hoveredStateId = e.features[0].id;
+        map.setFeatureState(
+          {
+            source: sourceId,
+            id: hoveredStateId,
+            sourceLayer: source_layer,
+          },
+          { hover: true }
+        );
+      }
+    });
 
-      const popup_name: string = "PopupControl";
-      // @ts-ignore
-      const popup_index = map._controls.indexOf(popup_name);
-
-      if (popup_index) {
-        const popup_control: IControl = map._controls[map._controls.length - 1];
-        // @ts-ignore
-        popup_control.updatePopup(feature.properties, trace);
+    map.on("mouseleave", layerId, () => {
+      if (hoveredStateId) {
+        map.setFeatureState(
+          {
+            source: sourceId,
+            id: hoveredStateId,
+            sourceLayer: source_layer,
+          },
+          { hover: false }
+        );
       }
     });
   }

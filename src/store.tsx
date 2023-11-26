@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Auth from "./reducers/Auth";
 import DisplaySettings from "./reducers/DisplaySettings";
+import SupplierPlantation from "./reducers/SupplierPlantation";
 
 export const store = configureStore({
   reducer: {
     auth: Auth,
     displaySettings: DisplaySettings,
+    supplierPlantation: SupplierPlantation,
   },
 });
 

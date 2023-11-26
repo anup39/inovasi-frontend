@@ -16,6 +16,12 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
   const estateids = localStorage.getItem("estateids");
+  const mill_id = localStorage.getItem("mill_id");
+  const mill_long = localStorage.getItem("mill_long");
+  const mill_lat = localStorage.getItem("mill_lat");
+
+  console.log(mill_id, mill_long, mill_lat);
+
   const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
 
@@ -44,8 +50,10 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           component: "agriplot",
         });
       });
+      map.flyTo({ center: [parseFloat(mill_long), parseFloat(mill_lat)] });
+      map.zoomTo(18);
     }
-  }, [map, estateids]);
+  }, [map, estateids, mill_lat, mill_long]);
 
   useEffect(() => {
     axios

@@ -54,7 +54,11 @@ const Popup = ({ properties, trace }: PopupProps) => {
             .then((res) => {
               if (res.data.length > 0) {
                 localStorage.setItem("estateids", JSON.stringify(estateids));
-                localStorage.setItem("millname", properties.mill_name);
+                localStorage.setItem("mill_name", properties.mill_name);
+                localStorage.setItem("mill_id", properties.id);
+                localStorage.setItem("mill_long", properties.mill_long);
+                localStorage.setItem("mill_lat", properties.mill_lat);
+
                 window.location.replace(`/supplierplantation`);
               } else {
                 dispatch(setshowToast(true));

@@ -156,6 +156,14 @@ const Buffer: React.FC = ({ map }) => {
           className="hover:cursor-pointer"
         ></input>
       </div>
+      <div className="text-white text-lg">
+        <button
+          onClick={() => window.location.reload()}
+          className="text-black bg-red-100 hover:cursor-pointer"
+        >
+          Reset Map
+        </button>
+      </div>
     </form>
   );
 };

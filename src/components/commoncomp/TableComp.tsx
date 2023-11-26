@@ -63,6 +63,7 @@ export default function DataGridDemo({
   component,
 }: DataGridDemoProps) {
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
+    console.log("Row selection");
     if (rows.length > 0 && map) {
       const numericRows: number[] = rows.map((rowId) =>
         parseInt(rowId as string, 10)

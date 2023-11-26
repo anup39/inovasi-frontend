@@ -54,6 +54,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
             .then((res) => {
               if (res.data.length > 0) {
                 localStorage.setItem("estateids", JSON.stringify(estateids));
+                localStorage.setItem("millname", properties.mill_name);
                 window.location.replace(`/supplierplantation`);
               } else {
                 dispatch(setshowToast(true));

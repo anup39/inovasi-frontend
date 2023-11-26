@@ -15,6 +15,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   onSetMap,
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
+  const estateids = localStorage.getItem("estateids");
   const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
 
@@ -27,7 +28,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           sourceId: "agriplot",
           url: `${
             import.meta.env.VITE_API_MAP_URL
-          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=["GEL13244","GEL13245","GEL07588"]`,
+          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=${estateids}`,
 
           source_layer: "function_zxy_query_app_agriplot_by_estateids",
           showPopup: true,
@@ -48,19 +49,21 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/agriplot/`)
-      .then((res) => {
-        settablecolumn(res.data.columns);
-      });
-
-    axios
       .get(
         `${
           import.meta.env.VITE_API_DASHBOARD_URL
-        }/agriplot-result/?estateids=["GEL13244"]`
+        }/agriplot-result/?estateids=${estateids}`
       )
       .then((res) => {
         settabledata(res.data);
+      });
+  }, [estateids]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/agriplot/`)
+      .then((res) => {
+        settablecolumn(res.data.columns);
       });
   }, []);
   return (

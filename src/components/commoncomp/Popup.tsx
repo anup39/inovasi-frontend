@@ -17,6 +17,7 @@ interface PopupProps {
 
 const Popup = ({ properties, trace }: PopupProps) => {
   const dispatch = useDispatch();
+  // const navigation = useNavigation();
   const propertyElements = Object.entries(properties).map(([key, value]) => (
     <div key={key} className="mb-2 truncate">
       <strong className="mr-1">{key}:</strong> {value}
@@ -36,25 +37,24 @@ const Popup = ({ properties, trace }: PopupProps) => {
           dispatch(setshowToast(true));
           dispatch(
             settoastMessage(
-              "No TTP Agriplot for this mill supplier yet. Try another"
+              "No  Agriplot (TTP not found) for this mill supplier yet. Try another"
             )
           );
           dispatch(settoastType("info"));
         }
         if (res.data.length > 0) {
           console.log(JSON.stringify(res.data), "res data");
-
+          const estateids = res.data;
           axios
             .get(
               `${
                 import.meta.env.VITE_API_DASHBOARD_URL
-              }/agriplot-result/?estateids=${JSON.stringify(res.data)}`
+              }/agriplot-result/?estateids=${JSON.stringify(estateids)}`
             )
             .then((res) => {
-              console.log(res.data, "res dta 2");
-
               if (res.data.length > 0) {
-                window.location.replace("/supplierPlantation");
+                localStorage.setItem("estateids", JSON.stringify(estateids));
+                window.location.replace(`/supplierplantation`);
               } else {
                 dispatch(setshowToast(true));
                 dispatch(

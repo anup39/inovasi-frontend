@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../maputils/RemoveSourceAndLayer";
+import * as turf from "@turf/turf";
+
+function makeRadius(lngLatArray, radiusInMeters) {
+  var point = turf.point(lngLatArray);
+  var buffered = turf.buffer(point, radiusInMeters, { units: "meters" });
+  return buffered;
+}
 const Buffer: React.FC = ({ map }) => {
   const mill_name: string | null = localStorage.getItem("mill_name");
+  const mill_lat = localStorage.getItem("mill_lat");
+  const mill_long = localStorage.getItem("mill_long");
+  const [radius, setradius] = useState();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add your form submission logic here
+    // console.log(radius, "radius");
+    const buffered = makeRadius(
+      [parseFloat(mill_long), parseFloat(mill_lat)],
+      radius * 1000
+    );
+    console.log(buffered, "buffered");
   };
 
   const handlePlantedOutside = (event) => {
@@ -43,12 +59,17 @@ const Buffer: React.FC = ({ map }) => {
     }
   };
 
+  const handleRadiusChange = (event) => {
+    setradius(event.target.value);
+  };
+
   return (
     <form className="flex bg-white" onSubmit={handleSubmit}>
       <div className="text-black text-lg pl-0 ">Plots for : {mill_name}</div>
       <div className="text-black text-lg pl-5 ">
         Buffer Agriplot(km) :
         <input
+          onChange={handleRadiusChange}
           required
           min={1}
           max={500}

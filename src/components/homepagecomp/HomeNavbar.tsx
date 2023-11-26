@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../css/homepage/HomeNavbar.css";
-function HomeNavbar() {
+function HomeNavbar({ scrollToRef }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ function HomeNavbar() {
           <button className="font-semibold text-lightGreen">Home</button>
           <button>Feature</button>
           <button>News</button>
-          <button>About</button>
+          <button onClick={() => scrollToRef("footer")}>About</button>
           <button>Testimonials</button>
           <button className="bg-lightGreen text-white px-5 py-2">Login</button>
         </div>

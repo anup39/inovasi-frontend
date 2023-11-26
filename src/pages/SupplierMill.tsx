@@ -84,8 +84,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-screen">
-        <div className="mt-4 mb-2 flex-1">
+      <div className="flex flex-col h-[90vh]">
+        <div className="mt-4 mb-2 flex-1 min-h-[500px]">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (

@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <div className="flex flex-col items-center bg-semiBlack py-6">
-      <div className="flex gap-10 text-white">
+      <div className="flex flex-col md:flex-row gap-10 text-white">
         <button>Home</button>
         <button>Feature</button>
         <button>News</button>

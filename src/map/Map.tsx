@@ -7,6 +7,7 @@ import BufferControl from "./BufferControl";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
+import LabelControl from "./LabelControl";
 
 const geojson = {
   type: "FeatureCollection",
@@ -46,6 +47,8 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       map_.addControl(selectDataformat_control, "top-right");
     }
     if (component === "supplier-plantation") {
+      const label_control: IControl = new LabelControl();
+      // map_.addControl(label_control, "top-left");
       const buffer_control: IControl = new BufferControl();
       map_.addControl(buffer_control, "top-left");
     }

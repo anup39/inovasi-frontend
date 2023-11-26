@@ -32,18 +32,39 @@ const Popup = ({ properties, trace }: PopupProps) => {
         }`
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.length == 0) {
           dispatch(setshowToast(true));
           dispatch(
             settoastMessage(
-              "No Agriplot for this mill supplier yet. Try another"
+              "No TTP Agriplot for this mill supplier yet. Try another"
             )
           );
           dispatch(settoastType("info"));
         }
         if (res.data.length > 0) {
-          window.location.replace("/supplierPlantation");
+          console.log(JSON.stringify(res.data), "res data");
+
+          axios
+            .get(
+              `${
+                import.meta.env.VITE_API_DASHBOARD_URL
+              }/agriplot-result/?estateids=${JSON.stringify(res.data)}`
+            )
+            .then((res) => {
+              console.log(res.data, "res dta 2");
+
+              if (res.data.length > 0) {
+                window.location.replace("/supplierPlantation");
+              } else {
+                dispatch(setshowToast(true));
+                dispatch(
+                  settoastMessage(
+                    "No Agriplot for this mill supplier yet. Try another"
+                  )
+                );
+                dispatch(settoastType("info"));
+              }
+            });
         }
       });
   };

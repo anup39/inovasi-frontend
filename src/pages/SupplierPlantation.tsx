@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/commoncomp/Layout";
 import MapComponent from "../map/Map";
 import { Map } from "maplibre-gl";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+import axios from "axios";
+import TableComp from "../components/commoncomp/TableComp";
 
 interface SupplierPlantationProps {
   map: Map | null;
@@ -13,6 +15,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   onSetMap,
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
+  const [tabledata, settabledata] = useState([]);
+  const [tablecolumn, settablecolumn] = useState([]);
 
   useEffect(() => {
     if (map) {
@@ -42,6 +46,23 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
     }
   }, [map]);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/agriplot/`)
+      .then((res) => {
+        settablecolumn(res.data.columns);
+      });
+
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_API_DASHBOARD_URL
+        }/agriplot-result/?estateids=["GEL13244"]`
+      )
+      .then((res) => {
+        settabledata(res.data);
+      });
+  }, []);
   return (
     <Layout>
       <div className="flex flex-col h-[90vh]">
@@ -52,6 +73,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             component="supplier-plantation"
           />
         </div>
+
+        <TableComp
+          tableColumn={tablecolumn}
+          tableData={tabledata}
+          map={map}
+          component={"agriplot"}
+        />
 
         {/* <div className="mx-4 my-3 flex justify-between items-center">
           <Dropdown options={optionsReporting} placeholder="Metric" />

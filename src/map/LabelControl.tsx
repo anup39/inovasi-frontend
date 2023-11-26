@@ -2,8 +2,9 @@ import ReactDOM from "react-dom/client";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import { Map } from "maplibre-gl";
-import Buffer from "./Buffer";
-export default class BufferControl {
+import Label from "./Label";
+
+export default class LabelControl {
   // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
@@ -14,7 +15,7 @@ export default class BufferControl {
     this._container.className = "maplibregl-ctrl ";
     ReactDOM.createRoot(this._container).render(
       <Provider store={store}>
-        <Buffer />
+        <Label />
       </Provider>
     );
     return this._container;

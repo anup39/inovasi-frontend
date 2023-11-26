@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 import SelectDataFormatControl from "./SelectDataFormatControl";
+import BufferControl from "./BufferControl";
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
@@ -40,9 +41,13 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     onSetMap(map_);
-    if (component === "mill") {
+    if (component === "mill" || component === "supplier-plantation") {
       const selectDataformat_control: IControl = new SelectDataFormatControl();
       map_.addControl(selectDataformat_control, "top-right");
+    }
+    if (component === "supplier-plantation") {
+      const buffer_control: IControl = new BufferControl();
+      map_.addControl(buffer_control, "top-left");
     }
 
     // Point on click

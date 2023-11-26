@@ -16,7 +16,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
   const estateids = localStorage.getItem("estateids");
-  const millname = localStorage.getItem("millname");
   const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
 

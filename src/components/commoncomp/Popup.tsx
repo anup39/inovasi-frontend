@@ -7,11 +7,7 @@ import {
 import { useDispatch } from "react-redux";
 
 interface PopupProps {
-  properties: {
-    id: number;
-    // @ts-ignore
-    [key: string]: number | string;
-  };
+  properties: Record<string, string>;
   trace: boolean;
 }
 

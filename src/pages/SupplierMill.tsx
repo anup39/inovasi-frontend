@@ -10,25 +10,32 @@ import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
 import { settabledata } from "../reducers/SupplierPlantation";
+import { setpiechartfor } from "../reducers/Auth";
 
 const items = [
   {
     id: 1,
-    name: "Supply Base Region",
+    name: "Deforestation Risk",
     selected: false,
-    distinct: "country",
+    distinct: "mill_deforestation_risk",
   },
   {
     id: 2,
-    name: "Supplier Type",
+    name: "Legal PRF Risk",
     selected: false,
-    distinct: "type",
+    distinct: "mill_legal_prf_risk",
   },
   {
     id: 3,
-    name: "RSPO Certified",
+    name: "Legal Landuse Risk",
     selected: false,
-    distinct: "rspo",
+    distinct: "mill_legal_landuse_risk",
+  },
+  {
+    id: 4,
+    name: "Complex Supplybase Risk",
+    selected: false,
+    distinct: "mill_complex_supplybase_risk",
   },
 ];
 
@@ -82,6 +89,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
       dispatch(settabledata(res.data));
     });
+    dispatch(setpiechartfor("mill"));
   }, [dispatch]);
 
   return (

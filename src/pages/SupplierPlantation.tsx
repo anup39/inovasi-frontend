@@ -20,8 +20,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const mill_long = localStorage.getItem("mill_long");
   const mill_lat = localStorage.getItem("mill_lat");
 
-  console.log(mill_id, mill_long, mill_lat);
-
   const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
 

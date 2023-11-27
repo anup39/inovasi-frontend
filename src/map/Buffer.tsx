@@ -36,7 +36,6 @@ const Buffer: React.FC = ({ map }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add your form submission logic here
-    // console.log(radius, "radius");
     const buffered = makeRadius(
       [parseFloat(mill_long), parseFloat(mill_lat)],
       radius * 1000
@@ -87,14 +86,10 @@ const Buffer: React.FC = ({ map }) => {
         sourceId: "agriplot",
       });
     }
-
-    console.log(buffered, "buffered");
   };
 
   const handlePlantedOutside = (event) => {
-    console.log(event);
     if (event.target.checked) {
-      console.log("checked");
       AddLayerAndSourceToMap({
         map: map,
         layerId: "plantedoutsidelandregistration-layer",

@@ -25,7 +25,6 @@ const Popup = ({ properties, trace }: PopupProps) => {
   ));
 
   const handleTraceplantation = () => {
-    console.log(properties.mill_eq_id);
     axios
       .get(
         `${import.meta.env.VITE_API_DASHBOARD_URL}/ttp/?mill_eq_id=${
@@ -43,7 +42,6 @@ const Popup = ({ properties, trace }: PopupProps) => {
           dispatch(settoastType("info"));
         }
         if (res.data.length > 0) {
-          console.log(JSON.stringify(res.data), "res data");
           const estateids = res.data;
           axios
             .get(

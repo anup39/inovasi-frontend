@@ -11,6 +11,12 @@ import PieChartComp from "../components/commoncomp/PieChartComp";
 import { RootState } from "../store";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  settoastType,
+  settoastMessage,
+  setshowToast,
+} from "../reducers/DisplaySettings";
+import Toast from "../components/commoncomp/Toast";
 
 const items = [
   {
@@ -47,6 +53,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const mill_id = localStorage.getItem("mill_id");
   const mill_long = localStorage.getItem("mill_long");
   const mill_lat = localStorage.getItem("mill_lat");
+
   // const piechartparams = useSelector((state) => state.auth.piechartparams);
 
   // const [tabledata, settabledata] = useState([]);
@@ -126,6 +133,19 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   }, [estateids, dispatch]);
 
   useEffect(() => {
+    if (!estateids) {
+      console.log("Here");
+      dispatch(setshowToast(true));
+      dispatch(
+        settoastMessage(
+          "No Mill selected . Trace the Mill to see the plot. Redirecting to Mill........."
+        )
+      );
+      dispatch(settoastType("error"));
+      setTimeout(() => {
+        window.location.replace("/suppliermill");
+      }, 5000);
+    }
     dispatch(setpiechartfor("agriplot"));
     dispatch(setselectedDataFormat("Table"));
     axios
@@ -133,9 +153,10 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
       .then((res) => {
         settablecolumn(res.data.columns);
       });
-  }, [dispatch]);
+  }, [dispatch, estateids, mill_id]);
   return (
     <Layout>
+      <Toast />
       <div className="flex flex-col h-[90vh]">
         <div className="flex-1">
           <MapComponent

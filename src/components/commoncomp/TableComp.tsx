@@ -38,6 +38,7 @@ export default function DataGridDemo({
         const padding = { top: 25, bottom: 25, left: 25, right: 25 };
         const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
 
+        // @ts-ignore
         geojson.features.forEach((feature) => {
           if (feature.geometry.type === "Point") {
             const pointCoordinates = feature.geometry.coordinates as [

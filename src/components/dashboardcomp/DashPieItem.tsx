@@ -22,6 +22,11 @@ function DashPieItem() {
     },
   ];
 
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
+
   return (
     <div className="flex items-center py-1 gap-6 lg:flex-row">
       {items.map((item) => (
@@ -30,7 +35,13 @@ function DashPieItem() {
             <div className="p-1">
               <h1 className="text-black font-bold">{item.name}</h1>
 
-              <PieChartComp data={item} width_={180} height_={180} />
+              <PieChartComp
+                params={params}
+                data={item}
+                width_={180}
+                height_={180}
+                params_include={false}
+              />
             </div>
           </div>
         </div>

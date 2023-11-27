@@ -92,6 +92,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     dispatch(setpiechartfor("mill"));
   }, [dispatch]);
 
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
+
   return (
     <Layout>
       <Toast />
@@ -99,7 +104,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         <div className="mt-4 mb-2 flex-1">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
-        {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+        {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
             <TableComp
               tableColumn={tableColumn}
@@ -114,7 +119,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               <div key={item.id} className="bg-white flex ">
                 <div className="p-1">
                   <h1 className="text-black font-bold">{item.name}</h1>
-                  <PieChartComp data={item} width_={200} height_={200} />
+                  <PieChartComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  />
                 </div>
               </div>
             ))}

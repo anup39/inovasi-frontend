@@ -49,7 +49,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const dispatch = useDispatch();
   const [tableColumn, settableColumn] = useState([]);
   // const [tableData, settableData] = useState([]);
-  const tableData = useSelector((state) => state.supplierPlantation.tabledata);
+  const tableData = useSelector(
+    (state: RootState) => state.supplierPlantation.tabledata
+  );
 
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
@@ -102,14 +104,15 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-screen">
-        <div className="mt-4 mb-2 flex-1">
+      <div className="flex flex-col h-[90vh]">
+        <div className="mt-4 mb-2 flex-1 min-h-[500px]">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
             <TableComp
               tableColumn={tableColumn}
+              // @ts-ignore
               tableData={tableData}
               map={map}
               component={"mill"}

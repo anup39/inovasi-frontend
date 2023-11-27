@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "../../css/homepage/HomeNavbar.css";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 function HomeNavbar() {
+=======
+function HomeNavbar({ scrollToRef }) {
+>>>>>>> 842627df064bfc2de9309876980b51976f3cd51b
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const naivigate = useNavigate();
 
@@ -16,7 +20,7 @@ function HomeNavbar() {
           <button className="font-semibold text-lightGreen">Home</button>
           <button>Feature</button>
           <button>News</button>
-          <button>About</button>
+          <button onClick={() => scrollToRef("footer")}>About</button>
           <button>Testimonials</button>
           <button
             onClick={() => {

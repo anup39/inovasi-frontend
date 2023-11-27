@@ -7,7 +7,7 @@ function Avaibility() {
   }
   return (
     // container div
-    <div className="scale-75 lg:scale-100 bg-semiBlack mx-9 px-12 rounded-lg text-white text-center py-12 space-y-6">
+    <div className="scale-75 lg:scale-100 bg-semiBlack mx-0 lg:mx-9 px-5 lg:px-12 rounded-lg text-white text-center py-12 space-y-6">
       <div className="space-y-3">
         <h1 className="font-semibold text-3xl">Agriplot Global avaibility</h1>
         <p className="text-xs">
@@ -73,23 +73,35 @@ function Avaibility() {
         {/* lower container for 3 details */}
         <div
           className={`bg-darkGreen md:h-[400px] flex flex-col md:flex-row gap-12 md:gap-0 w-full justify-center py-28 rounded-lg ${
-            isActive === "Palm" ? "rounded-tl-none" : ""
-          } ${isActive === "Coffee" ? "rounded-tr-none" : ""}`}
+            isActive === "Palm" ? "lg:rounded-tl-none" : ""
+          } ${isActive === "Coffee" ? "lg:rounded-tr-none" : ""}`}
         >
           <div className="flex flex-col items-center mx-auto">
-            <img className="pb-2" src="countries.svg" alt="" />
-            <p className="font-bold text-3xl">32</p>
-            <p className="font-semibold text-2xl">Countries</p>
+            <img
+              className="pb-2 scale-75 md:scale-100"
+              src="countries.svg"
+              alt=""
+            />
+            <p className="font-bold text-2xl md:text-3xl">32</p>
+            <p className="font-semibold text-xl md:text-2xl">Countries</p>
           </div>
           <div className="flex flex-col items-center mx-auto">
-            <img className="pb-2" src="plots.svg" alt="" />
-            <p className="font-bold text-3xl">60M</p>
-            <p className="font-semibold text-2xl">Countries</p>
+            <img
+              className="pb-2 scale-75 md:scale-100"
+              src="plots.svg"
+              alt=""
+            />
+            <p className="font-bold text-2xl md:text-3xl">60M</p>
+            <p className="font-semibold text-xl md:text-2xl">Countries</p>
           </div>
           <div className="flex flex-col items-center mx-auto">
-            <img className="pb-2" src="haplots.svg" alt="" />
-            <p className="font-bold text-3xl">30M</p>
-            <p className="font-semibold text-2xl">Countries</p>
+            <img
+              className="pb-2 scale-75 md:scale-100"
+              src="haplots.svg"
+              alt=""
+            />
+            <p className="font-bold text-2xl md:text-3xl">30M</p>
+            <p className="font-semibold text-xl md:text-2xl">Countries</p>
           </div>
         </div>
       </div>

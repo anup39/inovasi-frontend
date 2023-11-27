@@ -7,17 +7,18 @@ import {
   settoastMessage,
   settoastType,
 } from "../reducers/DisplaySettings";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Toast from "../components/commoncomp/Toast";
+import {} from "react";
 
 function Login() {
-  const [user, setUser] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [user, setUser] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const dispatch = useDispatch();
-  const handleLogin = (event) => {
+  const handleLogin = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (user && password) {
+    if (user && user !== "" && password && password !== "") {
       const data = {
         username: user,
         password: password,
@@ -71,7 +72,9 @@ function Login() {
             action=""
           >
             <input
-              onChange={(event) => setUser(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setUser(event.target.value)
+              }
               required
               type="text"
               name=""
@@ -79,7 +82,9 @@ function Login() {
               placeholder="username"
             />
             <input
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setPassword(event.target.value)
+              }
               required
               type="password"
               name=""

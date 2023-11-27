@@ -2,11 +2,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken, setUserId, setUserName } from "../../reducers/Auth";
 
 function NavBar() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
-    console.log("Logout");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username");
+    dispatch(setToken(""));
+    dispatch(setUserId(""));
+    dispatch(setUserName(""));
+    navigate("/");
+    window.location.reload();
   };
   return (
     <div className="flex justify-between px-5 items-center bg-white ">

@@ -10,14 +10,9 @@ import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoun
 import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
 import getGeojsonFromwktTableWithLatlong from "../../maputils/getGeojsonFromwktTablewithLatlong";
 
-interface DataItem {
-  id: number;
-  [key: string]: unknown;
-}
-
 interface DataGridDemoProps {
   tableColumn: GridColDef[];
-  tableData: DataItem[];
+  tableData: [];
   map: Map | null;
   component: string;
 }

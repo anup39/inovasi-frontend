@@ -47,11 +47,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const mill_id = localStorage.getItem("mill_id");
   const mill_long = localStorage.getItem("mill_long");
   const mill_lat = localStorage.getItem("mill_lat");
-  const piechartparams = useSelector((state) => state.auth.piechartparams);
+  // const piechartparams = useSelector((state) => state.auth.piechartparams);
 
   // const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
-  const tableData = useSelector((state) => state.supplierPlantation.tabledata);
+  const tableData = useSelector(
+    (state: RootState) => state.supplierPlantation.tabledata
+  );
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
   );

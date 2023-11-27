@@ -6,6 +6,7 @@ import { Map } from "maplibre-gl";
 
 const optionsReporting = ["Table", "Metric"];
 export default class SelectDataFormatControl {
+  // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
 

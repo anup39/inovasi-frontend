@@ -8,6 +8,7 @@ import maplibregl, {
 } from "maplibre-gl";
 import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoundingBoxPolygonfromGeojson";
 import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
+// @ts-ignore
 import getGeojsonFromwktTableWithLatlong from "../../maputils/getGeojsonFromwktTablewithLatlong";
 
 interface DataGridDemoProps {

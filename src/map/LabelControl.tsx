@@ -5,6 +5,7 @@ import { Map } from "maplibre-gl";
 import Label from "./Label";
 
 export default class LabelControl {
+  // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
 

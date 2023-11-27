@@ -5,6 +5,7 @@ import Popup from "../components/commoncomp/Popup";
 import { Map } from "maplibre-gl";
 
 export default class PopupControl {
+  // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
   private _properties!: {

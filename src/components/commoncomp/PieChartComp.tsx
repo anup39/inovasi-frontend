@@ -7,6 +7,8 @@ import { RootState } from "../../store";
 
 interface PieChartCompProps {
   data: { id: number; name: string; selected: boolean; distinct: string };
+  params: { estateids: string[]; geometry_wkt: string };
+  params_include: boolean;
   width_: number;
   height_: number;
 }
@@ -15,21 +17,39 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   data,
   width_,
   height_,
+  params,
+  params_include,
 }) => {
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
   useEffect(() => {
-    axios
-      .get(
-        `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
-          data.distinct
-        }/`
-      )
-      .then((res) => {
-        setpieData(res.data);
-      });
-  }, [data.distinct, piechartfor]);
+    if (!params_include) {
+      axios
+        .get(
+          `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
+            data.distinct
+          }/`
+        )
+        .then((res) => {
+          setpieData(res.data);
+        });
+    } else {
+      axios
+        .get(
+          `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
+            data.distinct
+          }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
+        )
+        .then((res) => {
+          setpieData(res.data);
+        });
+    }
+
+    return () => {
+      setpieData([]);
+    };
+  }, [data.distinct, piechartfor, params, params_include]);
 
   return (
     <PieChart width={width_} height={height_}>

@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { Map } from "maplibre-gl";
 import Buffer from "./Buffer";
 export default class BufferControl {
-  // @ts-ignore
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
 

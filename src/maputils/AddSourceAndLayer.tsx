@@ -35,7 +35,6 @@ function AddLayerAndSourceToMap({
   center,
   fillType,
   trace,
-  component,
 }: AddLayerProps) {
   // Rest of your component code remains unchanged
 
@@ -111,7 +110,7 @@ function AddLayerAndSourceToMap({
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   }
-  let hoveredStateId = null;
+  let hoveredStateId: null = null!;
 
   if (showPopup) {
     map.on("mousemove", layerId, (e) => {
@@ -131,6 +130,7 @@ function AddLayerAndSourceToMap({
           popup_control.updatePopup(feature.properties, trace);
         }
       }
+      // @ts-ignore
       if (e.features.length > 0) {
         if (hoveredStateId) {
           map.setFeatureState(
@@ -142,10 +142,12 @@ function AddLayerAndSourceToMap({
             { hover: false }
           );
         }
+        // @ts-ignore
         hoveredStateId = e.features[0].id;
         map.setFeatureState(
           {
             source: sourceId,
+            // @ts-ignore
             id: hoveredStateId,
             sourceLayer: source_layer,
           },

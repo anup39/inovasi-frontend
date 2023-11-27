@@ -8,9 +8,12 @@ import { useDispatch } from "react-redux";
 
 interface PopupProps {
   properties: {
+    [key: string]: string | number;
     id: number;
-    // @ts-ignore
-    [key: string]: number | string;
+    mill_name: string;
+    mill_eq_id: string;
+    mill_long: string;
+    mill_lat: string;
   };
   trace: boolean;
 }
@@ -18,14 +21,14 @@ interface PopupProps {
 const Popup = ({ properties, trace }: PopupProps) => {
   const dispatch = useDispatch();
   // const navigation = useNavigation();
-  const propertyElements = Object.entries(properties).map(([key, value]) => (
-    <div key={key} className="mb-2 truncate">
-      <strong className="mr-1">{key}:</strong> {value}
-    </div>
-  ));
-
+  const propertyElements = properties
+    ? Object.entries(properties).map(([key, value]) => (
+        <div key={key} className="mb-2 truncate">
+          <strong className="mr-1">{key}:</strong> {value}
+        </div>
+      ))
+    : null; // Or a default value if appropriate
   const handleTraceplantation = () => {
-    console.log(properties.mill_eq_id);
     axios
       .get(
         `${import.meta.env.VITE_API_DASHBOARD_URL}/ttp/?mill_eq_id=${
@@ -40,10 +43,9 @@ const Popup = ({ properties, trace }: PopupProps) => {
               "No  Agriplot (TTP not found) for this mill supplier yet. Try another"
             )
           );
-          dispatch(settoastType("info"));
+          dispatch(settoastType("error"));
         }
         if (res.data.length > 0) {
-          console.log(JSON.stringify(res.data), "res data");
           const estateids = res.data;
           axios
             .get(
@@ -67,7 +69,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
                     "No Agriplot for this mill supplier yet. Try another"
                   )
                 );
-                dispatch(settoastType("info"));
+                dispatch(settoastType("error"));
               }
             });
         }

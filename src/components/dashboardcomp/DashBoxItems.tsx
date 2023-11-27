@@ -71,7 +71,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
         });
       });
     }
-  }, [map]);
+  }, [map, dispatch]);
 
   const handleCurrentSelectedItem = (clickedItem: Item) => {
     const updatedItems = items.map((item) => {

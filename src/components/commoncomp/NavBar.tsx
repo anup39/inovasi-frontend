@@ -1,13 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setToken, setUserId, setUserName } from "../../reducers/Auth";
+
 function NavBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username");
+    dispatch(setToken(""));
+    dispatch(setUserId(""));
+    dispatch(setUserName(""));
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <div className="flex justify-between px-5 items-center bg-white ">
       <div className="flex items-center flex-row-reverse lg:flex-row gap-8">
-        <img className="h-5 md:h-7 lg:h-8" src="ivovasi-Logo.png" alt="" />
+        <img
+          onClick={() => {
+            navigate("/");
+          }}
+          className="h-5 md:h-7 lg:h-8"
+          src="ivovasi-Logo.png"
+          alt=""
+        />
         <Menu />
       </div>
+      <button
+        className="uppercase py-1 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-1"
+        onClick={handleLogout}
+      >
+        logout
+      </button>
 
       <div className="flex justify-center items-center space-x-4">
         <div className="relative pr-5 scale-50 md:scale-75 lg:scale-90">

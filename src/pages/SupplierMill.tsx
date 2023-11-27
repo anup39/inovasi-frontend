@@ -5,29 +5,38 @@ import PieChartComp from "../components/commoncomp/PieChartComp";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
+import { settabledata } from "../reducers/SupplierPlantation";
+import { setpiechartfor } from "../reducers/Auth";
+import { setselectedDataFormat } from "../reducers/DisplaySettings";
 
 const items = [
   {
     id: 1,
-    name: "Supply Base Region",
+    name: "Deforestation Risk",
     selected: false,
-    distinct: "country",
+    distinct: "mill_deforestation_risk",
   },
   {
     id: 2,
-    name: "Supplier Type",
+    name: "Legal PRF Risk",
     selected: false,
-    distinct: "type",
+    distinct: "mill_legal_prf_risk",
   },
   {
     id: 3,
-    name: "RSPO Certified",
+    name: "Legal Landuse Risk",
     selected: false,
-    distinct: "rspo",
+    distinct: "mill_legal_landuse_risk",
+  },
+  {
+    id: 4,
+    name: "Complex Supplybase Risk",
+    selected: false,
+    distinct: "mill_complex_supplybase_risk",
   },
 ];
 
@@ -37,8 +46,12 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
+  const dispatch = useDispatch();
   const [tableColumn, settableColumn] = useState([]);
-  const [tableData, settableData] = useState([]);
+  // const [tableData, settableData] = useState([]);
+  const tableData = useSelector(
+    (state: RootState) => state.supplierPlantation.tabledata
+  );
 
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
@@ -77,9 +90,16 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       });
 
     axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
-      settableData(res.data);
+      dispatch(settabledata(res.data));
     });
-  }, []);
+    dispatch(setpiechartfor("mill"));
+    dispatch(setselectedDataFormat("Table"));
+  }, [dispatch]);
+
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
 
   return (
     <Layout>
@@ -88,10 +108,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         <div className="mt-4 mb-2 flex-1 min-h-[500px]">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
-        {selectedDataFormat && selectedDataFormat === "Supplier Mill" ? (
+        {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
             <TableComp
               tableColumn={tableColumn}
+              // @ts-ignore
               tableData={tableData}
               map={map}
               component={"mill"}
@@ -103,7 +124,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               <div key={item.id} className="bg-white flex ">
                 <div className="p-1">
                   <h1 className="text-black font-bold">{item.name}</h1>
-                  <PieChartComp data={item} width_={200} height_={200} />
+                  <PieChartComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  />
                 </div>
               </div>
             ))}

@@ -9,9 +9,12 @@ export default class PopupControl {
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
   private _properties!: {
+    [key: string]: string | number;
     id: number;
-    // @ts-ignore
-    [key: string]: number | string;
+    mill_name: string;
+    mill_eq_id: string;
+    mill_long: string;
+    mill_lat: string;
   };
   private _trace: boolean = false;
   private _root: Root | undefined;
@@ -32,9 +35,12 @@ export default class PopupControl {
 
   updatePopup(
     properties: {
+      [key: string]: string | number;
       id: number;
-      // @ts-ignore
-      [key: string]: number | string;
+      mill_name: string;
+      mill_eq_id: string;
+      mill_long: string;
+      mill_lat: string;
     },
     trace: boolean
   ) {

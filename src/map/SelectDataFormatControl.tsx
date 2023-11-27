@@ -4,7 +4,7 @@ import { store } from "../store";
 import { Provider } from "react-redux";
 import { Map } from "maplibre-gl";
 
-const optionsReporting = ["Supplier Mill", "Metric"];
+const optionsReporting = ["Table", "Metric"];
 export default class SelectDataFormatControl {
   // @ts-ignore
   private _map: Map | undefined;
@@ -16,7 +16,7 @@ export default class SelectDataFormatControl {
     this._container.className = "maplibregl-ctrl ";
     ReactDOM.createRoot(this._container).render(
       <Provider store={store}>
-        <Dropdown options={optionsReporting} placeholder="Supplier Mill" />
+        <Dropdown options={optionsReporting} placeholder="Table" />
       </Provider>
     );
     return this._container;

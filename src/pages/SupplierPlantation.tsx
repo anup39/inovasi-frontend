@@ -5,6 +5,39 @@ import { Map } from "maplibre-gl";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import axios from "axios";
 import TableComp from "../components/commoncomp/TableComp";
+import { useSelector, useDispatch } from "react-redux";
+import { settabledata } from "../reducers/SupplierPlantation";
+import PieChartComp from "../components/commoncomp/PieChartComp";
+import { RootState } from "../store";
+import { setpiechartfor } from "../reducers/Auth";
+import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  settoastType,
+  settoastMessage,
+  setshowToast,
+} from "../reducers/DisplaySettings";
+import Toast from "../components/commoncomp/Toast";
+
+const items = [
+  {
+    id: 1,
+    name: "Supply Base Region Agriplot",
+    selected: false,
+    distinct: "country",
+  },
+  {
+    id: 2,
+    name: "Supplier Type Agriplot",
+    selected: false,
+    distinct: "type_of_supplier",
+  },
+  {
+    id: 3,
+    name: "Risk Assess Agriplot",
+    selected: false,
+    distinct: "risk_assess",
+  },
+];
 
 interface SupplierPlantationProps {
   map: Map | null;
@@ -15,15 +48,26 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   onSetMap,
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
+  const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
   const mill_id = localStorage.getItem("mill_id");
   const mill_long = localStorage.getItem("mill_long");
   const mill_lat = localStorage.getItem("mill_lat");
 
-  console.log(mill_id, mill_long, mill_lat);
+  // const piechartparams = useSelector((state) => state.auth.piechartparams);
 
-  const [tabledata, settabledata] = useState([]);
+  // const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
+  const tableData = useSelector(
+    (state: RootState) => state.supplierPlantation.tabledata
+  );
+  const selectedDataFormat = useSelector(
+    (state: RootState) => state.displaySettings.selectedDataFormat
+  );
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
 
   useEffect(() => {
     if (map) {
@@ -84,19 +128,35 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         }/agriplot-result/?estateids=${estateids}`
       )
       .then((res) => {
-        settabledata(res.data);
+        dispatch(settabledata(res.data));
       });
-  }, [estateids]);
+  }, [estateids, dispatch]);
 
   useEffect(() => {
+    if (!estateids) {
+      console.log("Here");
+      dispatch(setshowToast(true));
+      dispatch(
+        settoastMessage(
+          "No Mill selected . Trace the Mill to see the plot. Redirecting to Mill........."
+        )
+      );
+      dispatch(settoastType("error"));
+      setTimeout(() => {
+        window.location.replace("/suppliermill");
+      }, 5000);
+    }
+    dispatch(setpiechartfor("agriplot"));
+    dispatch(setselectedDataFormat("Table"));
     axios
       .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/agriplot/`)
       .then((res) => {
         settablecolumn(res.data.columns);
       });
-  }, []);
+  }, [dispatch, estateids, mill_id]);
   return (
     <Layout>
+      <Toast />
       <div className="flex flex-col h-[90vh]">
         <div className="flex-1 pt-3">
           <MapComponent
@@ -105,18 +165,34 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             component="supplier-plantation"
           />
         </div>
-
-        <TableComp
-          tableColumn={tablecolumn}
-          tableData={tabledata}
-          map={map}
-          component={"agriplot"}
-        />
-
-        {/* <div className="mx-4 my-3 flex justify-between items-center">
-          <Dropdown options={optionsReporting} placeholder="Metric" />
-          <Pagination totalPages={50} />
-        </div> */}
+        {selectedDataFormat && selectedDataFormat === "Table" ? (
+          <>
+            <TableComp
+              tableColumn={tablecolumn}
+              // @ts-ignore
+              tableData={tableData}
+              map={map}
+              component={"agriplot"}
+            />
+          </>
+        ) : (
+          <div className="flex flex-col lg:flex-row my-2 items-center justify-center gap-8">
+            {items.map((item) => (
+              <div key={item.id} className="bg-white flex ">
+                <div className="p-1">
+                  <h1 className="text-black font-bold">{item.name}</h1>
+                  <PieChartComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

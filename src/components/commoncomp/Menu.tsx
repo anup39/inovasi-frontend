@@ -1,17 +1,22 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../../css/common/Menu.css";
 function Menu() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function handleClick(path: string) {
-    navigate(path);
+    // navigate(path, { replace: true });
+    // navigate has state caching issue with piechart and navigate cannot be initialized on map control as a hook
+    window.location.replace(path);
   }
 
   function handleMobileClick(path: string) {
-    navigate(path);
+    // navigate(path, { replace: true });
+    window.location.replace(path);
+
     setIsMenuOpen(false);
+    // window.location.reload();
   }
   return (
     <div>

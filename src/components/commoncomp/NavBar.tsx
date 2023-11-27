@@ -1,15 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
   const handleLogout = () => {
     console.log("Logout");
   };
   return (
     <div className="flex justify-between px-5 items-center bg-white ">
       <div className="flex items-center flex-row-reverse lg:flex-row gap-8">
-        <img className="h-5 md:h-7 lg:h-8" src="ivovasi-Logo.png" alt="" />
+        <img
+          onClick={() => {
+            navigate("/");
+          }}
+          className="h-5 md:h-7 lg:h-8"
+          src="ivovasi-Logo.png"
+          alt=""
+        />
         <Menu />
       </div>
       <button

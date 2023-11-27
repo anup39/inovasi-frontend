@@ -5,6 +5,8 @@ import { Map } from "maplibre-gl";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import axios from "axios";
 import TableComp from "../components/commoncomp/TableComp";
+import { useSelector, useDispatch } from "react-redux";
+import { settabledata } from "../reducers/SupplierPlantation";
 
 interface SupplierPlantationProps {
   map: Map | null;
@@ -15,13 +17,15 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   onSetMap,
 }) => {
   // const optionsReporting = ["Metric", "Mill Supplier"];
+  const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
   const mill_id = localStorage.getItem("mill_id");
   const mill_long = localStorage.getItem("mill_long");
   const mill_lat = localStorage.getItem("mill_lat");
 
-  const [tabledata, settabledata] = useState([]);
+  // const [tabledata, settabledata] = useState([]);
   const [tablecolumn, settablecolumn] = useState([]);
+  const tableData = useSelector((state) => state.supplierPlantation.tabledata);
 
   useEffect(() => {
     if (map) {
@@ -82,9 +86,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         }/agriplot-result/?estateids=${estateids}`
       )
       .then((res) => {
-        settabledata(res.data);
+        dispatch(settabledata(res.data));
       });
-  }, [estateids]);
+  }, [estateids, dispatch]);
 
   useEffect(() => {
     axios
@@ -106,7 +110,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
         <TableComp
           tableColumn={tablecolumn}
-          tableData={tabledata}
+          tableData={tableData}
           map={map}
           component={"agriplot"}
         />

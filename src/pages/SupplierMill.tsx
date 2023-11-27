@@ -5,10 +5,11 @@ import PieChartComp from "../components/commoncomp/PieChartComp";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
+import { settabledata } from "../reducers/SupplierPlantation";
 
 const items = [
   {
@@ -37,8 +38,10 @@ interface SupplierMillProps {
 }
 
 const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
+  const dispatch = useDispatch();
   const [tableColumn, settableColumn] = useState([]);
-  const [tableData, settableData] = useState([]);
+  // const [tableData, settableData] = useState([]);
+  const tableData = useSelector((state) => state.supplierPlantation.tabledata);
 
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
@@ -77,9 +80,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       });
 
     axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
-      settableData(res.data);
+      dispatch(settabledata(res.data));
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout>

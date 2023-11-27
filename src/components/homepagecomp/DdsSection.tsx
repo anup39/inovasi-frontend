@@ -9,13 +9,17 @@ function DdsSection() {
         making it effortless for your business.
       </p>
 
-      <div className=" w-5/6 mx-auto">
-        <div className="relative bg-black aspect-video h-auto w-full ">
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
-            <img src="videoplayicon.svg" alt="" />
-          </div>
-        </div>
-      </div>
+      {/* <div className=" w-5/6 mx-auto ml-50"> */}
+      {/* <div className="relative bg-black aspect-video h-auto w-full "> */}
+      {/* <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"> */}
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/CslE7W1X4io"
+      ></iframe>
+      {/* </div> */}
+      {/* </div> */}
+      {/* </div> */}
     </div>
   );
 }

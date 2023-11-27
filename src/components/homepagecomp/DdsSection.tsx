@@ -1,6 +1,6 @@
 function DdsSection() {
   return (
-    <div className="space-y-7 pt-20 pb-6 px-9 flex items-center flex-col">
+    <div className="space-y-7 pt-5 lg:pt-20 pb-6 px-9 flex items-center flex-col">
       <h1 className="text-center font-bold text-3xl max-w-xl lg:text-left">
         Agriplot Due Dilligence System (DDS) Platform: How to use for reporting
       </h1>

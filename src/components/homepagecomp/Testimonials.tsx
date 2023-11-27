@@ -1,7 +1,7 @@
 function Testimonials() {
   return (
-    <div className="flex items-center justify-center mt-2 mb-5 flex-col">
-      <div className="text-center space-y-6 py-6">
+    <div className="flex items-center justify-center mb-0 lg:mb-5 flex-col">
+      <div className="text-center space-y-4 lg:space-y-6 py-6">
         <h1 className="text-4xl font-bold">Testimonials</h1>
         <p className="max-w-md">
           Agriplot's Due Diligence System simplifies agricultural compliance,
@@ -22,7 +22,7 @@ function Testimonials() {
             alt=""
             className="scale-75 lg:scale-100"
           />
-          <div className="px-7 py-3 space-y-3 lg:space-y-6">
+          <div className="px-7 py-0 lg:py-3 pb-4 lg:pb-0 space-y-3 lg:space-y-6">
             <p className="min-w-[180px]">
               Agriplot's Due Diligence System has been a game-changer for our
               agricultural business. It's made compliance with regulations a

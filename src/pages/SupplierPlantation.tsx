@@ -98,7 +98,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <div className="flex flex-col h-[90vh]">
-        <div className="flex-1">
+        <div className="flex-1 pt-3">
           <MapComponent
             map={map}
             onSetMap={onSetMap}

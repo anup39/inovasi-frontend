@@ -5,7 +5,6 @@ interface AuthState {
   user_id: string | null;
   username: string | null;
   piechartfor: string | null;
-  piechartdata: [];
   piechartparams: { estateids: string | null; geometry_wkt: string };
 }
 
@@ -14,7 +13,6 @@ const initialState: AuthState = {
   user_id: localStorage.getItem("user_id"),
   username: localStorage.getItem("username"),
   piechartfor: "facility",
-  piechartdata: [],
   piechartparams: {
     estateids: localStorage.getItem("estateids"),
     geometry_wkt: "null",
@@ -37,9 +35,6 @@ export const Auth = createSlice({
     setpiechartfor: (state, action: PayloadAction<string | null>) => {
       state.piechartfor = action.payload;
     },
-    setpiechartdata: (state, action: PayloadAction<string | null>) => {
-      state.piechartdata = action.payload;
-    },
     setpiechartparams: (
       state,
       action: PayloadAction<{ estateids: string; geometry_wkt: string }>
@@ -55,7 +50,6 @@ export const {
   setUserId,
   setUserName,
   setpiechartfor,
-  setpiechartdata,
   setpiechartparams,
 } = Auth.actions;
 

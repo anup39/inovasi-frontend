@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as turf from "@turf/turf";
 
 function makeRadiusfrompoint(lngLatArray: number[], radiusInMeters: number) {

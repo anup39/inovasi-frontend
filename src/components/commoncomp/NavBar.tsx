@@ -1,13 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
+
 function NavBar() {
+  const handleLogout = () => {
+    console.log("Logout");
+  };
   return (
     <div className="flex justify-between px-5 items-center bg-white ">
       <div className="flex items-center flex-row-reverse lg:flex-row gap-8">
         <img className="h-5 md:h-7 lg:h-8" src="ivovasi-Logo.png" alt="" />
         <Menu />
       </div>
+      <button
+        className="uppercase py-1 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-1"
+        onClick={handleLogout}
+      >
+        logout
+      </button>
 
       <div className="flex justify-center items-center space-x-4">
         <div className="relative pr-5 scale-50 md:scale-75 lg:scale-90">

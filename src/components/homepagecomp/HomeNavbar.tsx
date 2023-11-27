@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "../../css/homepage/HomeNavbar.css";
+import { useNavigate } from "react-router-dom";
 function HomeNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const naivigate = useNavigate();
 
   return (
     <div className="py-5 px-9 flex justify-between items-center">
@@ -16,7 +18,14 @@ function HomeNavbar() {
           <button>News</button>
           <button>About</button>
           <button>Testimonials</button>
-          <button className="bg-lightGreen text-white px-5 py-2">Login</button>
+          <button
+            onClick={() => {
+              naivigate("/login");
+            }}
+            className="bg-lightGreen text-white px-5 py-2"
+          >
+            Login
+          </button>
         </div>
         <div className="relative pr-5 pb-5">
           {/* Mobile Hamburger */}
@@ -41,7 +50,12 @@ function HomeNavbar() {
         }`}
       >
         <div className="border-b-2 border-b-lightGreen py-2">
-          <button className="uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-4 ">
+          <button
+            onClick={() => {
+              naivigate("/login");
+            }}
+            className="uppercase font-semibold text-2xl py-3 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-4 "
+          >
             <span>login</span>
           </button>
         </div>

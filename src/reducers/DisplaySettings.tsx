@@ -11,7 +11,7 @@ interface DisplaySettingsState {
 
 const initialState: DisplaySettingsState = {
   selectedDataFormat: "Table",
-  showToast: true,
+  showToast: false,
   toastMessage: "Click on point to see the data",
   toastType: "info",
 };

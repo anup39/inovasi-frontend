@@ -39,7 +39,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
               "No  Agriplot (TTP not found) for this mill supplier yet. Try another"
             )
           );
-          dispatch(settoastType("info"));
+          dispatch(settoastType("error"));
         }
         if (res.data.length > 0) {
           const estateids = res.data;
@@ -65,7 +65,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
                     "No Agriplot for this mill supplier yet. Try another"
                   )
                 );
-                dispatch(settoastType("info"));
+                dispatch(settoastType("error"));
               }
             });
         }

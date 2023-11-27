@@ -3,6 +3,9 @@ import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../maputils/RemoveSourceAndLayer";
 import * as turf from "@turf/turf";
 import { GeoJSONSource } from "maplibre-gl";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { settabledata } from "../reducers/SupplierPlantation";
 
 function makeRadius(lngLatArray, radiusInMeters) {
   var point = turf.point(lngLatArray);
@@ -27,6 +30,7 @@ const convertGeoJSONToWKT = (geojson) => {
 };
 
 const Buffer: React.FC = ({ map }) => {
+  const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
   const mill_name: string | null = localStorage.getItem("mill_name");
   const mill_lat = localStorage.getItem("mill_lat");
@@ -49,6 +53,15 @@ const Buffer: React.FC = ({ map }) => {
 
       map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
       const wkt_final = convertGeoJSONToWKT(buffered);
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-result-wkt/?estateids=${estateids}&geometry_wkt=${wkt_final}}`
+        )
+        .then((res) => {
+          dispatch(settabledata(res.data));
+        });
       if (map.getSource("agriplot-wkt") && map.getLayer("agriplot-wkt-layer")) {
         const source = map.getSource("agriplot-wkt");
         source.setTiles([

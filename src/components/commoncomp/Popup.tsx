@@ -20,12 +20,14 @@ interface PopupProps {
 
 const Popup = ({ properties, trace }: PopupProps) => {
   const dispatch = useDispatch();
-  const propertyElements = Object.entries(properties).map(([key, value]) => (
-    <div key={key} className="mb-2 truncate">
-      <strong className="mr-1">{key}:</strong> {value}
-    </div>
-  ));
-
+  // const navigation = useNavigation();
+  const propertyElements = properties
+    ? Object.entries(properties).map(([key, value]) => (
+        <div key={key} className="mb-2 truncate">
+          <strong className="mr-1">{key}:</strong> {value}
+        </div>
+      ))
+    : null; // Or a default value if appropriate
   const handleTraceplantation = () => {
     axios
       .get(

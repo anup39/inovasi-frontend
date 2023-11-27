@@ -69,7 +69,6 @@ export default function DataGridDemo({
           tableData,
           numericRows
         );
-        console.log(geojson_polygon, "geojson");
         const padding = { top: 25, bottom: 25, left: 25, right: 25 };
         const boundingBox =
           calculateBoundingBoxPolygonfromGeojson(geojson_polygon);

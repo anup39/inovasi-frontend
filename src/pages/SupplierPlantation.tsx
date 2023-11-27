@@ -148,6 +148,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           <>
             <TableComp
               tableColumn={tablecolumn}
+              // @ts-ignore
               tableData={tableData}
               map={map}
               component={"agriplot"}

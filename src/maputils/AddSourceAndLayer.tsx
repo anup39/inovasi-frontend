@@ -6,7 +6,6 @@ import {
   CircleLayerSpecification,
   LayerSpecification,
   IControl,
-  MapMouseEvent,
 } from "maplibre-gl";
 
 interface AddLayerProps {
@@ -111,12 +110,11 @@ function AddLayerAndSourceToMap({
     map.addLayer(newLayer);
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   }
-  let hoveredStateId: string | null = null;
+  let hoveredStateId: null = null!;
 
   if (showPopup) {
-    map.on("mousemove", layerId, (e: MapMouseEvent) => {
+    map.on("mousemove", layerId, (e) => {
       const features = map.queryRenderedFeatures(e.point);
-
       if (!features.length) {
         return;
       } else {
@@ -125,37 +123,33 @@ function AddLayerAndSourceToMap({
         // @ts-ignore
         const popup_index = map._controls.indexOf(popup_name);
 
-        if (popup_index !== -1) {
-          const popup_control: IControl | null = map._controls[
-            map._controls.length - 1
-          ] as IControl | null;
-
-          if (popup_control) {
-            // @ts-ignore
-            popup_control.updatePopup(feature.properties, trace);
-          }
+        if (popup_index) {
+          const popup_control: IControl =
+            map._controls[map._controls.length - 1];
+          // @ts-ignore
+          popup_control.updatePopup(feature.properties, trace);
         }
       }
-
       // @ts-ignore
-      if (e.features && e.features.length > 0) {
+      if (e.features.length > 0) {
         if (hoveredStateId) {
           map.setFeatureState(
             {
               source: sourceId,
               id: hoveredStateId,
-              sourceLayer: source_layer as string,
+              sourceLayer: source_layer,
             },
             { hover: false }
           );
         }
         // @ts-ignore
-        hoveredStateId = e.features[0].id as string;
+        hoveredStateId = e.features[0].id;
         map.setFeatureState(
           {
             source: sourceId,
+            // @ts-ignore
             id: hoveredStateId,
-            sourceLayer: source_layer as string,
+            sourceLayer: source_layer,
           },
           { hover: true }
         );
@@ -168,11 +162,10 @@ function AddLayerAndSourceToMap({
           {
             source: sourceId,
             id: hoveredStateId,
-            sourceLayer: source_layer as string,
+            sourceLayer: source_layer,
           },
           { hover: false }
         );
-        hoveredStateId = null;
       }
     });
   }

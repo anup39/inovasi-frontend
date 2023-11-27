@@ -1,21 +1,50 @@
-type Position = [number, number];
-type PolygonCoordinates = Position[];
+type CoordinateTuple = [number, number];
 
-const convertCoordinatesToWKT = (coordinates: PolygonCoordinates): string => {
-  return coordinates.map(([lon, lat]: Position) => `${lon} ${lat}`).join(", ");
+// Define GeoJSON types
+
+type Point = {
+  type: "Point";
+  coordinates: [number, number];
 };
 
-const convertGeojsonToWKT = (
-  geojson: GeoJSON.FeatureCollection<GeoJSON.Polygon, GeoJSON.GeoJsonProperties>
-): string => {
-  const geometryType = geojson.features[0].geometry.type;
+type LineString = {
+  type: "LineString";
+  coordinates: [number, number][];
+};
+
+type Polygon = {
+  type: "Polygon";
+  coordinates: [number, number][][];
+};
+
+type Geometry = Point | LineString | Polygon;
+
+type Feature<G extends Geometry = Geometry> = {
+  type: "Feature";
+  geometry: G;
+  properties?: Record<string, string>; // You can adjust the properties type as needed
+};
+
+type FeatureCollection<G extends Geometry = Geometry> = {
+  geometry: GeoJSON.Geometry;
+  type: "FeatureCollection";
+  features: Feature<G>[];
+};
+
+const convertCoordinatesToWKT = (coordinates: CoordinateTuple[]): string => {
+  return coordinates
+    .map(([lon, lat]: CoordinateTuple) => `${lon} ${lat}`)
+    .join(", ");
+};
+const convertGeojsonToWKT = (geojson: FeatureCollection) => {
+  const geometryType = geojson.geometry.type;
 
   if (geometryType !== "Polygon") {
     throw new Error("Unsupported geometry type. Only Polygon is supported.");
   }
 
-  const coordinates = geojson.features[0].geometry
-    .coordinates[0] as PolygonCoordinates;
+  const coordinates = geojson.geometry.coordinates[0];
+  //   @ts-ignore
   const wktGeometry = `POLYGON ((${convertCoordinatesToWKT(coordinates)}))`;
 
   return wktGeometry;

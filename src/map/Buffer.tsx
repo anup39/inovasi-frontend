@@ -20,7 +20,7 @@ const Buffer = ({ map }: BufferProps) => {
   const mill_name: string | null = localStorage.getItem("mill_name");
   const mill_lat: string = localStorage.getItem("mill_lat")!;
   const mill_long: string = localStorage.getItem("mill_long")!;
-  const [radius, setradius] = useState<number>(1);
+  const [radius, setradius] = useState<number>(0);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,10 +46,10 @@ const Buffer = ({ map }: BufferProps) => {
         )
         .then((res) => {
           dispatch(settabledata(res.data));
-          console.log(res.data, "updated table data");
         });
       if (map.getSource("agriplot-wkt") && map.getLayer("agriplot-wkt-layer")) {
         const source = map.getSource("agriplot-wkt") as SourceSpecification;
+        // @ts-ignore
         source.setTiles([
           `${
             import.meta.env.VITE_API_MAP_URL

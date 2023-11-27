@@ -11,6 +11,7 @@ import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
 import { settabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
+import { setselectedDataFormat } from "../reducers/DisplaySettings";
 
 const items = [
   {
@@ -90,6 +91,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       dispatch(settabledata(res.data));
     });
     dispatch(setpiechartfor("mill"));
+    dispatch(setselectedDataFormat("Table"));
   }, [dispatch]);
 
   const params = {

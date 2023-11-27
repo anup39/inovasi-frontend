@@ -16,7 +16,7 @@ export default class SelectDataFormatControl {
     this._container.className = "maplibregl-ctrl ";
     ReactDOM.createRoot(this._container).render(
       <Provider store={store}>
-        <Dropdown options={optionsReporting} placeholder="Metric" />
+        <Dropdown options={optionsReporting} placeholder="Table" />
       </Provider>
     );
     return this._container;

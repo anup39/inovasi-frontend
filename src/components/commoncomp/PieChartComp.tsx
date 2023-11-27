@@ -45,7 +45,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           setpieData(res.data);
         });
     }
+
+    return () => {
+      setpieData([]);
+    };
   }, [data.distinct, piechartfor, params, params_include]);
+
+  console.log(piedata, "piedata");
 
   return (
     <PieChart width={width_} height={height_}>

@@ -10,7 +10,7 @@ interface DisplaySettingsState {
 }
 
 const initialState: DisplaySettingsState = {
-  selectedDataFormat: "Supplier Mill",
+  selectedDataFormat: "Table",
   showToast: true,
   toastMessage: "Click on point to see the data",
   toastType: "info",

@@ -10,23 +10,24 @@ import { settabledata } from "../reducers/SupplierPlantation";
 import PieChartComp from "../components/commoncomp/PieChartComp";
 import { RootState } from "../store";
 import { setpiechartfor } from "../reducers/Auth";
+import { setselectedDataFormat } from "../reducers/DisplaySettings";
 
 const items = [
   {
     id: 1,
-    name: "Supply Base Region",
+    name: "Supply Base Region Agriplot",
     selected: false,
     distinct: "country",
   },
   {
     id: 2,
-    name: "Supplier Type",
+    name: "Supplier Type Agriplot",
     selected: false,
     distinct: "type_of_supplier",
   },
   {
     id: 3,
-    name: "Risk Assess",
+    name: "Risk Assess Agriplot",
     selected: false,
     distinct: "risk_assess",
   },
@@ -54,6 +55,10 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
   );
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
 
   useEffect(() => {
     if (map) {
@@ -120,6 +125,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
   useEffect(() => {
     dispatch(setpiechartfor("agriplot"));
+    dispatch(setselectedDataFormat("Table"));
     axios
       .get(`${import.meta.env.VITE_API_DASHBOARD_URL}/table-column/agriplot/`)
       .then((res) => {
@@ -152,11 +158,11 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                 <div className="p-1">
                   <h1 className="text-black font-bold">{item.name}</h1>
                   <PieChartComp
-                    params={piechartparams}
+                    params={params}
                     data={item}
                     width_={200}
                     height_={200}
-                    params_include={true}
+                    params_include={false}
                   />
                 </div>
               </div>

@@ -19,7 +19,6 @@ interface RoutersProps {
 const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
   // Example Routers component
   const token = useSelector((state: RootState) => state.auth.token);
-  console.log(token, "token");
 
   if (!token) {
     return (

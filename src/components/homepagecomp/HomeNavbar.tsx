@@ -1,11 +1,8 @@
 import { useState } from "react";
 import "../../css/homepage/HomeNavbar.css";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-function HomeNavbar() {
-=======
+
 function HomeNavbar({ scrollToRef }) {
->>>>>>> 842627df064bfc2de9309876980b51976f3cd51b
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const naivigate = useNavigate();
 

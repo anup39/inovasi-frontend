@@ -1,46 +1,31 @@
 import React, { useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../maputils/RemoveSourceAndLayer";
-import * as turf from "@turf/turf";
-import { GeoJSONSource } from "maplibre-gl";
+import { GeoJSONSource, SourceSpecification } from "maplibre-gl";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { settabledata } from "../reducers/SupplierPlantation";
+import { Map } from "maplibre-gl";
+import { ChangeEvent } from "react";
+import convertCoordinatesToWKT from "../maputils/convertGeojsonToWkt";
+import makeRadiusfrompoint from "../maputils/makeRadiusfrompoint";
 
-function makeRadius(lngLatArray, radiusInMeters) {
-  var point = turf.point(lngLatArray);
-  var buffered = turf.buffer(point, radiusInMeters, { units: "meters" });
-  return buffered;
+interface BufferProps {
+  map: Map;
 }
 
-const convertCoordinatesToWKT = (coordinates) => {
-  return coordinates.map(([lon, lat]) => `${lon} ${lat}`).join(", ");
-};
-const convertGeoJSONToWKT = (geojson) => {
-  const geometryType = geojson.geometry.type;
-
-  if (geometryType !== "Polygon") {
-    throw new Error("Unsupported geometry type. Only Polygon is supported.");
-  }
-
-  const coordinates = geojson.geometry.coordinates[0];
-  const wktGeometry = `POLYGON ((${convertCoordinatesToWKT(coordinates)}))`;
-
-  return wktGeometry;
-};
-
-const Buffer: React.FC = ({ map }) => {
+const Buffer = ({ map }: BufferProps) => {
   const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
   const mill_name: string | null = localStorage.getItem("mill_name");
-  const mill_lat = localStorage.getItem("mill_lat");
-  const mill_long = localStorage.getItem("mill_long");
-  const [radius, setradius] = useState();
+  const mill_lat: string = localStorage.getItem("mill_lat")!;
+  const mill_long: string = localStorage.getItem("mill_long")!;
+  const [radius, setradius] = useState<number>(1);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add your form submission logic here
-    const buffered = makeRadius(
+    const buffered = makeRadiusfrompoint(
       [parseFloat(mill_long), parseFloat(mill_lat)],
       radius * 1000
     );
@@ -52,7 +37,7 @@ const Buffer: React.FC = ({ map }) => {
       source.setData(buffered);
 
       map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
-      const wkt_final = convertGeoJSONToWKT(buffered);
+      const wkt_final = convertCoordinatesToWKT(buffered);
       axios
         .get(
           `${
@@ -64,7 +49,7 @@ const Buffer: React.FC = ({ map }) => {
           console.log(res.data, "updated table data");
         });
       if (map.getSource("agriplot-wkt") && map.getLayer("agriplot-wkt-layer")) {
-        const source = map.getSource("agriplot-wkt");
+        const source = map.getSource("agriplot-wkt") as SourceSpecification;
         source.setTiles([
           `${
             import.meta.env.VITE_API_MAP_URL
@@ -102,7 +87,7 @@ const Buffer: React.FC = ({ map }) => {
     }
   };
 
-  const handlePlantedOutside = (event) => {
+  const handlePlantedOutside = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       AddLayerAndSourceToMap({
         map: map,
@@ -134,8 +119,8 @@ const Buffer: React.FC = ({ map }) => {
     }
   };
 
-  const handleRadiusChange = (event) => {
-    setradius(event.target.value);
+  const handleRadiusChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setradius(parseInt(event.target.value));
   };
 
   return (

@@ -7,13 +7,19 @@ import {
 import { useDispatch } from "react-redux";
 
 interface PopupProps {
-  properties: Record<string, string>;
+  properties: {
+    [key: string]: string | number;
+    id: number;
+    mill_name: string;
+    mill_eq_id: string;
+    mill_long: string;
+    mill_lat: string;
+  };
   trace: boolean;
 }
 
 const Popup = ({ properties, trace }: PopupProps) => {
   const dispatch = useDispatch();
-  // const navigation = useNavigation();
   const propertyElements = Object.entries(properties).map(([key, value]) => (
     <div key={key} className="mb-2 truncate">
       <strong className="mr-1">{key}:</strong> {value}

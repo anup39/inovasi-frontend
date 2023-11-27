@@ -57,10 +57,11 @@ const Buffer: React.FC = ({ map }) => {
         .get(
           `${
             import.meta.env.VITE_API_DASHBOARD_URL
-          }/agriplot-result-wkt/?estateids=${estateids}&geometry_wkt=${wkt_final}}`
+          }/agriplot-result-wkt/?estateids=${estateids}&geometry_wkt=${wkt_final}`
         )
         .then((res) => {
           dispatch(settabledata(res.data));
+          console.log(res.data, "updated table data");
         });
       if (map.getSource("agriplot-wkt") && map.getLayer("agriplot-wkt-layer")) {
         const source = map.getSource("agriplot-wkt");

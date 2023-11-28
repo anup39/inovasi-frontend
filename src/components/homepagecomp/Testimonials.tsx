@@ -1,7 +1,7 @@
 function Testimonials() {
   return (
     <div className="flex items-center justify-center mb-0 lg:mb-5 flex-col">
-      <div className="text-center space-y-4 lg:space-y-6 py-6">
+      <div className="text-center space-y-4 lg:space-y-6 pt-6 lg:pb-3">
         <h1 className="text-4xl font-bold">Testimonials</h1>
         <p className="max-w-md">
           Agriplot's Due Diligence System simplifies agricultural compliance,

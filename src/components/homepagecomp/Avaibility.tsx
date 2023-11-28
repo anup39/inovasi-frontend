@@ -73,8 +73,8 @@ function Avaibility() {
         {/* lower container for 3 details */}
         <div
           className={`bg-darkGreen md:h-[400px] flex flex-col md:flex-row gap-12 md:gap-0 w-full justify-center py-28 rounded-lg ${
-            isActive === "Palm" ? "lg:rounded-tl-none" : ""
-          } ${isActive === "Coffee" ? "lg:rounded-tr-none" : ""}`}
+            isActive === "Palm" ? "md:rounded-tl-none" : ""
+          } ${isActive === "Coffee" ? "md:rounded-tr-none" : ""}`}
         >
           <div className="flex flex-col items-center mx-auto">
             <img

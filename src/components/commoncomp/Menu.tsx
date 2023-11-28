@@ -73,7 +73,7 @@ function Menu() {
         </div>
       </div>
       {/* menulink and active class properties are at css file, they are used to control the svg colors when hovered */}
-      <div className="gap-7 py-1 hidden lg:flex">
+      <div className="gap-4 py-1 hidden lg:flex">
         <button
           onClick={() => handleClick("/dashboard")}
           className={`menuLink flex items-center gap-2 px-3 py-3 rounded-3xl hover:text-white hover:bg-bgBlack ${

@@ -105,7 +105,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     <Layout>
       <Toast />
       <div className="flex flex-col h-[90vh]">
-        <div className="mt-4 mb-2 flex-1 min-h-[500px]">
+        <div className="mt-4 mb-2 flex-1 min-h-[340px]">
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
@@ -119,7 +119,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row my-2 items-center justify-center gap-8">
+          <div className="flex flex-col lg:flex-row my-1 items-center justify-center gap-8">
             {items.map((item) => (
               <div key={item.id} className="bg-white flex ">
                 <div className="p-1">

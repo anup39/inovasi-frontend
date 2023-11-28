@@ -23,7 +23,7 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-center w-40 rounded-md border border-gray-300 px-4 py-2 bg-[#2A2A2A] text-sm  text-white  font-semibold hover:bg-black"
+          className="inline-flex justify-center w-16 md:w-24 lg:w-40 rounded-md border border-gray-300 px-4 py-2 bg-[#2A2A2A] text-sm  text-white  font-semibold hover:bg-black hover:scale-105 hover:border-black hover:text-black"
         >
           {selectedItem || placeholder}
           <svg
@@ -42,15 +42,15 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-1/2 transform -translate-x-1/2 text-center w-40 rounded-md shadow-lg bg-white focus:outline-none">
+        <div className="absolute left-1/2 transform -translate-x-1/2 text-center w-20 md:w-24 lg:w-40 rounded-md shadow-lg bg-white focus:outline-none transition-all duration-300 ease-in-out ">
           <ul
             role="list"
-            className="py-2 overflow-y-auto max-h-48 font-semibold"
+            className="py-1 overflow-y-auto max-h-48 font-semibold"
           >
             {options.map((item) => (
               <li
                 key={item}
-                className="text-gray-700 hover:bg-gray-200 cursor-pointer select-none relative py-2 pl-3 pr-4 mx-3"
+                className="text-gray-700 hover:bg-gray-200 cursor-pointer select-none relative py-1 md:py-2 pl-2 pr-2 mx-2 transition duration-100 ease-in-out"
                 onClick={() => handleItemClick(item)}
               >
                 <span className="block">{item}</span>

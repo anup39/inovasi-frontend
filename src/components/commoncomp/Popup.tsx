@@ -40,7 +40,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
           dispatch(setshowToast(true));
           dispatch(
             settoastMessage(
-              "No  Agriplot (TTP not found) for this mill supplier yet. Try another"
+              "No  Agriplot (TTP not found) for this mill supplier yet."
             )
           );
           dispatch(settoastType("error"));

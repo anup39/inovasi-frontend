@@ -25,7 +25,7 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />;
+          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<Login />} />
         </Routes>
       </Router>

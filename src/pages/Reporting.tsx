@@ -8,10 +8,12 @@ interface ReportingProps {
 }
 const Reporting: React.FC<ReportingProps> = ({ map, onSetMap }) => {
   return (
-    <div className="overflow-hidden ">
+    <div>
       <Layout>
-        <div className="pt-7">
-          <MapComponent map={map} onSetMap={onSetMap} component="reporting" />
+        <div className="my-7 mx-4 bg-gray-200 rounded-sm border shadow-sm border-gray-400">
+          <div className="py-5 px-2">
+            <h1>Reporting Form</h1>
+          </div>
         </div>
       </Layout>
     </div>

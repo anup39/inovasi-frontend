@@ -123,42 +123,74 @@ const Buffer = ({ map }: BufferProps) => {
     setradius(parseInt(event.target.value));
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+  const handleToggleForm = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
-    <form className="flex bg-white" onSubmit={handleSubmit}>
-      <div className="text-black text-lg pl-0 ">Plots for : {mill_name}</div>
-      <div className="text-black text-lg pl-5 ">
-        Buffer Agriplot(km) :
-        <input
-          onChange={handleRadiusChange}
-          required
-          min={1}
-          max={500}
-          type="number"
-          className="rounded-md text-black border-3 bg-yellow-200"
-        />
-      </div>
-      <div className="text-white text-lg">
-        <button className="text-black bg-red-100 hover:cursor-pointer">
-          Apply Buffer
-        </button>
-      </div>
-      <div className="bg-white pl-4">
-        <label className="text-black text-lg">PlantedOutside</label>
-        <input
-          type="checkbox"
-          onChange={handlePlantedOutside}
-          className="hover:cursor-pointer"
-        ></input>
-      </div>
-      <div className="text-white text-lg">
-        <button
-          onClick={() => window.location.reload()}
-          className="text-black bg-red-100 hover:cursor-pointer"
+    <div>
+      <button onClick={handleToggleForm}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-7 w-7 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          Reset Map
-        </button>
-      </div>
-    </form>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </button>
+      {isVisible && (
+        <form
+          className="flex flex-col gap-0 lg:gap-2 bg-white p-2 max-w-sm rounded-lg"
+          onSubmit={handleSubmit}
+        >
+          <div className="text-black text-lg pl-0 ">
+            Plots for : <span className="font-semibold">{mill_name}</span>
+          </div>
+
+          <div className="text-black text-lg ">
+            Buffer Agriplot(km) :
+            <input
+              onChange={handleRadiusChange}
+              required
+              min={1}
+              max={500}
+              type="number"
+              placeholder="Enter Number"
+              className="rounded-md text-black border-2 border-black font-semibold w-full placeholder:text-black placeholder:font-normal placeholder:text-center"
+            />
+          </div>
+          <div className="flex items-center justify-center">
+            <button className="text-white font-bold font-mono text-sm hover:cursor-pointer p-1 rounded-lg my-1 w-full bg-darkGreen">
+              Apply Buffer
+            </button>
+          </div>
+          <div className="bg-white flex items-center justify-start">
+            <label className="text-black text-lg">PlantedOutside</label>
+            <input
+              type="checkbox"
+              onChange={handlePlantedOutside}
+              className="hover:cursor-pointer ml-2"
+            ></input>
+          </div>
+          <div className="text-white text-lg">
+            <button
+              onClick={() => window.location.reload()}
+              className=" bg-darkGreen px-4 py-1 text-white font-mono rounded-lg hover:cursor-pointer"
+            >
+              Reset Map
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   );
 };
 

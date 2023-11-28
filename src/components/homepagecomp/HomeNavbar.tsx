@@ -7,21 +7,17 @@ function HomeNavbar() {
   const naivigate = useNavigate();
 
   return (
-    <div className="py-5 px-9 flex justify-between items-center">
+    <div className="px-9 flex justify-between items-center">
       <div>
         <img src="ivovasi-Logo.png" alt="mainlogo" className="w-20" />
       </div>
       {/* Menu */}
-      <div>
-        <div className="hidden lg:flex space-x-7">
+      <div className="py-3">
+        <div className="hidden lg:flex space-x-7 items-center justify-center">
           <button className="font-semibold text-lightGreen">Home</button>
           <button>Feature</button>
           <button>News</button>
-          <button
-          // onClick={() => scrollToRef("footer")}
-          >
-            About
-          </button>
+          <button>About</button>
           <button>Testimonials</button>
           <button
             onClick={() => {

@@ -19,7 +19,7 @@ function NavBar() {
     window.location.reload();
   };
   return (
-    <div className="flex justify-between px-5 items-center bg-white ">
+    <div className="flex justify-between px-5 py-2 lg:py-0 items-center bg-white ">
       <div className="flex items-center flex-row-reverse lg:flex-row gap-8">
         <img
           onClick={() => {
@@ -30,13 +30,13 @@ function NavBar() {
           alt=""
         />
         <Menu />
+        <button
+          className="uppercase py-1 px-5 hover:scale-105 rounded-sm bg-lightGreen text-white hidden lg:block"
+          onClick={handleLogout}
+        >
+          logout
+        </button>
       </div>
-      <button
-        className="uppercase py-1 px-6 hover:scale-105 rounded-sm bg-lightGreen text-white mb-1"
-        onClick={handleLogout}
-      >
-        logout
-      </button>
 
       <div className="flex justify-center items-center space-x-4">
         <div className="relative pr-5 scale-50 md:scale-75 lg:scale-90">
@@ -45,7 +45,7 @@ function NavBar() {
             2
           </div>
         </div>
-        <div className="flex flex-col items-end scale-[0.9]">
+        <div className=" flex-col items-end scale-[0.9] hidden lg:flex">
           <h1 className="font-semibold text-sm lg:text-md">Inovasi Digital</h1>
           <p className="text-sm text-gray-400">Company Name</p>
         </div>
@@ -54,6 +54,12 @@ function NavBar() {
           src="testimonyphoto.png"
           alt=""
         />{" "}
+        <button
+          className="uppercase py-1 px-2 text-sm hover:scale-105 rounded-sm bg-lightGreen text-white block lg:hidden"
+          onClick={handleLogout}
+        >
+          logout
+        </button>
       </div>
     </div>
   );

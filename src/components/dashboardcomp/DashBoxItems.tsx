@@ -27,6 +27,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
       total: 299,
       selected: true,
       bgcolor: "#018C79",
+      textColor: "#04C684",
       imagesrc: "Facilities.svg",
     },
     {
@@ -35,6 +36,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
       total: 1034,
       selected: false,
       bgcolor: "#018C79",
+      textColor: "#83DE60",
       imagesrc: "Refinery Supplier.svg",
     },
     {
@@ -43,6 +45,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
       total: 2381,
       selected: false,
       bgcolor: "#018C79",
+      textColor: "#B8E500",
       imagesrc: "Mill Supplier.svg",
     },
     // Other items...
@@ -236,15 +239,30 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              className={`rounded-md min-w-[110px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[190px] lg:aspect-square ${
-                item.selected ? "bg-[#CCB848]" : `bg-[${item.bgcolor}]`
+              className={`transition-all ease-in-out rounded-lg min-w-[110px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[200px] lg:aspect-square ${
+                item.selected
+                  ? `border-2 border-borderGreen bg-white`
+                  : `bg-white`
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}
             >
-              <div className="@apply px-4 flex flex-col items-start gap-4 py-5 ">
-                <img src={item.imagesrc} alt="" />
-                <p className=" text-white">{item.name}</p>
-                <p className="font-bold text-white">{item.total}</p>
+              <div className="h-full px-2 flex flex-col justify-between py-0 lg:py-1">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2">
+                  <img className="scale-75" src={item.imagesrc} alt="" />
+                  <p className=" text-semiBlackText font-semibold">
+                    {item.name}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 lg:pl-2 lg:pb-2 ">
+                  <p
+                    className="font-bold text-xl lg:text-2xl"
+                    style={{ color: item.textColor }}
+                    key={item.id}
+                  >
+                    {item.total}
+                  </p>
+                  <p className="text-sm">Facilites</p>
+                </div>
               </div>
             </div>
           ))

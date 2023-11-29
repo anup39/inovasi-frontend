@@ -1,23 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     extend: {
       colors: {
-        lightGreen: '#009CA0',
-        semiBlack: '#282828',
-        darkGreen: '#018C79',
-        creamGray: '#FAFAFA',
-        lightGray: '#F7F7F7',
-        bgBlack: '#2A2A2A',
+        lightGreen: "#009CA0",
+        semiBlack: "#282828",
+        darkGreen: "#018C79",
+        creamGray: "#FAFAFA",
+        lightGray: "#F7F7F7",
+        bgBlack: "#2A2A2A",
+        veryLightGreen: "#DBFFE5",
+        searchGray: "#EDEDED",
+        grayText: "#737791",
+        borderGreen: "#83DE60",
+        semiBlackText: "#848686",
+        redText: "#D55F5A",
       },
     },
   },
-  plugins: ['tailwind-scrollbar-hide'],
+  plugins: ["tailwind-scrollbar-hide"],
 };

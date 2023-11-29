@@ -20,7 +20,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Metric"));
   }, [dispatch]);
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-gray-50">
       <Layout>
         <Toast />
         <DashBoardItem map={map} />

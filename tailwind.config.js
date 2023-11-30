@@ -22,6 +22,7 @@ export default {
         borderGreen: "#83DE60",
         semiBlackText: "#848686",
         redText: "#D55F5A",
+        bgLightGray:"#F2F2F2"
       },
     },
   },

@@ -12,6 +12,10 @@ import { RootState } from "../store";
 import { settabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import { FormControlLabel, Switch } from "@mui/material";
+import { styled, useTheme } from "@mui/system";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import SwitchComp from "../components/commoncomp/SwitchComp";
 
 const items = [
   {
@@ -100,13 +104,63 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     estateids: [],
     geometry_wkt: "",
   };
+  const theme = createTheme();
+
+  const [showMap, setShowMap] = useState(true);
+  const [selectedOption, setSelectedOption] = useState("metric");
+
+  function handleSwitchChange(checked) {
+    setShowMap(checked);
+  }
+  function handleMetricChange(option) {
+    setSelectedOption(option);
+  }
 
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[90vh]">
-        <div className="mt-4 mb-2 flex-1 min-h-[340px]">
+      <div className="w-full flex items-center justify-end px-10">
+        <ThemeProvider theme={theme}>
+          <SwitchComp
+            label="Map"
+            defaultChecked={showMap}
+            onChange={handleSwitchChange}
+          />
+        </ThemeProvider>
+      </div>
+      <div className="flex flex-col h-[86vh]">
+        <div
+          className={`mt-1 mb-1 transition-all ease-in delay-200 ${
+            showMap ? "block" : "hidden"
+          } flex-1 min-h-[250px]`}
+        >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
+        </div>
+        <div
+          className={`flex my-2 p-2 mx-10 gap-2 ${
+            showMap ? "block" : "hidden"
+          } bg-white w-[500px] rounded-lg`}
+        >
+          <div
+            onClick={() => handleMetricChange("metric")}
+            className={` rounded-lg ${
+              selectedOption === "metric"
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white"
+                : "w-1/2 bg-lightGray rounded-lg"
+            } py-2 text-center cursor-pointer`}
+          >
+            Metric
+          </div>
+          <div
+            onClick={() => handleMetricChange("list")}
+            className={` rounded-lg ${
+              selectedOption === "list"
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white"
+                : "w-1/2 bg-bgLightGray"
+            } py-2 text-center cursor-pointer rounded-lg`}
+          >
+            List
+          </div>
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
@@ -119,7 +173,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row my-1 items-center justify-center gap-8">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
             {items.map((item) => (
               <div key={item.id} className="bg-white flex ">
                 <div className="p-1">

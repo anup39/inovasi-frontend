@@ -37,7 +37,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
       >
         {/* upper with img, main and settings */}
         <div className={` ${sidebarOpened ? "" : "w-10 h-10"} `}>
-          <img className={`mx-auto pb-6`} src="ivovasi-Logo.png" alt="" />
+          <img className={`mx-auto pb-6`} src="inovasilogo.png" alt="" />
           <div>
             <p className={` ${sidebarOpened ? "pb-4" : "hidden"} `}>MAIN</p>
             <div

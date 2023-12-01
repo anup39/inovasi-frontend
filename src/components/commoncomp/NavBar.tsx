@@ -29,7 +29,7 @@ function NavBar() {
     //         navigate("/");
     //       }}
     //       className="h-5 md:h-7 lg:h-8"
-    //       src="ivovasi-Logo.png"
+    //       src="inovasilogo.png"
     //       alt=""
     //     />
     //     <Menu />

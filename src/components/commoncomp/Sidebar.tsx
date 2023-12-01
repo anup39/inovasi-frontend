@@ -12,8 +12,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   return (
     // this will take up all vh and given w full, will give the parent div the width
     <div
-      className={`relative flex h-screen bg-white text-grayText transition-transform ease-in transform ${
-        sidebarOpened ? "w-[300px]" : "w-[50px]"
+      className={`relative flex h-screen bg-white text-grayText transition-all ease-in-out duration-75  ${
+        sidebarOpened ? "w-[250px]" : "w-[50px]"
       }`}
     >
       <div>{sidebarOpened}</div>
@@ -23,7 +23,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
       >
         <img
           className={`scale-110 p-3 bg-white shadow shadow-gray-300 rounded-lg rotate-90 transition-all ${
-            sidebarOpened ? "rotate-[270deg]" : ""
+            sidebarOpened ? "" : "rotate-[270deg]"
           }`}
           src="dropdownIcon.svg"
           alt=""
@@ -52,10 +52,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                   Dashboard
                 </h1>
               </div>
-              <div
-                className="hover:bg-gray-50 cursor-pointer p-2 rounded-xl flex justify-between"
-                onClick={() => setMillActive(!millActive)}
-              >
+              <div className="hover:bg-gray-50 cursor-pointer p-2 rounded-xl flex justify-between">
                 <div className={` ${sidebarOpened ? "flex gap-2" : "gap-0"} `}>
                   <img
                     className={`opacity-50 `}
@@ -67,6 +64,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                   </h1>
                 </div>
                 <img
+                  onClick={() => setMillActive(!millActive)}
                   className={`scale-[0.3] ${
                     sidebarOpened ? "" : "hidden"
                   } transition-transform transform ${
@@ -151,7 +149,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           <div className="flex gap-3 pb-2 items-center">
             <img
               className={`rounded-full ${
-                sidebarOpened ? "h-10 w-10" : "h-8 w-8"
+                sidebarOpened ? "h-10 w-10" : "h-8 w-8 mx-auto"
               } `}
               src="testimonyphoto.png"
               alt=""
@@ -162,13 +160,17 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
             </div>
           </div>
           {/* help and logout */}
-          <div className="flex gap-2">
+          <div className={`flex gap-2 ${sidebarOpened ? "" : "mx-auto"} `}>
             <img src="helpIcon.svg" alt="" />
             <h1 className={` ${sidebarOpened ? "flex flex-col" : "hidden"} `}>
               Help
             </h1>
           </div>
-          <div className="flex gap-2 text-redText">
+          <div
+            className={`flex gap-2 text-redText ${
+              sidebarOpened ? "" : "mx-auto"
+            } `}
+          >
             <img
               className={` ${sidebarOpened ? "scale-105" : ""} `}
               src="logoutIcon.svg"

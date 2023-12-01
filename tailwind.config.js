@@ -22,7 +22,11 @@ export default {
         borderGreen: "#83DE60",
         semiBlackText: "#848686",
         redText: "#D55F5A",
-        bgLightGray:"#F2F2F2"
+        bgLightGray: "#F2F2F2",
+        footerBg: "#025944",
+        footerHeading: "#02C685",
+        footerLine: "#C0C0C080",
+        parrot: "#8ADF5E",
       },
     },
   },

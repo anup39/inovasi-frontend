@@ -6,7 +6,7 @@ body {
   background-color: #f0eff4;
 }
 
-.MuiDataGrid-root{
+.MuiDataGrid-root {
   flex-direction: column-reverse !important;
 }
 

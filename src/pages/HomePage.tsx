@@ -4,14 +4,12 @@ import EUDRTable from "../components/homepagecomp/EUDRTable";
 import Footer from "../components/homepagecomp/Footer";
 import HomeFeatures from "../components/homepagecomp/HomeFeatures";
 import HomeHero from "../components/homepagecomp/HomeHero";
-import HomeNavbar from "../components/homepagecomp/HomeNavbar";
+// import HomeNavbar from "../components/homepagecomp/HomeNavbar";
 import Testimonials from "../components/homepagecomp/Testimonials";
 
 function HomePage() {
   return (
-    <div className="bg-white">
-      <HomeNavbar />
-      <div className="border-t border-gray-300"></div>
+    <div className="bg-gray-50">
       <HomeHero />
       <HomeFeatures />
       <DdsSection />

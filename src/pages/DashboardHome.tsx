@@ -24,7 +24,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
       <Layout>
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" overflow-y-hidden flex-1">
+        <div className=" overflow-y-hidden flex-1 ">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </Layout>

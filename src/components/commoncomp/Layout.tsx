@@ -8,17 +8,22 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   const [sidebarOpened, setSidebarOpened] = useState(true);
+
+  const sidebarWidth = sidebarOpened ? "250px" : "50px";
+  const contentWidth = `calc(100% - ${sidebarWidth})`;
+
   return (
     <div className="flex">
-      <div className="">
+      <div style={{ width: sidebarWidth, flex: `0 0 ${sidebarWidth}` }}>
         <Sidebar
           setSidebarOpened={setSidebarOpened}
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div className="flex-1">
+      <div style={{ flex: "1", width: contentWidth }}>
+        {" "}
         <NavBar />
-        {children}
+        <div style={{ overflowX: "hidden", flex: "1" }}>{children}</div>
       </div>
     </div>
   );

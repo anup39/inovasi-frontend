@@ -56,7 +56,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
   useEffect(() => {
     const map_ = new maplibregl.Map({
       container: mapContainer.current!,
-      style: `https://api.maptiler.com/maps/streets/style.json?key=${
+      style: `https://api.maptiler.com/maps/satellite/style.json?key=${
         import.meta.env.VITE_MAPTILER_TOKEN
       }`,
       center: [103.8574, 2.2739],
@@ -142,12 +142,18 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
   // }, [map]);
 
   return (
-    <div className="relative h-full">
-      <div
-        ref={mapContainer}
-        id="map"
-        className="rounded-lg flex-grow mx-10 border-[10px] border-white h-full"
-      />
-    </div>
+    <div
+      ref={mapContainer}
+      id="map"
+      // className="flex  rounded-lg   border-[10px] border-white h- "
+      // className=""
+      style={{
+        height:
+          component === "supplier-plantation" || component === "mill"
+            ? "38vh"
+            : "62vh",
+      }}
+      // className="map"
+    />
   );
 }

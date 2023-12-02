@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setToken, setUserId, setUserName } from "../../reducers/Auth";
 interface MyComponentProps {
   setSidebarOpened: React.Dispatch<React.SetStateAction<boolean>>;
   sidebarOpened: boolean;
@@ -6,9 +9,21 @@ interface MyComponentProps {
 
 function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   const [millActive, setMillActive] = useState(false);
-  console.log(setSidebarOpened, sidebarOpened);
 
   // const [sidebarOpened, setsidebarOpened] = useState(true);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("username");
+    dispatch(setToken(""));
+    dispatch(setUserId(""));
+    dispatch(setUserName(""));
+    navigate("/");
+    window.location.reload();
+  };
   return (
     // this will take up all vh and given w full, will give the parent div the width
     <div
@@ -46,14 +61,24 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
               } `}
             >
               {/* 4 items of dashboard */}
-              <div className="p-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-[#02C685] to-[#8ADF5E]">
+              <div
+                onClick={() => {
+                  window.location.replace("/dashboard");
+                }}
+                className="p-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-[#02C685] to-[#8ADF5E]"
+              >
                 <img className="" src="dashboardIcon.svg" alt="" />
                 <h1 className={` ${sidebarOpened ? "" : "hidden"} `}>
                   Dashboard
                 </h1>
               </div>
               <div className="hover:bg-gray-50 cursor-pointer p-2 rounded-xl flex justify-between">
-                <div className={` ${sidebarOpened ? "flex gap-2" : "gap-0"} `}>
+                <div
+                  onClick={() => {
+                    window.location.replace("/suppliermill");
+                  }}
+                  className={` ${sidebarOpened ? "flex gap-2" : "gap-0"} `}
+                >
                   <img
                     className={`opacity-50 `}
                     src="supplierMillDash.svg"
@@ -106,7 +131,12 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                 </ul>
               </div>
 
-              <div className="hover:bg-gray-50  cursor-pointer p-2 rounded-xl flex gap-2">
+              <div
+                onClick={() => {
+                  window.location.replace("/supplierplantation");
+                }}
+                className="hover:bg-gray-50  cursor-pointer p-2 rounded-xl flex gap-2"
+              >
                 <img className=" opacity-70" src="traceToPlotDash.svg" alt="" />
                 <h1 className={` ${sidebarOpened ? "w-full" : "hidden"} `}>
                   Trace to Plot
@@ -167,6 +197,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
             </h1>
           </div>
           <div
+            onClick={handleLogout}
             className={`flex gap-2 text-redText ${
               sidebarOpened ? "" : "mx-auto"
             } `}

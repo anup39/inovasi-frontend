@@ -45,7 +45,6 @@ function Login() {
           }, 3000);
         })
         .catch((error) => {
-          console.log(error, "error");
           dispatch(setshowToast(true));
           dispatch(settoastMessage("Invalid Credentials"));
           dispatch(settoastType("error"));

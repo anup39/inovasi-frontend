@@ -80,7 +80,7 @@ function NavBar() {
           />
           <img
             className="scale-90 absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"
-            src="searchIcon.svg"
+            src="SearchIcon.svg"
             alt=""
           />
         </div>

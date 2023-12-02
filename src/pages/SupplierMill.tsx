@@ -128,11 +128,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           />
         </ThemeProvider>
       </div>
-      <div className="flex flex-col h-[86vh]">
+      <div className="flex flex-col h-[100vh]">
         <div
           className={`mt-1 mb-1 transition-all ease-in delay-200 ${
             showMap ? "block" : "hidden"
-          } flex-1 min-h-[250px]`}
+          } flex-1 min-h-[300px]`}
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>

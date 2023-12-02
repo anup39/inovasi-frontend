@@ -20,13 +20,13 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Metric"));
   }, [dispatch]);
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col  bg-gray-50">
       <Layout>
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" overflow-y-hidden flex-1 ">
-          <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
-        </div>
+        {/* <div className=" overflow-y-hidden flex-1 "> */}
+        <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
+        {/* </div> */}
       </Layout>
     </div>
   );

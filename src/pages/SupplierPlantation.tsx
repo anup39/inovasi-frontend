@@ -134,7 +134,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
   useEffect(() => {
     if (!estateids) {
-      console.log("Here");
       dispatch(setshowToast(true));
       dispatch(
         settoastMessage(

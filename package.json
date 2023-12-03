@@ -24,7 +24,7 @@
     "@mui/x-data-grid": "^6.18.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@turf/turf": "^6.5.0",
-    "axios": "^1.6.0",
+    "axios": "^1.6.2",
     "events": "^3.3.0",
     "maplibre-gl": "^3.5.2",
     "prop-types": "^15.8.1",

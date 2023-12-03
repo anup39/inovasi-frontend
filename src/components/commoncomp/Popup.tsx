@@ -83,14 +83,20 @@ const Popup = ({ properties, trace }: PopupProps) => {
           {trace ? (
             <button
               onClick={handleTraceplantation}
-              className=" text-white bg-darkGreen font-semibold p-2 rounded-lg hover:border-darkGreen hover:border-2 hover:bg-darkGreen hover:text-black"
+              className=" text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-2 rounded-lg ml-auto justify-content-right flex justify-end "
             >
               Trace Plantation
+
             </button>
+          
           ) : null}
-          <div className="divide-y divide-gray-200 mt-3">
+         <div  className=" text-bg-dark-green text-bold border-t border border-bg-green font-bold p-2  justify-content-left "
+            >
+             INFORMATION
+          <div className="divide-y divide-gray-200 mt-3 ">
             {propertyElements}
           </div>
+        </div>
         </div>
       ) : null}
     </>

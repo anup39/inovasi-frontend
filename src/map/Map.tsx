@@ -141,19 +141,5 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
   //   }
   // }, [map]);
 
-  return (
-    <div
-      ref={mapContainer}
-      id="map"
-      // className="flex  rounded-lg   border-[10px] border-white h- "
-      // className=""
-      style={{
-        height:
-          component === "supplier-plantation" || component === "mill"
-            ? "38vh"
-            : "62vh",
-      }}
-      // className="map"
-    />
-  );
+  return <div ref={mapContainer} id="map" className="map h-full" />;
 }

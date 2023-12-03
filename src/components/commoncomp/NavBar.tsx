@@ -65,14 +65,14 @@ function NavBar() {
     //     </button>
     //   </div>
     // </div>
-    <div className="px-6 py-2 flex items-center justify-between bg-gray-50 border-b-2">
+    <div className="px-6 py-2 flex items-center justify-between bg-gray-50 border-b-2 h-[50px]">
       <div className="hidden md:block">
         <h1 className="font-bold">Dashboard</h1>
       </div>
       <div className="flex  items-center gap-5">
         <div className="relative">
           <input
-            className="bg-searchGray rounded-lg p-2 pl-10   lg:min-w-[400px] placeholder:text-grayText"
+            className="bg-searchGray rounded-lg p-2 md:pl-10 lg:min-w-[400px] placeholder:text-grayText"
             placeholder="Search here..."
             type="search"
             name=""

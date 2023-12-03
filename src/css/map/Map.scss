@@ -1,21 +1,16 @@
-.map {
-  height: 50vh;
-}
-
 .maplibregl-popup-content {
   max-height: 200px;
   overflow: scroll;
 }
 
 #trace-plot-button {
-  background-color: #15999D;
+  background-color: #15999d;
   border: 1px solid bisque;
   border-radius: 4px;
   height: 30px;
   width: 100%;
   color: white;
 }
-
 
 .maplibregl-popup-close-button {
   right: 4px;

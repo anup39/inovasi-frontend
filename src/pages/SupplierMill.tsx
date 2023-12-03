@@ -115,20 +115,21 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   function handleMetricChange(option) {
     setSelectedOption(option);
   }
-
+  const pageHeight = `calc(100vh - 50px)`;
   return (
     <Layout>
       <Toast />
-      <div className="flex items-center justify-end px-10">
-        <ThemeProvider theme={theme}>
-          <SwitchComp
-            label="Map"
-            defaultChecked={showMap}
-            onChange={handleSwitchChange}
-          />
-        </ThemeProvider>
-      </div>
-      <div className="flex flex-col h-[100vh]">
+
+      <div className="flex flex-col" style={{ height: pageHeight }}>
+        <div className="flex items-center justify-end px-10">
+          <ThemeProvider theme={theme}>
+            <SwitchComp
+              label="Map"
+              defaultChecked={showMap}
+              onChange={handleSwitchChange}
+            />
+          </ThemeProvider>
+        </div>
         <div
           className={`mt-1 mb-1 transition-all ease-in delay-200 ${
             showMap ? "block" : "hidden"

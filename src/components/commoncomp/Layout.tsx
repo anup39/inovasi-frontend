@@ -9,8 +9,8 @@ interface LayoutProps {
 function Layout({ children }: LayoutProps) {
   const [sidebarOpened, setSidebarOpened] = useState(true);
 
-  const sidebarWidth = sidebarOpened ? "250px" : "50px";
-  const contentWidth = `calc(100% - ${sidebarWidth})`;
+  const sidebarWidth = sidebarOpened ? "255px" : "50px";
+  const contentWidth = `calc(100vw - ${sidebarWidth})`;
 
   return (
     <div className="flex">
@@ -20,10 +20,9 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div style={{ flex: "1", width: contentWidth }}>
-        {" "}
+      <div className="flex flex-col" style={{ width: contentWidth }}>
         <NavBar />
-        <div style={{ overflowX: "hidden", flex: "1" }}>{children}</div>
+        <div className="flex-1 overflow-x-hidden">{children}</div>
       </div>
     </div>
   );

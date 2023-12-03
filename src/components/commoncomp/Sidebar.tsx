@@ -10,7 +10,10 @@ interface MyComponentProps {
 function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   const [millActive, setMillActive] = useState(false);
 
-  // const [sidebarOpened, setsidebarOpened] = useState(true);
+  function openSidebar() {
+    setSidebarOpened(!sidebarOpened);
+    setMillActive(false);
+  }
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,16 +28,14 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
     window.location.reload();
   };
   return (
-    // this will take up all vh and given w full, will give the parent div the width
     <div
       className={`relative flex h-screen bg-white text-grayText transition-all ease-in-out duration-75  ${
-        sidebarOpened ? "w-[250px]" : "w-[50px]"
+        sidebarOpened ? "w-[255px]" : "w-[50px]"
       }`}
     >
-      <div>{sidebarOpened}</div>
       <div
         className=" absolute -right-4 top-10 cursor-pointer "
-        onClick={() => setSidebarOpened(!sidebarOpened)}
+        onClick={openSidebar}
       >
         <img
           className={`scale-110 p-3 bg-white shadow shadow-gray-300 rounded-lg rotate-90 transition-all ${
@@ -65,7 +66,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                 onClick={() => {
                   window.location.replace("/dashboard");
                 }}
-                className="p-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-[#02C685] to-[#8ADF5E]"
+                className="p-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-footerHeading to-parrot"
               >
                 <img className="" src="dashboardIcon.svg" alt="" />
                 <h1 className={` ${sidebarOpened ? "" : "hidden"} `}>
@@ -157,7 +158,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
             <p className={` ${sidebarOpened ? "uppercase" : "hidden"} `}>
               settings
             </p>
-            <div className="hover:bg-gray-50 cursor-pointer p-2 rounded-xl flex justify-between">
+            <div className="hover:bg-gray-50 cursor-pointer p-2 rounded-xl flex justify-between mt-2">
               <div className="flex gap-2">
                 <img src="settingsIcon.svg" alt="" />
                 <h1 className={` ${sidebarOpened ? "w-full" : "hidden"} `}>

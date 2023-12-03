@@ -14,6 +14,7 @@ interface BufferProps {
   map: Map;
 }
 
+
 const Buffer = ({ map }: BufferProps) => {
   const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
@@ -67,7 +68,7 @@ const Buffer = ({ map }: BufferProps) => {
           source_layer: "function_zxy_query_app_agriplot_by_estateids_and_wkt",
           showPopup: true,
           style: {
-            fill_color: "green",
+            fill_color: "white",
             fill_opacity: "0",
             stroke_color: "black",
           },

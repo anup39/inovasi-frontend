@@ -90,14 +90,12 @@ const Popup = ({ properties, trace }: PopupProps) => {
             </button>
           
           ) : null}
-         <div  className=" text-bg-dark-green text-bold border-t border border-bg-green font-bold p-2  justify-content-left "
-            >
-             INFORMATION
-          <div className="divide-y divide-gray-200 mt-3 ">
+        <div className="font-bold text-base mt-0">INFORMATION</div>
+          <div className="divide-y divide-gray-200  mt-3 ">
             {propertyElements}
           </div>
         </div>
-        </div>
+       
       ) : null}
     </>
   );

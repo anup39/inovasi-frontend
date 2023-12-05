@@ -30,7 +30,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   return (
     <div
       className={`relative flex h-screen bg-white text-grayText transition-all ease-in-out duration-75  ${
-        sidebarOpened ? "w-[255px]" : "w-[50px]"
+        sidebarOpened ? "w-[300px]" : "w-[50px]"
       }`}
     >
       <div
@@ -82,11 +82,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                   }}
                   className={` ${sidebarOpened ? "flex gap-2" : "gap-0"} `}
                 >
-                  <img
-                    className={`opacity-50 `}
-                    src="supplierMillDash.svg"
-                    alt=""
-                  />
+                  <img className={` `} src="supplierMillDash.svg" alt="" />
                   <h1 className={` ${sidebarOpened ? "w-full" : "hidden"} `}>
                     Supplier Mill
                   </h1>
@@ -140,9 +136,13 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                 }}
                 className="hover:bg-gray-50  cursor-pointer p-2 rounded-xl flex gap-2"
               >
-                <img className=" opacity-70" src="traceToPlotDash.svg" alt="" />
+                <img
+                  className=" opacity-100"
+                  src="supplierplantationdash.svg"
+                  alt=""
+                />
                 <h1 className={` ${sidebarOpened ? "w-full" : "hidden"} `}>
-                  Trace to Plot
+                  Supplier Plantation
                 </h1>
               </div>
               <div className="hover:bg-gray-50  cursor-pointer p-2 rounded-xl flex gap-2">
@@ -177,7 +177,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
         </div>
 
         {/* lower div with name, help, logout */}
-        <div className="flex flex-col justify-end gap-4">
+        <div className="flex flex-col justify-end gap-4 scale-90">
           {/* img, name and company name */}
           <div className="flex gap-3 pb-2 items-center">
             <img

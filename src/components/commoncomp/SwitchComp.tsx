@@ -52,7 +52,7 @@ function SwitchComp({ label, defaultChecked, onChange }) {
 
   return (
     <FormControlLabel
-      className="bg-white py-2 px-3 justify-end my-1 rounded-xl"
+      className="bg-white bg-opacity-70 py-2 px-3 justify-end my-1 rounded-xl"
       control={
         <AntSwitch
           sx={{ mx: 1 }}

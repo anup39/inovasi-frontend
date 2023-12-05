@@ -80,7 +80,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
 
     map_.on("load", () => {
       const popup_control: IControl = new PopupControl();
-      map_.addControl(popup_control, "bottom-left");
+      map_.addControl(popup_control, "bottom-right");
       // Point on click
 
       // Points from Table

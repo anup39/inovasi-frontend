@@ -8,7 +8,7 @@ import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
 // import LabelControl from "./LabelControl";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 
@@ -203,7 +203,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       <div
         className={`shadow p-3 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
-        } rounded-lg flex-col gap-2 bg-white absolute z-10 top-2 left-10 w-[250px]`}
+        } rounded-lg flex-col gap-2 bg-white absolute z-10 top-2 left-10 w-1/3  lg:w-[250px]`}
       >
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-lg">Legend</h1>

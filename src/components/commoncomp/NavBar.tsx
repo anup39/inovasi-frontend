@@ -29,7 +29,7 @@ function NavBar() {
     //         navigate("/");
     //       }}
     //       className="h-5 md:h-7 lg:h-8"
-    //       src="inovasilogo.png"
+    //       src="inovasilogo.svg"
     //       alt=""
     //     />
     //     <Menu />

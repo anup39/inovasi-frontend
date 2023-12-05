@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
-  const [sidebarOpened, setSidebarOpened] = useState(true);
+  const [sidebarOpened, setSidebarOpened] = useState(false);
 
   const sidebarWidth = sidebarOpened ? "255px" : "50px";
   const contentWidth = `calc(100vw - ${sidebarWidth})`;

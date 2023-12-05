@@ -35,6 +35,7 @@ export default {
         legendDivider: "#02C68540",
         potentialUnSupp: "#FF3D00",
         potentialSupp: "#FFAD33",
+        bgPage: "#F9F9F9",
       },
     },
   },

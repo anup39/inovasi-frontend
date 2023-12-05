@@ -65,7 +65,7 @@ function NavBar() {
     //     </button>
     //   </div>
     // </div>
-    <div className="px-6 py-2 flex items-center justify-between bg-gray-50 border-b-2 h-[50px]">
+    <div className="px-6 py-2 flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[50px]">
       <div className="hidden md:block">
         <h1 className="font-bold">Dashboard</h1>
       </div>
@@ -79,16 +79,19 @@ function NavBar() {
             id=""
           />
           <img
-            className="scale-90 absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"
-            src="SearchIcon.svg"
+            className="scale-90 hidden md:block absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"
+            src="searchIcon.svg"
             alt=""
           />
         </div>
-        <img
-          className="bg-veryLightGreen p-2 rounded-lg scale-90 cursor-pointer rotate-animation"
-          src="bellIcon.svg"
-          alt=""
-        />
+        <div className="relative">
+          <img
+            className="bg-veryLightGreen p-2 rounded-lg scale-90 cursor-pointer rotate-animation"
+            src="bellIcon.svg"
+            alt=""
+          />
+          <div className=" absolute h-2 w-2 rounded-full top-2 right-1 bg-bellRed"></div>
+        </div>
       </div>
     </div>
   );

@@ -36,6 +36,7 @@ export default {
         potentialUnSupp: "#FF3D00",
         potentialSupp: "#FFAD33",
         bgPage: "#F9F9F9",
+        bellRed: "#EB5757",
       },
     },
   },

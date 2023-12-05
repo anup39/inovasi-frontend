@@ -22,7 +22,7 @@ function Pagination({ totalPages }: PaginationProps) {
           <div className="flex items-center justify-center gap-2">
             <button className="individualPages">{"<"}</button>
             {/* First page number */}
-            {pageNumbers.slice(0, 1).map((pageNumber) => (
+            {pageNumbers.slice(0, 8).map((pageNumber) => (
               <button className="individualPages" key={pageNumber}>
                 {pageNumber}
               </button>

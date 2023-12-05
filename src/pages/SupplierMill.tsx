@@ -23,24 +23,40 @@ const items = [
     name: "Deforestation Risk",
     selected: false,
     distinct: "mill_deforestation_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48", "22%", "30%"],
+    },
   },
   {
     id: 2,
     name: "Legal PRF Risk",
     selected: false,
     distinct: "mill_legal_prf_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48", "22%", "30%"],
+    },
   },
   {
     id: 3,
     name: "Legal Landuse Risk",
     selected: false,
     distinct: "mill_legal_landuse_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48", "22%", "30%"],
+    },
   },
   {
     id: 4,
     name: "Complex Supplybase Risk",
     selected: false,
     distinct: "mill_complex_supplybase_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48", "22%"],
+    },
   },
 ];
 
@@ -131,20 +147,20 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           </ThemeProvider>
         </div>
         <div
-          className={`mt-1 mb-1 transition-all ease-in delay-200 ${
+          className={`my-1 mx-2 ${
             showMap ? "block" : "hidden"
           } flex-1 min-h-[300px]`}
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         <div
-          className={`flex my-2 p-2 mx-10 gap-2 ${
+          className={`flex my-2 p-2 mx-2 gap-2 transition-all ease-in delay-100 ${
             showMap ? "block" : "hidden"
           } bg-white w-[500px] rounded-lg`}
         >
           <div
             onClick={() => handleMetricChange("metric")}
-            className={` rounded-lg ${
+            className={`transition-all ease-in delay-75 rounded-lg ${
               selectedOption === "metric"
                 ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white"
                 : "w-1/2 bg-lightGray rounded-lg"
@@ -176,9 +192,12 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         ) : (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
             {items.map((item) => (
-              <div key={item.id} className="bg-white flex ">
-                <div className="p-1">
-                  <h1 className="text-black font-bold">{item.name}</h1>
+              <div key={item.id} className="bg-white flex rounded-lg ">
+                <div className="py-2 px-5 flex items-center flex-col">
+                  <div className="flex justify-between items-center w-full">
+                    <h1 className="text-black font-bold p-1">{item.name}</h1>
+                    <img className="scale-50" src="moreinfo.svg" alt="" />
+                  </div>
                   <PieChartComp
                     params={params}
                     data={item}
@@ -186,6 +205,22 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                     height_={200}
                     params_include={false}
                   />
+                  <div className="h-0.5 bg-boxDivider pb-1 items-center w-full"></div>
+                  <div className="flex items-center justify-between">
+                    {item.lowerBoxes.title.map((title, index) => (
+                      <div
+                        key={index}
+                        className={`flex flex-col items-center px-1 ${
+                          index < item.lowerBoxes.title.length - 1
+                            ? "border-r-[4px] border-boxDivider"
+                            : ""
+                        }`}
+                      >
+                        <p>{item.lowerBoxes.numbers[index]}</p>
+                        <p>{title}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

@@ -9,7 +9,7 @@ function Register() {
         alt=""
       />
       <div className="absolute top-10 left-10 bg-white p-1 rounded-md">
-        <img src="inovasilogo.png" alt="" />
+        <img src="inovasilogo.svg" alt="" />
       </div>
       <div className="absolute top-56 lg:static flex flex-col  bg-white px-10 w-full lg:w-1/2 py-10">
         <h1 className="text-2xl px-3 font-semibold ">Register</h1>

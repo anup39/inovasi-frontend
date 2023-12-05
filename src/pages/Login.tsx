@@ -61,7 +61,7 @@ function Login() {
           alt=""
         />
         <div className="absolute top-10 left-10 bg-white p-1 rounded-md">
-          <img src="inovasilogo.png" alt="" />
+          <img src="inovasilogo.svg" alt="" />
         </div>
         <div className="absolute top-[50%] h-1/2 lg:h-full lg:static flex flex-col justify-center  bg-white px-12 w-full lg:w-1/2 py-10">
           <h1 className="text-2xl px-3 font-semibold ">Login</h1>

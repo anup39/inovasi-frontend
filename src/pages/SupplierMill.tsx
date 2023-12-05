@@ -23,24 +23,44 @@ const items = [
     name: "Deforestation Risk",
     selected: false,
     distinct: "mill_deforestation_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
   },
   {
     id: 2,
     name: "Legal PRF Risk",
     selected: false,
     distinct: "mill_legal_prf_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48", "22%"],
+      colors: ["#10BD82", "#B8E500"],
+    },
   },
   {
     id: 3,
     name: "Legal Landuse Risk",
     selected: false,
     distinct: "mill_legal_landuse_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48", "22%"],
+      colors: ["#10BD82", "#B8E500"],
+    },
   },
   {
     id: 4,
     name: "Complex Supplybase Risk",
     selected: false,
     distinct: "mill_complex_supplybase_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48", "22%", "30%"],
+      colors: ["#10BD82", "#83DE60", "#B8E500"],
+    },
   },
 ];
 
@@ -119,7 +139,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-
       <div className="flex flex-col" style={{ height: pageHeight }}>
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
@@ -131,24 +150,24 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           </ThemeProvider>
         </div>
         <div
-          className={`mt-1 mb-1 transition-all ease-in delay-200 ${
+          className={`my-1 mx-2 ${
             showMap ? "block" : "hidden"
-          } flex-1 min-h-[300px]`}
+          } flex-1 min-h-[250px]`}
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         <div
-          className={`flex my-2 p-2 mx-10 gap-2 ${
+          className={`flex my-2 p-2 mx-2 gap-2 transition-all ease-in delay-100 ${
             showMap ? "block" : "hidden"
-          } bg-white w-[500px] rounded-lg`}
+          } bg-white w-2/3 max-w-[500px] rounded-lg`}
         >
           <div
             onClick={() => handleMetricChange("metric")}
-            className={` rounded-lg ${
+            className={`transition-all ease-in delay-75 rounded-lg ${
               selectedOption === "metric"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white"
-                : "w-1/2 bg-lightGray rounded-lg"
-            } py-2 text-center cursor-pointer`}
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                : "w-1/2 bg-lightGray rounded-lg "
+            } py-2 text-center  cursor-pointer`}
           >
             Metric
           </div>
@@ -156,8 +175,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             onClick={() => handleMetricChange("list")}
             className={` rounded-lg ${
               selectedOption === "list"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white"
-                : "w-1/2 bg-bgLightGray"
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                : "w-1/2  bg-bgLightGray"
             } py-2 text-center cursor-pointer rounded-lg`}
           >
             List
@@ -174,11 +193,23 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
             {items.map((item) => (
-              <div key={item.id} className="bg-white flex ">
-                <div className="p-1">
-                  <h1 className="text-black font-bold">{item.name}</h1>
+              <div
+                key={item.id}
+                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[300px]  "
+              >
+                <div className="py-2 px-2 flex items-center flex-col w-full">
+                  <div className="flex justify-between items-center w-full">
+                    <h1 className="text-semiBlackText font-bold text-sm p-1">
+                      {item.name}
+                    </h1>
+                    <img
+                      className="scale-75 cursor-pointer"
+                      src="moreinfo.svg"
+                      alt=""
+                    />
+                  </div>
                   <PieChartComp
                     params={params}
                     data={item}
@@ -186,6 +217,32 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                     height_={200}
                     params_include={false}
                   />
+                  <div
+                    style={{ height: "0.7px" }}
+                    className="bg-boxDivider mb-1 w-full"
+                  ></div>
+                  <div className="flex w-full max-h-full">
+                    {item.lowerBoxes.title.map((title, index) => (
+                      <div
+                        key={index}
+                        className={`flex flex-col items-center justify-center ${
+                          index < item.lowerBoxes.title.length - 1
+                            ? "border-r-[0.7px] border-boxDivider mx-auto"
+                            : ""
+                        } ${
+                          item.lowerBoxes.title.length === 2 ? "w-1/2" : "w-1/3"
+                        }`}
+                      >
+                        <p
+                          style={{ color: item.lowerBoxes.colors[index] }}
+                          className="font-semibold "
+                        >
+                          {item.lowerBoxes.numbers[index]}
+                        </p>
+                        <p className="text-xs">{title}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

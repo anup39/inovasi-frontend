@@ -233,27 +233,32 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className=" flex items-center gap-3 w-full">
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              className={`transition-all ease-in-out rounded-lg min-w-[110px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[200px] lg:aspect-square ${
+              // className={` transition-all ease-in-out rounded-lg min-w-[85px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[250px] lg:aspect-square ${
+              className={` transition-all ease-in-out rounded-lg lg:w-1/3 h-[160px] lg:h-[250px] lg:aspect-square ${
                 item.selected
                   ? `border-2 border-borderGreen bg-white`
                   : `bg-white`
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}
             >
+              {" "}
               <div className="h-full px-2 flex flex-col justify-between py-0 lg:py-1">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center ">
                   <img className="scale-75" src={item.imagesrc} alt="" />
-                  <p className=" text-semiBlackText font-semibold">
-                    {item.name}
-                  </p>
+                  <div className="flex w-full gap-3 items-center justify-between">
+                    <p className=" text-semiBlackText font-semibold ">
+                      {item.name}
+                    </p>
+                    <img className="" src="moreinfo.svg" alt="" />
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 lg:pl-2 lg:pb-2 ">
+                <div className="flex flex-col gap-2 lg:pl-4 lg:pb-2 ">
                   <p
                     className="font-bold text-xl lg:text-2xl"
                     style={{ color: item.textColor }}

@@ -52,14 +52,16 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
         } py-4 h-full border-r-2 border-gray-100`}
       >
         {/* upper with img, main and settings */}
-        <div className={` ${sidebarOpened ? "" : "w-10 h-10"} `}>
-          <img className={`mx-auto pb-6`} src="inovasilogo.png" alt="" />
+        <div className={` ${sidebarOpened ? "" : "w-9 h-9"} `}>
+          <img
+            className={`mx-auto pb-5 ${sidebarOpened ? "scale-75" : ""}`}
+            src="inovasilogo.svg"
+            alt=""
+          />
           <div>
-            <p className={` ${sidebarOpened ? "pb-4" : "hidden"} `}>MAIN</p>
+            <p className={` ${sidebarOpened ? "pb-3" : "hidden"} `}>MAIN</p>
             <div
-              className={` flex flex-col gap-1 ${
-                sidebarOpened ? "" : "pt-10"
-              } `}
+              className={` flex flex-col gap-1 ${sidebarOpened ? "" : "pt-9"} `}
             >
               {/* 4 items of dashboard */}
               <div

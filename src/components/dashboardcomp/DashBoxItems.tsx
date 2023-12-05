@@ -233,35 +233,48 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 lg:pr-3">
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              className={`transition-all ease-in-out rounded-lg min-w-[110px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[200px] lg:aspect-square ${
+              // className={` transition-all ease-in-out rounded-lg min-w-[85px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[250px] lg:aspect-square ${
+              className={` transition-all ease-in-out rounded-lg w-1/3 max-w-[170px] lg:max-w-full md:py-1 h-[140px] md:h-[160px] lg:h-[250px] lg:aspect-square ${
                 item.selected
                   ? `border-2 border-borderGreen bg-white`
                   : `bg-white`
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}
             >
-              <div className="h-full px-2 flex flex-col justify-between py-0 lg:py-1">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-2">
-                  <img className="scale-75" src={item.imagesrc} alt="" />
-                  <p className=" text-semiBlackText font-semibold">
-                    {item.name}
-                  </p>
+              {" "}
+              <div className="h-full px-0 md:px-2 flex flex-col justify-between py-0 lg:py-1">
+                <div className="relative gap-1 flex flex-col lg:flex-row items-start lg:items-center ">
+                  <img
+                    className="scale-50 md:scale-75 "
+                    src={item.imagesrc}
+                    alt=""
+                  />
+                  <div className="flex pl-2 md:pl-0 w-full flex-col-reverse items-start md:flex-row gap-2 md:gap-3 md:items-center justify-between">
+                    <p className=" text-semiBlackText font-semibold text-xs md:text-sm max-w-[80px]  ">
+                      {item.name}
+                    </p>
+                    <img
+                      className="absolute top-1 right-3 scale-75 md:scale-100"
+                      src="moreinfo.svg"
+                      alt=""
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 lg:pl-2 lg:pb-2 ">
+                <div className="flex pl-2 md:pl-0 flex-col gap-2 lg:pl-4 lg:pb-2 ">
                   <p
-                    className="font-bold text-xl lg:text-2xl"
+                    className="font-bold text-md md:text-xl lg:text-2xl"
                     style={{ color: item.textColor }}
                     key={item.id}
                   >
                     {item.total}
                   </p>
-                  <p className="text-sm">Facilites</p>
+                  <p className="text-xs md:text-sm">Facilites</p>
                 </div>
               </div>
             </div>

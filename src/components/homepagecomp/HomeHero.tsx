@@ -4,7 +4,7 @@ function HomeHero() {
   return (
     <div className="relative">
       <div className="flex justify-between pt-3 px-10 z-10 ">
-        <img className="scale-75" src="inovasilogo.png" alt="" />
+        <img className="scale-75" src="inovasilogo.svg" alt="" />
         <div className="flex gap-5">
           <button>Home</button>
           <button>Features</button>

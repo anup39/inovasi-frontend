@@ -27,7 +27,7 @@ const data = [
 
 function HomeFeatures() {
   return (
-    <div className="py-24 px-14">
+    <div className="py-32 px-14">
       <div className="text-center space-y-4">
         <h1 className="font-bold">Our Solution for Your Business</h1>
         <p className="text-subTextHome">
@@ -38,7 +38,7 @@ function HomeFeatures() {
       <div className="flex flex-col lg:flex-row  gap-6 justify-center py-10">
         {data.map((item) => (
           <div
-            className="flex cursor-pointer hover:shadow flex-col items-start justify-between gap-5 bg-white p-10 rounded-xl"
+            className="flex border hover:shadow-lg border-featuresBorder cursor-pointer flex-col items-start justify-between gap-5 bg-white p-10 rounded-xl"
             key={item.title}
           >
             <img className="h-10 w-10" src={item.image} alt="" />

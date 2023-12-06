@@ -1,52 +1,82 @@
 function Testimonials() {
   return (
-    <div className="flex items-center justify-center mb-0 lg:mb-5 flex-col">
-      <div className="text-center space-y-4 lg:space-y-6 pt-6 lg:pb-3">
-        <h1 className="text-4xl font-bold">Testimonials</h1>
-        <p className="max-w-md">
-          Agriplot's Due Diligence System simplifies agricultural compliance,
-          making it effortless for your business.
-        </p>
+    <div className="flex flex-col py-32 px-14 gap-20">
+      <div className="flex flex-col gap-3 text-center">
+        <h1 className="font-bold text-3xl">People Talk About Us</h1>
+        <p className="text-subTextHome font-normal">Testimonial</p>
       </div>
-      <div className="relative flex scale-90 lg:scale-100">
-        <button>
-          <img
-            className="lg:scale-[1.5] mr-10 absolute lg:static top-[100%] "
-            src="prevTestimony.svg"
-            alt=""
-          />
-        </button>
-        <div className="border border-gray-300 border-1 flex flex-1 flex-col lg:flex-row p-0 lg:p-7 max-w-xl lg:max-w-3xl rounded-lg">
-          <img
-            src="testimonyphoto.png"
-            alt=""
-            className="scale-75 lg:scale-100"
-          />
-          <div className="px-7 py-0 lg:py-3 pb-4 lg:pb-0 space-y-3 lg:space-y-6">
-            <p className="min-w-[180px]">
-              Agriplot's Due Diligence System has been a game-changer for our
-              agricultural business. It's made compliance with regulations a
-              breeze, saving us time and ensuring we stay on the right side of
-              the law. We can't imagine managing our operations without it."
+      <div className="flex gap-4 justify-center">
+        <div className="flex gap-8 flex-col bg-white justify-center items-center w-1/3 rounded-2xl p-5">
+          <div>
+            <img
+              className="w-[90px] h-[90px] rounded-full"
+              src="testimonyphoto.png"
+              alt=""
+            />
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-semibold">Great Platform</h1>
+            <p className="text-semiBlackText font-normal text-center">
+              When applied to building block a website or similar work product,
+              a Visual Guide can be an intermediate step toward the end goal of
+              a complete website.
             </p>
-            <h1 className="font-bold">- John D., Farm Manager</h1>
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-bold text-footerHeading">Cha Ji-Hun</h1>
+            <p>Co-founder of Source DS</p>
           </div>
         </div>
-        <button>
-          <img
-            className="lg:scale-[1.5] absolute top-[100%] ml-10 right-0 lg:static"
-            src="nextTestimony.svg"
-            alt=""
-          />
-        </button>
-      </div>
-      <div className="space-x-3">
-        <button className="bg-gray-600 rounded-full w-3 h-3 mt-5 inline"></button>
-        <button className="bg-gray-400 rounded-full w-3 h-3 mt-5 inline"></button>
-        <button className="bg-gray-400 rounded-full w-3 h-3 mt-5"></button>
-        <button className="bg-gray-400 rounded-full w-3 h-3 mt-5"></button>
+        <div
+          style={{
+            boxShadow: "0px 4px 25px 0px rgba(0, 0, 0, 0.15)",
+          }}
+          className="flex bg-white gap-8 flex-col justify-center items-center w-1/3 rounded-2xl p-5"
+        >
+          <div>
+            <img
+              className="w-[90px] h-[90px] rounded-full"
+              src="testimonyphoto.png"
+              alt=""
+            />
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-semibold">Great Platform</h1>
+            <p className="text-semiBlackText font-normal text-center">
+              When applied to building block a website or similar work product,
+              a Visual Guide can be an intermediate step toward the end goal of
+              a complete website.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-bold text-footerHeading">Cha Ji-Hun</h1>
+            <p>Co-founder of Source DS</p>
+          </div>
+        </div>
+        <div className="flex gap-8 flex-col justify-center bg-white items-center w-1/3 rounded-2xl p-5">
+          <div>
+            <img
+              className="w-[90px] h-[90px] rounded-full"
+              src="testimonyphoto.png"
+              alt=""
+            />
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-semibold">Great Platform</h1>
+            <p className="text-semiBlackText font-normal text-center">
+              When applied to building block a website or similar work product,
+              a Visual Guide can be an intermediate step toward the end goal of
+              a complete website.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 text-center">
+            <h1 className="font-bold text-footerHeading">Cha Ji-Hun</h1>
+            <p>Co-founder of Source DS</p>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
 export default Testimonials;

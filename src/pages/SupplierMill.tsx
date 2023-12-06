@@ -150,16 +150,16 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           </ThemeProvider>
         </div>
         <div
-          className={`my-1 mx-2 ${
+          className={`my-1  ${
             showMap ? "block" : "hidden"
           } flex-1 min-h-[250px]`}
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         <div
-          className={`flex my-2 p-2 mx-2 gap-2 transition-all ease-in delay-100 ${
+          className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
             showMap ? "block" : "hidden"
-          } bg-white w-2/3 max-w-[500px] rounded-lg`}
+          } bg-white w-2/3 max-w-[330px] rounded-lg`}
         >
           <div
             onClick={() => handleMetricChange("metric")}
@@ -197,11 +197,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[300px]  "
+                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "
               >
                 <div className="py-2 px-2 flex items-center flex-col w-full">
                   <div className="flex justify-between items-center w-full">
-                    <h1 className="text-semiBlackText font-bold text-sm p-1">
+                    <h1 className="text-semiBlackText font-semibold md:font-bold text-sm p-1">
                       {item.name}
                     </h1>
                     <img

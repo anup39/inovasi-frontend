@@ -2,22 +2,23 @@ import { useNavigate } from "react-router-dom";
 function HomeHero() {
   const navigate = useNavigate();
   return (
-    <div className="relative">
-      <div className="flex justify-between pt-3 px-10 z-10 ">
-        <img className="scale-75" src="inovasilogo.svg" alt="" />
-        <div className="flex gap-5">
-          <button>Home</button>
-          <button>Features</button>
-          <button>News</button>
-          <button>About</button>
-          <button className="text-footerHeading bg-white py-2 px-5 rounded-lg">
+    <div className="relative overflow-x-hidden">
+      <div className="flex justify-between pt-10 px-10 mb-10 ">
+        <img className="w-[170px] h-[64px]" src="inovasilogo.svg" alt="" />
+        <div className="flex items-center gap-10 z-10">
+          <button className="font-bold text-creamGray">Home</button>
+          <button className="font-normal text-creamGray">Features</button>
+          <button className="font-normal text-creamGray">News</button>
+          <button className="font-normal text-creamGray">About</button>
+
+          <button className="text-footerHeading h-[50px] bg-white py-0 px-5 rounded-lg font-semibold">
             Get in touch
           </button>
         </div>
       </div>
       <div className=" py-56 text-center md:text-left px-16 w-screen z-10 space-y-6 overflow-x-hidden">
         {/* this bg */}
-        <div className="absolute top-10 -right-20  w-[700px] h-[800px] rounded-xl bg-gradient-to-r from-footerHeading to-parrot z-0 "></div>
+        <div className="hidden lg:block absolute top-4 right-0  w-[650px] h-[900px] rounded-l-xl bg-gradient-to-r from-footerHeading to-parrot z-0 "></div>
 
         <img
           className="absolute scale-75 ml-[100%] top-12 -right-36 z-99"

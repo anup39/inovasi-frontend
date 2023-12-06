@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
     },
     extend: {
       colors: {
@@ -43,5 +43,5 @@ export default {
       },
     },
   },
-  plugins: ["tailwind-scrollbar-hide"],
+  plugins: ['tailwind-scrollbar-hide'],
 };

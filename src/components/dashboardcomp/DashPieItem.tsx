@@ -36,7 +36,7 @@ function DashPieItem() {
         >
           <div className="p-1 flex flex-col justify-between items-center">
             <div className="p-1 flex w-full justify-between items-center">
-              <h1 className="text-semiBlackText font-bold text-xs lg:text-sm">
+              <h1 className="text-semiBlackText font-medium md:font-bold text-[10px] md:text-medium lg:text-sm">
                 {item.name}
               </h1>
               <img

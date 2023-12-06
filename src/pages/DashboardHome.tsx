@@ -19,13 +19,13 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
     dispatch(setpiechartfor("facility"));
     dispatch(setselectedDataFormat("Metric"));
   }, [dispatch]);
-  const pageHeight = `calc(100vh - 50px)`;
+  const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
-      <div className="flex flex-col bg-bgPage" style={{ height: pageHeight }}>
+      <div className="flex flex-col mx-2.5" style={{ height: pageHeight }}>
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" overflow-y-hidden flex-1 ">
+        <div className=" overflow-y-hidden flex-1 ml-2 ">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </div>

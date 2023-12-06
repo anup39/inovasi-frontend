@@ -1,6 +1,6 @@
 function DdsSection() {
   return (
-    <div className=" bg-gradient-to-r from-footerHeading to-parrot px-28 py-56  flex flex-col lg:flex-row gap-72 justify-center items-center">
+    <div className=" bg-gradient-to-r from-footerHeading to-parrot px-28 py-56  flex flex-col lg:flex-row gap-20  lg:gap-72 justify-center items-center">
       <div className="flex flex-col gap-10 text-white max-w-md">
         <h1 className="font-bold text-xl">
           EUDR Agriplot Due-Diligence System
@@ -13,13 +13,8 @@ function DdsSection() {
           commodities covered under the EUDR.
         </p>
       </div>
-      <div className="relative">
-        <div className="w-24 h-24 rounded-full bg-white opacity-[0.5] ring-4 ring-opacity-90"></div>
-        <img
-          className="scale-50 absolute  top-[50%] -translate-y-1/2 left-[50%] -translate-x-1/2"
-          src="videoPlayerIcon.svg"
-          alt=""
-        />
+      <div className="">
+        <img className="scale-75 lg:scale-100" src="playButton.svg" alt="" />
       </div>
     </div>
     // old code, just leaving it here if sometimes later needed, will delete when final design is done

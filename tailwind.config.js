@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     extend: {
       colors: {
@@ -40,8 +40,11 @@ export default {
         grayBorder: "#9B9D9D",
         sidebarText: "#757575",
         featuresBorder: "#EAEAEA",
+        testimonyBg: "#D6D8D8",
+        collabBorder: "#02C68566",
+        countriesBg: "#04C684",
       },
     },
   },
-  plugins: ['tailwind-scrollbar-hide'],
+  plugins: ["tailwind-scrollbar-hide"],
 };

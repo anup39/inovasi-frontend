@@ -190,7 +190,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       boxSizing: "border-box",
     },
   }));
-
+  const [popup, setPopup] = useState(false);
   return (
     <div ref={mapContainer} id="map" className="map h-full rounded-lg relative">
       <div
@@ -198,6 +198,27 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         className="absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-2 left-2 z-10"
       >
         i
+      </div>
+      {/* popup */}
+      <div
+        className={`absolute bottom-2 right-2 z-10 bg-white w-1/4 rounded-lg ${
+          popup ? "h-4/5 " : ""
+        } `}
+      >
+        <div className="flex relative items-center justify-between  p-3">
+          <h1 className="font-bold uppercase hidden md:block">information</h1>
+          <button className="border border-darkGreen rounded-lg text-darkGreen font-semibold px-4 py-2">
+            Trace to Plantation
+          </button>
+          <div
+            onClick={() => setPopup(!popup)}
+            className={`absolute w-7 transition-all ${
+              popup ? "rotate-180" : ""
+            } -top-3 left-1/2 aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
+          >
+            <img className="" src="popuparrow.svg" alt="" />
+          </div>
+        </div>{" "}
       </div>
       {/* legend div */}
       <div

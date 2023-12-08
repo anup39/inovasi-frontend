@@ -5,17 +5,17 @@ function Avaibility() {
   const titles = ["Palm Oil", "Rubber", "Soy", "Cacao", "Coffee"];
 
   return (
-    <div className="mx-20 my-16 bg-white p-10 rounded-3xl">
+    <div className="mx-2 md:mx-10 lg:mx-20 my-5 md:my-16 bg-white p-10 rounded-3xl">
       <div className="space-y-4">
-        <h1 className="font-bold text-4xl text-center">
+        <h1 className="font-bold text-xl md:text-2xl lg:text-4xl text-center">
           Agriplot Global availability
         </h1>
-        <p className="font-normal text-2xl text-center text-subTextHome">
+        <p className="font-normal text-xl md:text-2xl text-center text-subTextHome">
           How significant are Agriplot datasets in terms of global coverage
         </p>
       </div>
-      <div className="flex lg:flex-col items-center justify-center py-24 w-full">
-        <div className="flex flex-col lg:flex-row gap-7 w-full items-center justify-center">
+      <div className="flex lg:flex-col items-center justify-center py-5 md:py-10 lg:py-24 w-full">
+        <div className="flex scale-90 md:scale-100 flex-col lg:flex-row gap-7 w-full items-center justify-center">
           {titles.map((title, index) => (
             <div
               key={index}
@@ -31,8 +31,8 @@ function Avaibility() {
           ))}
         </div>
         <div className="h-1 hidden lg:block bg-boxDivider w-full my-5"></div>
-        <div className="flex flex-col lg:flex-row gap-10 items-center justify-center lg:pt-20 w-full">
-          <div className="flex items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+        <div className="flex scale-75 md:scale-100 flex-col lg:flex-row gap-10 items-center justify-center lg:pt-20 w-full">
+          <div className="flex  items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
             <div className="bg-countriesBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img
                 className="scale-90 self-center"

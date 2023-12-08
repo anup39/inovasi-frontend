@@ -1,18 +1,18 @@
 function Testimonials() {
   return (
-    <div className="flex flex-col py-32 px-14 gap-20">
+    <div className="flex flex-col py-5 md:py-20 lg:py-32 px-0 md:px-14 gap-20">
       <div className="flex flex-col gap-3 text-center">
         <h1 className="font-bold text-3xl">People Talk About Us</h1>
         <p className="text-subTextHome font-normal">Testimonial</p>
       </div>
       <div className="relative flex flex-col lg:flex-row items-center gap-4 justify-center">
-        <div className="relative top-1/2 flex gap-8 flex-col bg-white justify-center items-center w-2/3 lg:w-1/3 rounded-2xl p-5">
+        <div className="relative top-1/2 flex gap-8 flex-col bg-white justify-center cursor-pointer items-center w-2/3 lg:w-1/3 rounded-2xl p-5">
           <div className="absolute w-[40px] h-[40px] bg-testimonyBg rounded-full -left-6 cursor-pointer hidden lg:flex items-center justify-center">
             <img className="" src="prevTestimony.svg" alt="" />
           </div>
           <div>
             <img
-              className="w-[90px] h-[90px] rounded-full"
+              className="w-[60px] md:w-[90px] aspect-square rounded-full"
               src="testimonyphoto.png"
               alt=""
             />
@@ -34,11 +34,11 @@ function Testimonials() {
           style={{
             boxShadow: "0px 4px 25px 0px rgba(0, 0, 0, 0.15)",
           }}
-          className="flex bg-white gap-8 flex-col justify-center items-center w-2/3 lg:w-1/3 rounded-2xl p-5"
+          className="flex cursor-pointer bg-white gap-8 flex-col justify-center items-center w-2/3 lg:w-1/3 rounded-2xl p-5"
         >
           <div>
             <img
-              className="w-[90px] h-[90px] rounded-full"
+              className="w-[60px] md:w-[90px] aspect-square rounded-full"
               src="testimonyphoto.png"
               alt=""
             />
@@ -56,13 +56,13 @@ function Testimonials() {
             <p>Co-founder of Source DS</p>
           </div>
         </div>
-        <div className="relative top-1/2 flex gap-8 flex-col justify-center bg-white items-center w-2/3 lg:w-1/3 rounded-2xl p-5">
+        <div className="relative cursor-pointer top-1/2 flex gap-8 flex-col justify-center bg-white items-center w-2/3 lg:w-1/3 rounded-2xl p-5">
           <div className="absolute w-[40px] h-[40px] bg-testimonyBg rounded-full -right-6 cursor-pointer hidden lg:flex items-center justify-center">
             <img className="" src="nextTestimony.svg" alt="" />
           </div>
           <div>
             <img
-              className="w-[90px] h-[90px] rounded-full"
+              className="w-[60px] md:w-[90px] aspect-square rounded-full"
               src="testimonyphoto.png"
               alt=""
             />

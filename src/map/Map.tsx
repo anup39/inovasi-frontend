@@ -195,26 +195,26 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div ref={mapContainer} id="map" className="map h-full rounded-lg relative">
       <div
         onClick={() => setShowLegend(!showLegend)}
-        className="absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-2 left-2 z-10"
+        className="scale-75 md:scale-100 absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-2 left-2 z-10"
       >
         i
       </div>
       {/* popup */}
       <div
-        className={`absolute bottom-2 right-2 z-10 bg-white w-1/4 rounded-lg ${
+        className={`absolute bottom-2 right-1 lg:right-2 z-10 bg-white w-full px-2 md:w-1/3 lg:w-1/4 rounded-lg ${
           popup ? "h-4/5 " : ""
         } `}
       >
         <div className="flex relative items-center justify-between  p-3">
           <h1 className="font-bold uppercase hidden md:block">information</h1>
-          <button className="border border-darkGreen rounded-lg text-darkGreen font-semibold px-4 py-2">
+          <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold px-4 py-2 text-xs md:text-[8px] lg:text-xs">
             Trace to Plantation
           </button>
           <div
             onClick={() => setPopup(!popup)}
             className={`absolute w-7 transition-all ${
               popup ? "rotate-180" : ""
-            } -top-3 left-1/2 aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
+            } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2 aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
           >
             <img className="" src="popuparrow.svg" alt="" />
           </div>
@@ -224,7 +224,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       <div
         className={`shadow p-3 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
-        } rounded-lg flex-col gap-2 bg-white absolute z-10 top-2 left-10 w-1/3  lg:w-[250px]`}
+        } rounded-lg flex-col gap-2 bg-white absolute z-10 top-2 left-10 h-full md:h-max w-2/3 md:w-1/3  lg:w-[250px]`}
       >
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-lg">Legend</h1>
@@ -268,12 +268,12 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         </div>
         {/* div that appears after see all */}
         {showMore ? (
-          <div className="flex gap-2 flex-col">
+          <div className="overflow-y-scroll flex gap-2 flex-col">
             <div className="h-[1px] items-center justify-start bg-legendDivider my-2"></div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
                 <div className="h-4 aspect-square bg-footerHeading"></div>
-                <p>Actual registered supplier</p>
+                <p className="">Actual registered supplier</p>
               </div>
               <AntSwitch />
             </div>

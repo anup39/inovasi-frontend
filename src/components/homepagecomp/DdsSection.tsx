@@ -1,6 +1,6 @@
 function DdsSection() {
   return (
-    <div className=" bg-gradient-to-r from-footerHeading to-parrot px-28 py-56  flex flex-col lg:flex-row gap-20  lg:gap-72 justify-center items-center">
+    <div className=" bg-gradient-to-r from-footerHeading to-parrot px-5 md:px-10 lg:px-28 py-5 md:py-16 lg:py-56  flex flex-col lg:flex-row gap-20  lg:gap-72 justify-center items-center">
       <div className="flex flex-col gap-10 text-white max-w-md">
         <h1 className="font-bold text-xl">
           EUDR Agriplot Due-Diligence System

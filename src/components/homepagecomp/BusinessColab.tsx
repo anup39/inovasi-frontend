@@ -1,5 +1,5 @@
 interface BusinessCollabProps {
-  logos: [];
+  logos: string[];
 }
 
 function BusinessColab({ logos }: BusinessCollabProps) {

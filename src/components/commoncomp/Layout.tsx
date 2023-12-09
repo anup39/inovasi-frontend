@@ -2,6 +2,7 @@ import { useState } from "react";
 import NavBar from "./NavBar";
 import Sidebar from "./Sidebar";
 
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -22,6 +23,7 @@ function Layout({ children }: LayoutProps) {
         />
       </div>
       <div className="flex flex-col" style={{ width: contentWidth }}>
+      
         <NavBar />
         <div
           style={{ height: pageHeight }}

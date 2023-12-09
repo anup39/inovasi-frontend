@@ -1,3 +1,4 @@
+// @ts-ignore
 function generateGradient(startColor, endColor, steps) {
   const start = parseInt(startColor.slice(1), 16);
   const end = parseInt(endColor.slice(1), 16);

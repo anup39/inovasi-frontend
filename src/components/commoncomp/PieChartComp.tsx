@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip, Cell } from "recharts";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import colors from "../../utils/color";
+// import colors from "../../utils/color";
 import { RootState } from "../../store";
 import generateGradient from "../../utils/generateGradient";
 

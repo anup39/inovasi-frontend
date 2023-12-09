@@ -1,24 +1,29 @@
 import { Checkbox } from '@mui/material';
 import '../css/login/Login.css';
+import PhoneInput from 'react-phone-number-input';
+import flags from 'react-phone-number-input/flags';
+import 'react-phone-number-input/style.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Register() {
+  const [phone, setPhone] = useState('');
   return (
-    <div className=' flex '>
+    <div className=' flex max-w-[1920px] m-auto'>
       <div className='w-3/4 '>
         <img className='scale-75 pt-4 pl-5' src='inovasilogo.svg' alt='' />
         <h2 className='text-footerHeading text-center font-bold'>Welcome!</h2>
         <h1 className='text-[24px] text-center font-bold'>Create an account</h1>
-        <div className='bg-lightGray mx-11 mt-6 mb-[50px]'>
-          <div className='flex justify-center pt-12'>
-            <label className='w-24 h-24 lg:w-36 lg:h-36 bg-gray-100 cursor-pointer flex justify-center items-center border-2 border-gray-200 rounded-full'>
-              <div className='text-center space-y-2'>
-                <p>+</p>
-                <p>Upload</p>
-              </div>
-            </label>
-          </div>
+        <div className='bg-lightGray mt-6 mb-[50px] max-w-[826px] m-auto'>
           <form className=' flex flex-col pl-10 '>
+            <div className='flex justify-center pt-12'>
+              <label className='w-24 h-24 lg:w-36 lg:h-36 bg-gray-100 cursor-pointer flex justify-center items-center border-2 border-gray-200 rounded-full'>
+                <div className='text-center space-y-2'>
+                  <p>+</p>
+                  <p>Upload</p>
+                </div>
+              </label>
+            </div>
             <label className='font-semibold mb-2'> Name </label>
             <input placeholder='Full name' className='rounded-lg' />
             <label className='font-semibold mb-2 mt-4'> Company </label>
@@ -26,7 +31,13 @@ function Register() {
             <label className='font-semibold mb-2 mt-4'> Email </label>
             <input placeholder='you@company.com' className='rounded-lg' />
             <label className='font-semibold mb-2 mt-4'> Phone Number </label>
-            <input placeholder='123456789' className='rounded-lg' />
+            <PhoneInput
+              className='rounded-lg border p-2 bg-white mr-[60px]'
+              flags={flags}
+              country={'us'}
+              value={phone}
+              onChange={(phone: string) => setPhone(phone)}
+            />
             <label className='font-semibold mb-2 mt-4'> Confirm Passwod </label>
             <input placeholder='Confirm Password' className='rounded-lg' />
             <div className='flex items-center pt-8'>

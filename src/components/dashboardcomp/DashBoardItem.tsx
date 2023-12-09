@@ -8,7 +8,7 @@ interface DashboardItemProps {
 
 const DashBoardItem: React.FC<DashboardItemProps> = ({ map }) => {
   return (
-    <div className="gap-3 w-full flex flex-col items-center lg:flex-row mx-3 justify-center">
+    <div className="gap-3 w-full flex flex-col items-center lg:flex-row mx-3 my-5 justify-center">
       <DashBoxItems map={map} />
       <DashPieItem />
     </div>

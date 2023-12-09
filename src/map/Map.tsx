@@ -8,7 +8,7 @@ import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
 // import LabelControl from "./LabelControl";
-import { createTheme } from "@mui/material/styles";
+// import { createTheme } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 
@@ -145,7 +145,6 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
   // }, [map]);
   const [showLegend, setShowLegend] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const theme = createTheme();
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,

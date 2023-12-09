@@ -44,7 +44,7 @@ function Login() {
             window.location.replace("/dashboard");
           }, 3000);
         })
-        .catch((error) => {
+        .catch(() => {
           dispatch(setshowToast(true));
           dispatch(settoastMessage("Invalid Credentials"));
           dispatch(settoastType("error"));

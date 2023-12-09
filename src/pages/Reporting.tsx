@@ -1,4 +1,4 @@
-import MapComponent from "../map/Map";
+// import MapComponent from "../map/Map";
 import Layout from "../components/commoncomp/Layout";
 import { Map } from "maplibre-gl";
 
@@ -6,7 +6,7 @@ interface ReportingProps {
   map: Map | null;
   onSetMap: (evmap: Map) => void;
 }
-const Reporting: React.FC<ReportingProps> = ({ map, onSetMap }) => {
+const Reporting: React.FC<ReportingProps> = () => {
   return (
     <div>
       <Layout>

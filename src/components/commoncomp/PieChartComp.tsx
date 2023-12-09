@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import colors from "../../utils/color";
 import { RootState } from "../../store";
+import generateGradient from "../../utils/generateGradient";
 
 interface PieChartCompProps {
   data: { id: number; name: string; selected: boolean; distinct: string };
@@ -51,6 +52,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
+  const startColor = "#82ca9d";
+  const endColor = "#6cd8b3";
+  const steps = 100;
+
+  const gradient = generateGradient(startColor, endColor, steps);
+  console.log(gradient[99]); // To get the 100th color in the gradient
+
   return (
     <PieChart width={width_} height={height_}>
       <Pie
@@ -60,16 +68,26 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         data={piedata}
         cx="50%"
         cy="50%"
-        innerRadius={40}
+        innerRadius={60}
         outerRadius={80}
         fill="#82ca9d"
       >
         {/* @ts-ignore */}
         {piedata.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+          <Cell
+            key={`cell-${index}`}
+            fill={gradient[index % gradient.length]}
+          />
         ))}
       </Pie>
-      <Tooltip />
+      <Tooltip
+        itemStyle={{ color: "white", cursor: "pointer" }}
+        contentStyle={{
+          backgroundColor: "#37525c",
+          color: "#FFFFFF",
+          cursor: "pointer",
+        }}
+      />
     </PieChart>
   );
 };

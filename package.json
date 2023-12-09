@@ -27,6 +27,7 @@
     "axios": "^1.6.2",
     "events": "^3.3.0",
     "maplibre-gl": "^3.5.2",
+    "new-ph-phone-input-react": "^2.15.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

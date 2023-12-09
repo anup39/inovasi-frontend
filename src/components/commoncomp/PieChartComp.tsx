@@ -51,6 +51,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
+  const singleColor = "#82ca9d";
+
   return (
     <PieChart width={width_} height={height_}>
       <Pie
@@ -60,13 +62,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         data={piedata}
         cx="50%"
         cy="50%"
-        innerRadius={40}
+        innerRadius={60}
         outerRadius={80}
         fill="#82ca9d"
       >
         {/* @ts-ignore */}
         {piedata.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+          <Cell key={`cell-${index}`} fill={singleColor} /> // Setting a single color for each cell
         ))}
       </Pie>
       <Tooltip />

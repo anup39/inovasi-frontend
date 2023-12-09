@@ -131,6 +131,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     setShowMap(checked);
   }
   function handleMetricChange(option: string) {
+    if (option === "metric") {
+      dispatch(setselectedDataFormat("Metric"));
+    } else {
+      dispatch(setselectedDataFormat("Table"));
+    }
     setSelectedOption(option);
   }
   const pageHeight = `calc(100vh - 50px)`;

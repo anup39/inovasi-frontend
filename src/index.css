@@ -8,6 +8,7 @@ body {
 
 .MuiDataGrid-root {
   flex-direction: column-reverse !important;
+  background-color: white;
 }
 
 .MuiDataGrid-columnHeaderTitle {

@@ -15,6 +15,7 @@ interface Item {
   total: number;
   selected: boolean;
   bgcolor: string;
+  textColor: string;
   imagesrc: string;
 }
 

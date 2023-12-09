@@ -5,6 +5,7 @@ import {
   setshowToast,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 interface PopupProps {
   properties: {
@@ -19,6 +20,7 @@ interface PopupProps {
 }
 
 const Popup = ({ properties, trace }: PopupProps) => {
+  const [popup, setPopup] = useState(true);
   const dispatch = useDispatch();
   // const navigation = useNavigation();
   const propertyElements = properties
@@ -78,25 +80,42 @@ const Popup = ({ properties, trace }: PopupProps) => {
 
   return (
     <>
-      {properties ? (
-        <div className="bg-white rounded shadow-md p-2 max-w-sm  md:max-w-md max-h-48 overflow-auto">
-          {trace ? (
-            <button
-              onClick={handleTraceplantation}
-              className=" text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-2 rounded-lg ml-auto justify-content-right flex justify-end "
-            >
-              Trace Plantation
-
-            </button>
-          
-          ) : null}
-        <div className="font-bold text-base mt-0">INFORMATION</div>
-          <div className="divide-y divide-gray-200  mt-3 ">
-            {propertyElements}
+      <div
+        className={`absolute bottom-2 right-1  bg-white  rounded-lg ${
+          popup ? "h-4/5 " : ""
+        } `}
+      >
+        <div className="flex relative items-center justify-between  p-3">
+          <h1 className="font-bold uppercase hidden md:block">information</h1>
+          <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold px-4 py-2 text-xs md:text-[8px] lg:text-xs">
+            Trace to Plantation
+          </button>
+          <div
+            onClick={() => setPopup(!popup)}
+            className={`absolute w-7 transition-all ${
+              popup ? "rotate-180" : ""
+            } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2 aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
+          >
+            <img className="" src="popuparrow.svg" alt="" />
           </div>
+          {properties ? (
+            <div className="bg-white rounded shadow-md p-2 max-w-sm  md:max-w-md max-h-48 overflow-auto">
+              {trace ? (
+                <button
+                  onClick={handleTraceplantation}
+                  className=" text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-2 rounded-lg ml-auto justify-content-right flex justify-end "
+                >
+                  Trace Plantation
+                </button>
+              ) : null}
+              <div className="font-bold text-base mt-0">INFORMATION</div>
+              <div className="divide-y divide-gray-200  mt-3 ">
+                {propertyElements}
+              </div>
+            </div>
+          ) : null}
         </div>
-       
-      ) : null}
+      </div>
     </>
   );
 };

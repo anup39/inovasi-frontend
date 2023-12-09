@@ -2,24 +2,8 @@
 // import { faBell } from "@fortawesome/free-solid-svg-icons";
 // import Menu from "./Menu";
 import "../../css/common/NavBar.css";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setToken, setUserId, setUserName } from "../../reducers/Auth";
-import Sidebar from "./Sidebar";
 
 function NavBar() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_id");
-    localStorage.removeItem("username");
-    dispatch(setToken(""));
-    dispatch(setUserId(""));
-    dispatch(setUserName(""));
-    navigate("/");
-    window.location.reload();
-  };
   return (
     <div className="px-6  flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[60px]">
       <div className="hidden md:block">

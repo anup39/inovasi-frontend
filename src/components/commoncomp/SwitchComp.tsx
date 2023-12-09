@@ -1,8 +1,18 @@
-import { FormControlLabel, Switch } from "@mui/material";
+import { FormControlLabel, Switch, Theme } from "@mui/material";
 import { styled } from "@mui/system";
 
-function SwitchComp({ label, defaultChecked, onChange }) {
-  const AntSwitch = styled(Switch)(({ theme }) => ({
+interface StyledSwitchProps {
+  theme: Theme;
+}
+
+interface SwitchCompProps {
+  label: string;
+  defaultChecked: boolean;
+  onChange: (checked: boolean) => boolean;
+}
+
+function SwitchComp({ label, defaultChecked, onChange }: SwitchCompProps) {
+  const AntSwitch = styled(Switch)<StyledSwitchProps>(({ theme }) => ({
     width: 28,
     height: 16,
     padding: 0,
@@ -22,7 +32,7 @@ function SwitchComp({ label, defaultChecked, onChange }) {
         color: "#fff",
         "& + .MuiSwitch-track": {
           opacity: 1,
-          backgroundColor: "#42D272", // Change this to the desired color
+          backgroundColor: "#42D272",
         },
       },
     },
@@ -46,6 +56,7 @@ function SwitchComp({ label, defaultChecked, onChange }) {
     },
   }));
 
+  // @ts-ignore
   function handleSwitchChange(e) {
     onChange && onChange(e.target.checked);
   }
@@ -54,10 +65,12 @@ function SwitchComp({ label, defaultChecked, onChange }) {
     <FormControlLabel
       className="bg-white bg-opacity-70 py-2 px-3 justify-end my-1 rounded-xl"
       control={
+        // @ts-ignore
         <AntSwitch
           sx={{ mx: 1 }}
           defaultChecked={defaultChecked}
           size="small"
+          // theme={theme} // Pass the 'theme' prop here
         />
       }
       label={label}

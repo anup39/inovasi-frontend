@@ -87,7 +87,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           {/* dashboard */}
           <div
             onClick={() => {
-              window.location.replace("/dashboard");
+              // window.location.replace("/dashboard");
+              navigate("/dashboard");
             }}
             className="py-2 hover:bg-gray-50 px-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-footerHeading to-parrot"
           >
@@ -99,8 +100,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M9.99935 2.23145C9.23796 2.23145 8.49113 2.44007 7.83997 2.83466L3.67331 5.35966C3.06059 5.73095 2.55395 6.25397 2.20234 6.87819C1.85072 7.50241 1.666 8.20675 1.66602 8.92318V14.1665C1.66602 15.2716 2.105 16.3314 2.8864 17.1128C3.6678 17.8942 4.72761 18.3332 5.83268 18.3332H14.166C15.2711 18.3332 16.3309 17.8942 17.1123 17.1128C17.8937 16.3314 18.3327 15.2716 18.3327 14.1665V8.92235C18.3325 8.20608 18.1477 7.50176 17.7961 6.87774C17.4445 6.25372 16.938 5.73087 16.3254 5.35966L12.1587 2.83466C11.5076 2.44008 10.7607 2.23145 9.99935 2.23145ZM8.70373 4.26003C9.09443 4.02328 9.54252 3.89811 9.99935 3.89811C10.4562 3.89811 10.9043 4.02328 11.295 4.26003L15.4616 6.78503C15.8292 7.00776 16.1331 7.32147 16.3441 7.69589C16.555 8.07025 16.6659 8.49266 16.666 8.92235V14.1665C16.666 14.8296 16.4026 15.4654 15.9338 15.9343C15.4649 16.4031 14.8291 16.6665 14.166 16.6665H13.3327V14.1665C13.3327 13.2825 12.9815 12.4346 12.3564 11.8095C11.7312 11.1844 10.8834 10.8332 9.99935 10.8332C9.11529 10.8332 8.26745 11.1844 7.64233 11.8095C7.0172 12.4346 6.66601 13.2825 6.66601 14.1665V16.6665H5.83268C5.16964 16.6665 4.53376 16.4031 4.06491 15.9343C3.59607 15.4654 3.33268 14.8296 3.33268 14.1665V8.92318C3.33267 8.49332 3.4435 8.07069 3.65447 7.69616C3.86544 7.32163 4.16942 7.00782 4.53706 6.78504L8.70373 4.26003ZM11.1779 12.988C11.4904 13.3006 11.666 13.7245 11.666 14.1665V16.6665H8.33268V14.1665C8.33268 13.7245 8.50828 13.3006 8.82084 12.988C9.1334 12.6754 9.55732 12.4999 9.99935 12.4999C10.4414 12.4999 10.8653 12.6754 11.1779 12.988Z"
                 fill="white"
               />
@@ -113,8 +114,10 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           <div className="hover:bg-gray-50 cursor-pointer py-2 px-3 rounded-xl flex justify-between">
             <div
               onClick={() => {
-                window.location.replace("/suppliermill");
+                // window.location.replace("/suppliermill");
+                navigate("/suppliermill");
                 setMillActive(!millActive);
+                setSidebarOpened(true);
               }}
               className={`flex ${sidebarOpened ? "gap-2" : "gap-0"}`}
             >
@@ -183,7 +186,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           {/* supplier plantation */}
           <div
             onClick={() => {
-              window.location.replace("/supplierplantation");
+              // window.location.replace("/supplierplantation");
+              navigate("/supplierplantation");
             }}
             className="hover:bg-gray-50 flex items-center  cursor-pointer py-2 px-2 rounded-xl gap-2"
           >
@@ -228,8 +232,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                 fill="#757575"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M15.399 4.28148C15.3319 4.11918 15.2335 3.97172 15.1093 3.84757L12.4863 1.22461C12.2365 0.974488 11.8976 0.833808 11.5441 0.833496H1.83333C1.47971 0.833496 1.14057 0.973972 0.890524 1.22402C0.640476 1.47407 0.5 1.81321 0.5 2.16683V17.8335C0.5 18.0086 0.534488 18.182 0.601494 18.3437C0.668499 18.5055 0.766711 18.6525 0.890524 18.7763C1.01433 18.9001 1.16132 18.9983 1.32309 19.0653C1.48486 19.1323 1.65824 19.1668 1.83333 19.1668H14.1667C14.3418 19.1668 14.5151 19.1323 14.6769 19.0653C14.8387 18.9983 14.9857 18.9001 15.1095 18.7763C15.2333 18.6525 15.3315 18.5055 15.3985 18.3437C15.4655 18.182 15.5 18.0086 15.5 17.8335V4.79209L14.6667 4.79183L15.5 4.79387L15.5 4.79209C15.5002 4.6169 15.4659 4.4434 15.399 4.28148ZM10.5 4.5835C10.5 5.27385 11.0596 5.8335 11.75 5.8335H13.8333V17.5002H2.16667V2.50016H10.5V4.5835ZM13.0715 4.16683L12.1667 3.26201V4.16683H13.0715Z"
                 fill="#757575"
               />

@@ -12,8 +12,6 @@ import { RootState } from "../store";
 import { settabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
-import { FormControlLabel, Switch } from "@mui/material";
-import { styled, useTheme } from "@mui/system";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import LineBar from "../components/commoncomp/LineBar";
@@ -130,10 +128,15 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [showMap, setShowMap] = useState(true);
   const [selectedOption, setSelectedOption] = useState("metric");
 
-  function handleSwitchChange(checked) {
+  function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
   }
-  function handleMetricChange(option) {
+  function handleMetricChange(option: string) {
+    if (option === "metric") {
+      dispatch(setselectedDataFormat("Metric"));
+    } else {
+      dispatch(setselectedDataFormat("Table"));
+    }
     setSelectedOption(option);
   }
   const pageHeight = `calc(100vh - 50px)`;
@@ -146,6 +149,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             <SwitchComp
               label="Map"
               defaultChecked={showMap}
+              // @ts-ignore
               onChange={handleSwitchChange}
             />
           

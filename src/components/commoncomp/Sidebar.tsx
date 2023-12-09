@@ -87,7 +87,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           {/* dashboard */}
           <div
             onClick={() => {
-              window.location.replace("/dashboard");
+              // window.location.replace("/dashboard");
+              navigate("/dashboard");
             }}
             className="py-2 hover:bg-gray-50 px-3 gap-2 cursor-pointer rounded-xl flex text-white items-center  bg-gradient-to-r from-footerHeading to-parrot"
           >
@@ -113,8 +114,10 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           <div className="hover:bg-gray-50 cursor-pointer py-2 px-3 rounded-xl flex justify-between">
             <div
               onClick={() => {
-                window.location.replace("/suppliermill");
+                // window.location.replace("/suppliermill");
+                navigate("/suppliermill");
                 setMillActive(!millActive);
+                setSidebarOpened(true);
               }}
               className={`flex ${sidebarOpened ? "gap-2" : "gap-0"}`}
             >
@@ -183,7 +186,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           {/* supplier plantation */}
           <div
             onClick={() => {
-              window.location.replace("/supplierplantation");
+              // window.location.replace("/supplierplantation");
+              navigate("/supplierplantation");
             }}
             className="hover:bg-gray-50 flex items-center  cursor-pointer py-2 px-2 rounded-xl gap-2"
           >

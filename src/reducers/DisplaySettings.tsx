@@ -7,6 +7,7 @@ interface DisplaySettingsState {
   showToast: boolean;
   toastMessage: string;
   toastType: string;
+  selectedDashboardPage: string;
 }
 
 const initialState: DisplaySettingsState = {
@@ -14,6 +15,7 @@ const initialState: DisplaySettingsState = {
   showToast: false,
   toastMessage: "Click on point to see the data",
   toastType: "info",
+  selectedDashboardPage: "dashbboard",
 };
 
 export const DisplaySettings = createSlice({
@@ -33,6 +35,9 @@ export const DisplaySettings = createSlice({
     setselectedDataFormat: (state, action: PayloadAction<string | null>) => {
       state.selectedDataFormat = action.payload;
     },
+    setselectedDashboardPage: (state, action: PayloadAction<string>) => {
+      state.selectedDashboardPage = action.payload;
+    },
   },
 });
 
@@ -42,6 +47,7 @@ export const {
   settoastMessage,
   settoastType,
   setselectedDataFormat,
+  setselectedDashboardPage,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

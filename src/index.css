@@ -20,17 +20,14 @@ body {
   visibility: visible;
 }
 
-
 .recharts-wrapper {
-  width: 180px !important ;
-  height: 180px !important;
+  width: 150px !important ;
+  height: 150px !important;
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .recharts-wrapper {
-    width: 60px !important; 
-    height: 60px !important; 
+    width: 60px !important;
+    height: 60px !important;
   }
 }

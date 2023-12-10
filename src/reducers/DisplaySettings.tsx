@@ -15,7 +15,7 @@ const initialState: DisplaySettingsState = {
   showToast: false,
   toastMessage: "Click on point to see the data",
   toastType: "info",
-  selectedDashboardPage: "dashbboard",
+  selectedDashboardPage: "dashboard",
 };
 
 export const DisplaySettings = createSlice({

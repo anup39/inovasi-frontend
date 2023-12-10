@@ -111,8 +111,7 @@ function Register() {
   );
 }
 export default Register;
-{
-}
+
 //  <div className="flex flex-col lg:flex-row relative h-screen">
 //       <img
 //         className="object-cover lg:w-1/2  googleIcon.svg"

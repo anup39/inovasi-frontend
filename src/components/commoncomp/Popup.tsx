@@ -85,11 +85,13 @@ const Popup = ({ properties, trace }: PopupProps) => {
           popup ? "h-4/5 " : ""
         } `}
       >
-        <div className="flex relative items-center justify-between  p-3">
-          <h1 className="font-bold uppercase hidden md:block">information</h1>
-          <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold px-4 py-2 text-xs md:text-[8px] lg:text-xs">
-            Trace to Plantation
-          </button>
+        <div className="flex flex-col relative items-center justify-between w-full  p-3">
+          <div className="flex items-center justify-between w-full">
+            <h1 className="font-bold uppercase hidden md:block">information</h1>
+            <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold px-4 py-2 text-xs md:text-[8px] lg:text-xs">
+              Trace to Plantation
+            </button>
+          </div>
           <div
             onClick={() => setPopup(!popup)}
             className={`absolute w-7 transition-all ${
@@ -108,7 +110,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
                   Trace Plantation
                 </button>
               ) : null}
-              <div className="font-bold text-base mt-0">INFORMATION</div>
+              {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
               <div className="divide-y divide-gray-200  mt-3 ">
                 {propertyElements}
               </div>

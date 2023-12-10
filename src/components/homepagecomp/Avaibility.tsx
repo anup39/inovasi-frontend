@@ -22,7 +22,7 @@ function Avaibility() {
               onClick={() => setSelectedTitle(index)}
               className={`cursor-pointer w-1/6 min-w-[130px] py-4 lg:py-2 ${
                 selectedTitle === index
-                  ? "bg-gradient-to-r from-footerHeading to-parrot text-white font-semibold "
+                  ? "bg-gradient-to-r from-footerHeading to-parrot text-white transition-all delay-75 ease-out font-semibold "
                   : "bg-bgPage text-semiBlackText"
               } rounded-lg `}
             >

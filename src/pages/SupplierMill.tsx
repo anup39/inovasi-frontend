@@ -14,6 +14,7 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
+import LineBar from "../components/commoncomp/LineBar";
 
 const items = [
   {
@@ -138,7 +139,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
     setSelectedOption(option);
   }
-  const pageHeight = `calc(100vh - 50px)`;
+  const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
       <Toast />
@@ -163,7 +164,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         <div
           className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
             showMap ? "block" : "hidden"
-          } bg-white w-2/3 max-w-[330px] rounded-lg`}
+          }
+          
+          bg-white w-2/3 max-w-[330px] rounded-lg`}
         >
           <div
             onClick={() => handleMetricChange("metric")}
@@ -214,13 +217,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  <PieChartComp
+                  <LineBar />
+                  {/* <PieChartComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
-                  />
+                  /> */}
                   <div
                     style={{ height: "0.7px" }}
                     className="bg-boxDivider mb-1 w-full"

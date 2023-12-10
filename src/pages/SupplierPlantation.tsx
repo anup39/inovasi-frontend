@@ -153,11 +153,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         settablecolumn(res.data.columns);
       });
   }, [dispatch, estateids, mill_id]);
+  const pageHeight = `calc(100vh - 60px)`;
+
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[90vh]">
-        <div className="flex-1 pt-3">
+      <div className="flex flex-col" style={{ height: pageHeight }}>
+        <div className="flex-1 py-2">
           <MapComponent
             map={map}
             onSetMap={onSetMap}

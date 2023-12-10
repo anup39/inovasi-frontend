@@ -139,7 +139,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
     setSelectedOption(option);
   }
-  const pageHeight = `calc(100vh - 50px)`;
+  const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
       <Toast />
@@ -152,18 +152,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               // @ts-ignore
               onChange={handleSwitchChange}
             />
-          
           </ThemeProvider>
         </div>
         <div
-        
           className={`my-1  ${
             showMap ? "block" : "hidden"
           } flex-1 min-h-[250px]`}
-          
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
-          
         </div>
         <div
           className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
@@ -195,7 +191,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-          
             <TableComp
               tableColumn={tableColumn}
               // @ts-ignore

@@ -28,7 +28,7 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center py-1 lg:pr-3 gap-3 w-full lg:w-1/2">
+    <div className="flex items-center justify-center py-1 gap-3 w-full lg:w-1/2 lg:pl-3">
       {items.map((item) => (
         <div
           key={item.id}

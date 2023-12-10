@@ -234,7 +234,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 lg:pr-3">
+    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 ">
       {items
         ? items.map((item) => (
             <div

@@ -13,7 +13,7 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
-import LineBar from "../components/commoncomp/LineBar";
+// import LineBar from "../components/commoncomp/LineBar";
 
 const items = [
   {
@@ -94,6 +94,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
+          image_path: "mill.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -125,7 +126,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
-  const [selectedOption, setSelectedOption] = useState("metric");
+  const [selectedOption, setSelectedOption] = useState("list");
 
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
@@ -138,11 +139,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
     setSelectedOption(option);
   }
+
   const pageHeight = `calc(100vh - 60px)`;
+
+  
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col" style={{ height: pageHeight }}>
+      <div className="flex flex-col h-screen">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -217,15 +221,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-
-                  <LineBar lowerBoxes={item.lowerBoxes}/>
-                  {/* <PieChartComp
+                  {/* <LineBar /> */}
+                  <PieChartComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
-                  /> */}
+                  />
                   <div
                     style={{ height: "0.7px" }}
                     className="bg-boxDivider mb-1 w-full"

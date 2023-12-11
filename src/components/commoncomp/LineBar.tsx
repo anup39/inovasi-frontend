@@ -1,6 +1,7 @@
 import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, LabelList, Cell } from 'recharts';
 
-const renderCustomizedLabel = (props: any) => {
+// @ts-ignore
+const renderCustomizedLabel = (props) => {
   const { x, y, width, height, value } = props;
 
   return (

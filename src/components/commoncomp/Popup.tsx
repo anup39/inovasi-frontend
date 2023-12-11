@@ -79,44 +79,57 @@ const Popup = ({ properties, trace }: PopupProps) => {
   };
 
   return (
-    <>
-      <div
-        className={`absolute bottom-2 right-1  bg-white  rounded-lg ${
-          popup ? "h-4/5 " : ""
-        } `}
-      >
-        <div className="flex relative items-center justify-between  p-3">
+    <div
+      style={{ minWidth: "320px" }}
+      className={`flex-1 bg-white   max-w-xs rounded-lg ${popup ? "" : ""} `}
+    >
+      <div className="flex flex-col relative items-center justify-between  p-3">
+        <div className="flex items-center justify-between w-full ">
           <h1 className="font-bold uppercase hidden md:block">information</h1>
-          <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold px-4 py-2 text-xs md:text-[8px] lg:text-xs">
-            Trace to Plantation
-          </button>
-          <div
-            onClick={() => setPopup(!popup)}
-            className={`absolute w-7 transition-all ${
-              popup ? "rotate-180" : ""
-            } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2 aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
-          >
-            <img className="" src="popuparrow.svg" alt="" />
-          </div>
-          {properties ? (
-            <div className="bg-white rounded shadow-md p-2 max-w-sm  md:max-w-md max-h-48 overflow-auto">
-              {trace ? (
-                <button
-                  onClick={handleTraceplantation}
-                  className=" text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-2 rounded-lg ml-auto justify-content-right flex justify-end "
-                >
-                  Trace Plantation
-                </button>
-              ) : null}
-              <div className="font-bold text-base mt-0">INFORMATION</div>
-              <div className="divide-y divide-gray-200  mt-3 ">
-                {propertyElements}
-              </div>
-            </div>
+
+          {trace ? (
+            <button
+              onClick={handleTraceplantation}
+              className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold  px-1 py-2 text-xs md:text-[7px] lg:text-[10px]"
+            >
+              Trace to Plantation
+            </button>
           ) : null}
         </div>
+        <div
+          onClick={() => setPopup(!popup)}
+          className={`absolute w-7 transition-all  ${
+            popup ? "rotate-180" : ""
+          } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2  aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
+        >
+          <img className="" src="popuparrow.svg" alt="" />
+        </div>
+        {properties ? (
+          <div
+            style={{ minWidth: "320px" }}
+            className={`bg-white rounded  p-2 max-w-xs overflow-x-scroll ${
+              popup ? "block" : "hidden"
+            }  md:max-w-xs max-h-48 `}
+          >
+            {/* <button
+                onClick={handleTraceplantation}
+                className="max-w-xs  text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-1 rounded-lg ml-auto justify-content-right flex justify-end "
+              >
+                Trace Plantation
+              </button>
+            ) : null} */}
+            {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
+            <div className="divide-y divide-gray-200   mt-3  ">
+              {propertyElements && propertyElements.length > 0 ? (
+                propertyElements
+              ) : (
+                <p>Hover on map layer for info</p>
+              )}
+            </div>
+          </div>
+        ) : null}
       </div>
-    </>
+    </div>
   );
 };
 

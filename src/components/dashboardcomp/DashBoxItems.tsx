@@ -67,6 +67,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
+          image_path: "facilities.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -120,6 +121,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "facilities.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -169,6 +171,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "refinery.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -216,6 +219,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "mill.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -234,14 +238,14 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 lg:pr-3">
+    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 ">
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
               // className={` transition-all ease-in-out rounded-lg min-w-[85px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[250px] lg:aspect-square ${
-              className={` transition-all ease-in-out rounded-lg bg-white w-1/3 max-w-[170px] lg:max-w-full md:py-1 h-[140px] md:h-[160px] lg:h-[250px] lg:aspect-square ${
+              className={` transition-all ease-in-out rounded-lg bg-white w-1/3 max-w-[170px] lg:max-w-full md:py-1 h-[140px] md:h-[160px] lg:h-[265px]  ${
                 item.selected ? `border-2 border-borderGreen ` : ``
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}
@@ -254,12 +258,12 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                     src={item.imagesrc}
                     alt=""
                   />
-                  <div className="flex pl-2 md:pl-0 w-full flex-col-reverse items-start md:flex-row gap-2 md:gap-3 md:items-center justify-between">
+                  <div className="flex pl-2 lg:pt-3 md:pl-0 w-full flex-col-reverse items-start md:flex-row gap-2 md:gap-3 md:items-center justify-between">
                     <p className=" text-semiBlackText font-medium md:font-semibold text-xs lg:text-sm max-w-[80px]  ">
                       {item.name}
                     </p>
                     <img
-                      className="absolute top-1 right-3 scale-75 md:scale-100"
+                      className="absolute top-0.5 right-0.5 scale-75 md:scale-100"
                       src="moreinfo.svg"
                       alt=""
                     />
@@ -273,7 +277,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                   >
                     {item.total}
                   </p>
-                  <p className="text-xs md:text-sm">Facilites</p>
+                  <p className="text-xs ">Facilites</p>
                 </div>
               </div>
             </div>

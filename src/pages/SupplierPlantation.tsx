@@ -90,6 +90,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             fill_opacity: "0",
             stroke_color: "black",
           },
+          image_path: "",
           zoomToLayer: false,
           center: [103.8574, 2.2739],
           fillType: "fill",
@@ -110,6 +111,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             fill_opacity: "0",
             stroke_color: "",
           },
+          image_path: "",
           zoomToLayer: false,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -153,11 +155,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         settablecolumn(res.data.columns);
       });
   }, [dispatch, estateids, mill_id]);
+  const pageHeight = `calc(100vh - 60px)`;
+
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[90vh]">
-        <div className="flex-1 pt-3">
+      <div className="flex flex-col" style={{ height: pageHeight }}>
+        <div className="flex-1 py-2">
           <MapComponent
             map={map}
             onSetMap={onSetMap}

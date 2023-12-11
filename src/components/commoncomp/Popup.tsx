@@ -79,11 +79,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
   };
 
   return (
-    <div
-      className={`absolute bottom-10 right-1 flex-1 bg-white  rounded-lg ${
-        popup ? "" : ""
-      } `}
-    >
+    <div className={`flex-1 bg-white  rounded-lg ${popup ? "" : ""} `}>
       <div className="flex flex-col relative items-center justify-between  p-3">
         <div className="flex items-center justify-between w-full ">
           <h1 className="font-bold uppercase hidden md:block">information</h1>

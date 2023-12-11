@@ -5,9 +5,9 @@ function BaseMapSwitch() {
   const [showViews, setShowViews] = useState(false);
 
   return (
-    <div className="relative flex gap-2  items-center justify-center transition-all ease-in-out">
-      <div className="flex rounded-xl  gap-3 bg-white bg-opacity-80 border-2 border-darkGreen px-3 py-2 h-[50px]">
-        <img className="cursor-pointer" src="mapzoomin.svg" alt="" />
+    <div className="relative flex gap-2  items-center justify-center transition-all ease-in-out scale-75">
+      <div className="flex rounded-xl  gap-3 bg-white  border-2 border-darkGreen px-3 py-2 h-[50px]">
+        <img className="cursor-pointer " src="mapzoomin.svg" alt="" />
         <div className="border-r-2 border-r-mapDivider"></div>
         <img className="cursor-pointer" src="mapzoomout.svg" alt="" />
       </div>
@@ -21,7 +21,7 @@ function BaseMapSwitch() {
         <img className="scale-105" src="mapruler.svg" alt="" />
       </div>
       <div className="border-2 cursor-pointer border-darkGreen rounded-xl">
-        <img className="scale-105 " src="mapfullscreen.png" alt="" />
+        <img className="scale-105 " src="mapfullscreen.svg" alt="" />
       </div>
       {/* div that opens up */}
       <div
@@ -34,11 +34,7 @@ function BaseMapSwitch() {
           className="flex flex-col gap-2 items-center cursor-pointer"
         >
           <img
-            className={`${
-              selectedView === "opensteet"
-                ? "border-[1px] rounded border-darkGreen"
-                : ""
-            }`}
+            className={`${selectedView === "opensteet" ? "" : ""}`}
             src="openstreet.png"
             alt=""
           />
@@ -57,11 +53,7 @@ function BaseMapSwitch() {
           className="flex flex-col gap-2 items-center cursor-pointer"
         >
           <img
-            className={`${
-              selectedView === "satellite"
-                ? "border-[1px] rounded border-darkGreen"
-                : ""
-            }`}
+            className={`${selectedView === "satellite" ? "" : ""}`}
             src="satellite.png"
             alt=""
           />
@@ -80,11 +72,7 @@ function BaseMapSwitch() {
           className="flex flex-col gap-2 items-center cursor-pointer"
         >
           <img
-            className={`${
-              selectedView === "terrain"
-                ? "border-[1px] rounded border-darkGreen"
-                : ""
-            }`}
+            className={`${selectedView === "terrain" ? "" : ""}`}
             src="terrain.png"
             alt=""
           />

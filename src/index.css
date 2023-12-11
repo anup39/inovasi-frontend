@@ -31,3 +31,11 @@ body {
     height: 60px !important;
   }
 }
+
+.PhoneInputInput {
+  border: none;
+  padding: 10px;
+}
+.PhoneInputCountry {
+  margin-left: 11px;
+}

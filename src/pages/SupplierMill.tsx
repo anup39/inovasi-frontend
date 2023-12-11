@@ -14,7 +14,7 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
-import LineBar from "../components/commoncomp/LineBar";
+// import LineBar from "../components/commoncomp/LineBar";
 
 const items = [
   {

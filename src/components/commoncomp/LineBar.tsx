@@ -1,22 +1,31 @@
-
-import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, LabelList, Cell } from 'recharts';
-const colors = ['#00C49F', '#FFBB28', '#FF8042'];
+import {
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ComposedChart,
+  LabelList,
+  Cell,
+} from "recharts";
+const colors = ["#00C49F", "#FFBB28", "#FF8042"];
 const data = [
   {
-    name: 'Actual registered supplier',
+    name: "Actual registered supplier",
     value: 179,
   },
   {
-    name: 'Potential registered supplier',
+    name: "Potential registered supplier",
     value: 161,
   },
   {
-    name: 'Potential unregistered supplier',
+    name: "Potential unregistered supplier",
     value: 132,
   },
 ];
 
-const renderCustomizedLabel = (props: any) => {
+// @ts-ignore
+const renderCustomizedLabel = (props) => {
   const { x, y, width, height, value } = props;
 
   return (
@@ -49,13 +58,19 @@ export default function LineBar() {
       }}
     >
       <CartesianGrid stroke="#eaeaea" strokeDasharray="3 3" />
-      <XAxis type="number" width={500} className='w-100'  />
-      <YAxis dataKey="name" type="category" width={400} tick={{ fontSize: 40 }} />
+      <XAxis type="number" width={500} className="w-100" />
+      <YAxis
+        dataKey="name"
+        type="category"
+        width={400}
+        tick={{ fontSize: 40 }}
+      />
       <Tooltip />
       {/* <Bar dataKey="value" barSize={20} fill="#413ea0" /> */}
       {/* <Bar dataKey="value" fill="#8884d8" minPointSize={5}> */}
       <Bar dataKey="value" fill="#8884d8" barSize={70}>
         <LabelList dataKey="value" content={renderCustomizedLabel} />
+        {/* @ts-ignore */}
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={colors[index]} />
         ))}

@@ -3,7 +3,6 @@ import {
   Map,
   LngLatLike,
   SourceSpecification,
-  CircleLayerSpecification,
   SymbolLayerSpecification,
   LayerSpecification,
   IControl,
@@ -71,6 +70,7 @@ function AddLayerAndSourceToMap({
       if (error) throw error;
 
       if (image_path === "facilities.png") {
+        // @ts-ignore
         map.addImage("facilities", image);
         const newLayer: SymbolLayerSpecification = {
           id: layerId,
@@ -86,6 +86,7 @@ function AddLayerAndSourceToMap({
       }
 
       if (image_path === "refinery.png") {
+        // @ts-ignore
         map.addImage("refinery", image);
         const newLayer: SymbolLayerSpecification = {
           id: layerId,
@@ -101,6 +102,7 @@ function AddLayerAndSourceToMap({
       }
 
       if (image_path === "mill.png") {
+        // @ts-ignore
         map.addImage("mill", image);
         const newLayer: SymbolLayerSpecification = {
           id: layerId,

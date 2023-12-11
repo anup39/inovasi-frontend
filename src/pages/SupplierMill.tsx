@@ -144,7 +144,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
             <SwitchComp

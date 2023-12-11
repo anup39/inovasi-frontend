@@ -57,9 +57,9 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const steps = 5;
 
   const gradient = generateGradient(startColor, endColor, steps);
-  console.log(gradient[99]); // To get the 100th color in the gradient
+  // console.log(gradient[99]); // To get the 100th color in the gradient
 
-  console.log(piedata, "pie data");
+  piedata, "pie data";
   const hexToHSL = (hexColor) => {
     let r = parseInt(hexColor.substring(1, 3), 16) / 255;
     let g = parseInt(hexColor.substring(3, 5), 16) / 255;

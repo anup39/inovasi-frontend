@@ -7,15 +7,6 @@ import HomeHero from "../components/homepagecomp/HomeHero";
 // import HomeNavbar from "../components/homepagecomp/HomeNavbar";
 import Testimonials from "../components/homepagecomp/Testimonials";
 
-const logos = [
-  "fujilogo.png",
-  "nestelogo.png",
-  "p&glogo.png",
-  "aaklogo.png",
-  "wilmarlogo.png",
-  "unvlogo.png",
-];
-
 function HomePage() {
   return (
     <div className="bg-gray-50 max-w-screen">
@@ -23,7 +14,7 @@ function HomePage() {
       <HomeFeatures />
       <DdsSection />
       <Testimonials />
-      <BusinessColab logos={logos} />
+      <BusinessColab />
 
       <Avaibility />
       {/* <EUDRTable /> */}

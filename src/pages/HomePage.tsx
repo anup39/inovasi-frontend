@@ -27,7 +27,7 @@ function HomePage() {
       <BusinessColab logos={logos} />
 
       <Avaibility />
-      <EUDRTable />
+      {/* <EUDRTable /> */}
       <Footer />
     </div>
   );

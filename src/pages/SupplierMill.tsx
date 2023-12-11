@@ -217,14 +217,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  <LineBar />
-                  {/* <PieChartComp
+                  {/* <LineBar /> */}
+                  <PieChartComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
-                  /> */}
+                  />
                   <div
                     style={{ height: "0.7px" }}
                     className="bg-boxDivider mb-1 w-full"

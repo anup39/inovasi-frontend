@@ -63,6 +63,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       }`,
       center: [103.8574, 2.2739],
       zoom: 5,
+      attributionControl: false,
     });
 
     onSetMap(map_);

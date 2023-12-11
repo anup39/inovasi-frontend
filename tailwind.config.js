@@ -43,6 +43,7 @@ export default {
         testimonyBg: "#D6D8D8",
         collabBorder: "#02C68566",
         countriesBg: "#04C684",
+        mapDivider: "#B8BCBC",
       },
     },
   },

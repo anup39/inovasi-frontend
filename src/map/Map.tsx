@@ -8,6 +8,7 @@ import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
 import LegendControl from "./LegendControl";
+import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
 
@@ -153,7 +154,11 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div
       ref={mapContainer}
       id="map"
-      className="map h-full rounded-lg relative"
-    ></div>
+      className=" map h-full rounded-lg relative"
+    >
+      <div className="absolute top-2 right-2 z-10">
+        <BaseMapSwitch />
+      </div>
+    </div>
   );
 }

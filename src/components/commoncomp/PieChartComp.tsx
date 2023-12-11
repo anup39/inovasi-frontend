@@ -52,13 +52,54 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
-  const startColor = "#82ca9d";
-  const endColor = "#6cd8b3";
-  const steps = 100;
+  const startColor = "#ffffff";
+  const endColor = "#12bd82";
+  const steps = 5;
 
   const gradient = generateGradient(startColor, endColor, steps);
   console.log(gradient[99]); // To get the 100th color in the gradient
 
+  console.log(piedata, "pie data");
+  const hexToHSL = (hexColor) => {
+    let r = parseInt(hexColor.substring(1, 3), 16) / 255;
+    let g = parseInt(hexColor.substring(3, 5), 16) / 255;
+    let b = parseInt(hexColor.substring(5, 7), 16) / 255;
+
+    let cmax = Math.max(r, g, b);
+    let cmin = Math.min(r, g, b);
+    let delta = cmax - cmin;
+
+    let h = 0;
+    if (delta === 0) {
+      h = 0;
+    } else if (cmax === r) {
+      h = ((g - b) / delta) % 6;
+    } else if (cmax === g) {
+      h = (b - r) / delta + 2;
+    } else {
+      h = (r - g) / delta + 4;
+    }
+
+    h = Math.round(h * 60);
+    if (h < 0) {
+      h += 360;
+    }
+
+    let l = (cmax + cmin) / 2;
+    let s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+    return { h, s, l };
+  };
+
+  const gradientColor = (count) => {
+    const startColorHSL = hexToHSL("#FFFFFF");
+    const minLightness = 80; // Lightness of the starting color
+    const maxLightness = 40; // Lightness for the darkest shade of red
+    const maxCount = Math.max(...piedata.map((item) => item.count));
+    const lightness =
+      minLightness - (count / maxCount) * (minLightness - maxLightness);
+    return `hsl(159, 83%, ${lightness}%)`;
+  };
   return (
     <PieChart width={width_} height={height_}>
       <Pie
@@ -74,10 +115,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       >
         {/* @ts-ignore */}
         {piedata.map((entry, index) => (
-          <Cell
-            key={`cell-${index}`}
-            fill={gradient[index % gradient.length]}
-          />
+          <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
         ))}
       </Pie>
       <Tooltip

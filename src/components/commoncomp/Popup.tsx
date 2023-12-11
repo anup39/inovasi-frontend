@@ -86,9 +86,15 @@ const Popup = ({ properties, trace }: PopupProps) => {
       <div className="flex flex-col relative items-center justify-between  p-3">
         <div className="flex items-center justify-between w-full ">
           <h1 className="font-bold uppercase hidden md:block">information</h1>
-          <button className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold  px-1 py-2 text-xs md:text-[7px] lg:text-[10px]">
-            Trace to Plantation
-          </button>
+
+          {trace ? (
+            <button
+              onClick={handleTraceplantation}
+              className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold  px-1 py-2 text-xs md:text-[7px] lg:text-[10px]"
+            >
+              Trace to Plantation
+            </button>
+          ) : null}
         </div>
         <div
           onClick={() => setPopup(!popup)}
@@ -105,14 +111,13 @@ const Popup = ({ properties, trace }: PopupProps) => {
               popup ? "block" : "hidden"
             }  md:max-w-xs max-h-48 `}
           >
-            {trace ? (
-              <button
+            {/* <button
                 onClick={handleTraceplantation}
                 className="max-w-xs  text-bg-dark-green border-t border border-bg-green border-r border-b border-1 font-semibold p-1 rounded-lg ml-auto justify-content-right flex justify-end "
               >
                 Trace Plantation
               </button>
-            ) : null}
+            ) : null} */}
             {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
             <div className="divide-y divide-gray-200   mt-3  ">
               {propertyElements && propertyElements.length > 0 ? (

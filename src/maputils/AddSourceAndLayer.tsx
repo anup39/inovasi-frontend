@@ -3,7 +3,7 @@ import {
   Map,
   LngLatLike,
   SourceSpecification,
-  CircleLayerSpecification,
+  SymbolLayerSpecification,
   LayerSpecification,
   IControl,
 } from "maplibre-gl";
@@ -13,6 +13,7 @@ interface AddLayerProps {
   layerId: string;
   sourceId: string;
   url: string;
+  image_path: string;
   source_layer: string;
   showPopup: boolean;
   style: { fill_color: string; fill_opacity: string; stroke_color: string };
@@ -28,6 +29,7 @@ function AddLayerAndSourceToMap({
   layerId,
   sourceId,
   url,
+  image_path,
   source_layer,
   showPopup,
   style,
@@ -64,30 +66,69 @@ function AddLayerAndSourceToMap({
   map.addSource(sourceId, newSource);
 
   if (fillType && fillType === "point") {
-    const newLayer: CircleLayerSpecification = {
-      id: layerId,
-      type: "circle",
-      source: sourceId,
-      "source-layer": source_layer,
-      layout: {},
-      paint: {
-        "circle-color": style.fill_color,
-        "circle-radius": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          13,
-          4,
-        ],
-        "circle-stroke-width": 1,
-        "circle-stroke-color": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          "red",
-          "black",
-        ],
-      },
-    };
-    map.addLayer(newLayer);
+    map.loadImage(image_path, (error, image) => {
+      if (error) throw error;
+
+      if (image_path === "facilities.png") {
+        // @ts-ignore
+        map.addImage("facilities", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "facilities",
+            "icon-size": 1,
+          },
+        };
+        map.addLayer(newLayer);
+      }
+
+      if (image_path === "refinery.png") {
+        // @ts-ignore
+        map.addImage("refinery", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "refinery",
+            "icon-size": 1,
+          },
+        };
+        map.addLayer(newLayer);
+      }
+
+      if (image_path === "mill.png") {
+        // @ts-ignore
+        map.addImage("mill", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "mill",
+            "icon-size": 1,
+          },
+          paint: {},
+        };
+        map.addLayer(newLayer);
+      }
+
+      // map.addLayer({
+      //   id: "points",
+      //   type: "symbol",
+      //   source: "point",
+      //   layout: {
+      //     "icon-image": "cat",
+      //     "icon-size": 0.25,
+      //   },
+      // });
+    });
+
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   } else {
     const newLayer: LayerSpecification = {

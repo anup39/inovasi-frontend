@@ -273,7 +273,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                   >
                     {item.total}
                   </p>
-                  <p className="text-xs md:text-sm">Facilites</p>
+                  <p className="text-xs ">Facilites</p>
                 </div>
               </div>
             </div>

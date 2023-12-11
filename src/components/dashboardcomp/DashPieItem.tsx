@@ -89,7 +89,7 @@ function DashPieItem() {
                   >
                     {item.lowerBoxes.numbers[index]}
                   </p>
-                  <p className=" text-[10px] lg:text-xs">{title}</p>
+                  <p className=" text-[10px] ">{title}</p>
                 </div>
               ))}
             </div>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import MapComponent from "../map/Map";
-import PieChartComp from "../components/commoncomp/PieChartComp";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
@@ -24,7 +23,7 @@ const items = [
     distinct: "mill_deforestation_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48", "22%", "30%"],
+      numbers: ["48%", "22%", "30%"],
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
   },
@@ -35,7 +34,7 @@ const items = [
     distinct: "mill_legal_prf_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2"],
-      numbers: ["48", "22%"],
+      numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
   },
@@ -46,7 +45,7 @@ const items = [
     distinct: "mill_legal_landuse_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2"],
-      numbers: ["48", "22%"],
+      numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
   },
@@ -57,7 +56,7 @@ const items = [
     distinct: "mill_complex_supplybase_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48", "22%", "30%"],
+      numbers: ["48%", "22%", "30%"],
       colors: ["#10BD82", "#83DE60", "#B8E500"],
     },
   },
@@ -119,10 +118,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Table"));
   }, [dispatch]);
 
-  const params = {
-    estateids: [],
-    geometry_wkt: "",
-  };
+  // const params = {
+  //   estateids: [],
+  //   geometry_wkt: "",
+  // };
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
@@ -139,7 +138,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
     setSelectedOption(option);
   }
-  const pageHeight = `calc(100vh - 50px)`;
+  const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
       <Toast />
@@ -152,18 +151,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               // @ts-ignore
               onChange={handleSwitchChange}
             />
-          
           </ThemeProvider>
         </div>
         <div
-        
           className={`my-1  ${
             showMap ? "block" : "hidden"
           } flex-1 min-h-[250px]`}
-          
         >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
-          
         </div>
         <div
           className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
@@ -195,7 +190,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-          
             <TableComp
               tableColumn={tableColumn}
               // @ts-ignore
@@ -207,6 +201,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         ) : (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
             {items.map((item) => (
+
               <div
                 key={item.id}
                 className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "
@@ -222,7 +217,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  <LineBar />
+
+                  <LineBar lowerBoxes={item.lowerBoxes}/>
                   {/* <PieChartComp
                     params={params}
                     data={item}

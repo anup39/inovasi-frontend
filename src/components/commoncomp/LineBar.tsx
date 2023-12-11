@@ -1,20 +1,4 @@
-
 import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, LabelList, Cell } from 'recharts';
-const colors = ['#00C49F', '#FFBB28', '#FF8042'];
-const data = [
-  {
-    name: 'Actual registered supplier',
-    value: 179,
-  },
-  {
-    name: 'Potential registered supplier',
-    value: 161,
-  },
-  {
-    name: 'Potential unregistered supplier',
-    value: 132,
-  },
-];
 
 const renderCustomizedLabel = (props: any) => {
   const { x, y, width, height, value } = props;
@@ -27,6 +11,7 @@ const renderCustomizedLabel = (props: any) => {
         fill="#000"
         // textAnchor="middle"
         dominantBaseline="middle"
+        style={{fontSize: "40px"}}
       >
         {value}
       </text>
@@ -34,32 +19,37 @@ const renderCustomizedLabel = (props: any) => {
   );
 };
 
-export default function LineBar() {
+export default function LineBar(props: any) {
+  const { lowerBoxes } = props;
+  console.log(lowerBoxes);
+  const data = lowerBoxes.title.map((name: string, index: number) => ({
+    name,
+    value: parseFloat(lowerBoxes.numbers[index].replace('%', '')),
+    fill: lowerBoxes.colors[index],
+  }));
   return (
     <ComposedChart
       layout="vertical"
-      width={1200}
-      height={700}
+      width={600}
+      height={400}
       data={data}
       margin={{
         top: 10,
         right: 30,
         bottom: 10,
-        left: 200,
+        left: 10,
       }}
     >
       <CartesianGrid stroke="#eaeaea" strokeDasharray="3 3" />
-      <XAxis type="number" width={500} className='w-100'  />
-      <YAxis dataKey="name" type="category" width={400} tick={{ fontSize: 40 }} />
+      <XAxis type="number" width={500} className='w-100' tick={{ fontSize: 40 }} />
+      <YAxis dataKey="name" type="category" width={250} tick={{ fontSize: 40 }} />
       <Tooltip />
-      {/* <Bar dataKey="value" barSize={20} fill="#413ea0" /> */}
-      {/* <Bar dataKey="value" fill="#8884d8" minPointSize={5}> */}
-      <Bar dataKey="value" fill="#8884d8" barSize={70}>
+      <Bar dataKey="value" fill="#8884d8" barSize={70} >
         <LabelList dataKey="value" content={renderCustomizedLabel} />
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colors[index]} />
+        {data.map((entry: any, index: number) => (
+          <Cell key={`cell-${index}`} fill={entry.fill} />
         ))}
       </Bar>
     </ComposedChart>
   );
-}
+        }

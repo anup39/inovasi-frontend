@@ -13,7 +13,9 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
-// import LineBar from "../components/commoncomp/LineBar";
+import LineBar from "../components/commoncomp/LineBar";
+// import PieChartComp from "../components/commoncomp/PieChartComp";
+import LineBarComp from "../components/commoncomp/LineBarNew";
 
 const items = [
   {
@@ -119,10 +121,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Table"));
   }, [dispatch]);
 
-  // const params = {
-  //   estateids: [],
-  //   geometry_wkt: "",
-  // };
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
@@ -142,7 +144,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const pageHeight = `calc(100vh - 60px)`;
 
-  
   return (
     <Layout>
       <Toast />
@@ -205,7 +206,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         ) : (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
             {items.map((item) => (
-
               <div
                 key={item.id}
                 className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "
@@ -221,7 +221,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  {/* <LineBar /> */}
+                  {/* <LineBarComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  /> */}
                   <PieChartComp
                     params={params}
                     data={item}

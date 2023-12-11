@@ -69,19 +69,52 @@ function AddLayerAndSourceToMap({
   if (fillType && fillType === "point") {
     map.loadImage(image_path, (error, image) => {
       if (error) throw error;
-      map.addImage("symbol", image);
 
-      const newLayer: SymbolLayerSpecification = {
-        id: layerId,
-        type: "symbol",
-        source: sourceId,
-        "source-layer": source_layer,
-        layout: {
-          "icon-image": "symbol",
-          "icon-size": 1,
-        },
-      };
-      map.addLayer(newLayer);
+      if (image_path === "facilities.png") {
+        map.addImage("facilities", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "facilities",
+            "icon-size": 1,
+          },
+        };
+        map.addLayer(newLayer);
+      }
+
+      if (image_path === "refinery.png") {
+        map.addImage("refinery", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "refinery",
+            "icon-size": 1,
+          },
+        };
+        map.addLayer(newLayer);
+      }
+
+      if (image_path === "mill.png") {
+        map.addImage("mill", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "mill",
+            "icon-size": 1,
+          },
+          paint: {},
+        };
+        map.addLayer(newLayer);
+      }
 
       // map.addLayer({
       //   id: "points",

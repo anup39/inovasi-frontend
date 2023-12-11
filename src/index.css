@@ -12,12 +12,47 @@ body {
 }
 
 .MuiDataGrid-columnHeaderTitle {
-  font-weight: 800 !important;
+  font-weight: 500 !important;
 }
 
 .MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-menuIcon {
   width: auto;
   visibility: visible;
+}
+
+.customCheckbox.Mui-checked .MuiSvgIcon-root {
+  color: green; /* Change this color for checked state */
+}
+.MuiDataGrid-aggregationColumnHeader{
+  background-color: red;
+}
+
+
+.MuiCheckbox-colorPrimary.Mui-checked {
+  color: #07c684 !important; /* Change this color for checked state */
+}
+
+.MuiCheckbox-colorPrimary {
+  color: #07c684 !important; /* Change this color to your desired color */
+}
+
+.MuiDataGrid-columnHeaderTitle{
+  color: #858686 ;
+}
+
+
+.MuiDataGrid-root.MuiDataGrid-row.Mui-selected{
+  background-color: green;
+}
+
+.MuiDataGrid-actionsCell{
+
+  background-color: bisque;
+
+}
+
+.MuiDataGrid-columnHeader	{
+  background-color:  #efefef;
 }
 
 .recharts-wrapper {

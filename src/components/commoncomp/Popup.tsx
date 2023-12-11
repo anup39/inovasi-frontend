@@ -115,7 +115,11 @@ const Popup = ({ properties, trace }: PopupProps) => {
             ) : null}
             {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
             <div className="divide-y divide-gray-200   mt-3  ">
-              {propertyElements}
+              {propertyElements && propertyElements.length > 0 ? (
+                propertyElements
+              ) : (
+                <p>Hover on map layer for info</p>
+              )}
             </div>
           </div>
         ) : null}

@@ -1,4 +1,13 @@
-import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, LabelList, Cell } from 'recharts';
+import {
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ComposedChart,
+  LabelList,
+  Cell,
+} from "recharts";
 
 // @ts-ignore
 const renderCustomizedLabel = (props) => {
@@ -12,7 +21,7 @@ const renderCustomizedLabel = (props) => {
         fill="#000"
         // textAnchor="middle"
         dominantBaseline="middle"
-        style={{fontSize: "40px"}}
+        style={{ fontSize: "40px" }}
       >
         {value}
       </text>
@@ -20,12 +29,13 @@ const renderCustomizedLabel = (props) => {
   );
 };
 
+// @ts-ignore
 export default function LineBar(props: any) {
   const { lowerBoxes } = props;
   console.log(lowerBoxes);
   const data = lowerBoxes.title.map((name: string, index: number) => ({
     name,
-    value: parseFloat(lowerBoxes.numbers[index].replace('%', '')),
+    value: parseFloat(lowerBoxes.numbers[index].replace("%", "")),
     fill: lowerBoxes.colors[index],
   }));
   return (
@@ -42,10 +52,20 @@ export default function LineBar(props: any) {
       }}
     >
       <CartesianGrid stroke="#eaeaea" strokeDasharray="3 3" />
-      <XAxis type="number" width={500} className='w-100' tick={{ fontSize: 40 }} />
-      <YAxis dataKey="name" type="category" width={250} tick={{ fontSize: 40 }} />
+      <XAxis
+        type="number"
+        width={500}
+        className="w-100"
+        tick={{ fontSize: 40 }}
+      />
+      <YAxis
+        dataKey="name"
+        type="category"
+        width={250}
+        tick={{ fontSize: 40 }}
+      />
       <Tooltip />
-      <Bar dataKey="value" fill="#8884d8" barSize={70} >
+      <Bar dataKey="value" fill="#8884d8" barSize={70}>
         <LabelList dataKey="value" content={renderCustomizedLabel} />
         {data.map((entry: any, index: number) => (
           <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -53,4 +73,4 @@ export default function LineBar(props: any) {
       </Bar>
     </ComposedChart>
   );
-        }
+}

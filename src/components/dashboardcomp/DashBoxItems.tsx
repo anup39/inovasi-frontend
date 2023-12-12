@@ -67,6 +67,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
+          image_path: "facilities.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -120,6 +121,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "facilities.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -169,6 +171,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "refinery.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -216,6 +219,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                 fill_opacity: "0",
                 stroke_color: "",
               },
+              image_path: "mill.png",
               zoomToLayer: true,
               center: [103.8574, 2.2739],
               fillType: "point",
@@ -273,7 +277,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                   >
                     {item.total}
                   </p>
-                  <p className="text-xs md:text-sm">Facilites</p>
+                  <p className="text-xs ">Facilites</p>
                 </div>
               </div>
             </div>

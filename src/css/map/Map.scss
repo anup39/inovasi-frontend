@@ -16,6 +16,11 @@
   right: 4px;
 }
 
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl {
+  float: right;
+  margin: 0 5px 5px 0;
+}
+
 .maplibregl-ctrl-group {
   background-color: #1976d2;
 }

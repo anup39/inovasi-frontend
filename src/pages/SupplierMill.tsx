@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import MapComponent from "../map/Map";
-import PieChartComp from "../components/commoncomp/PieChartComp";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
 import { Map } from "maplibre-gl";
@@ -14,7 +13,9 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
-import LineBar from "../components/commoncomp/LineBar";
+// import LineBar from "../components/commoncomp/LineBar";
+import PieChartComp from "../components/commoncomp/PieChartComp";
+// import LineBarComp from "../components/commoncomp/LineBarNew";
 
 const items = [
   {
@@ -24,7 +25,7 @@ const items = [
     distinct: "mill_deforestation_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48", "22%", "30%"],
+      numbers: ["48%", "22%", "30%"],
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
   },
@@ -35,7 +36,7 @@ const items = [
     distinct: "mill_legal_prf_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2"],
-      numbers: ["48", "22%"],
+      numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
   },
@@ -46,7 +47,7 @@ const items = [
     distinct: "mill_legal_landuse_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2"],
-      numbers: ["48", "22%"],
+      numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
   },
@@ -57,7 +58,7 @@ const items = [
     distinct: "mill_complex_supplybase_risk",
     lowerBoxes: {
       title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48", "22%", "30%"],
+      numbers: ["48%", "22%", "30%"],
       colors: ["#10BD82", "#83DE60", "#B8E500"],
     },
   },
@@ -95,6 +96,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
+          image_path: "mill.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -126,7 +128,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
-  const [selectedOption, setSelectedOption] = useState("metric");
+  const [selectedOption, setSelectedOption] = useState("list");
 
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
@@ -139,11 +141,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
     setSelectedOption(option);
   }
+
   const pageHeight = `calc(100vh - 60px)`;
+
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col" style={{ height: pageHeight }}>
+      <div className="flex flex-col h-screen ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -217,14 +221,20 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  <LineBar />
-                  {/* <PieChartComp
+                  {/* <LineBarComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
                   /> */}
+                  <PieChartComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  />
                   <div
                     style={{ height: "0.7px" }}
                     className="bg-boxDivider mb-1 w-full"

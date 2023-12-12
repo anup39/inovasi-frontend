@@ -14,7 +14,6 @@ interface BufferProps {
   map: Map;
 }
 
-
 const Buffer = ({ map }: BufferProps) => {
   const dispatch = useDispatch();
   const estateids = localStorage.getItem("estateids");
@@ -72,6 +71,7 @@ const Buffer = ({ map }: BufferProps) => {
             fill_opacity: "0",
             stroke_color: "black",
           },
+          image_path: "",
           zoomToLayer: false,
           center: [103.8574, 2.2739],
           fillType: "fill",
@@ -105,6 +105,7 @@ const Buffer = ({ map }: BufferProps) => {
           fill_opacity: "0",
           stroke_color: "black",
         },
+        image_path: "",
         zoomToLayer: false,
         center: [103.8574, 2.2739],
         fillType: "fill",

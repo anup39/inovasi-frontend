@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import { ComposedChart, Pie, Tooltip, Cell } from "recharts";
 import { useSelector } from "react-redux";
 import axios from "axios";
 // import colors from "../../utils/color";
 import { RootState } from "../../store";
+import {
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ComposedChart,
+  LabelList,
+  Cell,
+} from "recharts";
 
-interface PieChartCompProps {
+interface ComposedChartProps {
   data: { id: number; name: string; selected: boolean; distinct: string };
   params: { estateids: string[]; geometry_wkt: string };
   params_include: boolean;
@@ -13,7 +23,7 @@ interface PieChartCompProps {
   height_: number;
 }
 
-const PieChartComp: React.FC<PieChartCompProps> = ({
+const LineBarComp: React.FC<ComposedChartProps> = ({
   data,
   width_,
   height_,
@@ -64,34 +74,40 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     return `hsl(159, 83%, ${lightness}%)`;
   };
   return (
-    <PieChart width={width_} height={height_}>
-      <Pie
-        isAnimationActive={true}
-        dataKey="count"
-        nameKey="display"
-        data={piedata}
-        cx="50%"
-        cy="50%"
-        innerRadius={60}
-        outerRadius={80}
-        fill="#82ca9d"
-      >
-        {/* @ts-ignore */}
-        {piedata.map((entry, index) => (
-          // @ts-ignore
-          <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
-        ))}
-      </Pie>
-      <Tooltip
-        itemStyle={{ color: "white", cursor: "pointer" }}
-        contentStyle={{
-          backgroundColor: "#37525c",
-          color: "#FFFFFF",
-          cursor: "pointer",
-        }}
+    <ComposedChart
+      layout="vertical"
+      width={600}
+      height={400}
+      data={data}
+      margin={{
+        top: 10,
+        right: 30,
+        bottom: 10,
+        left: 10,
+      }}
+    >
+      <CartesianGrid stroke="#eaeaea" strokeDasharray="3 3" />
+      <XAxis
+        type="number"
+        width={500}
+        className="w-100"
+        tick={{ fontSize: 40 }}
       />
-    </PieChart>
+      <YAxis
+        dataKey="name"
+        type="category"
+        width={250}
+        tick={{ fontSize: 40 }}
+      />
+      <Tooltip />
+      <Bar dataKey="value" fill="#8884d8" barSize={70}>
+        <LabelList dataKey="value" content={renderCustomizedLabel} />
+        {data.map((entry: any, index: number) => (
+          <Cell key={`cell-${index}`} fill={entry.fill} />
+        ))}
+      </Bar>
+    </ComposedChart>
   );
 };
 
-export default PieChartComp;
+export default LineBarComp;

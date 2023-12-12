@@ -32,7 +32,7 @@ function Avaibility() {
         </div>
         <div className="h-1 hidden lg:block bg-boxDivider w-full my-5"></div>
         <div className="flex scale-75 md:scale-100 flex-col lg:flex-row gap-10 items-center justify-center lg:pt-20 w-full">
-          <div className="flex  items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+          <div className="flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
             <div className="bg-countriesBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img
                 className="scale-90 self-center"
@@ -45,8 +45,8 @@ function Avaibility() {
               <p className="text-semiBlackText">Countries</p>
             </div>
           </div>
-          <div className="flex items-center justify-start gap-5 bg-bgPage px-2 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
-            <div className="bg-countriesBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
+          <div className=" flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-2 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+            <div className="bg-borderGreen scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img className="scale-90 self-center" src="plots.svg" alt="" />
             </div>
             <div className="flex flex-col gap-2">
@@ -54,8 +54,8 @@ function Avaibility() {
               <p className="text-semiBlackText">of Plots</p>
             </div>
           </div>
-          <div className="flex items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
-            <div className="bg-countriesBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
+          <div className="flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+            <div className="bg-plantedBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img
                 className="scale-90 self-center"
                 src="plantedarea.svg"

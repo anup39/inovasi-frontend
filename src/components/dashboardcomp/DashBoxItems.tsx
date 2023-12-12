@@ -259,7 +259,7 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
                     alt=""
                   />
                   <div className="flex pl-2 lg:pt-3 md:pl-0 w-full flex-col-reverse items-start md:flex-row gap-2 md:gap-3 md:items-center justify-between">
-                    <p className=" text-semiBlackText font-medium md:font-semibold text-xs lg:text-sm max-w-[80px]  ">
+                    <p className=" text-semiBlackText font-medium md:font-semibold lg:font-bold text-xs lg:text-lg max-w-[80px]  ">
                       {item.name}
                     </p>
                     <img

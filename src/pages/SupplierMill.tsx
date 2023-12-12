@@ -13,6 +13,7 @@ import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
+import PieChartComp from "../components/commoncomp/PieChartComp";
 // import LineBar from "../components/commoncomp/LineBar";
 
 const items = [
@@ -142,11 +143,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const pageHeight = `calc(100vh - 60px)`;
 
-  
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-screen">
+      <div style={{ height: pageHeight }} className="flex flex-col ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -205,7 +205,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         ) : (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
             {items.map((item) => (
-
               <div
                 key={item.id}
                 className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "

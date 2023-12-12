@@ -80,12 +80,15 @@ const Popup = ({ properties, trace }: PopupProps) => {
 
   return (
     <div
-      style={{ minWidth: "320px" }}
-      className={`flex-1 bg-white   max-w-xs rounded-lg ${popup ? "" : ""} `}
+      className={`flex-1 bg-white min-w-[200px] md:min-w-[350px] min-h-[30px]   max-w-xs rounded-lg ${
+        popup ? "" : ""
+      } `}
     >
       <div className="flex flex-col relative items-center justify-between  p-3">
         <div className="flex items-center justify-between w-full ">
-          <h1 className="font-bold uppercase hidden md:block">information</h1>
+          <h1 className="font-normal md:font-bold uppercase text-[9px] md:text-sm mx-auto md:mx-0 md:block">
+            information
+          </h1>
 
           {trace ? (
             <button
@@ -102,14 +105,13 @@ const Popup = ({ properties, trace }: PopupProps) => {
             popup ? "rotate-180" : ""
           } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2  aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
         >
-          <img className="" src="popuparrow.svg" alt="" />
+          <img className="scale-75 md:scale-100" src="popuparrow.svg" alt="" />
         </div>
         {properties ? (
           <div
-            style={{ minWidth: "320px" }}
-            className={`bg-white rounded  p-2 max-w-xs overflow-x-scroll ${
+            className={`bg-white rounded max-w-[200px] md:min-w-[350px] p-2 overflow-scroll overflow-y-scroll ${
               popup ? "block" : "hidden"
-            }  md:max-w-xs max-h-48 `}
+            }  md:max-w-xs max-h-[150px] md:max-h-52 `}
           >
             {/* <button
                 onClick={handleTraceplantation}

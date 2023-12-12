@@ -11,6 +11,8 @@ import PieChartComp from "../components/commoncomp/PieChartComp";
 import { RootState } from "../store";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import SwitchComp from "../components/commoncomp/SwitchComp";
 import {
   settoastType,
   settoastMessage,
@@ -156,17 +158,74 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
       });
   }, [dispatch, estateids, mill_id]);
   const pageHeight = `calc(100vh - 60px)`;
+  function handleSwitchChange(checked: boolean) {
+    setShowMap(checked);
+  }
+  function handleMetricChange(option: string) {
+    if (option === "metric") {
+      dispatch(setselectedDataFormat("Metric"));
+    } else {
+      dispatch(setselectedDataFormat("Table"));
+    }
+    setSelectedOption(option);
+  }
+  const [showMap, setShowMap] = useState(true);
+  const [selectedOption, setSelectedOption] = useState("list");
+
+  const theme = createTheme();
 
   return (
     <Layout>
       <Toast />
       <div className="flex flex-col" style={{ height: pageHeight }}>
-        <div className="flex-1 py-2">
+        <div className="flex items-center justify-end px-5">
+          <ThemeProvider theme={theme}>
+            <SwitchComp
+              label="Map"
+              defaultChecked={showMap}
+              // @ts-ignore
+              onChange={handleSwitchChange}
+            />
+          </ThemeProvider>
+        </div>
+        <div
+          className={`my-1  ${
+            showMap ? "block" : "hidden"
+          } flex-1 min-h-[250px]`}
+        >
           <MapComponent
             map={map}
             onSetMap={onSetMap}
             component="supplier-plantation"
           />
+        </div>
+        <div
+          className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
+            showMap ? "block" : "hidden"
+          }
+          
+          bg-white w-2/3 max-w-[330px] rounded-lg`}
+        >
+          <div
+            onClick={() => handleMetricChange("metric")}
+            className={`transition-all ease-in delay-75 rounded-lg ${
+              selectedOption === "metric"
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                : "w-1/2 bg-lightGray rounded-lg "
+            } py-2 text-center  cursor-pointer`}
+          >
+            Metric
+          </div>
+          <div
+            onClick={() => handleMetricChange("list")}
+            className={` rounded-lg ${
+              selectedOption === "list"
+                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                : "w-1/2  bg-bgLightGray"
+            } py-2 text-center cursor-pointer rounded-lg`}
+          >
+            List
+          </div>
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>

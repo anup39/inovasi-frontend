@@ -20,16 +20,12 @@ function Register() {
         </h1>
         <div className='bg-lightGray mt-6 mb-[50px] max-w-[300] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[700px] xl:max-w-[750px] 2xl:max-w-[826px] m-auto'>
           <form>
-            <div className='flex relative justify-center pt-12 '>
-              <input
-                type='file'
-                accept='image'
-                className='border rounded-full w-32 h-32'
-              />
+            <div className='flex relative justify-center pt-12 border rounded-full bg-white w-32 h-32 '>
               <button
                 type='button'
-                className='absolute top ml-20 w-10 h-10 rounded-full bottom-1  cursor-pointer bg-lightGray shadow-md '
+                className='absolute top ml-20 w-10 h-10 rounded-full bottom-1 cursor-pointer bg-lightGray shadow-md '
               >
+                <input type='file' accept='image' className='hidden' />
                 <AddAPhotoIcon />
               </button>
             </div>

@@ -15,6 +15,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import PieChartComp from "../components/commoncomp/PieChartComp";
 // import LineBar from "../components/commoncomp/LineBar";
+import PieChartComp from "../components/commoncomp/PieChartComp";
+// import LineBarComp from "../components/commoncomp/LineBarNew";
 
 const items = [
   {
@@ -120,10 +122,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Table"));
   }, [dispatch]);
 
-  // const params = {
-  //   estateids: [],
-  //   geometry_wkt: "",
-  // };
+  const params = {
+    estateids: [],
+    geometry_wkt: "",
+  };
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
@@ -143,9 +145,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const pageHeight = `calc(100vh - 60px)`;
 
+
   return (
     <Layout>
       <Toast />
+      <div className="flex flex-col h-screen ">
       <div style={{ height: pageHeight }} className="flex flex-col ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
@@ -220,7 +224,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       alt=""
                     />
                   </div>
-                  {/* <LineBar /> */}
+                  {/* <LineBarComp
+                    params={params}
+                    data={item}
+                    width_={200}
+                    height_={200}
+                    params_include={false}
+                  /> */}
                   <PieChartComp
                     params={params}
                     data={item}

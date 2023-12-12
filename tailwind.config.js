@@ -44,6 +44,7 @@ export default {
         collabBorder: "#02C68566",
         countriesBg: "#04C684",
         mapDivider: "#B8BCBC",
+        plantedBg: "#B8E500",
       },
     },
   },

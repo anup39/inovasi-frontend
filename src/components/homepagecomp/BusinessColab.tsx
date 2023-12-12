@@ -27,15 +27,15 @@ function BusinessColab() {
       <p className="text-subTextHome text-center ">
         Listen to what our satisfied partners are saying
       </p>{" "}
-      <Marquee pauseOnHover={true}>
-        <div className=" flex flex-row items-center overflow-hidden w-full min-w-full py-5 md:py-32">
+      <Marquee pauseOnHover={true} speed={50}>
+        <div className=" flex flex-row items-center overflow-hidden w-full min-w-full py-10 md:py-32">
           {logos.map((logo, index) => (
             <div
               key={index}
               className="md:border-x flex flex-col items-center justify-center w-[120px] md:w-[200px] lg:[250px] h-16 md:h-32 lg:h-48 border-x-collabBorder"
             >
               <img
-                className="w-[50px] lg:scale-90 lg:scale-100  md:w-3/5 px-1 md:px-10"
+                className="w-[50px] md:scale-90 lg:scale-[1.25]  md:w-3/5 px-1 md:px-10"
                 src={logo}
                 alt=""
               />

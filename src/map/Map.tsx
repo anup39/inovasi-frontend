@@ -156,7 +156,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       id="map"
       className=" map h-full rounded-lg relative"
     >
-      <div className="absolute top-0 right-2 z-10">
+      <div className="absolute top-0 -right-5 md:right-2 z-10">
         <BaseMapSwitch />
       </div>
     </div>

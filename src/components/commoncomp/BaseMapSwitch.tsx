@@ -5,8 +5,8 @@ function BaseMapSwitch() {
   const [showViews, setShowViews] = useState(false);
 
   return (
-    <div className="relative flex gap-2  items-center justify-center transition-all ease-in-out scale-75">
-      <div className="flex rounded-xl  gap-3 bg-white  border border-darkGreen px-3 py-2 h-[48px]">
+    <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
+      <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">
         <img className="cursor-pointer " src="mapzoomin.svg" alt="" />
         <div className="border-r-2 border-r-mapDivider"></div>
         <img className="cursor-pointer" src="mapzoomout.svg" alt="" />
@@ -16,13 +16,17 @@ function BaseMapSwitch() {
         onMouseOut={() => setShowViews(false)}
         className="h-[55px] cursor-pointer"
       >
-        <img className="scale-105" src="mapselectview.svg" alt="" />
+        <img className="scale-90 md:scale-105" src="mapselectview.svg" alt="" />
       </div>
-      <div className="border border-darkGreen rounded-xl cursor-pointer">
-        <img className="scale-105" src="mapruler.svg" alt="" />
+      <div className="md:border border-darkGreen rounded-xl cursor-pointer">
+        <img className="scale-90 md:scale-105" src="mapruler.svg" alt="" />
       </div>
-      <div className="border cursor-pointer border-darkGreen rounded-xl">
-        <img className="scale-105 " src="mapfullscreen.svg" alt="" />
+      <div className="md:border cursor-pointer border-darkGreen rounded-xl">
+        <img
+          className="scale-90 md:scale-105 "
+          src="mapfullscreen.svg"
+          alt=""
+        />
       </div>
       {/* div that opens up */}
       <div

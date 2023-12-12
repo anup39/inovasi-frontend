@@ -2,7 +2,6 @@ import { useState } from "react";
 import NavBar from "./NavBar";
 import Sidebar from "./Sidebar";
 
-
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -15,19 +14,23 @@ function Layout({ children }: LayoutProps) {
   const pageHeight = `calc(100vh - 60px)`;
 
   return (
-    <div className="flex">
-      <div style={{ width: sidebarWidth, flex: `0 0 ${sidebarWidth}` }}>
+    <div className="flex relative">
+      <div
+        style={{
+          width: sidebarWidth,
+          flex: `0 0 ${sidebarWidth}`,
+        }}
+      >
         <Sidebar
           setSidebarOpened={setSidebarOpened}
           sidebarOpened={sidebarOpened}
         />
       </div>
       <div className="flex flex-col" style={{ width: contentWidth }}>
-      
         <NavBar />
         <div
           style={{ height: pageHeight }}
-          className="flex-1 overflow-x-hidden px-7 bg-bgPage bg-opacity-80"
+          className="flex-1 overflow-x-hidden px-7 bg-bgPage bg-opacity-80 "
         >
           {children}
         </div>

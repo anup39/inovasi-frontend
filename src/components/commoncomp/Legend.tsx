@@ -53,15 +53,17 @@ export default function Lenged() {
     <div>
       <div
         onClick={() => setShowLegend(!showLegend)}
-        className="scale-75 md:scale-100 absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-2 left-2 z-10"
+        className="scale-75 md:scale-100 absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-1 md:top-2 left-0 md:left-2 z-10"
       >
         i
       </div>
       {/* legend div */}
       <div
-        className={`shadow p-3 transition-all ease-in-out delay-100 ${
+        className={`shadow p-3 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
-        } rounded-lg flex-col gap-2 bg-white absolute z-10 top-2 left-10 h-full md:h-max w-2/3 md:w-1/3  lg:w-[250px]`}
+        } rounded-lg flex-col gap-2 bg-white absolute z-10 md:top-2 -left-10 md:left-10 ${
+          showMore ? "h-[270px] -top-5" : "h-[150px] top-2"
+        }  md:h-max w-[260px]`}
       >
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-lg">Legend</h1>

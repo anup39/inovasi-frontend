@@ -3,6 +3,15 @@ import { useState } from "react";
 function Avaibility() {
   const [selectedTitle, setSelectedTitle] = useState(0);
   const titles = ["Palm Oil", "Rubber", "Soy", "Cacao", "Coffee"];
+  const [showLowerBoxes, setShowLowerBoxes] = useState(true);
+
+  const handleTitleClick = (index) => {
+    setSelectedTitle(index);
+    setShowLowerBoxes(false);
+    setTimeout(() => {
+      setShowLowerBoxes(true);
+    }, 100);
+  };
 
   return (
     <div className="mx-2 md:mx-10 lg:mx-20 my-5 md:my-16 bg-white p-10 rounded-3xl">
@@ -19,7 +28,7 @@ function Avaibility() {
           {titles.map((title, index) => (
             <div
               key={index}
-              onClick={() => setSelectedTitle(index)}
+              onClick={() => handleTitleClick(index)}
               className={`cursor-pointer w-1/6 min-w-[130px] py-4 lg:py-2 ${
                 selectedTitle === index
                   ? "bg-gradient-to-r from-footerHeading to-parrot text-white transition-all delay-75 ease-out font-semibold "
@@ -31,8 +40,13 @@ function Avaibility() {
           ))}
         </div>
         <div className="h-1 hidden lg:block bg-boxDivider w-full my-5"></div>
+        {/* lower boxes */}
         <div className="flex scale-75 md:scale-100 flex-col lg:flex-row gap-10 items-center justify-center lg:pt-20 w-full">
-          <div className="flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+          <div
+            className={`flex ${
+              showLowerBoxes ? "opacity-100" : "opacity-0"
+            } transition-opacity ease-in cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4`}
+          >
             <div className="bg-countriesBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img
                 className="scale-90 self-center"
@@ -45,7 +59,12 @@ function Avaibility() {
               <p className="text-semiBlackText">Countries</p>
             </div>
           </div>
-          <div className=" flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-2 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+
+          <div
+            className={`flex ${
+              showLowerBoxes ? "opacity-100" : "opacity-0"
+            } transition-opacity ease-in cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4`}
+          >
             <div className="bg-borderGreen scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img className="scale-90 self-center" src="plots.svg" alt="" />
             </div>
@@ -54,7 +73,11 @@ function Avaibility() {
               <p className="text-semiBlackText">of Plots</p>
             </div>
           </div>
-          <div className="flex cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4">
+          <div
+            className={`flex ${
+              showLowerBoxes ? "opacity-100" : "opacity-0"
+            } transition-opacity ease-in cursor-pointer hover:shadow-lg items-center justify-start gap-5 bg-bgPage px-4 py-4 rounded-lg min-w-[200px] w-3/4 lg:w-1/4`}
+          >
             <div className="bg-plantedBg scale-75 lg:scale-100 h-20 aspect-square rounded-full flex items-center justify-center">
               <img
                 className="scale-90 self-center"

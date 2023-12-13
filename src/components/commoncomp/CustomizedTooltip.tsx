@@ -8,15 +8,16 @@ const CustomTooltip = ({ active, payload, label }) => {
         style={{
           width: "100px",
           height: "65px",
-          backgroundColor: "#37525c",
+          backgroundColor: "black",
           opacity: 0.7,
           color: "white",
           borderRadius: "2px",
           padding: "5px",
-          margin: "5px",
+          // margin: "5px",
           display: "flex",
           flexDirection: "column",
           gap: "10px",
+          fontWeight: "bold",
         }}
       >
         <div>Malaysia </div>

@@ -49,8 +49,8 @@ const renderActiveShape = (props) => {
       <Sector
         cx={cx}
         cy={cy}
-        innerRadius={innerRadius - 4}
-        outerRadius={outerRadius + 4}
+        innerRadius={innerRadius - 5}
+        outerRadius={outerRadius + 5}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
@@ -128,9 +128,21 @@ export default class PieChartCompUpdated extends PureComponent {
     index,
   }) => {
     return (
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={"black"}>
-        Total : 600
-      </text>
+      <g>
+        <text x={cx} y={cy - 5} dy={8 - 5} textAnchor="middle" fill={"#858686"}>
+          Total
+        </text>
+        <text
+          x={cx}
+          y={cy + 7}
+          dy={8 + 7}
+          textAnchor="middle"
+          fill={"#858686"}
+          style={{ fontWeight: "bold", fontSize: "20px" }}
+        >
+          600
+        </text>
+      </g>
     );
   };
 
@@ -166,7 +178,16 @@ export default class PieChartCompUpdated extends PureComponent {
               cursor: "pointer",
             }}
           /> */}
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip
+            // allowEscapeViewBox={{ x: true, y: false }}
+            // viewBox={{
+            //   x: 5,
+            //   y: 5,
+            //   height: 25,
+            //   width: 25,
+            // }}
+            content={<CustomTooltip />}
+          />
         </PieChart>
       </ResponsiveContainer>
     );

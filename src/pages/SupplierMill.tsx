@@ -15,7 +15,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import PieChartComp from "../components/commoncomp/PieChartComp";
 // import LineBar from "../components/commoncomp/LineBar";
-import PieChartComp from "../components/commoncomp/PieChartComp";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
 
 const items = [
@@ -145,11 +144,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const pageHeight = `calc(100vh - 60px)`;
 
-
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-screen ">
       <div style={{ height: pageHeight }} className="flex flex-col ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>

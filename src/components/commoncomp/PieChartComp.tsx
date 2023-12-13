@@ -20,9 +20,12 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   params,
   params_include,
 }) => {
+  const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
+
+  console.log(data, "data");
 
   useEffect(() => {
     if (!params_include) {
@@ -49,6 +52,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
 
     return () => {
       setpieData([]);
+      setActiveIndex(undefined);
+      setActiveTooltip(false);
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
@@ -85,11 +90,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   };
 
   const onPieEnter = (_, index) => {
+    setActiveTooltip(false);
     setActiveIndex(index);
+    setActiveTooltip(true);
   };
 
   const onPieExit = () => {
     setActiveIndex(undefined);
+    setActiveTooltip(false);
   };
 
   const labelPieChart = ({ cx, cy }) => {
@@ -112,7 +120,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     );
   };
   return (
-    <PieChart width={width_} height={height_}>
+    <PieChart
+      onMouseLeave={onPieExit}
+      onMouseOut={onPieExit}
+      width={width_}
+      height={height_}
+      cursor="pointer"
+    >
       <Pie
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
@@ -125,8 +139,12 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         innerRadius={60}
         outerRadius={80}
         fill="#82ca9d"
-        onMouseEnter={onPieEnter}
         onMouseLeave={onPieExit}
+        onMouseDown={onPieExit}
+        onMouseOut={onPieExit}
+        onMouseMove={onPieEnter}
+        onMouseDownCapture={onPieExit}
+        onMouseMoveCapture={onPieExit}
         labelLine={false}
         label={labelPieChart}
       >
@@ -136,7 +154,15 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
         ))}
       </Pie>
-      <Tooltip content={<CustomTooltip active={false} payload={[]} />} />
+      <Tooltip
+        content={
+          <CustomTooltip
+            display={activeTooltip}
+            active={activeTooltip}
+            payload={[]}
+          />
+        }
+      />
     </PieChart>
   );
 };

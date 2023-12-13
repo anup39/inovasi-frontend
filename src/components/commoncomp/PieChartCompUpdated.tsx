@@ -1,11 +1,19 @@
 import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Sector,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import CustomTooltip from "./CustomizedTooltip";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+const piedata = [
+  { name: "Group A", count: 5000 },
+  { name: "Group B", count: 3000 },
+  { name: "Group C", count: 30 },
+  { name: "Group D", count: 200 },
 ];
 
 const renderActiveShape = (props) => {
@@ -35,19 +43,19 @@ const renderActiveShape = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-      </text>
-      {/* <Sector
+      {/* <text x={cx} y={cy} dy={8} textAnchor="middle" fill={"black"}>
+        Total : 500
+      </text> */}
+      <Sector
         cx={cx}
         cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
+        innerRadius={innerRadius - 4}
+        outerRadius={outerRadius + 4}
         startAngle={startAngle}
         endAngle={endAngle}
         fill={fill}
       />
-      <Sector
+      {/* <Sector
         cx={cx}
         cy={cy}
         startAngle={startAngle}
@@ -80,13 +88,21 @@ const renderActiveShape = (props) => {
     </g>
   );
 };
-
+const gradientColor = (count) => {
+  const minLightness = 80; // Lightness of the starting color
+  const maxLightness = 40; // Lightness for the darkest shade of red
+  // @ts-ignore
+  const maxCount = Math.max(...piedata.map((item) => item.count));
+  const lightness =
+    minLightness - (count / maxCount) * (minLightness - maxLightness);
+  return `hsl(159, 83%, ${lightness}%)`;
+};
 export default class PieChartCompUpdated extends PureComponent {
   static demoUrl =
     "https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si";
 
   state = {
-    activeIndex: 0,
+    activeIndex: undefined,
   };
 
   onPieEnter = (_, index) => {
@@ -95,22 +111,62 @@ export default class PieChartCompUpdated extends PureComponent {
     });
   };
 
+  onPieExit = (_, index) => {
+    console.log(index, "index");
+    this.setState({
+      activeIndex: undefined,
+    });
+  };
+
+  labelPieChart = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    return (
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={"black"}>
+        Total : 600
+      </text>
+    );
+  };
+
   render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={500} height={500}>
+        <PieChart width={500} height={500} cursor="pointer">
           <Pie
             activeIndex={this.state.activeIndex}
             activeShape={renderActiveShape}
-            data={data}
+            data={piedata}
             cx="50%"
             cy="50%"
+            labelLine={false}
+            label={this.labelPieChart}
             innerRadius={60}
             outerRadius={80}
             fill="#8884d8"
-            dataKey="value"
+            dataKey="count"
             onMouseEnter={this.onPieEnter}
-          />
+            onMouseLeave={this.onPieExit}
+          >
+            {piedata.map((entry, index) => (
+              // @ts-ignore
+              <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+            ))}
+          </Pie>
+          {/* <Tooltip
+            itemStyle={{ color: "white", cursor: "pointer" }}
+            contentStyle={{
+              backgroundColor: "#37525c",
+              color: "#FFFFFF",
+              cursor: "pointer",
+            }}
+          /> */}
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </ResponsiveContainer>
     );

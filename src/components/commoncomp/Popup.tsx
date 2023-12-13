@@ -80,7 +80,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
 
   return (
     <div
-      className={`flex-1 bg-white min-w-[200px] md:min-w-[350px] min-h-[30px]   max-w-xs rounded-lg ${
+      className={`flex-1 bg-white min-w-[200px] md:min-w-[350px] max-h-[200px]   max-w-xs rounded-lg ${
         popup ? "" : ""
       } `}
     >

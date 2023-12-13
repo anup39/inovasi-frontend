@@ -23,22 +23,22 @@ import Toast from "../components/commoncomp/Toast";
 const items = [
   {
     id: 1,
-    name: "Supply Base Region Agriplot",
+    name: "Mill Type",
     selected: false,
     distinct: "country",
   },
   {
     id: 2,
-    name: "Supplier Type Agriplot",
+    name: "Mill Certification",
     selected: false,
     distinct: "type_of_supplier",
   },
-  {
-    id: 3,
-    name: "Risk Assess Agriplot",
-    selected: false,
-    distinct: "risk_assess",
-  },
+  // {
+  //   id: 3,
+  //   name: "Risk Assess Agriplot",
+  //   selected: false,
+  //   distinct: "risk_assess",
+  // },
 ];
 
 interface SupplierPlantationProps {
@@ -199,6 +199,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             component="supplier-plantation"
           />
         </div>
+        {/* div for the list/metric selector */}
         <div
           className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
             showMap ? "block" : "hidden"
@@ -238,11 +239,11 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row my-2 items-center justify-center gap-8">
+          <div className="flex flex-col lg:flex-row w-full my-2 items-center justify-center gap-8">
             {items.map((item) => (
-              <div key={item.id} className="bg-white flex ">
-                <div className="p-1">
-                  <h1 className="text-black font-bold">{item.name}</h1>
+              <div key={item.id} className="bg-white flex p-2 w-1/2 rounded-lg">
+                <h1 className="text-semiBlackText font-bold">{item.name}</h1>
+                <div className="flex px-2 py-5">
                   <PieChartComp
                     params={params}
                     data={item}

@@ -3,9 +3,9 @@ import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 // import SelectDataFormatControl from "./SelectDataFormatControl";
 import BufferControl from "./BufferControl";
-// import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
+import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
-// import GeocoderApi from "../maputils/GeocoderApi";
+import GeocoderApi from "../maputils/GeocoderApi";
 import PopupControl from "./PopupControl";
 import LegendControl from "./LegendControl";
 import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
@@ -65,6 +65,18 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       center: [103.8574, 2.2739],
       zoom: 5,
       attributionControl: false,
+    });
+
+    const geocoder = new MaplibreGeocoder(GeocoderApi, {
+      maplibregl: maplibregl,
+      showResultsWhileTyping: true,
+      flyTo: true,
+    });
+
+    geocoder.addTo(document.getElementById("geocoding-search"));
+    geocoder.on("result", function (ev) {
+      const coords = ev.result.geometry.coordinates;
+      map_.flyTo({ center: coords });
     });
 
     onSetMap(map_);

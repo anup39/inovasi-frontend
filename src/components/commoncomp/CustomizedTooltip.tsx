@@ -1,4 +1,9 @@
-const CustomTooltip = ({ active, payload, label }) => {
+interface CustomTooltipProps {
+  active: boolean;
+  payload: [];
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   console.log(active, "active");
   console.log(payload, "payload");
 

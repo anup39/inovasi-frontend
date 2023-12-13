@@ -149,7 +149,7 @@ export default class PieChartCompUpdated extends PureComponent {
   render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={500} height={500} cursor="pointer">
+        <PieChart width={500} height={500} cursor={"pointer"}>
           <Pie
             activeIndex={this.state.activeIndex}
             activeShape={renderActiveShape}
@@ -186,7 +186,7 @@ export default class PieChartCompUpdated extends PureComponent {
             //   height: 25,
             //   width: 25,
             // }}
-            content={<CustomTooltip />}
+            content={<CustomTooltip active={false} payload={[]} />}
           />
         </PieChart>
       </ResponsiveContainer>

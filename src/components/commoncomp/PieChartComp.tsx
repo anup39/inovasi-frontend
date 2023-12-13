@@ -66,6 +66,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   return (
     <PieChart width={width_} height={height_}>
       <Pie
+        activeIndex={this.state.activeIndex}
+        activeShape={renderActiveShape}
         isAnimationActive={true}
         dataKey="count"
         nameKey="display"

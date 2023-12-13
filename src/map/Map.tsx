@@ -73,7 +73,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       flyTo: true,
     });
 
-    geocoder.addTo(document.getElementById("geocoding-search"));
+    // geocoder.addTo(document.getElementById("geocoding-search"));
     geocoder.on("result", function (ev) {
       const coords = ev.result.geometry.coordinates;
       map_.flyTo({ center: coords });

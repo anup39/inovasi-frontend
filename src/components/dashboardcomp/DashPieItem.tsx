@@ -1,4 +1,5 @@
 import PieChartComp from "../commoncomp/PieChartComp";
+import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
 
 function DashPieItem() {
   const items = [
@@ -60,15 +61,17 @@ function DashPieItem() {
                 alt=""
               />
             </div>
-            <div className="">
-              <PieChartComp
+            {/* <div className=""> */}
+            {/* <PieChartComp
                 params={params}
                 data={item}
                 width_={180}
                 height_={180}
                 params_include={false}
-              />
-            </div>{" "}
+              /> */}
+
+            <PieChartCompUpdated />
+            {/* </div>{" "} */}
             <div
               style={{ height: "0.7px" }}
               className="bg-boxDivider hidden md:flex mb-1 w-full"

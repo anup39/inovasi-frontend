@@ -43,7 +43,7 @@ function BusinessColab() {
               className="md:border-x flex flex-col items-center justify-center w-[120px] md:w-[200px] lg:[250px] h-16 md:h-32 lg:h-48 border-x-collabBorder"
             >
               <img
-                className="w-[60px] md:scale-100 lg:scale-[1.3]  md:w-3/5 px-1 md:px-10"
+                className="w-[60px] md:scale-100 lg:scale-[1.6]  md:w-3/5 px-1 md:px-10"
                 src={logo}
                 alt=""
               />

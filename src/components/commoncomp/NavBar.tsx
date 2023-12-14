@@ -9,8 +9,8 @@ function NavBar() {
       <div className="hidden md:block">
         <h1 className="font-semibold">Dashboard</h1>
       </div>
-      <div className="flex justify-center  items-center gap-5">
-        <div className="flex gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
+      <div className="flex justify-center  items-center gap-2  md:gap-5">
+        <div className="flex scale-75 md:scale-100 gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
           <p className="text-grayText text-xs md:text-normal">Commodity</p>
           <img src="dropdownIcon.svg" alt="" />
         </div>

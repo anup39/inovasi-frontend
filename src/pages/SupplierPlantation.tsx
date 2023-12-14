@@ -20,6 +20,7 @@ import {
 } from "../reducers/DisplaySettings";
 import Toast from "../components/commoncomp/Toast";
 import Dropdown from "../components/commoncomp/Dropdown";
+import Pagination from "../components/commoncomp/Pagination";
 
 const lists = [
   { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
@@ -241,7 +242,14 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               List
             </div>
           </div>
-          <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
+          <div
+            className={`${selectedOption === "metric" ? "block" : "hidden"}`}
+          >
+            <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
+          </div>
+          <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
+            <Pagination />{" "}
+          </div>
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
@@ -277,7 +285,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                     params_include={false}
                   />
                   {/* div for those list */}
-                  <div className="flex scale-75 md:scale-90 lg:scale-100 flex-col gap-2  w-full">
+                  <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-2  w-full">
                     {lists.map((list) => (
                       <div
                         key={list.listTitle}

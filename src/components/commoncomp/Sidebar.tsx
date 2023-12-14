@@ -92,7 +92,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
         />
         {/* upper main div */}
         <div
-          className={`flex flex-col justify-start group py-7 gap-2 ${
+          className={`flex flex-col justify-start py-7 gap-2 ${
             sidebarOpened ? "" : ""
           } `}
         >
@@ -125,7 +125,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className={`fill-current group-hover:fill-hover-homeSubText`}
+              className={``}
             >
               <path
                 fillRule="evenodd"
@@ -136,13 +136,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                 }`}
               />
             </svg>
-            <h1
-              className={`group-hover:text-homeSubText ${
-                sidebarOpened ? "" : "hidden"
-              } `}
-            >
-              Dashboard
-            </h1>
+            <h1 className={` ${sidebarOpened ? "" : "hidden"} `}>Dashboard</h1>
           </div>
           {/* supplier mill */}
           <div

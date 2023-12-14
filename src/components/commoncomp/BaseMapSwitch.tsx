@@ -27,9 +27,9 @@ function BaseMapSwitch() {
             viewBox="0 0 24 24"
             fill="#018C79"
             stroke="#018C79"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>
@@ -42,9 +42,9 @@ function BaseMapSwitch() {
             viewBox="0 0 24 24"
             fill="#018C79"
             stroke="#018C79"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>

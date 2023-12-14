@@ -47,9 +47,7 @@ body {
   color: #858686;
 }
 
-.MuiDataGrid-root.MuiDataGrid-row.Mui-selected {
-  background-color: green;
-}
+
 
 .MuiDataGrid-actionsCell {
   background-color: bisque;
@@ -59,14 +57,3 @@ body {
   background-color: #efefef;
 }
 
-.recharts-wrapper {
-  width: 150px !important ;
-  height: 150px !important;
-}
-
-@media only screen and (max-width: 768px) {
-  .recharts-wrapper {
-    width: 60px !important;
-    height: 60px !important;
-  }
-}

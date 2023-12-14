@@ -150,19 +150,19 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: 250, width: "1568px" }}>
+    <Box sx={{ height: "400px ", width: "1568px" }}>
       <DataGrid
-        hideFooter={false}
+        hideFooter={true}
         rows={tableData}
         columns={tableColumn}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 6,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[6]}
         checkboxSelection={true}
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleonRowSelectionModelChange}

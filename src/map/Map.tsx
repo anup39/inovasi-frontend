@@ -54,6 +54,15 @@ interface MapProps {
 }
 
 export default function MapComponent({ onSetMap, component }: MapProps) {
+  console.log(component, "component");
+
+  let height = "min-h-[630px]";
+  if (component === "dashboard") {
+    height = "min-h-[630px]";
+  }
+  if (component === "mill") {
+    height = "min-h-[464px]";
+  }
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -169,7 +178,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div
       ref={mapContainer}
       id="map"
-      className=" map h-full rounded-lg relative w-full min-h-[630px]"
+      className={`map rounded-lg relative w-full ${height} `}
     >
       <div className="absolute top-0 -right-12 md:right-12 z-10">
         <BaseMapSwitch />

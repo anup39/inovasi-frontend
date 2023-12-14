@@ -148,7 +148,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex h-[1080px] flex-col ">
+      <div className="flex h-[984px] flex-col ">
         <div className="flex items-center justify-end px-1 m-2">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -159,9 +159,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
-          <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
-        </div>
+        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
+        <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
+        {/* </div> */}
         <div
           className={`flex w-full justify-between items-center ${
             showMap ? "block" : "hidden"
@@ -212,10 +212,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "
+                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[370px] md:w-[370px] h-[340px]  "
               >
                 <div className="py-2 px-2 flex items-center flex-col w-full">
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex justify-between items-center w-full py-5">
                     <h1 className="text-semiBlackText font-semibold md:font-bold text-sm p-1">
                       {item.name}
                     </h1>
@@ -235,15 +235,15 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   <PieChartComp
                     params={params}
                     data={item}
-                    width_={200}
-                    height_={200}
+                    width_={170}
+                    height_={170}
                     params_include={false}
                   />
                   <div
                     style={{ height: "0.7px" }}
-                    className="bg-boxDivider mb-1 w-full"
+                    className="bg-boxDivider mb-1 w-full mt-2"
                   ></div>
-                  <div className="flex w-full max-h-full">
+                  <div className="flex w-full max-h-full mt-[30px]">
                     {item.lowerBoxes.title.map((title, index) => (
                       <div
                         key={index}

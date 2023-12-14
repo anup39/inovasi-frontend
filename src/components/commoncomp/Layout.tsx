@@ -26,7 +26,7 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div className="flex flex-col" style={{ width: contentWidth }}>
+      <div className="flex sticky flex-col" style={{ width: contentWidth }}>
         <NavBar />
         <div
           style={{ height: pageHeight }}

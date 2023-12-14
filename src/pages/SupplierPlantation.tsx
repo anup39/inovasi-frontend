@@ -19,6 +19,20 @@ import {
   setshowToast,
 } from "../reducers/DisplaySettings";
 import Toast from "../components/commoncomp/Toast";
+import Dropdown from "../components/commoncomp/Dropdown";
+
+const lists = [
+  { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
+  { listTitle: "3rd Party Plantation", listValue: "1.232 ha", opacity: "0.85" },
+  { listTitle: "Scheme Smallholder", listValue: "2.311 ha", opacity: "0.7" },
+  {
+    listTitle: "Independent Smallholder",
+    listValue: "120 ha",
+    opacity: "0.55",
+  },
+  { listTitle: "POD", listValue: "374 ha", opacity: "0.4" },
+  { listTitle: "3rd Party Mill", listValue: "231 ha", opacity: "0.25" },
+];
 
 const items = [
   {
@@ -26,12 +40,14 @@ const items = [
     name: "Mill Type",
     selected: false,
     distinct: "country",
+    listColor: "#00AB71",
   },
   {
     id: 2,
     name: "Mill Certification",
     selected: false,
     distinct: "type_of_supplier",
+    listColor: "#FFAD33B2",
   },
   // {
   //   id: 3,
@@ -188,45 +204,44 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </ThemeProvider>
         </div>
-        <div
-          className={`my-1  ${
-            showMap ? "block" : "hidden"
-          } flex-1 min-h-[250px]`}
-        >
+        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
           <MapComponent
             map={map}
             onSetMap={onSetMap}
             component="supplier-plantation"
           />
         </div>
-        {/* div for the list/metric selector */}
-        <div
-          className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
-            showMap ? "block" : "hidden"
-          }
+        <div className="flex items-center justify-between">
+          {/* div for the list/metric selector */}
+          <div
+            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
+              showMap ? "block" : "hidden"
+            }
           
           bg-white w-2/3 max-w-[330px] rounded-lg`}
-        >
-          <div
-            onClick={() => handleMetricChange("metric")}
-            className={`transition-all ease-in delay-75 rounded-lg ${
-              selectedOption === "metric"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                : "w-1/2 bg-lightGray rounded-lg "
-            } py-2 text-center  cursor-pointer`}
           >
-            Metric
+            <div
+              onClick={() => handleMetricChange("metric")}
+              className={`transition-all ease-in delay-75 rounded-lg ${
+                selectedOption === "metric"
+                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-1/2 bg-lightGray rounded-lg "
+              } py-2 text-center  cursor-pointer`}
+            >
+              Metric
+            </div>
+            <div
+              onClick={() => handleMetricChange("list")}
+              className={` rounded-lg ${
+                selectedOption === "list"
+                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-1/2  bg-bgLightGray"
+              } py-2 text-center cursor-pointer rounded-lg`}
+            >
+              List
+            </div>
           </div>
-          <div
-            onClick={() => handleMetricChange("list")}
-            className={` rounded-lg ${
-              selectedOption === "list"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                : "w-1/2  bg-bgLightGray"
-            } py-2 text-center cursor-pointer rounded-lg`}
-          >
-            List
-          </div>
+          <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
@@ -239,11 +254,21 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row w-full my-2 items-center justify-center gap-8">
+          <div className="flex flex-col lg:flex-row w-full my-1 items-center  gap-8">
             {items.map((item) => (
-              <div key={item.id} className="bg-white flex p-2 w-1/2 rounded-lg">
-                <h1 className="text-semiBlackText font-bold">{item.name}</h1>
-                <div className="flex px-2 py-5">
+              <div
+                key={item.id}
+                className="bg-white relative flex flex-col gap-4 p-3 w-full lg:w-1/2 rounded-xl"
+              >
+                <h1 className="text-semiBlackText font-bold min-w-fit">
+                  {item.name}
+                </h1>
+                <img
+                  className="absolute top-2 right-2"
+                  src="moreinfo.svg"
+                  alt=""
+                />
+                <div className="flex items-center justify-between w-full gap-2 md:gap-10 lg:gap-20 px-2 py-5">
                   <PieChartComp
                     params={params}
                     data={item}
@@ -251,6 +276,27 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                     height_={200}
                     params_include={false}
                   />
+                  {/* div for those list */}
+                  <div className="flex scale-75 md:scale-90 lg:scale-100 flex-col gap-2  w-full">
+                    {lists.map((list) => (
+                      <div
+                        key={list.listTitle}
+                        className="flex gap-4 justify-between"
+                      >
+                        <div className="flex  gap-3 items-center">
+                          <div
+                            style={{
+                              backgroundColor: `${item.listColor}`,
+                              opacity: `${Number(list.opacity)}`,
+                            }}
+                            className={`w-[10px] h-[10px] ]`}
+                          ></div>
+                          <h1>{list.listTitle}</h1>
+                        </div>
+                        <div>{list.listValue}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

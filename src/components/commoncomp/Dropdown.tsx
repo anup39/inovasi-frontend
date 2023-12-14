@@ -23,11 +23,11 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-center w-16 md:w-24 lg:w-40 rounded-md border border-gray-300 px-4 py-2 bg-[#2A2A2A] text-sm  text-white  font-semibold hover:bg-black hover:scale-105 hover:border-black hover:text-black"
+          className="inline-flex justify-center w-16 md:w-24 lg:w-28  items-center rounded-xl border border-gray-300 px-4 py-2 bg-white text-sm  text-grayText  font-normal "
         >
           {selectedItem || placeholder}
           <svg
-            className="-mr-1 ml-2 h-5 w-5"
+            className="-mr-1 ml-2 mt-1 h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -42,18 +42,15 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-1/2 transform -translate-x-1/2 text-center w-20 md:w-24 lg:w-40 rounded-md shadow-lg bg-white focus:outline-none transition-all duration-300 ease-in-out ">
-          <ul
-            role="list"
-            className="py-1 overflow-y-auto max-h-48 font-semibold"
-          >
+        <div className="absolute z-20 left-1/2 text-grayText  font-normal transform -translate-x-1/2 text-center w-14 md:w-24 lg:w-28 rounded-lg shadow-lg bg-white focus:outline-none transition-all duration-300 ease-in-out ">
+          <ul role="list" className=" overflow-y-auto max-h-48 ">
             {options.map((item) => (
               <li
                 key={item}
-                className="text-gray-700 hover:bg-gray-200 cursor-pointer select-none relative py-1 md:py-2 pl-2 pr-2 mx-2 transition duration-100 ease-in-out"
+                className=" hover:bg-boxDivider cursor-pointer select-none relative py-2 text-left px-0 md:px-3  transition duration-100 ease-in-out"
                 onClick={() => handleItemClick(item)}
               >
-                <span className="block">{item}</span>
+                <span className="block text-[10px] md:text-lg">{item}</span>
               </li>
             ))}
           </ul>

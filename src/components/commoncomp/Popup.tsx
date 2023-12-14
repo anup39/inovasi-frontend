@@ -86,7 +86,7 @@ const Popup = ({ properties, trace }: PopupProps) => {
     >
       <div className="flex flex-col relative items-center justify-between  p-3">
         <div className="flex items-center justify-between w-full ">
-          <h1 className="font-normal md:font-bold uppercase text-[9px] md:text-sm mx-auto md:mx-0 md:block">
+          <h1 className="font-normal hidden md:font-bold uppercase text-[9px] md:text-sm mx-auto md:mx-0 md:block">
             information
           </h1>
 

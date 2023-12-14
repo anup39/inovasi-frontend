@@ -143,12 +143,12 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     setSelectedOption(option);
   }
 
-  const pageHeight = `calc(100vh - 60px)`;
+  // const pageHeight = `calc(100vh - 60px)`;
 
   return (
     <Layout>
       <Toast />
-      <div style={{ height: pageHeight }} className="flex flex-col ">
+      <div className="flex h-[1080px] flex-col ">
         <div className="flex items-center justify-end px-10">
           <ThemeProvider theme={theme}>
             <SwitchComp

@@ -208,7 +208,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-5">
             {items.map((item) => (
               <div
                 key={item.id}

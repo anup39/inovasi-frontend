@@ -22,7 +22,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
-      <div className="flex flex-col mx-2.5 " style={{ height: pageHeight }}>
+      <div className="flex flex-col" style={{ height: pageHeight }}>
         <Toast />
         <DashBoardItem map={map} />
         <div className=" flex-1 ">

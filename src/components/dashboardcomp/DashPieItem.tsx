@@ -1,4 +1,5 @@
 import PieChartComp from "../commoncomp/PieChartComp";
+import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
 
 function DashPieItem() {
   const items = [
@@ -68,7 +69,9 @@ function DashPieItem() {
                 height_={180}
                 params_include={false}
               />
-            </div>{" "}
+
+              {/* <PieChartCompUpdated /> */}
+            </div>
             <div
               style={{ height: "0.7px" }}
               className="bg-boxDivider hidden md:flex mb-1 w-full"

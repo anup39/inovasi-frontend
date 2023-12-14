@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Sector } from "recharts";
 import { useSelector } from "react-redux";
 import axios from "axios";
-// import colors from "../../utils/color";
 import { RootState } from "../../store";
+import CustomTooltip from "./CustomizedTooltip";
 
 interface PieChartCompProps {
   data: { id: number; name: string; selected: boolean; distinct: string };
@@ -20,8 +20,12 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   params,
   params_include,
 }) => {
+  const [activeTooltip, setActiveTooltip] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(undefined);
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
+
+  console.log(data, "data");
 
   useEffect(() => {
     if (!params_include) {
@@ -48,10 +52,31 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
 
     return () => {
       setpieData([]);
+      setActiveIndex(undefined);
+      setActiveTooltip(false);
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
   // console.log(gradient[99]); // To get the 100th color in the gradient
+
+  const renderActiveShape = (props: any) => {
+    const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
+      props;
+
+    return (
+      <g>
+        <Sector
+          cx={cx}
+          cy={cy}
+          innerRadius={innerRadius - 5}
+          outerRadius={outerRadius + 5}
+          startAngle={startAngle}
+          endAngle={endAngle}
+          fill={fill}
+        />
+      </g>
+    );
+  };
 
   // @ts-ignore
   const gradientColor = (count) => {
@@ -63,9 +88,48 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       minLightness - (count / maxCount) * (minLightness - maxLightness);
     return `hsl(159, 83%, ${lightness}%)`;
   };
+
+  const onPieEnter = (_, index) => {
+    setActiveTooltip(false);
+    setActiveIndex(index);
+    setActiveTooltip(true);
+  };
+
+  const onPieExit = () => {
+    setActiveIndex(undefined);
+    setActiveTooltip(false);
+  };
+
+  const labelPieChart = ({ cx, cy }) => {
+    return (
+      <g>
+        <text x={cx} y={cy - 5} dy={8 - 5} textAnchor="middle" fill={"#858686"}>
+          Total
+        </text>
+        <text
+          x={cx}
+          y={cy + 7}
+          dy={8 + 7}
+          textAnchor="middle"
+          fill={"#858686"}
+          style={{ fontWeight: "bold", fontSize: "20px" }}
+        >
+          600
+        </text>
+      </g>
+    );
+  };
   return (
-    <PieChart width={width_} height={height_}>
+    <PieChart
+      onMouseLeave={onPieExit}
+      onMouseOut={onPieExit}
+      width={width_}
+      height={height_}
+      cursor="pointer"
+    >
       <Pie
+        activeIndex={activeIndex}
+        activeShape={renderActiveShape}
         isAnimationActive={true}
         dataKey="count"
         nameKey="display"
@@ -75,6 +139,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         innerRadius={60}
         outerRadius={80}
         fill="#82ca9d"
+        onMouseLeave={onPieExit}
+        onMouseDown={onPieExit}
+        onMouseOut={onPieExit}
+        onMouseMove={onPieEnter}
+        onMouseDownCapture={onPieExit}
+        onMouseMoveCapture={onPieExit}
+        labelLine={false}
+        label={labelPieChart}
       >
         {/* @ts-ignore */}
         {piedata.map((entry, index) => (
@@ -83,12 +155,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         ))}
       </Pie>
       <Tooltip
-        itemStyle={{ color: "white", cursor: "pointer" }}
-        contentStyle={{
-          backgroundColor: "#37525c",
-          color: "#FFFFFF",
-          cursor: "pointer",
-        }}
+        content={
+          <CustomTooltip
+            display={activeTooltip}
+            active={activeTooltip}
+            payload={[]}
+          />
+        }
       />
     </PieChart>
   );

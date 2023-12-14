@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 // import SelectDataFormatControl from "./SelectDataFormatControl";
@@ -54,15 +54,8 @@ interface MapProps {
 }
 
 export default function MapComponent({ onSetMap, component }: MapProps) {
-  console.log(component, "component");
+  const [height, setHeight] = useState("min-h-[630px]");
 
-  let height = "min-h-[630px]";
-  if (component === "dashboard") {
-    height = "min-h-[630px]";
-  }
-  if (component === "mill") {
-    height = "min-h-[464px]";
-  }
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -92,6 +85,12 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     onSetMap(map_);
+    if (component === "dashboard") {
+      setHeight("min-h-[630px]");
+    }
+    if (component === "mill") {
+      setHeight("min-h-[464px]");
+    }
     // if (component === "mill" || component === "supplier-plantation") {
     //   const selectDataformat_control: IControl = new SelectDataFormatControl();
     //   map_.addControl(selectDataformat_control, "top-right");

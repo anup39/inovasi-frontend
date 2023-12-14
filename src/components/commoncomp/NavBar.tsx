@@ -11,7 +11,7 @@ function NavBar() {
           Dashboard
         </h1>
       </div>
-      <div className="flex justify-center  items-center gap-2  md:gap-5">
+      <div className="flex justify-center  items-center gap-2  md:gap-5 mr-7">
         <div className="flex scale-75 h-[42px] w-[150px] md:scale-100 gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
           <p className="text-grayText text-xs md:text-normal">Commodity</p>
           <img src="dropdownIcon.svg" alt="" />

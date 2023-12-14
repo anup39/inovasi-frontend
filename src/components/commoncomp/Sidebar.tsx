@@ -189,7 +189,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
               src="dropdownIcon.svg"
               alt=""
             /> */}
-            <div onClick={() => setMillActive(!millActive)}>
+            {/* <div onClick={() => setMillActive(!millActive)}>
               <svg
                 className={`${
                   sidebarOpened ? "" : "hidden"
@@ -211,39 +211,10 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
                   }`}
                 />
               </svg>
-            </div>
+            </div> */}
           </div>
           {/* container which opens when dropdown of mill clicked */}
-          <div className={`pl-9 ${millActive ? "block " : "hidden"}`}>
-            <ul className="space-y-1 relative">
-              {/* this div is for that gray vertical line */}
-              <div className="h-[155px] w-1 bg-gray-100 absolute -top-3 -left-4"></div>
-              <div className="relative">
-                <div className="w-4 h-2 absolute border-b-2  rounded-md rotate-[7deg] border-gra-100 top-4 -left-4"></div>
-                <li className="p-2 hover:bg-gray-50 hover:font-medium text-sm rounded-lg cursor-pointer">
-                  Deforestation Risk
-                </li>
-              </div>
-              <div className="relative">
-                <div className="w-4 h-2 absolute border-b-2  rounded-md rotate-[7deg] border-gra-100 top-4 -left-4"></div>
-                <li className="p-2 hover:bg-gray-50 hover:font-medium text-sm rounded-lg cursor-pointer">
-                  Legal PRF Risk
-                </li>
-              </div>
-              <div className="relative">
-                <div className="w-4 h-2 absolute border-b-2  rounded-md rotate-[7deg] border-gra-100 top-4 -left-4"></div>
-                <li className="p-2 hover:bg-gray-50 hover:font-medium text-sm rounded-lg cursor-pointer">
-                  Legal Land Use Risk
-                </li>
-              </div>
-              <div className="relative">
-                <div className="w-4 h-2 absolute border-b-2  rounded-md rotate-[7deg] border-gra-100 top-4 -left-4"></div>
-                <li className="p-2 hover:bg-gray-50 hover:font-medium text-sm rounded-lg cursor-pointer">
-                  Complex Supplybase Risk
-                </li>
-              </div>
-            </ul>
-          </div>
+          {/* <div className={`pl-9 ${millActive ? "block " : "hidden"}`}></div> */}
           {/* supplier plantation */}
           <div
             onClick={() => {

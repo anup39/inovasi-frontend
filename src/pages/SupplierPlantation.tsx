@@ -194,7 +194,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col" style={{ height: pageHeight }}>
+      <div className="flex flex-col h-[1080px]">
         <div className="flex items-center justify-end px-5">
           <ThemeProvider theme={theme}>
             <SwitchComp

@@ -44,11 +44,11 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center py-1 gap-[28px] ">
+    <div className="flex items-center justify-center  gap-[28px] ">
       {items.map((item) => (
         <div
           key={item.id}
-          className="bg-white rounded-md my-auto w-[238px] lg:h-[266px]"
+          className="bg-white rounded-md w-[238px] lg:h-[266px]"
         >
           <div className="p-1 flex flex-col justify-between items-center h-full">
             <div className="p-1 flex w-full justify-between items-center">
@@ -74,7 +74,7 @@ function DashPieItem() {
             </div>
             <div
               style={{ height: "0.7px" }}
-              className="bg-boxDivider hidden md:flex mb-1 w-full"
+              className="bg-boxDivider hidden md:flex  w-full"
             ></div>
             <div className="hidden md:flex w-full max-h-full">
               {item.lowerBoxes.title.map((title, index) => (

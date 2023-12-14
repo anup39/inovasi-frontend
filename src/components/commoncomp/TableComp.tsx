@@ -150,7 +150,7 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: 250, width: "100%" }}>
+    <Box sx={{ height: 250, width: "1568px" }}>
       <DataGrid
         hideFooter={false}
         rows={tableData}

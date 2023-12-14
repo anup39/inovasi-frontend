@@ -149,7 +149,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     <Layout>
       <Toast />
       <div className="flex h-[1080px] flex-col ">
-        <div className="flex items-center justify-end px-10">
+        <div className="flex items-center justify-end px-1 m-2">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"

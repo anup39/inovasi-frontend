@@ -10,7 +10,7 @@ function Layout({ children }: LayoutProps) {
   const [sidebarOpened, setSidebarOpened] = useState(true);
 
   const sidebarWidth = sidebarOpened ? "256px" : "50px";
-  const contentWidth = `calc(100vw - ${sidebarWidth})`;
+  const contentWidth = `calc(120vw - ${sidebarWidth})`;
   const pageHeight = `calc(100vh - 60px)`;
 
   return (

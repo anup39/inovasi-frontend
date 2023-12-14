@@ -16,13 +16,14 @@
   right: 4px;
 }
 
+
 .maplibregl-ctrl-bottom-right .maplibregl-ctrl {
-  float: right;
-  margin: 0 5px 5px 0;
+  margin-bottom: 45px;
 }
 
 .maplibregl-ctrl-group {
-  background-color: #1976d2;
+  background-color: #5bd273;
+  // margin: 5px;
 }
 
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {

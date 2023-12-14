@@ -11,7 +11,7 @@ import LegendControl from "./LegendControl";
 import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
-
+import { NavigationControl } from "maplibre-gl";
 const geojson = {
   type: "FeatureCollection",
   features: [
@@ -66,6 +66,9 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       zoom: 5,
       attributionControl: false,
     });
+
+    const navigationcontrol = new NavigationControl();
+    map_.addControl(navigationcontrol, "top-right");
 
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,
@@ -168,7 +171,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       id="map"
       className=" map h-full rounded-lg relative w-full min-h-[630px]"
     >
-      <div className="absolute top-0 -right-5 md:right-2 z-10">
+      <div className="absolute top-0 -right-12 md:right-12 z-10">
         <BaseMapSwitch />
       </div>
     </div>

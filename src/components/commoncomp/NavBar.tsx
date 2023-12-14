@@ -15,12 +15,12 @@ function NavBar() {
           <img src="dropdownIcon.svg" alt="" />
         </div>
         <div className="relative">
-          <input
-            className="bg-searchGray rounded-lg p-2 md:pl-10 md:min-w-[400px] w-5/6  placeholder:text-grayText placeholder:text-xs"
-            placeholder="Search here..."
-            type="search"
-            name=""
-            id=""
+          <div
+            // className="bg-searchGray rounded-lg p-2 md:pl-10 md:min-w-[400px] w-5/6  placeholder:text-grayText placeholder:text-xs"
+            // placeholder="Search here..."
+            // type="search"
+            // name=""
+            id="geocoding-search"
           />
           <img
             className="scale-90 hidden md:block absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"

@@ -44,11 +44,11 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center py-1 gap-3 w-full lg:w-1/2 ">
+    <div className="flex items-center justify-center py-1 gap-[28px] ">
       {items.map((item) => (
         <div
           key={item.id}
-          className="bg-white rounded-md my-auto w-1/3 lg:h-[266px]"
+          className="bg-white rounded-md my-auto w-[238px] lg:h-[266px]"
         >
           <div className="p-1 flex flex-col justify-between items-center h-full">
             <div className="p-1 flex w-full justify-between items-center">

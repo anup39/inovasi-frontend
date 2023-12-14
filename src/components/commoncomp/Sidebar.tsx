@@ -51,7 +51,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   return (
     <div
       className={`relative flex flex-col justify-between z-30 h-full bg-white text-grayText transition-all py-2 ease-out duration-75  ${
-        sidebarOpened ? "w-[260px]" : "w-[50px]"
+        sidebarOpened ? "w-[256px]" : "w-[50px]"
       }`}
     >
       {/* sidebar open/close button */}

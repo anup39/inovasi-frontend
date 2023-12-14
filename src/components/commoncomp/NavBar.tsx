@@ -5,12 +5,14 @@ import "../../css/common/NavBar.css";
 
 function NavBar() {
   return (
-    <div className="px-6  flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[60px]">
+    <div className="px-6  flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[96px]">
       <div className="hidden md:block">
-        <h1 className="font-semibold">Dashboard</h1>
+        <h1 className="font-semibold text-[30px] text-semiBlackText">
+          Dashboard
+        </h1>
       </div>
       <div className="flex justify-center  items-center gap-2  md:gap-5">
-        <div className="flex scale-75 md:scale-100 gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
+        <div className="flex scale-75 h-[42px] w-[150px] md:scale-100 gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
           <p className="text-grayText text-xs md:text-normal">Commodity</p>
           <img src="dropdownIcon.svg" alt="" />
         </div>

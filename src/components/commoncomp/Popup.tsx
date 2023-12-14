@@ -80,8 +80,8 @@ const Popup = ({ properties, trace }: PopupProps) => {
 
   return (
     <div
-      className={`flex-1 bg-white min-w-[200px] md:min-w-[350px] max-h-[200px]   max-w-xs rounded-lg ${
-        popup ? "" : ""
+      className={`flex-1 bg-white min-w-[200px] mr-3 md:min-w-[350px] max-h-[200px] max-w-xs rounded-lg ${
+        popup ? "my-10" : "my-0"
       } `}
     >
       <div className="flex flex-col relative items-center justify-between  p-3">

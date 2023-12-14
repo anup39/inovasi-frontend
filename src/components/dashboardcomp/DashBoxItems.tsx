@@ -238,14 +238,14 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className=" flex items-center justify-center gap-3 w-full lg:w-1/2 ">
+    <div className=" flex items-center justify-center gap-[28px]  ">
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
               // className={` transition-all ease-in-out rounded-lg min-w-[85px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[250px] lg:aspect-square ${
-              className={` transition-all ease-in-out rounded-lg bg-white w-1/3 max-w-[170px] lg:max-w-full md:py-1 h-[140px] md:h-[160px] lg:h-[265px]  ${
+              className={` transition-all ease-in-out rounded-lg bg-white w-[238px] lg:max-w-full md:py-1 h-[140px] md:h-[160px] lg:h-[266px]  ${
                 item.selected ? `border-2 border-borderGreen ` : ``
                 // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
               } dashItems hover:cursor-pointer`}

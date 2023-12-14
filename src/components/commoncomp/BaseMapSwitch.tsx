@@ -6,15 +6,49 @@ function BaseMapSwitch() {
 
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
-      <div className="flex items-center rounded-xl bg-white gap-2 bg-opacity-90 px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
+      <div className="flex items-center rounded-xl bg-white gap-2  px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
         <h1>Radius</h1>
         <input
-          className="w-[70px] rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
-          type="number"
+          style={{
+            boxShadow: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
+          }}
+          className="w-[80px] relative rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
+          type="name"
           name=""
           id=""
         />
         <p>km</p>
+        <div className="absolute flex flex-col items-center w-12 px-4 scale-50 gap-2 left-32 bg-boxDivider">
+          <svg
+            className="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#018C79"
+            stroke="#018C79"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="12 2 2 22 22 22 12 2" />
+          </svg>
+          <div className="bg-testimonyBg h-1 w-full"></div>
+          <svg
+            className="rotate-180 cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#018C79"
+            stroke="#018C79"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="12 2 2 22 22 22 12 2" />
+          </svg>
+        </div>
       </div>
 
       <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">

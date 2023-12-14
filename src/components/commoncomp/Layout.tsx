@@ -30,7 +30,7 @@ function Layout({ children }: LayoutProps) {
         <NavBar />
         <div
           style={{ height: pageHeight }}
-          className="flex-1 overflow-x-hidden px-[49px] bg-bgPage bg-opacity-80 "
+          className="flex-1 px-[49px] bg-bgPage bg-opacity-80 "
         >
           {children}
         </div>

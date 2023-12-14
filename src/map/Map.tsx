@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 // import SelectDataFormatControl from "./SelectDataFormatControl";
-import BufferControl from "./BufferControl";
+// import BufferControl from "./BufferControl";
 // import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 // import GeocoderApi from "../maputils/GeocoderApi";
@@ -72,12 +72,12 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     //   const selectDataformat_control: IControl = new SelectDataFormatControl();
     //   map_.addControl(selectDataformat_control, "top-right");
     // }
-    if (component === "supplier-plantation") {
-      // const label_control: IControl = new LabelControl();
-      // map_.addControl(label_control, "top-left");
-      const buffer_control: IControl = new BufferControl();
-      map_.addControl(buffer_control, "top-left");
-    }
+    // if (component === "supplier-plantation") {
+    //   // const label_control: IControl = new LabelControl();
+    //   // map_.addControl(label_control, "top-left");
+    //   const buffer_control: IControl = new BufferControl();
+    //   map_.addControl(buffer_control, "top-left");
+    // }
 
     // if (component === "dashboard") {
     const buffer_control: IControl = new LegendControl();
@@ -154,7 +154,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div
       ref={mapContainer}
       id="map"
-      className=" map h-full rounded-lg relative"
+      className=" map h-full rounded-lg relative  min-h-[300px]"
     >
       <div className="absolute top-0 -right-5 md:right-2 z-10">
         <BaseMapSwitch />

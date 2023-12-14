@@ -14,6 +14,7 @@ import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import PieChartComp from "../components/commoncomp/PieChartComp";
+import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
 
@@ -158,40 +159,43 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        <div
-          className={`my-1  ${
-            showMap ? "block" : "hidden"
-          } flex-1 min-h-[250px]`}
-        >
+        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         <div
-          className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
+          className={`flex w-full justify-between items-center ${
             showMap ? "block" : "hidden"
-          }
+          }`}
+        >
+          {/* the metric select button */}
+          <div
+            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 
           
           bg-white w-2/3 max-w-[330px] rounded-lg`}
-        >
-          <div
-            onClick={() => handleMetricChange("metric")}
-            className={`transition-all ease-in delay-75 rounded-lg ${
-              selectedOption === "metric"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                : "w-1/2 bg-lightGray rounded-lg "
-            } py-2 text-center  cursor-pointer`}
           >
-            Metric
+            <div
+              onClick={() => handleMetricChange("metric")}
+              className={`transition-all ease-in delay-75 rounded-lg ${
+                selectedOption === "metric"
+                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-1/2 bg-lightGray rounded-lg "
+              } py-2 text-center  cursor-pointer`}
+            >
+              Metric
+            </div>
+            <div
+              onClick={() => handleMetricChange("list")}
+              className={` rounded-lg ${
+                selectedOption === "list"
+                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-1/2  bg-bgLightGray"
+              } py-2 text-center cursor-pointer rounded-lg`}
+            >
+              List
+            </div>
           </div>
-          <div
-            onClick={() => handleMetricChange("list")}
-            className={` rounded-lg ${
-              selectedOption === "list"
-                ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                : "w-1/2  bg-bgLightGray"
-            } py-2 text-center cursor-pointer rounded-lg`}
-          >
-            List
-          </div>
+          {/* pages */}
+          <Pagination />
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>

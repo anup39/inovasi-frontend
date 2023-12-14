@@ -6,6 +6,17 @@ function BaseMapSwitch() {
 
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
+      <div className="flex items-center rounded-xl bg-white gap-2 bg-opacity-90 px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
+        <h1>Radius</h1>
+        <input
+          className="w-[70px] rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
+          type="number"
+          name=""
+          id=""
+        />
+        <p>km</p>
+      </div>
+
       <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">
         <img className="cursor-pointer " src="mapzoomin.svg" alt="" />
         <div className="border-r-2 border-r-mapDivider"></div>

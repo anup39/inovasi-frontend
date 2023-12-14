@@ -88,7 +88,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     if (component === "dashboard") {
       setHeight("min-h-[630px]");
     }
-    if (component === "mill") {
+    if (component === "mill" || component === "supplier-plantation") {
       setHeight("min-h-[464px]");
     }
     // if (component === "mill" || component === "supplier-plantation") {

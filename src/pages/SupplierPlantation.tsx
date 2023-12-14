@@ -194,7 +194,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[1080px]">
+      <div className="flex flex-col h-[948px]">
         <div className="flex items-center justify-end px-5">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -205,13 +205,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </ThemeProvider>
         </div>
-        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
-          <MapComponent
-            map={map}
-            onSetMap={onSetMap}
-            component="supplier-plantation"
-          />
-        </div>
+        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
+        <MapComponent
+          map={map}
+          onSetMap={onSetMap}
+          component="supplier-plantation"
+        />
+        {/* </div> */}
         <div className="flex items-center justify-between">
           {/* div for the list/metric selector */}
           <div

@@ -174,6 +174,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         settablecolumn(res.data.columns);
       });
   }, [dispatch, estateids, mill_id]);
+
+  // @ts-ignore
   const pageHeight = `calc(100vh - 60px)`;
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);

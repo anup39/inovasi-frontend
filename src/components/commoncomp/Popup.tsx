@@ -29,6 +29,7 @@ interface PopupProps {
   trace: boolean;
 }
 
+// @ts-ignore
 const Popup = ({ properties, trace, map }: PopupProps) => {
   const [popup, setPopup] = useState(true);
   const dispatch = useDispatch();

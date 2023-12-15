@@ -1,5 +1,5 @@
 import PieChartComp from "../commoncomp/PieChartComp";
-import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
+// import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
 
 function DashPieItem() {
   const items = [

@@ -27,7 +27,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
-  console.log(data, "data");
   let total = 0;
   if (piechartfor === "facility") {
     total = 299;
@@ -48,6 +47,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }/`
         )
         .then((res) => {
+          // @ts-ignore
           res.data.sort((a, b) => b.percentage - a.percentage);
           setpieData(res.data);
         });
@@ -59,6 +59,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
         )
         .then((res) => {
+          // @ts-ignore
           res.data.sort((a, b) => b.percentage - a.percentage);
           setpieData(res.data);
         });
@@ -71,8 +72,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
-  // console.log(gradient[99]); // To get the 100th color in the gradient
-
+  // @ts-ignore
   const renderActiveShape = (props: any) => {
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
       props;
@@ -103,6 +103,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
   };
 
+  // @ts-ignore
   const onPieEnter = (_, index) => {
     setActiveTooltip(false);
     setActiveIndex(index);
@@ -113,6 +114,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     setActiveIndex(undefined);
     setActiveTooltip(false);
   };
+
+  // @ts-ignore
 
   const labelPieChart = ({ cx, cy }) => {
     return (
@@ -137,6 +140,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     <>
       <PieChart
         onMouseLeave={onPieExit}
+        // @ts-ignore
         onMouseOut={onPieExit}
         width={width_}
         height={height_}
@@ -191,12 +195,17 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
             className={`flex flex-col items-center justify-center ${"border-r-[0.7px] border-boxDivider mx-auto"}`}
           >
             <p
+              //  @ts-ignore
+
               style={{ color: gradientColor(item.count) }}
               className=" text-[10px] md:text-[12px] font-normal lg:font-semibold "
             >
+              {/* @ts-ignore  */}
               {item.percentage.toFixed(2)}
             </p>
             <p className=" text-[7px] m-3 ">
+              {/* @ts-ignore */}
+
               {item.display === "0" ? "Others" : item.display}
             </p>
           </div>

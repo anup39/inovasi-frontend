@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DashBoardHome from "../pages/DashboardHome";
 import Register from "../pages/Register";
 import Reporting from "../pages/Reporting";
-import SupplierPlantation from "../pages/SupplierPlantation";
+// import SupplierPlantation from "../pages/SupplierPlantation";
 import SupplierMill from "../pages/SupplierMill";
 import HomePage from "../pages/HomePage";
 import Upload from "../pages/Upload";

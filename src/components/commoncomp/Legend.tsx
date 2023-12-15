@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 
-export default function Lenged() {
+// @ts-ignore
+export default function Lenged({ component, map }) {
+  // console.log(component, "compoenent ");
+  // console.log(map, "map ");
+
   const [showLegend, setShowLegend] = useState(false);
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(true);
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -49,6 +53,18 @@ export default function Lenged() {
       boxSizing: "border-box",
     },
   }));
+
+  useEffect(() => {
+    if (component === "dashboard") {
+      setShowMore(true);
+    }
+    if (component === "millsupplier") {
+      setShowMore(false);
+    }
+    if (component === "supplierplantation") {
+      setShowMore(true);
+    }
+  }, [component]);
   return (
     <div>
       <div
@@ -65,24 +81,27 @@ export default function Lenged() {
           showMore ? "h-[270px] -top-5" : "h-[150px] top-2"
         }  md:h-max w-[260px]`}
       >
-        <div className="flex justify-between items-center">
-          <h1 className="font-semibold text-lg">Legend</h1>
-          {showMore ? (
-            <p
-              onClick={() => setShowMore(false)}
-              className="underline cursor-pointer text-darkGreen"
-            >
-              See less
-            </p>
-          ) : (
-            <p
-              onClick={() => setShowMore(true)}
-              className="underline cursor-pointer text-darkGreen"
-            >
-              See more
-            </p>
-          )}
-        </div>
+        {showMore ? (
+          <div className="flex justify-between items-center">
+            <h1 className="font-semibold text-lg">Legend</h1>
+            {showMore ? (
+              <p
+                onClick={() => setShowMore(false)}
+                className="underline cursor-pointer text-darkGreen"
+              >
+                See less
+              </p>
+            ) : (
+              <p
+                onClick={() => setShowMore(true)}
+                className="underline cursor-pointer text-darkGreen"
+              >
+                See more
+              </p>
+            )}
+          </div>
+        ) : null}
+
         <div className="h-[1px] items-center justify-start bg-legendDivider my-1"></div>
         <div className="flex justify-between items-center">
           <div className="flex gap-3">

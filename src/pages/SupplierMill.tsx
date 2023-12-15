@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
-import { setmilltabledata, settabledata } from "../reducers/SupplierPlantation";
+import { setmilltabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -158,6 +158,20 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   // const pageHeight = `calc(100vh - 60px)`;
 
+  // useEffect(() => {
+  //   if (map) {
+  //     const legend_name: string = "LegendControl";
+  //     // @ts-ignore
+  //     const legend_index = map._controls.indexOf(legend_name);
+
+  //     if (legend_index) {
+  //       const legend_control = map._controls[map._controls.length - 3];
+  //       // @ts-ignore
+  //       legend_control.updateLegend("millsuppiler");
+  //     }
+  //   }
+  // }, []);
+
   return (
     <Layout>
       <Toast />
@@ -234,6 +248,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   <Pagination />{" "}
                 </div>
                 <TableComp
+                  // @ts-ignore
+
                   tableColumn={tableColumnRedux}
                   // @ts-ignore
                   tableData={tableData}

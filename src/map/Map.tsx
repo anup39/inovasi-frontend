@@ -2,7 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 // import SelectDataFormatControl from "./SelectDataFormatControl";
-import BufferControl from "./BufferControl";
+// import BufferControl from "./BufferControl";
+// @ts-ignore
 import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 import GeocoderApi from "../maputils/GeocoderApi";
@@ -72,6 +73,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     const navigationcontrol = new NavigationControl();
     map_.addControl(navigationcontrol, "top-right");
 
+    // @ts-ignore
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,
       showResultsWhileTyping: true,
@@ -79,6 +81,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     // geocoder.addTo(document.getElementById("geocoding-search"));
+    // @ts-ignore
     geocoder.on("result", function (ev) {
       const coords = ev.result.geometry.coordinates;
       map_.flyTo({ center: coords });
@@ -103,13 +106,16 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     // }
 
     // if (component === "dashboard") {
-    const buffer_control: IControl = new LegendControl();
-    map_.addControl(buffer_control, "top-left");
+
     // }
 
     map_.on("load", () => {
+      const legend_control: IControl = new LegendControl();
+      map_.addControl(legend_control, "top-left");
+
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-right");
+
       // Point on click
 
       // Points from Table

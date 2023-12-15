@@ -53,6 +53,7 @@ export default class PopupControl {
           <Popup
             properties={this._properties}
             trace={this._trace}
+            // @ts-ignore
             map={this._map}
           />
         </Provider>

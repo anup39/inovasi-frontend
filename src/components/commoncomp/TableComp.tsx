@@ -62,6 +62,7 @@ const getGeojsonFromwktTableWithLatlong = (
 // export default getGeojsonFromwktTableWithLatlong;
 
 interface DataGridDemoProps {
+  // @ts-ignore
   tableColumn: GridColDef[];
   tableData: [];
   map: Map | null;

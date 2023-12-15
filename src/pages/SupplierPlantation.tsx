@@ -304,6 +304,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                     width_={200}
                     height_={200}
                     params_include={false}
+                    gradient_start={[159, 83]}
                   />
                   {/* div for those list */}
                   <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-2  w-full">

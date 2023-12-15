@@ -11,6 +11,7 @@ interface PieChartCompProps {
   params_include: boolean;
   width_: number;
   height_: number;
+  gradient_start: number[];
 }
 
 const PieChartComp: React.FC<PieChartCompProps> = ({
@@ -19,6 +20,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
   params,
   params_include,
+  gradient_start,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
@@ -98,7 +100,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
-    return `hsl(159, 83%, ${lightness}%)`;
+    return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
   };
 
   const onPieEnter = (_, index) => {
@@ -194,7 +196,9 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
             >
               {item.percentage.toFixed(2)}
             </p>
-            <p className=" text-[7px] m-3 ">{item.display}</p>
+            <p className=" text-[7px] m-3 ">
+              {item.display === "0" ? "Others" : item.display}
+            </p>
           </div>
         ))}
       </div>

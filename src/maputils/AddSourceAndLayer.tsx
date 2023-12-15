@@ -101,16 +101,16 @@ function AddLayerAndSourceToMap({
         map.addLayer(newLayer);
       }
 
-      if (image_path === "mill.png") {
+      if (image_path === "millnew.png") {
         // @ts-ignore
-        map.addImage("mill", image);
+        map.addImage("millnew", image);
         const newLayer: SymbolLayerSpecification = {
           id: layerId,
           type: "symbol",
           source: sourceId,
           "source-layer": source_layer,
           layout: {
-            "icon-image": "mill",
+            "icon-image": "millnew",
             "icon-size": 1,
           },
           paint: {},

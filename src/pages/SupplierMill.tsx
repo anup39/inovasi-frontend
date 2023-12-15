@@ -241,6 +241,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                     width_={170}
                     height_={170}
                     params_include={false}
+                    gradient_start={[25, 96]}
                   />
                 </div>
               </div>

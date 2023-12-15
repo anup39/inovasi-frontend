@@ -97,7 +97,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
-          image_path: "mill.png",
+          image_path: "millnew.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",

@@ -100,9 +100,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           sourceId: "agriplot",
           url: `${
             import.meta.env.VITE_API_MAP_URL
-          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=${estateids}`,
+          }/function_zxy_query_app_agriplot_by_mill_eq_id/{z}/{x}/{y}?mill_eq_id=${mill_id}`,
 
-          source_layer: "function_zxy_query_app_agriplot_by_estateids",
+          source_layer: "function_zxy_query_app_agriplot_by_mill_eq_id",
           showPopup: true,
           style: {
             fill_color: "green",

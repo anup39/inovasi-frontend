@@ -50,7 +50,11 @@ export default class PopupControl {
     if (this._root) {
       const updatedPopup = (
         <Provider store={store}>
-          <Popup properties={this._properties} trace={this._trace} />
+          <Popup
+            properties={this._properties}
+            trace={this._trace}
+            map={this._map}
+          />
         </Provider>
       );
       this._root.render(updatedPopup);

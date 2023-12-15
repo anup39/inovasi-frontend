@@ -219,12 +219,12 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           {/* <div className={`pl-9 ${millActive ? "block " : "hidden"}`}></div> */}
           {/* supplier plantation */}
           <div
-            onClick={() => {
-              // window.location.replace("/supplierplantation");
-              // setSelectedItem("plantation");
-              // navigate("/supplierplantation");
-              handleItemClick("supplierplantation");
-            }}
+            // onClick={() => {
+            //   // window.location.replace("/supplierplantation");
+            //   // setSelectedItem("plantation");
+            //   // navigate("/supplierplantation");
+            //   handleItemClick("supplierplantation");
+            // }}
             className={`hover:bg-boxDivider ${
               selectedDashboardPage === "supplierplantation"
                 ? "bg-gradient-to-r from-footerHeading to-parrot text-white font-semibold"

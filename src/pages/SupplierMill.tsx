@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
-import { settabledata } from "../reducers/SupplierPlantation";
+import { setmilltabledata, settabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -78,9 +78,22 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     (state: RootState) => state.supplierPlantation.tabledata
   );
 
+  const milltabledata = useSelector(
+    (state: RootState) => state.supplierPlantation.milltabledata
+  );
+
+  const tableColumnRedux = useSelector(
+    (state: RootState) => state.supplierPlantation.tableColumn
+  );
+
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
   );
+  const is_agriplot = useSelector(
+    (state: RootState) => state.displaySettings.is_agriplot
+  );
+
+  const mill_name: string | null = localStorage.getItem("mill_name");
 
   useEffect(() => {
     if (map) {
@@ -116,7 +129,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       });
 
     axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
-      dispatch(settabledata(res.data));
+      dispatch(setmilltabledata(res.data));
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
@@ -202,13 +215,36 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             <TableComp
               tableColumn={tableColumn}
               // @ts-ignore
-              tableData={tableData}
+              tableData={milltabledata}
               map={map}
               component={"mill"}
               height="350px"
               width="1569px"
               pageSize={5}
             />
+
+            {is_agriplot ? (
+              <>
+                {" "}
+                <div className=" flex m-3 justify-between items-center">
+                  <span className="bg-gray">
+                    Supplier Plantaton for {mill_name}:{" "}
+                    <b>Total :{tableData?.length}</b>
+                  </span>{" "}
+                  <Pagination />{" "}
+                </div>
+                <TableComp
+                  tableColumn={tableColumnRedux}
+                  // @ts-ignore
+                  tableData={tableData}
+                  map={map}
+                  component={"agriplot"}
+                  height="300px"
+                  width="1569px"
+                  pageSize={4}
+                />
+              </>
+            ) : null}
           </>
         ) : (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-5">

@@ -61,7 +61,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
   useEffect(() => {
     const map_ = new maplibregl.Map({
       container: mapContainer.current!,
-      style: `https://api.maptiler.com/maps/satellite/style.json?key=${
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${
         import.meta.env.VITE_MAPTILER_TOKEN
       }`,
       center: [103.8574, 2.2739],
@@ -153,7 +153,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         source: "polygon-radius",
         paint: {
           "fill-color": "red",
-          "fill-opacity": 0.5,
+          "fill-opacity": 0.2,
         },
       });
 

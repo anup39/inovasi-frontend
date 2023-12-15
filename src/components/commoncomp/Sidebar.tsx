@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken, setUserId, setUserName } from "../../reducers/Auth";
 import { setselectedDashboardPage } from "../../reducers/DisplaySettings";
 import { RootState } from "../../store";
+
 interface MyComponentProps {
   setSidebarOpened: React.Dispatch<React.SetStateAction<boolean>>;
   sidebarOpened: boolean;
@@ -18,7 +19,8 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   );
 
   function openSidebar() {
-    setSidebarOpened(!sidebarOpened);
+    setSidebarOpened(true);
+
     setMillActive(false);
   }
 

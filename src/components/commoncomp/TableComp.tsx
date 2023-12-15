@@ -65,6 +65,9 @@ interface DataGridDemoProps {
   tableData: [];
   map: Map | null;
   component: string;
+  height: string;
+  width: string;
+  pageSize: number;
 }
 
 export default function DataGridDemo({
@@ -72,6 +75,9 @@ export default function DataGridDemo({
   tableData,
   map,
   component,
+  height,
+  width,
+  pageSize,
 }: DataGridDemoProps) {
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
@@ -150,7 +156,7 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: "400px ", minWidth: "1568px", width: "1569px" }}>
+    <Box sx={{ height: height, minWidth: "1568px", width: width }}>
       <DataGrid
         hideFooter={true}
         rows={tableData}
@@ -158,11 +164,11 @@ export default function DataGridDemo({
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 6,
+              pageSize: pageSize,
             },
           },
         }}
-        pageSizeOptions={[6]}
+        pageSizeOptions={[pageSize]}
         checkboxSelection={true}
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleonRowSelectionModelChange}

@@ -259,6 +259,27 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               tableData={tableData}
               map={map}
               component={"agriplot"}
+              height="300px"
+              width="1569px"
+              pageSize={4}
+            />
+
+            <div className=" flex m-3 justify-between items-center">
+              <span className="bg-gray">
+                Supplier : <b>200</b>
+              </span>{" "}
+              <Pagination />{" "}
+            </div>
+
+            <TableComp
+              tableColumn={tablecolumn}
+              // @ts-ignore
+              tableData={tableData}
+              map={map}
+              component={"agriplot"}
+              height="300px"
+              width="1569px"
+              pageSize={4}
             />
           </>
         ) : (

@@ -205,6 +205,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               tableData={tableData}
               map={map}
               component={"mill"}
+              height="350px"
+              width="1569px"
+              pageSize={5}
             />
           </>
         ) : (

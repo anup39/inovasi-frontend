@@ -26,6 +26,16 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
   console.log(data, "data");
+  let total = 0;
+  if (piechartfor === "facility") {
+    total = 299;
+  }
+  if (piechartfor === "refinery") {
+    total = 1034;
+  }
+  if (piechartfor === "mill") {
+    total = 2381;
+  }
 
   useEffect(() => {
     if (!params_include) {
@@ -114,7 +124,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
-          600
+          {total}
         </text>
       </g>
     );

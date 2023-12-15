@@ -36,7 +36,7 @@ const CustomTooltip = ({ display, active, payload }: CustomTooltipProps) => {
                 justifyContent: "space-between",
               }}
             >
-              <p> {rounded} %</p>
+              <p style={{ fontSize: "14px" }}> {rounded} %</p>
               <p style={{ fontSize: "12px" }}> {payload[0].value}</p>
             </div>
           </div>

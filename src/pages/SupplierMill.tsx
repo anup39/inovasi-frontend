@@ -242,32 +242,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                     height_={170}
                     params_include={false}
                   />
-                  <div
-                    style={{ height: "0.7px" }}
-                    className="bg-boxDivider mb-1 w-full mt-2"
-                  ></div>
-                  <div className="flex w-full max-h-full mt-[30px]">
-                    {item.lowerBoxes.title.map((title, index) => (
-                      <div
-                        key={index}
-                        className={`flex flex-col items-center justify-center ${
-                          index < item.lowerBoxes.title.length - 1
-                            ? "border-r-[0.7px] border-boxDivider mx-auto"
-                            : ""
-                        } ${
-                          item.lowerBoxes.title.length === 2 ? "w-1/2" : "w-1/3"
-                        }`}
-                      >
-                        <p
-                          style={{ color: item.lowerBoxes.colors[index] }}
-                          className="font-semibold "
-                        >
-                          {item.lowerBoxes.numbers[index]}
-                        </p>
-                        <p className="text-xs">{title}</p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             ))}

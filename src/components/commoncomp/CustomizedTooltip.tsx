@@ -6,6 +6,8 @@ interface CustomTooltipProps {
 
 const CustomTooltip = ({ display, active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
+    // @ts-ignore
+    const rounded = payload[0].payload.percentage.toFixed(2);
     return (
       <>
         {display ? (
@@ -26,6 +28,8 @@ const CustomTooltip = ({ display, active, payload }: CustomTooltipProps) => {
               fontWeight: "bold",
             }}
           >
+            {/* @ts-ignore */}
+
             <p style={{ fontSize: "12px" }}>{payload[0].name} </p>
             <div
               style={{
@@ -34,7 +38,9 @@ const CustomTooltip = ({ display, active, payload }: CustomTooltipProps) => {
                 justifyContent: "space-between",
               }}
             >
-              <p> 9% </p>
+              <p style={{ fontSize: "14px" }}> {rounded} %</p>
+              {/* @ts-ignore */}
+
               <p style={{ fontSize: "12px" }}> {payload[0].value}</p>
             </div>
           </div>

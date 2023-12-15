@@ -11,6 +11,7 @@ interface PieChartCompProps {
   params_include: boolean;
   width_: number;
   height_: number;
+  gradient_start: number[];
 }
 
 const PieChartComp: React.FC<PieChartCompProps> = ({
@@ -19,13 +20,23 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
   params,
   params_include,
+  gradient_start,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
-  console.log(data, "data");
+  let total = 0;
+  if (piechartfor === "facility") {
+    total = 299;
+  }
+  if (piechartfor === "refinery") {
+    total = 1034;
+  }
+  if (piechartfor === "mill") {
+    total = 2381;
+  }
 
   useEffect(() => {
     if (!params_include) {
@@ -36,6 +47,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }/`
         )
         .then((res) => {
+          // @ts-ignore
+          res.data.sort((a, b) => b.percentage - a.percentage);
           setpieData(res.data);
         });
     } else {
@@ -46,6 +59,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
         )
         .then((res) => {
+          // @ts-ignore
+          res.data.sort((a, b) => b.percentage - a.percentage);
           setpieData(res.data);
         });
     }
@@ -57,8 +72,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     };
   }, [data.distinct, piechartfor, params, params_include]);
 
-  // console.log(gradient[99]); // To get the 100th color in the gradient
-
+  // @ts-ignore
   const renderActiveShape = (props: any) => {
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } =
       props;
@@ -86,9 +100,10 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
-    return `hsl(159, 83%, ${lightness}%)`;
+    return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
   };
 
+  // @ts-ignore
   const onPieEnter = (_, index) => {
     setActiveTooltip(false);
     setActiveIndex(index);
@@ -99,6 +114,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     setActiveIndex(undefined);
     setActiveTooltip(false);
   };
+
+  // @ts-ignore
 
   const labelPieChart = ({ cx, cy }) => {
     return (
@@ -114,56 +131,87 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
-          600
+          {total}
         </text>
       </g>
     );
   };
   return (
-    <PieChart
-      onMouseLeave={onPieExit}
-      onMouseOut={onPieExit}
-      width={width_}
-      height={height_}
-      cursor="pointer"
-    >
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        isAnimationActive={true}
-        dataKey="count"
-        nameKey="display"
-        data={piedata}
-        cx="50%"
-        cy="50%"
-        innerRadius={60}
-        outerRadius={80}
-        fill="#82ca9d"
+    <>
+      <PieChart
         onMouseLeave={onPieExit}
-        onMouseDown={onPieExit}
+        // @ts-ignore
         onMouseOut={onPieExit}
-        onMouseMove={onPieEnter}
-        onMouseDownCapture={onPieExit}
-        onMouseMoveCapture={onPieExit}
-        labelLine={false}
-        label={labelPieChart}
+        width={width_}
+        height={height_}
+        cursor="pointer"
       >
-        {/* @ts-ignore */}
-        {piedata.map((entry, index) => (
-          // @ts-ignore
-          <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+        <Pie
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          isAnimationActive={true}
+          dataKey="count"
+          nameKey="display"
+          data={piedata}
+          cx="50%"
+          cy="50%"
+          innerRadius={60}
+          outerRadius={80}
+          fill="#82ca9d"
+          onMouseLeave={onPieExit}
+          onMouseDown={onPieExit}
+          onMouseOut={onPieExit}
+          onMouseMove={onPieEnter}
+          onMouseDownCapture={onPieExit}
+          onMouseMoveCapture={onPieExit}
+          labelLine={false}
+          label={labelPieChart}
+        >
+          {/* @ts-ignore */}
+          {piedata.map((entry, index) => (
+            // @ts-ignore
+            <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+          ))}
+        </Pie>
+        <Tooltip
+          content={
+            <CustomTooltip
+              display={activeTooltip}
+              active={activeTooltip}
+              payload={[]}
+            />
+          }
+        />
+      </PieChart>
+
+      <div
+        style={{ height: "0.7px" }}
+        className="bg-boxDivider hidden md:flex  w-full"
+      ></div>
+      <div className=" hidden md:flex w-full max-h-full">
+        {piedata.slice(0, 3).map((item, index) => (
+          <div
+            key={index}
+            className={`flex flex-col items-center justify-center ${"border-r-[0.7px] border-boxDivider mx-auto"}`}
+          >
+            <p
+              //  @ts-ignore
+
+              style={{ color: gradientColor(item.count) }}
+              className=" text-[10px] md:text-[12px] font-normal lg:font-semibold "
+            >
+              {/* @ts-ignore  */}
+              {item.percentage.toFixed(2)}
+            </p>
+            <p className=" text-[7px] m-3 ">
+              {/* @ts-ignore */}
+
+              {item.display === "0" ? "Others" : item.display}
+            </p>
+          </div>
         ))}
-      </Pie>
-      <Tooltip
-        content={
-          <CustomTooltip
-            display={activeTooltip}
-            active={activeTooltip}
-            payload={[]}
-          />
-        }
-      />
-    </PieChart>
+      </div>
+    </>
   );
 };
 

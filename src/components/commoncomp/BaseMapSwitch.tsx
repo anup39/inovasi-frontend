@@ -27,9 +27,9 @@ function BaseMapSwitch() {
             viewBox="0 0 24 24"
             fill="#018C79"
             stroke="#018C79"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>
@@ -42,20 +42,20 @@ function BaseMapSwitch() {
             viewBox="0 0 24 24"
             fill="#018C79"
             stroke="#018C79"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>
         </div>
       </div>
 
-      <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">
+      {/* <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">
         <img className="cursor-pointer " src="mapzoomin.svg" alt="" />
         <div className="border-r-2 border-r-mapDivider"></div>
         <img className="cursor-pointer" src="mapzoomout.svg" alt="" />
-      </div>
+      </div> */}
       <div
         onMouseOver={() => setShowViews(true)}
         onMouseOut={() => setShowViews(false)}

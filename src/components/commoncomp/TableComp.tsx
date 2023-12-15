@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef, GridRowId } from "@mui/x-data-grid";
+
 import maplibregl, {
   Map,
   GeoJSONSource,
@@ -61,10 +62,14 @@ const getGeojsonFromwktTableWithLatlong = (
 // export default getGeojsonFromwktTableWithLatlong;
 
 interface DataGridDemoProps {
+  // @ts-ignore
   tableColumn: GridColDef[];
   tableData: [];
   map: Map | null;
   component: string;
+  height: string;
+  width: string;
+  pageSize: number;
 }
 
 export default function DataGridDemo({
@@ -72,6 +77,9 @@ export default function DataGridDemo({
   tableData,
   map,
   component,
+  height,
+  width,
+  pageSize,
 }: DataGridDemoProps) {
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
@@ -150,19 +158,19 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: 250, width: "100%" }}>
+    <Box sx={{ height: height, minWidth: "1568px", width: width }}>
       <DataGrid
-        hideFooter={false}
+        hideFooter={true}
         rows={tableData}
         columns={tableColumn}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: pageSize,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[pageSize]}
         checkboxSelection={true}
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleonRowSelectionModelChange}

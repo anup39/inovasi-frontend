@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function Pagination() {
   const totalpage = 10;
   const pagesToShow = 3;
   const [activePage, setActivePage] = useState(1);
 
+  // @ts-ignore
   const handlePageClick = (page) => {
     setActivePage(page);
     // Add any additional logic you need when a page is clicked

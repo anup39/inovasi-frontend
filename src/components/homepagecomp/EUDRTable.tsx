@@ -37,6 +37,9 @@ function Table({ headers, data }: TableProps) {
             ))}
         </tbody>
       </table>
+
+      {/* @ts-ignore */}
+
       <Pagination totalPages={11} />
     </div>
   );

@@ -8,6 +8,7 @@ interface DisplaySettingsState {
   toastMessage: string;
   toastType: string;
   selectedDashboardPage: string;
+  is_agriplot: boolean;
 }
 
 const initialState: DisplaySettingsState = {
@@ -16,6 +17,7 @@ const initialState: DisplaySettingsState = {
   toastMessage: "Click on point to see the data",
   toastType: "info",
   selectedDashboardPage: "dashboard",
+  is_agriplot: false,
 };
 
 export const DisplaySettings = createSlice({
@@ -38,6 +40,9 @@ export const DisplaySettings = createSlice({
     setselectedDashboardPage: (state, action: PayloadAction<string>) => {
       state.selectedDashboardPage = action.payload;
     },
+    setIsAgriplot: (state, action: PayloadAction<boolean>) => {
+      state.is_agriplot = action.payload;
+    },
   },
 });
 
@@ -48,6 +53,7 @@ export const {
   settoastType,
   setselectedDataFormat,
   setselectedDashboardPage,
+  setIsAgriplot,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

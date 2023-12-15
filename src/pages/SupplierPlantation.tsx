@@ -100,9 +100,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           sourceId: "agriplot",
           url: `${
             import.meta.env.VITE_API_MAP_URL
-          }/function_zxy_query_app_agriplot_by_estateids/{z}/{x}/{y}?estateids=${estateids}`,
+          }/function_zxy_query_app_agriplot_by_mill_eq_id/{z}/{x}/{y}?mill_eq_id=${mill_id}`,
 
-          source_layer: "function_zxy_query_app_agriplot_by_estateids",
+          source_layer: "function_zxy_query_app_agriplot_by_mill_eq_id",
           showPopup: true,
           style: {
             fill_color: "green",
@@ -174,6 +174,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         settablecolumn(res.data.columns);
       });
   }, [dispatch, estateids, mill_id]);
+
+  // @ts-ignore
   const pageHeight = `calc(100vh - 60px)`;
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
@@ -194,7 +196,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[1080px]">
+      <div className="flex flex-col h-[948px]">
         <div className="flex items-center justify-end px-5">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -205,13 +207,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </ThemeProvider>
         </div>
-        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
-          <MapComponent
-            map={map}
-            onSetMap={onSetMap}
-            component="supplier-plantation"
-          />
-        </div>
+        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
+        <MapComponent
+          map={map}
+          onSetMap={onSetMap}
+          component="supplier-plantation"
+        />
+        {/* </div> */}
         <div className="flex items-center justify-between">
           {/* div for the list/metric selector */}
           <div
@@ -259,6 +261,27 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               tableData={tableData}
               map={map}
               component={"agriplot"}
+              height="300px"
+              width="1569px"
+              pageSize={4}
+            />
+
+            <div className=" flex m-3 justify-between items-center">
+              <span className="bg-gray">
+                Supplier : <b>200</b>
+              </span>{" "}
+              <Pagination />{" "}
+            </div>
+
+            <TableComp
+              tableColumn={tablecolumn}
+              // @ts-ignore
+              tableData={tableData}
+              map={map}
+              component={"agriplot"}
+              height="300px"
+              width="1569px"
+              pageSize={4}
             />
           </>
         ) : (
@@ -283,6 +306,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                     width_={200}
                     height_={200}
                     params_include={false}
+                    gradient_start={[159, 83]}
                   />
                   {/* div for those list */}
                   <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-2  w-full">

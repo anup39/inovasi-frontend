@@ -48,6 +48,8 @@ export default {
         listGreen: "#00AB71",
         listOrange: "#FFAD33B2",
         pageBorder: "#E5E5E5",
+        blackest: "#1F1F1F",
+        faqBg: "#E5E5E580",
       },
     },
   },

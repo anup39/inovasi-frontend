@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
-import { settabledata } from "../reducers/SupplierPlantation";
+import { setmilltabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
 import { setselectedDataFormat } from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -78,9 +78,22 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     (state: RootState) => state.supplierPlantation.tabledata
   );
 
+  const milltabledata = useSelector(
+    (state: RootState) => state.supplierPlantation.milltabledata
+  );
+
+  const tableColumnRedux = useSelector(
+    (state: RootState) => state.supplierPlantation.tableColumn
+  );
+
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
   );
+  const is_agriplot = useSelector(
+    (state: RootState) => state.displaySettings.is_agriplot
+  );
+
+  const mill_name: string | null = localStorage.getItem("mill_name");
 
   useEffect(() => {
     if (map) {
@@ -97,7 +110,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             fill_opacity: "0",
             stroke_color: "",
           },
-          image_path: "mill.png",
+          image_path: "millnew.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           fillType: "point",
@@ -116,7 +129,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       });
 
     axios.get(`${import.meta.env.VITE_API_DASHBOARD_URL}/mill/`).then((res) => {
-      dispatch(settabledata(res.data));
+      dispatch(setmilltabledata(res.data));
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
@@ -145,11 +158,25 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   // const pageHeight = `calc(100vh - 60px)`;
 
+  // useEffect(() => {
+  //   if (map) {
+  //     const legend_name: string = "LegendControl";
+  //     // @ts-ignore
+  //     const legend_index = map._controls.indexOf(legend_name);
+
+  //     if (legend_index) {
+  //       const legend_control = map._controls[map._controls.length - 3];
+  //       // @ts-ignore
+  //       legend_control.updateLegend("millsuppiler");
+  //     }
+  //   }
+  // }, []);
+
   return (
     <Layout>
       <Toast />
-      <div className="flex h-[1080px] flex-col ">
-        <div className="flex items-center justify-end px-10">
+      <div className="flex h-[984px] flex-col ">
+        <div className="flex items-center justify-end px-1 m-2">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -159,9 +186,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}>
-          <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
-        </div>
+        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
+        <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
+        {/* </div> */}
         <div
           className={`flex w-full justify-between items-center ${
             showMap ? "block" : "hidden"
@@ -202,20 +229,48 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             <TableComp
               tableColumn={tableColumn}
               // @ts-ignore
-              tableData={tableData}
+              tableData={milltabledata}
               map={map}
               component={"mill"}
+              height="350px"
+              width="1569px"
+              pageSize={5}
             />
+
+            {is_agriplot ? (
+              <>
+                {" "}
+                <div className=" flex m-3 justify-between items-center">
+                  <span className="bg-gray">
+                    Supplier Plantaton for {mill_name}:{" "}
+                    <b>Total :{tableData?.length}</b>
+                  </span>{" "}
+                  <Pagination />{" "}
+                </div>
+                <TableComp
+                  // @ts-ignore
+
+                  tableColumn={tableColumnRedux}
+                  // @ts-ignore
+                  tableData={tableData}
+                  map={map}
+                  component={"agriplot"}
+                  height="300px"
+                  width="1569px"
+                  pageSize={4}
+                />
+              </>
+            ) : null}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-5 px-4">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-5">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[270px] md:w-[290px]  "
+                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[370px] md:w-[370px] h-[340px]  "
               >
                 <div className="py-2 px-2 flex items-center flex-col w-full">
-                  <div className="flex justify-between items-center w-full">
+                  <div className="flex justify-between items-center w-full py-5">
                     <h1 className="text-semiBlackText font-semibold md:font-bold text-sm p-1">
                       {item.name}
                     </h1>
@@ -235,36 +290,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   <PieChartComp
                     params={params}
                     data={item}
-                    width_={200}
-                    height_={200}
+                    width_={170}
+                    height_={170}
                     params_include={false}
+                    gradient_start={[25, 96]}
                   />
-                  <div
-                    style={{ height: "0.7px" }}
-                    className="bg-boxDivider mb-1 w-full"
-                  ></div>
-                  <div className="flex w-full max-h-full">
-                    {item.lowerBoxes.title.map((title, index) => (
-                      <div
-                        key={index}
-                        className={`flex flex-col items-center justify-center ${
-                          index < item.lowerBoxes.title.length - 1
-                            ? "border-r-[0.7px] border-boxDivider mx-auto"
-                            : ""
-                        } ${
-                          item.lowerBoxes.title.length === 2 ? "w-1/2" : "w-1/3"
-                        }`}
-                      >
-                        <p
-                          style={{ color: item.lowerBoxes.colors[index] }}
-                          className="font-semibold "
-                        >
-                          {item.lowerBoxes.numbers[index]}
-                        </p>
-                        <p className="text-xs">{title}</p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             ))}

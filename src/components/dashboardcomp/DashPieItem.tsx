@@ -1,5 +1,5 @@
 import PieChartComp from "../commoncomp/PieChartComp";
-import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
+// import PieChartCompUpdated from "../commoncomp/PieChartCompUpdated";
 
 function DashPieItem() {
   const items = [
@@ -68,33 +68,10 @@ function DashPieItem() {
                 width_={180}
                 height_={180}
                 params_include={false}
+                gradient_start={[159, 83]}
               />
 
               {/* <PieChartCompUpdated /> */}
-            </div>
-            <div
-              style={{ height: "0.7px" }}
-              className="bg-boxDivider hidden md:flex  w-full"
-            ></div>
-            <div className="hidden md:flex w-full max-h-full">
-              {item.lowerBoxes.title.map((title, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col items-center justify-center ${
-                    index < item.lowerBoxes.title.length - 1
-                      ? "border-r-[0.7px] border-boxDivider mx-auto"
-                      : ""
-                  } ${item.lowerBoxes.title.length === 2 ? "w-1/2" : "w-1/3"}`}
-                >
-                  <p
-                    style={{ color: item.lowerBoxes.colors[index] }}
-                    className=" text-[10px] md:text-[12px] font-normal lg:font-semibold "
-                  >
-                    {item.lowerBoxes.numbers[index]}
-                  </p>
-                  <p className=" text-[10px] ">{title}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

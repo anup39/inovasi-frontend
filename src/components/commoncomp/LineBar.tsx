@@ -32,7 +32,6 @@ const renderCustomizedLabel = (props) => {
 // @ts-ignore
 export default function LineBar(props: any) {
   const { lowerBoxes } = props;
-  console.log(lowerBoxes);
   const data = lowerBoxes.title.map((name: string, index: number) => ({
     name,
     value: parseFloat(lowerBoxes.numbers[index].replace("%", "")),

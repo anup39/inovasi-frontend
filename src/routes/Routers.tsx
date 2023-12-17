@@ -49,7 +49,7 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           <Route
             path="/supplierplantation"
             element={<SupplierPlantation map={map} onSetMap={onSetMap} />}
-          />
+          /> */}
           <Route
             path="/reporting"
             element={<Reporting map={map} onSetMap={onSetMap} />}

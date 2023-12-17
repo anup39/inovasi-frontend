@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import maplibregl, { Map, IControl, GeoJSONSourceOptions } from "maplibre-gl";
 import "../css/map/Map.scss";
 // import SelectDataFormatControl from "./SelectDataFormatControl";
-import BufferControl from "./BufferControl";
+// import BufferControl from "./BufferControl";
+// @ts-ignore
 import MaplibreGeocoder from "@maplibre/maplibre-gl-geocoder";
 import "@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css";
 import GeocoderApi from "../maputils/GeocoderApi";
@@ -11,7 +12,7 @@ import LegendControl from "./LegendControl";
 import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
-
+import { NavigationControl } from "maplibre-gl";
 const geojson = {
   type: "FeatureCollection",
   features: [
@@ -54,12 +55,14 @@ interface MapProps {
 }
 
 export default function MapComponent({ onSetMap, component }: MapProps) {
+  const [height, setHeight] = useState("min-h-[630px]");
+
   const mapContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const map_ = new maplibregl.Map({
       container: mapContainer.current!,
-      style: `https://api.maptiler.com/maps/satellite/style.json?key=${
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${
         import.meta.env.VITE_MAPTILER_TOKEN
       }`,
       center: [103.8574, 2.2739],
@@ -67,6 +70,10 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       attributionControl: false,
     });
 
+    const navigationcontrol = new NavigationControl();
+    map_.addControl(navigationcontrol, "top-right");
+
+    // @ts-ignore
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,
       showResultsWhileTyping: true,
@@ -74,12 +81,19 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     // geocoder.addTo(document.getElementById("geocoding-search"));
+    // @ts-ignore
     geocoder.on("result", function (ev) {
       const coords = ev.result.geometry.coordinates;
       map_.flyTo({ center: coords });
     });
 
     onSetMap(map_);
+    if (component === "dashboard") {
+      setHeight("min-h-[630px]");
+    }
+    if (component === "mill" || component === "supplier-plantation") {
+      setHeight("min-h-[464px]");
+    }
     // if (component === "mill" || component === "supplier-plantation") {
     //   const selectDataformat_control: IControl = new SelectDataFormatControl();
     //   map_.addControl(selectDataformat_control, "top-right");
@@ -92,13 +106,16 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     // }
 
     // if (component === "dashboard") {
-    const buffer_control: IControl = new LegendControl();
-    map_.addControl(buffer_control, "top-left");
+
     // }
 
     map_.on("load", () => {
+      const legend_control: IControl = new LegendControl();
+      map_.addControl(legend_control, "top-left");
+
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-right");
+
       // Point on click
 
       // Points from Table
@@ -142,7 +159,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         source: "polygon-radius",
         paint: {
           "fill-color": "red",
-          "fill-opacity": 0.5,
+          "fill-opacity": 0.2,
         },
       });
 
@@ -166,9 +183,9 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div
       ref={mapContainer}
       id="map"
-      className=" map mb-[9px] rounded-lg relative h-[630px]"
+      className={`map rounded-lg relative w-full ${height} `}
     >
-      <div className="absolute top-0 -right-5 md:right-2 z-10">
+      <div className="absolute top-0 -right-12 md:right-12 z-10">
         <BaseMapSwitch />
       </div>
     </div>

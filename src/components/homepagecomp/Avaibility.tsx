@@ -5,6 +5,7 @@ function Avaibility() {
   const titles = ["Palm Oil", "Rubber", "Soy", "Cacao", "Coffee"];
   const [showLowerBoxes, setShowLowerBoxes] = useState(true);
 
+  // @ts-ignore
   const handleTitleClick = (index) => {
     setSelectedTitle(index);
     setShowLowerBoxes(false);

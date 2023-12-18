@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DashBoardHome from "../pages/DashboardHome";
 import Register from "../pages/Register";
 import Reporting from "../pages/Reporting";
-// import SupplierPlantation from "../pages/SupplierPlantation";
+import SupplierPlantation from "../pages/SupplierPlantation";
 import SupplierMill from "../pages/SupplierMill";
 import HomePage from "../pages/HomePage";
 import Upload from "../pages/Upload";
@@ -11,6 +11,7 @@ import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
 import Login from "../pages/Login";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import AboutUs from "../pages/AboutUs";
 
 interface RoutersProps {
   map: Map | null;
@@ -45,8 +46,8 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
             path="/suppliermill"
             element={<SupplierMill map={map} onSetMap={onSetMap} />}
           />
-          {/* <Route
-            path='/supplierplantation'
+          <Route
+            path="/supplierplantation"
             element={<SupplierPlantation map={map} onSetMap={onSetMap} />}
           /> */}
           <Route
@@ -54,6 +55,7 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
             element={<Reporting map={map} onSetMap={onSetMap} />}
           />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
       </Router>
     );

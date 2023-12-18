@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,8 +46,6 @@ body {
   color: #858686;
 }
 
-
-
 .MuiDataGrid-actionsCell {
   background-color: bisque;
 }
@@ -56,4 +53,3 @@ body {
 .MuiDataGrid-columnHeader {
   background-color: #efefef;
 }
-

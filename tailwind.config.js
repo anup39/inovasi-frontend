@@ -50,6 +50,8 @@ export default {
         pageBorder: "#E5E5E5",
         blackest: "#1F1F1F",
         faqBg: "#E5E5E580",
+        registerBg: "#FBFBFB",
+        registerInputBorder: "#D0D5DD",
       },
     },
   },

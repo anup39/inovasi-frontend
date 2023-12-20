@@ -88,7 +88,7 @@ function AboutUs() {
         </div>
         <h1
           style={{}}
-          className="pt-[90px] bg-gradient-to-r from-[#02C685] to-[#8ADF5E00] inline-block text-transparent bg-clip-text leading-[50px] md:leading-[100px] lg:leading-[182.85px] text-[35px] md:text-[100px] lg:text-[150px] text-center font-bold mx-auto"
+          className="pt-[90px] bg-gradient-to-r from-footerHeading to-parrot inline-block text-transparent bg-clip-text leading-[50px] md:leading-[100px] lg:leading-[182.85px] text-[35px] md:text-[100px] lg:text-[150px] text-center font-bold mx-auto"
         >
           INOVASI AGRIPLOT
         </h1>

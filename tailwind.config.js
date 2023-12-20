@@ -52,6 +52,7 @@ export default {
         faqBg: "#E5E5E580",
         registerBg: "#FBFBFB",
         registerInputBorder: "#D0D5DD",
+        inputGrey: "#6C6C6C",
       },
     },
   },

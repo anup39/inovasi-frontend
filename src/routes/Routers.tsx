@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import AboutUs from "../pages/AboutUs";
+import GetInTouch from "../pages/GetInTouch";
 
 interface RoutersProps {
   map: Map | null;
@@ -56,6 +57,7 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           />
           <Route path="/upload" element={<Upload />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/getintouch" element={<GetInTouch />} />
         </Routes>
       </Router>
     );

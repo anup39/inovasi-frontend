@@ -78,29 +78,27 @@ export default function Lenged({ component, map }) {
         className={`shadow p-3 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
         } rounded-lg flex-col gap-2 bg-white absolute z-10 md:top-2 -left-10 md:left-10 ${
-          showMore ? "h-[270px] -top-5" : "h-[150px] top-2"
-        }  md:h-max w-[260px]`}
+          showMore ? "h-[270px] -top-5" : "h-[214px] top-2"
+        }  md:h-max w-[356px]`}
       >
-        {showMore ? (
-          <div className="flex justify-between items-center">
-            <h1 className="font-semibold text-lg">Legend</h1>
-            {showMore ? (
-              <p
-                onClick={() => setShowMore(false)}
-                className="underline cursor-pointer text-darkGreen"
-              >
-                See less
-              </p>
-            ) : (
-              <p
-                onClick={() => setShowMore(true)}
-                className="underline cursor-pointer text-darkGreen"
-              >
-                See more
-              </p>
-            )}
-          </div>
-        ) : null}
+        <div className="flex justify-between items-center">
+          <h1 className="font-semibold text-lg">Legend</h1>
+          {showMore ? (
+            <p
+              onClick={() => setShowMore(false)}
+              className="underline cursor-pointer text-darkGreen"
+            >
+              See less
+            </p>
+          ) : (
+            <p
+              onClick={() => setShowMore(true)}
+              className="underline cursor-pointer text-darkGreen"
+            >
+              See more
+            </p>
+          )}
+        </div>
 
         <div className="h-[1px] items-center justify-start bg-legendDivider my-1"></div>
         <div className="flex justify-between items-center">
@@ -121,6 +119,13 @@ export default function Lenged({ component, map }) {
           <div className="flex gap-3">
             <img src="milllegend.svg" alt="" />
             <p className="text-homeSubText">Mill</p>
+          </div>
+          <AntSwitch />
+        </div>
+        <div className="flex justify-between items-center">
+          <div className="flex gap-3">
+            <img src="plantationlegend.svg" alt="" />
+            <p className="text-homeSubText">Traced to Plantation Mill</p>
           </div>
           <AntSwitch />
         </div>

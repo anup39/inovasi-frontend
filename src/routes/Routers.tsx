@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import AboutUs from "../pages/AboutUs";
 import GetInTouch from "../pages/GetInTouch";
+import NewLogin from "../pages/NewLogin";
 
 interface RoutersProps {
   map: Map | null;
@@ -39,6 +40,8 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />;
           <Route path="/register" element={<Register />} />
+          <Route path="/loginnew" element={<NewLogin />} />
+
           <Route
             path="/dashboard"
             element={<DashBoardHome map={map} onSetMap={onSetMap} />}

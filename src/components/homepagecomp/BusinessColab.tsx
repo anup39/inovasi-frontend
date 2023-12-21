@@ -37,10 +37,12 @@ function BusinessColab() {
           Listen to what our satisfied partners are saying
         </p>{" "}
       </div>
-      <Marquee speed={50}>
+      <Marquee speed={50} pauseOnHover={true}>
         <div className=" flex flex-row items-center overflow-hidden w-full min-w-full py-10 md:py-32">
           {logos.map((logo, index) => (
-            <div
+            <a
+              target="_blank"
+              href="https://www.unilever.com/"
               key={index}
               className="md:border-x flex flex-col items-center justify-center w-[120px] md:w-[200px] lg:w-[275px] h-16 md:h-32 lg:h-[179px] border-x-collabBorder"
             >
@@ -49,7 +51,7 @@ function BusinessColab() {
                 src={logo}
                 alt=""
               />
-            </div>
+            </a>
           ))}
         </div>
       </Marquee>

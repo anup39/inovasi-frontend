@@ -226,16 +226,18 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-            <TableComp
-              tableColumn={tableColumn}
-              // @ts-ignore
-              tableData={milltabledata}
-              map={map}
-              component={"mill"}
-              height="350px"
-              width="1569px"
-              pageSize={5}
-            />
+            <div className="w-full">
+              <TableComp
+                tableColumn={tableColumn}
+                // @ts-ignore
+                tableData={milltabledata}
+                map={map}
+                component={"mill"}
+                height="350px"
+                // width="1580px"
+                pageSize={5}
+              />
+            </div>
 
             {is_agriplot ? (
               <>

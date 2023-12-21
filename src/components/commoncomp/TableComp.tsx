@@ -81,6 +81,10 @@ export default function DataGridDemo({
   width,
   pageSize,
 }: DataGridDemoProps) {
+  const capitalizedColumns = tableColumn.map((col) => ({
+    ...col,
+    headerName: col.headerName.toUpperCase(),
+  }));
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
       if (rows.length > 0 && map) {
@@ -162,7 +166,7 @@ export default function DataGridDemo({
       <DataGrid
         hideFooter={true}
         rows={tableData}
-        columns={tableColumn}
+        columns={capitalizedColumns}
         initialState={{
           pagination: {
             paginationModel: {

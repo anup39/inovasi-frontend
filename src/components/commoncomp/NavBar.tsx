@@ -1,18 +1,15 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBell } from "@fortawesome/free-solid-svg-icons";
-// import Menu from "./Menu";
 import "../../css/common/NavBar.css";
 
 function NavBar() {
   return (
-    <div className="px-6  flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[96px]">
+    <div className="px-[47px] py-[20px] flex items-center justify-end md:justify-between bg-gray-50 border-b-2 h-[96px]">
       <div className="hidden md:block">
         <h1 className="font-semibold text-[30px] text-semiBlackText">
           Dashboard
         </h1>
       </div>
-      <div className="flex justify-center  items-center gap-2  md:gap-5 mr-7">
-        <div className="flex scale-75 h-[42px] w-[150px] md:scale-100 gap-1 md:gap-3 py-1 md:py-2 px-2 md:px-4 rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
+      <div className="flex justify-center  items-center gap-[30px] ">
+        <div className="flex scale-75 h-[42px] w-[150px] md:scale-100 gap-[30px] rounded-lg border items-center justify-center border-grayBorder cursor-pointer">
           <p className="text-grayText text-xs md:text-normal">Commodity</p>
           <img src="dropdownIcon.svg" alt="" />
         </div>
@@ -30,13 +27,9 @@ function NavBar() {
             alt=""
           />
         </div>
-        <div className="relative">
-          <img
-            className="bg-veryLightGreen p-2 rounded-lg min-w-[30px] min-h-[20px] scale-90 cursor-pointer rotate-animation"
-            src="bellIcon.svg"
-            alt=""
-          />
-          <div className=" absolute h-2 w-2 rounded-full top-2 right-1 bg-bellRed"></div>
+        <div className="relative w-[42px] flex items-center justify-center h-[42px] bg-veryLightGreen rounded-lg cursor-pointer">
+          <img className="" src="bellIcon.svg" alt="" />
+          <div className=" absolute h-[6.67px] w-[6.67px] rounded-full top-[6px] right-[6px] bg-bellRed"></div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   );
 
   function openSidebar() {
-    setSidebarOpened(true);
+    setSidebarOpened(!sidebarOpened);
 
     setMillActive(false);
   }

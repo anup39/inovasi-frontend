@@ -25,8 +25,8 @@ const logos = [
 
 function BusinessColab() {
   return (
-    <div className="h-[449px]">
-      <div className="space-y-[16px]">
+    <div className="max-h-[449px]">
+      <div className="space-y-[10px] lg:space-y-[16px]">
         <h1
           className="font-bold leading-[48.76px] text-xl md:text-2xl lg:text-4xl text-center
       "

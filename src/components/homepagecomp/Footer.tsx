@@ -1,14 +1,14 @@
 function Footer() {
   return (
-    <div className="flex flex-col bg-footerBg py-10 px-5 gap-10 md:px-36 lg:px-52 text-white ">
+    <div className="flex flex-col min-h-[297px] bg-footerBg  text-white py-[10px] px-[20px] md:px-[100px] lg:px-[195px] gap-[30px]">
       <div className="flex flex-col md:flex-row md:gap-8 gap-5 justify-between items-start">
-        <div className="flex flex-col items-start md:gap-4 gap-0 max-w-sm md:max-w-xs">
+        <div className="flex flex-col items-start md:gap-4 gap-0 ">
           <img
-            className="scale-50 md:scale-75 lg:scale-100"
+            className="scale-50 md:scale-75 lg:scale-100 w-[170px] h-[64px]"
             src="inovasilogo.svg"
             alt=""
           />
-          <p>
+          <p className="font-[500] text-[16px] leading-[19.5px]">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </p>
@@ -24,7 +24,7 @@ function Footer() {
             <p>Book Demo</p>
           </div>
         </div>
-        <div className="flex md:flex-col items-start gap-4 max-w-sm md:max-w-xs">
+        <div className="flex md:flex-col items-start gap-4 ">
           <div>
             <p className="text-footerHeading font-semibold">Connect</p>
           </div>
@@ -33,7 +33,7 @@ function Footer() {
             <p>YouTube</p>
           </div>
         </div>
-        <div className="flex md:flex-col items-start gap-4  max-w-sm md:max-w-xs">
+        <div className="flex md:flex-col items-start gap-4  ">
           <div>
             <p className="text-footerHeading font-semibold">Contact</p>
           </div>

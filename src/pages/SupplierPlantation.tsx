@@ -197,7 +197,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
     <Layout>
       <Toast />
       <div className="flex flex-col h-[948px]">
-        <div className="flex items-center justify-end px-5">
+        <div className="flex items-center justify-end ">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -245,7 +245,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             </div>
           </div>
           <div
-            className={`${selectedOption === "metric" ? "block" : "hidden"}`}
+            className={`w-[114px] ${
+              selectedOption === "metric" ? "block" : "hidden"
+            }`}
           >
             <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
           </div>

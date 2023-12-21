@@ -63,7 +63,7 @@ function SwitchComp({ label, defaultChecked, onChange }: SwitchCompProps) {
 
   return (
     <FormControlLabel
-      className="bg-white text-semiBlackText bg-opacity-70 py-2 px-3 justify-end my-1 rounded-xl"
+      className="bg-searchGray text-semiBlackText bg-opacity-70 w-[122px] items-center justify-center h-[42px] rounded-lg"
       control={
         // @ts-ignore
         <AntSwitch
@@ -77,7 +77,12 @@ function SwitchComp({ label, defaultChecked, onChange }: SwitchCompProps) {
         <Typography
           variant="body2"
           fontWeight={600}
-          sx={{ display: "inline-block" }} // Add this to make the styles inline
+          sx={{
+            display: "inline-block",
+            fontSize: "16px",
+            lineHeight: "22.4px",
+            color: "#848686",
+          }} // Add this to make the styles inline
         >
           {label}
         </Typography>

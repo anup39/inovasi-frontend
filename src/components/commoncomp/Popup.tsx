@@ -225,26 +225,26 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
 
   return (
     <div
-      className={`flex-1 bg-white min-w-[389px]  md:min-w-[389px] max-h-[353px] max-w-xs rounded-lg `}
+      className={`flex-1 bg-white min-w-[389px] font-[Montserrat]  md:max-w-[389px] max-h-[353px] max-w-xs rounded-[10px] `}
     >
       <div className="flex flex-col relative items-center justify-between  p-3">
         <div className="flex items-center justify-between w-full ">
-          <h1 className="font-normal hidden md:font-bold uppercase text-[9px] md:text-sm mx-auto md:mx-0 md:block">
+          <h1 className="font-normal hidden md:font-bold uppercase text-[9px] leading-[17.07px] md:text-[14px] mx-auto md:mx-0 md:block">
             information
           </h1>
 
           {trace ? (
             <button
               onClick={handleTraceplantation}
-              className="border border-darkGreen w-full md:w-max  rounded-lg text-darkGreen font-semibold  px-1 py-2 text-xs md:text-[7px] lg:text-[10px]"
+              className="border border-darkGreen w-[138px] h-[32px]  rounded-[5px] text-darkGreen font-semibold leading-[24px]  px-[10px] py-[4px] text-xs md:text-[7px] lg:text-[12px]"
             >
-              Trace to Plantation
+              <h1 className="w-[118px]">Trace to Plantation</h1>
             </button>
           ) : null}
         </div>
         <div
           onClick={() => setPopup(!popup)}
-          className={`absolute w-7 transition-all  ${
+          className={`absolute w-[23.33px] transition-all  ${
             popup ? "rotate-180" : ""
           } -top-4 md:-top-3 -translate-x-1/2 right-1/2 left-1/2  aspect-square rounded-full border-darkGreen border bg-white z-10 flex items-center justify-center cursor-pointer`}
         >
@@ -264,7 +264,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
               </button>
             ) : null} */}
             {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
-            <div className="divide-y divide-gray-200   mt-3  ">
+            <div className="divide-y divide-gray-200 mt-3  ">
               {propertyElements && propertyElements.length > 0 ? (
                 propertyElements
               ) : (

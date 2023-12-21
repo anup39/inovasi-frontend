@@ -1,5 +1,4 @@
 import { Checkbox } from "@mui/material";
-import "../css/login/Login.css";
 import PhoneInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
@@ -21,7 +20,7 @@ function Register() {
           />
         </div>
 
-        <div className="max-w-[826px]  mt-[25px] mx-[20px] md:mx-[90px] lg:mx-[195px] flex items-center flex-col">
+        <div className="max-w-[826px]  mt-[25px] mx-[20px] md:mx-[90px] lg:mx-[195px] flex  flex-col">
           <div className="flex flex-col gap-[15px] md:gap-[32px] mt-[38px]">
             <h2 className="text-footerHeading text-center text-[18px] leading-[21.94px] font-bold">
               Welcome!

@@ -67,9 +67,9 @@ function HomeHero() {
         <div className="flex flex-col md:flex-row gap-3 justify-center md:justify-start py-4">
           <button
             onClick={() => navigate("/dashboard")}
-            className="text-white bg-gradient-to-r from-footerHeading to-parrot px-5 py-2 rounded-lg"
+            className="text-white hover:animate-pulse bg-gradient-to-r from-footerHeading to-parrot px-5 py-2 rounded-lg"
           >
-            Demo
+            Book a Demo
           </button>
           <button className="text-homeBtnText px-5 py-2 rounded-lg border-2 border-greenLantern">
             Learn More

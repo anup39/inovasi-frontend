@@ -39,7 +39,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
       <div className="flex flex-col ">
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" flex-1 pt-[26px] ">
+        <div className=" flex-1 pt-[26px] mb-[34px]">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </div>

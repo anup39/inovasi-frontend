@@ -162,11 +162,25 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: height, minWidth: "1568px", width: width }}>
+    <Box
+      sx={{
+        height: height,
+        minWidth: "1568px",
+        width: width,
+        backgroundColor: "#EFEFEF",
+      }}
+    >
       <DataGrid
         hideFooter={true}
         rows={tableData}
-        columns={capitalizedColumns}
+        columns={tableColumn.map((col) => ({
+          ...col,
+          headerName: col.headerName.toUpperCase(),
+          sx: {
+            color: "#848686", // Set the text color
+            fontWeight: 700, // Set font weight directly
+          },
+        }))}
         initialState={{
           pagination: {
             paginationModel: {

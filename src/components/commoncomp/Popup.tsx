@@ -36,8 +36,17 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
   // const navigation = useNavigation();
   const propertyElements = properties
     ? Object.entries(properties).map(([key, value]) => (
-        <div key={key} className="mb-2 truncate">
-          <strong className="mr-1">{key}:</strong> {value}
+        <div
+          key={key}
+          className="text-popupTxt max-w-[369px] text-[12px] leading-[14.63px] gap-2 flex h-[36.4px] items-center truncate"
+        >
+          <p
+            style={{ textTransform: "capitalize" }}
+            className=" w-[179px]  font-semibold  "
+          >
+            {key}
+          </p>{" "}
+          <div className="w-[190px]">{value}</div>
         </div>
       ))
     : null; // Or a default value if appropriate
@@ -264,7 +273,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
               </button>
             ) : null} */}
             {/* <div className="font-bold text-base mt-0">INFORMATION</div> */}
-            <div className="divide-y divide-gray-200 mt-3  ">
+            <div className="divide-y divide-boxDivider flex flex-col gap-[10px] mt-2">
               {propertyElements && propertyElements.length > 0 ? (
                 propertyElements
               ) : (

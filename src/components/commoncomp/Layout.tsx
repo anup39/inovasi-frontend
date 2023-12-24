@@ -25,15 +25,11 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div
-        className={`flex ${
-          sidebarOpened ? "w-[1664px]" : "w-[1866px]"
-        } flex-col`}
-      >
+      <div className={`flex w-full flex-col`}>
         <div className="sticky">
           <NavBar />
         </div>
-        <div className=" h-[984px] px-[49.5px] bg-bgPage bg-opacity-80 overflow-scroll ">
+        <div className="  px-[49.5px] bg-bgPage bg-opacity-80 overflow-scroll ">
           {children}
         </div>
       </div>

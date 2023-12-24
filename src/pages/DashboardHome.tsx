@@ -36,7 +36,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   // const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
-      <div className="flex flex-col ">
+      <div className="flex overflow-scroll flex-col ">
         <Toast />
         <DashBoardItem map={map} />
         <div className=" flex-1 pt-[26px] mb-[34px]">

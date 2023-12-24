@@ -186,9 +186,9 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
 
       <div
         style={{ height: "0.7px" }}
-        className="bg-boxDivider hidden md:flex  w-full"
+        className="bg-boxDivider hidden md:flex "
       ></div>
-      <div className=" hidden md:flex w-full max-h-full">
+      <div className=" hidden md:flex ">
         {piedata.slice(0, 3).map((item, index) => (
           <div
             key={index}
@@ -203,7 +203,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
               {/* @ts-ignore  */}
               {item.percentage.toFixed(2)}
             </p>
-            <p className=" text-[7px] m-3 ">
+            <p className=" text-[7px] m-1 ">
               {/* @ts-ignore */}
 
               {item.display === "0" ? "Others" : item.display}

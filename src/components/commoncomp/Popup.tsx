@@ -31,7 +31,7 @@ interface PopupProps {
 
 // @ts-ignore
 const Popup = ({ properties, trace, map }: PopupProps) => {
-  const [popup, setPopup] = useState(true);
+  const [popup, setPopup] = useState(false);
   const dispatch = useDispatch();
   // const navigation = useNavigation();
   const propertyElements = properties
@@ -234,18 +234,20 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
 
   return (
     <div
-      className={`flex-1 bg-white min-w-[389px] font-[Montserrat]  md:max-w-[389px] max-h-[353px] max-w-xs rounded-[10px] `}
+      className={`flex-1 bg-white w-[270px] sm:w-[310px] md:min-w-[389px] font-[Montserrat] ${
+        popup ? "h-[300px] lg:h-[353px]" : "h-[52px]"
+      } max-w-xs rounded-[10px] `}
     >
       <div className="flex flex-col relative items-center justify-between  p-3">
-        <div className="flex items-center justify-between w-full ">
-          <h1 className="font-normal hidden md:font-bold uppercase text-[9px] leading-[17.07px] md:text-[14px] mx-auto md:mx-0 md:block">
+        <div className="flex items-center justify-center md:justify-between w-full ">
+          <h1 className="font-normal hidden md:font-bold uppercase text-[9px] leading-[17.07px] md:text-[14px]  md:block">
             information
           </h1>
 
           {trace ? (
             <button
               onClick={handleTraceplantation}
-              className="border border-darkGreen w-[138px] h-[32px]  rounded-[5px] text-darkGreen font-semibold leading-[24px]  px-[10px] py-[4px] text-xs md:text-[7px] lg:text-[12px]"
+              className="border border-darkGreen w-[138px] h-[32px]  rounded-[5px] text-darkGreen font-semibold leading-[24px]  px-[10px] py-[4px] text-xs md:text-[10px] lg:text-[12px]"
             >
               <h1 className="w-[118px]">Trace to Plantation</h1>
             </button>
@@ -261,9 +263,9 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
         </div>
         {properties ? (
           <div
-            className={`bg-white rounded max-w-[200px] md:min-w-[350px] p-2 overflow-scroll overflow-y-scroll ${
-              popup ? "block" : "hidden"
-            }  md:max-w-xs max-h-[150px] md:max-h-52 `}
+            className={`bg-white rounded w-full  p-2 overflow-scroll overflow-y-scroll ${
+              popup ? "block h-[230px] lg:h-[271px]" : "hidden"
+            } `}
           >
             {/* <button
                 onClick={handleTraceplantation}

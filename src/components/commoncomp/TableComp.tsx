@@ -165,7 +165,7 @@ export default function DataGridDemo({
     <Box
       sx={{
         height: height,
-        minWidth: "1568px",
+        minWidth: "1566px",
         width: width,
         backgroundColor: "#EFEFEF",
       }}

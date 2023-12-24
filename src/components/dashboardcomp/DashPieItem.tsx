@@ -44,24 +44,24 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center  gap-[28px] ">
+    <div className="flex items-center justify-center  gap-[10px] md:gap-[18px] lg:gap-[24px] xl:gap-[28px] lg:w-full middle:w-1/2 h-[190px] sm:h-[200px]  md:h-[266px] xl:w-full">
       {items.map((item) => (
         <div
           key={item.id}
-          className="bg-white rounded-md w-[238px] min-w-[120px] lg:w-[237px] h-[266px]  "
+          className="bg-white rounded-md xl:w-[238px] lg:min-w-[175px] lg:max-w-[250px] md:min-w-[180px] max-w-[110px] min-w-[100px] lg:w-1/3 "
         >
-          <div className="p-1 flex flex-col justify-between items-center h-full">
+          <div className="p-1 flex flex-col justify-center md:justify-between w-full items-center h-full">
             <div className="p-1 flex w-full justify-between items-center">
               <h1 className="text-semiBlackText font-medium md:font-bold text-[8px] md:text-medium lg:text-sm">
                 {item.name}
               </h1>
               <img
-                className="scale-75 md:scale-100"
+                className="scale-90 md:scale-100"
                 src="moreinfo.svg"
                 alt=""
               />
             </div>
-            <div className="">
+            <div className="scale-[0.4] md:scale-100">
               <PieChartComp
                 params={params}
                 data={item}

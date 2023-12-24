@@ -175,8 +175,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex h-[984px] flex-col ">
-        <div className="flex items-center justify-end px-1 m-2">
+      <div className="flex flex-col overflow-scroll w-full">
+        <div className="flex items-center justify-end my-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -186,9 +186,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
-        <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
-        {/* </div> */}
+        <div className={`${showMap ? "block" : "hidden"} flex-1`}>
+          <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
+        </div>
         <div
           className={`flex w-full justify-between items-center ${
             showMap ? "block" : "hidden"
@@ -242,7 +242,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {is_agriplot ? (
               <>
                 {" "}
-                <div className=" flex m-3 justify-between items-center">
+                <div className=" flex justify-between items-center">
                   <span className="bg-gray">
                     Supplier Plantaton for {mill_name}:{" "}
                     <b>Total :{tableData?.length}</b>
@@ -258,7 +258,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   map={map}
                   component={"agriplot"}
                   height="300px"
-                  width="1569px"
+                  width="1566px"
                   pageSize={4}
                 />
               </>

@@ -13,7 +13,7 @@ function Layout({ children }: LayoutProps) {
   // const pageHeight = `calc(1020px)`;
 
   return (
-    <div className="flex relative ">
+    <div className="flex relative max-h-[1080px] ">
       <div
         className=""
         style={{
@@ -26,11 +26,20 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div className={`flex w-full  flex-col`}>
+      <div className={`flex w-full flex-col`}>
+        {/* <div
+        className={`flex ${
+          sidebarOpened ? "max-w-[1664px]" : "max-w-[1870px]"
+        }  flex-col`}
+      > */}
         <div className="sticky">
           <NavBar />
         </div>
-        <div className="md:px-[49.5px] bg-bgPage bg-opacity-80 overflow-scroll">
+        <div
+          className={`md:px-[49.5px] bg-bgPage ${
+            sidebarOpened ? "max-w-[1664px]" : "max-w-[1870px]"
+          }  bg-opacity-80 overflow-scroll`}
+        >
           {children}
         </div>
       </div>

@@ -6,19 +6,21 @@ function HomeHero() {
 
   const navigate = useNavigate();
   return (
-    <div className="relative overflow-x-hidden">
-      <div className="flex items-center justify-between pt-5 lg:pt-10 px-10 mb-5 lg:mb-10 ">
+    <div className="ml-[97px] relative overflow-x-hidden">
+      {/*menu and img */}
+      <div className="flex items-center justify-between ">
         <img
-          className="w-[170px] scale-50 md:scale-75 lg:scale-100 h-[64px]"
+          className="w-[170px] pl-[11px] scale-50 md:scale-75 lg:scale-100 h-[64px] mt-[25px]"
           src="inovasilogo.svg"
           alt=""
         />
-        <div className=" items-center bg-gradient-to-r from-footerHeading to-parrot gap-3 hidden md:flex lg:gap-10 z-10  bg-opacity-20 px-4 rounded-lg py-4">
+        {/* menu */}
+        <div className="mt-[57px] items-center bg-gradient-to-r text-[18px] from-footerHeading to-parrot gap-3 hidden md:flex lg:gap-[72px] z-10  bg-opacity-20 px-4 rounded-lg py-4">
           <button className="font-bold text-creamGray">Home</button>
           <button className="font-normal text-creamGray">Features</button>
           <button className="font-normal text-creamGray">News</button>
           <button className="font-normal text-creamGray">About</button>
-          <button className="text-footerHeading h-[50px] bg-white py-0 px-5 rounded-lg font-semibold">
+          <button className="text-footerHeading bg-white py-[15px] px-[25px] rounded-lg text-[16px] font-semibold">
             Get in touch
           </button>
         </div>
@@ -56,7 +58,7 @@ function HomeHero() {
           src="heroIpad.png"
           alt=""
         />
-        <h1 className="max-w-xs text-xl md:text-2xl font-bold mx-auto md:mx-0">
+        <h1 className="max-w-xs text-xl md:text-[2xl] font-bold mx-auto md:mx-0">
           Ensure Compliance Regulation Effortlessly with Agriplot's Due
           Diligence System
         </h1>

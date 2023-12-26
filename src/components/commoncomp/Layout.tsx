@@ -15,7 +15,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <div className="flex relative max-h-[1080px] ">
       <div
-        className=""
+        className="absolute sm:static"
         style={{
           width: sidebarWidth,
           flex: `0 0 ${sidebarWidth}`,
@@ -26,7 +26,7 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div className={`flex w-full flex-col`}>
+      <div className={`flex w-full ml-[50px] sm:ml-0 flex-col`}>
         {/* <div
         className={`flex ${
           sidebarOpened ? "max-w-[1664px]" : "max-w-[1870px]"

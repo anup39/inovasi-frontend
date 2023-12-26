@@ -227,7 +227,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             </div>
           </div>
           {/* pages */}
-          <Pagination />
+          <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
+            <Pagination />
+          </div>
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>

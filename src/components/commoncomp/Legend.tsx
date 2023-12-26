@@ -69,17 +69,17 @@ export default function Lenged({ component, map }) {
     <div>
       <div
         onClick={() => setShowLegend(!showLegend)}
-        className="scale-75 md:scale-100 absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-1 md:top-2 left-0 md:left-2 z-10"
+        className="scale-75 md:scale-100 absolute flex justify-center items-center bg-opacity-90 font-bold text-lg px-3 cursor-pointer aspect-square rounded-lg text-darkGreen border border-darkGreen bg-white top-1 md:top-2 left-0 md:left-2 "
       >
         i
       </div>
       {/* legend div */}
       <div
-        className={`shadow p-3 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
+        className={`shadow p-3 -top-5 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
-        } rounded-lg flex-col gap-2 bg-white absolute z-10 md:top-2 -left-10 md:left-10 ${
-          showMore ? "h-[270px] -top-5" : "h-[214px] top-2"
-        }  md:h-max w-[356px]`}
+        } rounded-[10px] flex-col gap-[17px] bg-white absolute z-20 md:top-2 -left-16 md:left-10 ${
+          showMore ? "h-[350px] md:h-[417px] -top-5" : "h-[240px] top-2"
+        } w-[310px] sm:w-[356px]`}
       >
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-lg">Legend</h1>
@@ -100,7 +100,7 @@ export default function Lenged({ component, map }) {
           )}
         </div>
 
-        <div className="h-[1px] items-center justify-start bg-legendDivider my-1"></div>
+        <div className="h-[1px] items-center justify-start bg-legendDivider"></div>
         <div className="flex justify-between items-center">
           <div className="flex gap-3">
             <img src="facilitieslegend.svg" alt="" />
@@ -131,8 +131,8 @@ export default function Lenged({ component, map }) {
         </div>
         {/* div that appears after see all */}
         {showMore ? (
-          <div className="overflow-y-scroll flex gap-2 flex-col">
-            <div className="h-[1px] items-center justify-start bg-legendDivider my-2"></div>
+          <div className="overflow-y-scroll flex gap-[17px] flex-col">
+            <div className="h-[1px] items-center justify-start bg-legendDivider"></div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
                 <div className="h-4 aspect-square bg-footerHeading"></div>
@@ -142,7 +142,14 @@ export default function Lenged({ component, map }) {
             </div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
-                <div className="h-4 aspect-square bg-potentialSupp"></div>
+                <div className="h-4 aspect-square bg-[#FFAD33]"></div>
+                <p className="">Actual unregistered supplier</p>
+              </div>
+              <AntSwitch />
+            </div>
+            <div className="flex justify-between items-center">
+              <div className="flex gap-3 items-center">
+                <div className="h-4 aspect-square bg-[#EF38FF]"></div>
                 <p>Potential registered supplier</p>
               </div>
               <AntSwitch />

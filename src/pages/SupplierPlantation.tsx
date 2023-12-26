@@ -176,7 +176,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   }, [dispatch, estateids, mill_id]);
 
   // @ts-ignore
-  const pageHeight = `calc(100vh - 60px)`;
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
   }
@@ -196,8 +195,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col h-[948px]">
-        <div className="flex items-center justify-end ">
+      <div className="flex flex-col min-h-[1080px] ">
+        <div className="flex items-center justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -207,28 +206,30 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </ThemeProvider>
         </div>
-        {/* <div className={`my-1  ${showMap ? "block" : "hidden"} flex-1`}> */}
-        <MapComponent
-          map={map}
-          onSetMap={onSetMap}
-          component="supplier-plantation"
-        />
-        {/* </div> */}
-        <div className="flex items-center justify-between">
+        <div
+          className={`mt-[14px] w-full lg:min-w-[1566px]  ${
+            showMap ? "block" : "hidden"
+          } flex-1`}
+        >
+          <MapComponent
+            map={map}
+            onSetMap={onSetMap}
+            component="supplier-plantation"
+          />
+        </div>
+        <div className="flex my-[16px] items-center justify-between">
           {/* div for the list/metric selector */}
           <div
-            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 ${
-              showMap ? "block" : "hidden"
-            }
+            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 
           
-          bg-white w-2/3 max-w-[330px] rounded-lg`}
+          bg-white w-2/3 max-w-[330px] rounded-[16px] h-[53px]`}
           >
             <div
               onClick={() => handleMetricChange("metric")}
-              className={`transition-all ease-in delay-75 rounded-lg ${
+              className={`transition-all ease-in delay-75 rounded-[10px] ${
                 selectedOption === "metric"
-                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                  : "w-1/2 bg-lightGray rounded-lg "
+                  ? "w-[200px] bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-[100px] bg-lightGray rounded-lg "
               } py-2 text-center  cursor-pointer`}
             >
               Metric
@@ -237,9 +238,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               onClick={() => handleMetricChange("list")}
               className={` rounded-lg ${
                 selectedOption === "list"
-                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                  : "w-1/2  bg-bgLightGray"
-              } py-2 text-center cursor-pointer rounded-lg`}
+                  ? "w-[200px] bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-[100px]  bg-bgLightGray"
+              } py-2 text-center cursor-pointer rounded-[10px]`}
             >
               List
             </div>
@@ -257,24 +258,26 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-            <TableComp
-              tableColumn={tablecolumn}
-              // @ts-ignore
-              tableData={tableData}
-              map={map}
-              component={"agriplot"}
-              height="300px"
-              width="1569px"
-              pageSize={4}
-            />
+            <div className="w-full">
+              <TableComp
+                tableColumn={tablecolumn}
+                // @ts-ignore
+                tableData={tableData}
+                map={map}
+                component={"agriplot"}
+                height="300px"
+                // width="1569px"
+                pageSize={4}
+              />
+            </div>
 
-            <div className=" flex m-3 justify-between items-center">
+            {/* <div className=" flex m-3 justify-between items-center">
               <span className="bg-gray">
                 Supplier : <b>200</b>
               </span>{" "}
               <Pagination />{" "}
-            </div>
-
+            </div> */}
+            {/* 
             <TableComp
               tableColumn={tablecolumn}
               // @ts-ignore
@@ -284,14 +287,14 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               height="300px"
               width="1569px"
               pageSize={4}
-            />
+            /> */}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row w-full my-1 items-center  gap-8">
+          <div className="flex flex-col lg:flex-row w-full my-1 justify-center  items-center  gap-8">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white relative flex flex-col gap-4 p-3 w-full lg:w-1/2 rounded-xl"
+                className="bg-white relative xl:w-[768px] xl:h-[340px] flex flex-col gap-4 p-3 w-full lg:w-1/2 rounded-[20px]"
               >
                 <h1 className="text-semiBlackText font-bold min-w-fit">
                   {item.name}
@@ -301,17 +304,19 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                   src="moreinfo.svg"
                   alt=""
                 />
-                <div className="flex items-center justify-between w-full gap-2 md:gap-10 lg:gap-20 px-2 py-5">
-                  <PieChartComp
-                    params={params}
-                    data={item}
-                    width_={200}
-                    height_={200}
-                    params_include={false}
-                    gradient_start={[159, 83]}
-                  />
+                <div className="flex items-center justify-around  gap-2 md:gap-10 lg:gap-20 px-2 py-5">
+                  <div>
+                    <PieChartComp
+                      params={params}
+                      data={item}
+                      width_={200}
+                      height_={200}
+                      params_include={false}
+                      gradient_start={[159, 83]}
+                    />
+                  </div>
                   {/* div for those list */}
-                  <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-2  w-full">
+                  <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-[20px] ">
                     {lists.map((list) => (
                       <div
                         key={list.listTitle}

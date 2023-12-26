@@ -402,7 +402,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           settings
         </p>
         <div
-          className={`py-[10px] h-[40px] px-[12px] hover:bg-boxDivider gap-3 cursor-pointer rounded-lg flex items-center  ${
+          className={`py-[10px] h-[40px] px-[12px] hover:bg-boxDivider gap-3 cursor-pointer rounded-lg justify-between flex items-center  ${
             sidebarOpened ? "px-0" : "px-0"
           } `}
         >
@@ -453,7 +453,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           <img src="helpIcon.svg" alt="" />
           <p
             className={`font-medium text-[14px] leading-[20px] ${
-              sidebarOpened ? "block" : "hidden"
+              sidebarOpened ? "" : "hidden"
             } `}
           >
             Help

@@ -175,8 +175,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col overflow-scroll w-full">
-        <div className="flex items-center justify-end my-[15px]">
+      <div className="flex flex-col overflow-scroll min-h-[1080px]">
+        <div className="flex items-center justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -186,11 +186,16 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        <div className={`${showMap ? "block" : "hidden"} flex-1`}>
+        <div
+          className={`${
+            showMap ? "block" : "hidden"
+          }  lg:min-w-[1566px] mt-[14px] h-[464px]`}
+        >
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
+        {/* div that keeps metric selector and pages */}
         <div
-          className={`flex w-full justify-between items-center ${
+          className={`flex my-[16px] w-full justify-between items-center ${
             showMap ? "block" : "hidden"
           }`}
         >
@@ -198,14 +203,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           <div
             className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 
           
-          bg-white w-2/3 max-w-[330px] rounded-lg`}
+          bg-white w-2/3 max-w-[330px] rounded-[16px] h-[53px]`}
           >
             <div
               onClick={() => handleMetricChange("metric")}
-              className={`transition-all ease-in delay-75 rounded-lg ${
+              className={`transition-all ease-in delay-75 rounded-[10px] ${
                 selectedOption === "metric"
-                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                  : "w-1/2 bg-lightGray rounded-lg "
+                  ? "w-[200px] bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-[100px] bg-lightGray rounded-lg "
               } py-2 text-center  cursor-pointer`}
             >
               Metric
@@ -214,15 +219,17 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               onClick={() => handleMetricChange("list")}
               className={` rounded-lg ${
                 selectedOption === "list"
-                  ? "w-2/3 bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
-                  : "w-1/2  bg-bgLightGray"
-              } py-2 text-center cursor-pointer rounded-lg`}
+                  ? "w-[200px] bg-gradient-to-r from-[#02C685] to-[#8ADF5E] text-white font-semibold"
+                  : "w-[100px]  bg-bgLightGray"
+              } py-2 text-center cursor-pointer rounded-[10px]`}
             >
               List
             </div>
           </div>
           {/* pages */}
-          <Pagination />
+          <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
+            <Pagination />
+          </div>
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
@@ -233,7 +240,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 tableData={milltabledata}
                 map={map}
                 component={"mill"}
-                height="350px"
+                height="334px"
                 // width="1580px"
                 pageSize={5}
               />
@@ -265,19 +272,19 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             ) : null}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-5">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-[28px]">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-lg lg:w-1/4 w-[370px] md:w-[370px] h-[340px]  "
+                className="bg-white flex items-start rounded-[20px] p-1  w-[370px] h-[340px]  "
               >
-                <div className="py-2 px-2 flex items-center flex-col w-full">
-                  <div className="flex justify-between items-center w-full py-5">
-                    <h1 className="text-semiBlackText font-semibold md:font-bold text-sm p-1">
+                <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
+                  <div className="flex justify-between items-center w-full ">
+                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[18px] p-1">
                       {item.name}
                     </h1>
                     <img
-                      className="scale-75 cursor-pointer"
+                      className=" cursor-pointer"
                       src="moreinfo.svg"
                       alt=""
                     />

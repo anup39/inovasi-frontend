@@ -6,7 +6,7 @@ function BaseMapSwitch() {
 
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
-      <div className="flex absolute top-12 -right-5 md:static scale-[0.6] md:scale-100 items-center rounded-xl bg-white gap-2  px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
+      <div className="flex absolute top-12 -right-5 z-9 md:static scale-[0.6] md:scale-100 items-center rounded-xl bg-white gap-2  px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
         <h1 className="scale-90 md:scale-100">Radius</h1>
         <input
           style={{

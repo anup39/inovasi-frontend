@@ -183,33 +183,33 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }
         />
       </PieChart>
-
-      <div
-        style={{ height: "0.7px" }}
-        className="bg-boxDivider hidden md:flex "
-      ></div>
-      <div className=" hidden md:flex ">
-        {piedata.slice(0, 3).map((item, index) => (
-          <div
-            key={index}
-            className={`flex flex-col items-center justify-center ${"border-r-[0.7px] border-boxDivider mx-auto"}`}
-          >
-            <p
-              //  @ts-ignore
-
-              style={{ color: gradientColor(item.count) }}
-              className=" text-[10px] md:text-[12px] font-normal lg:font-semibold "
+      <div className="w-full h-[65px] hidden md:block">
+        <div className="bg-boxDivider h-[1px] "></div>
+        <div className="flex w-full h-full">
+          {piedata.slice(0, 3).map((item, index, array) => (
+            <div
+              key={index}
+              className={`flex flex-col w-1/3 items-center justify-center text-center ${
+                array.length > 1 && index < array.length - 1
+                  ? "border-r-[0.7px] border-boxDivider"
+                  : ""
+              } mx-auto`}
             >
-              {/* @ts-ignore  */}
-              {item.percentage.toFixed(2)}
-            </p>
-            <p className=" text-[7px] m-1 ">
-              {/* @ts-ignore */}
-
-              {item.display === "0" ? "Others" : item.display}
-            </p>
-          </div>
-        ))}
+              <p
+                //  @ts-ignore
+                style={{ color: gradientColor(item.count) }}
+                className="text-[10px] md:text-[20px] lg:text-[14px] middle:text-[20px] mx-auto font-normal lg:font-semibold"
+              >
+                {/* @ts-ignore */}
+                {item.percentage.toFixed(2)}
+              </p>
+              <p className="text-[14px] lg:text-[12px] middle:text-[14px] m-1">
+                {/* @ts-ignore */}
+                {item.display === "0" ? "Others" : item.display}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

@@ -207,9 +207,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           </ThemeProvider>
         </div>
         <div
-          className={`mt-[14px] w-full lg:min-w-[1566px]  ${
+          className={`mt-[14px] h-[464px] w-full lg:min-w-[1566px]  ${
             showMap ? "block" : "hidden"
-          } flex-1`}
+          } `}
         >
           <MapComponent
             map={map}

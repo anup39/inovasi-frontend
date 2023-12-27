@@ -44,34 +44,32 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center  gap-[10px] md:gap-[18px] lg:gap-[24px] xl:gap-[28px] lg:w-full middle:w-1/2 xl:w-full">
+    <div className="flex items-center md:justify-center middle:justify-start md:w-full middle:w-1/2 gap-[10px] md:gap-[20px] middle:gap-[24px]  xl:gap-[28px] xl:w-full">
       {items.map((item) => (
         <div
           key={item.id}
-          className="bg-white rounded-md xl:w-[238px] h-[170px]  md:h-[266px]  lg:min-w-[175px] lg:max-w-[250px] md:min-w-[180px] max-w-[110px] min-w-[100px] lg:w-1/3 "
+          className="bg-white rounded-[20px] md:w-1/3 xl:w-[238px] middle:h-[266px] md:min-h-[200px] md:max-w-[280px] min-h-[100px] w-[95px]"
         >
-          <div className="p-1 flex flex-col justify-center md:justify-between w-full items-center md:h-full">
+          <div className="p-1 flex flex-col justify-center w-full items-center h-full">
             <div className="p-1 flex w-full justify-between items-center ">
-              <h1 className="text-semiBlackText font-medium md:font-bold text-[8px] md:text-medium lg:text-sm">
+              <h1 className="text-semiBlackText font-medium md:font-bold text-[8px] md:text-sm xl:text-[18px] xl:leading-[21.6px]">
                 {item.name}
               </h1>
               <img
-                className="scale-90 md:scale-100"
+                className="scale-90 md:scale-100 cursor-pointer"
                 src="moreinfo.svg"
                 alt=""
               />
             </div>
-            <div className="scale-[0.4] md:scale-100 ">
+            <div className=" ">
               <PieChartComp
                 params={params}
                 data={item}
-                width_={180}
-                height_={180}
+                width_={160}
+                height_={160}
                 params_include={false}
                 gradient_start={[159, 83]}
               />
-
-              {/* <PieChartCompUpdated /> */}
             </div>
           </div>
         </div>

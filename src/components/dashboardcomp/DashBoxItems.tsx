@@ -238,21 +238,19 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
   };
 
   return (
-    <div className="flex items-center justify-center  gap-[10px] md:gap-[18px] lg:gap-[24px] xl:gap-[28px] lg:w-full middle:w-1/2 xl:w-full">
+    <div className="flex items-center md:justify-center middle:justify-end md:w-full middle:w-1/2 gap-[10px] md:gap-[20px]  middle:gap-[24px]  xl:gap-[28px] xl:w-full">
       {items
         ? items.map((item) => (
             <div
               key={item.id}
               onClick={() => handleCurrentSelectedItem(item)}
-              // className={` transition-all ease-in-out rounded-lg min-w-[85px] md:min-w-[150px] lg:min-w-[160px] h-[160px] lg:h-[250px] lg:aspect-square ${
-              className={` transition-all ease-in-out rounded-lg bg-white  min-w-[110px] md:min-w-[180px] lg:min-w-[175px] lg:max-w-[250px] lg:w-1/3 xl:w-[237px] h-[155px] md:h-[180px] lg:h-[266px]  ${
+              className={` transition-all ease-in-out rounded-[20px] bg-white xl:w-[237px] middle:h-[266px] w-1/3 md:h-[200px] md:max-w-[280px] min-h-[150px] min-w-[90px] ${
                 item.selected ? `border-2 border-borderGreen ` : ``
-                // item.selected ? 'bg-[#CCB848]' : `bg-[#018C79]`
-              } dashItems hover:cursor-pointer`}
+              }  hover:cursor-pointer`}
             >
               {" "}
-              <div className="h-full px-0 md:px-2 flex flex-col justify-between py-0 lg:py-1">
-                <div className="relative gap-1 flex flex-col lg:flex-row items-start lg:items-center ">
+              <div className="h-full px-0 md:px-2 flex flex-col justify-between py-0 md:py-1">
+                <div className="relative gap-1 flex flex-col md:flex-row items-start md:items-center ">
                   <img
                     className="scale-50 md:scale-75 "
                     src={item.imagesrc}

@@ -162,37 +162,41 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box
-      sx={{
-        height: height,
-        minWidth: "1566px",
-        width: width,
-        backgroundColor: "#EFEFEF",
-      }}
-    >
-      <DataGrid
-        hideFooter={true}
-        rows={tableData}
-        columns={tableColumn.map((col) => ({
-          ...col,
-          headerName: col.headerName.toUpperCase(),
-          sx: {
-            color: "#848686", // Set the text color
-            fontWeight: 700, // Set font weight directly
-          },
-        }))}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: pageSize,
-            },
-          },
+    <div className="max-w-[1772px]">
+      <Box
+        sx={{
+          height: height,
+          // maxWidth: "1772px",
+          // minWidth: "1566px",
+          // width: "100%",
+          // width: width,
+          backgroundColor: "#EFEFEF",
         }}
-        pageSizeOptions={[pageSize]}
-        checkboxSelection={true}
-        disableRowSelectionOnClick
-        onRowSelectionModelChange={handleonRowSelectionModelChange}
-      />
-    </Box>
+      >
+        <DataGrid
+          hideFooter={true}
+          rows={tableData}
+          columns={tableColumn.map((col) => ({
+            ...col,
+            headerName: col.headerName.toUpperCase(),
+            sx: {
+              color: "#848686", // Set the text color
+              fontWeight: 700, // Set font weight directly
+            },
+          }))}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: pageSize,
+              },
+            },
+          }}
+          pageSizeOptions={[pageSize]}
+          checkboxSelection={true}
+          disableRowSelectionOnClick
+          onRowSelectionModelChange={handleonRowSelectionModelChange}
+        />
+      </Box>
+    </div>
   );
 }

@@ -183,7 +183,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     <div
       ref={mapContainer}
       id="map"
-      className={`map rounded-lg relative w-full ${height} `}
+      className={`map rounded-[20px] relative w-full ${height} `}
     >
       <div className="absolute top-0 right-[25px] md:right-12 z-10">
         <BaseMapSwitch />

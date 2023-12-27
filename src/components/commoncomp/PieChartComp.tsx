@@ -137,53 +137,55 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     );
   };
   return (
-    <>
-      <PieChart
-        onMouseLeave={onPieExit}
-        // @ts-ignore
-        onMouseOut={onPieExit}
-        width={width_}
-        height={height_}
-        cursor="pointer"
-      >
-        <Pie
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
-          isAnimationActive={true}
-          dataKey="count"
-          nameKey="display"
-          data={piedata}
-          cx="50%"
-          cy="50%"
-          innerRadius={60}
-          outerRadius={80}
-          fill="#82ca9d"
+    <div className="flex flex-col items-center justify-center">
+      <div className="scale-[0.45] md:scale-[0.55] lg:scale-[0.8] middle:scale-100">
+        <PieChart
           onMouseLeave={onPieExit}
-          onMouseDown={onPieExit}
+          // @ts-ignore
           onMouseOut={onPieExit}
-          onMouseMove={onPieEnter}
-          onMouseDownCapture={onPieExit}
-          onMouseMoveCapture={onPieExit}
-          labelLine={false}
-          label={labelPieChart}
+          width={width_}
+          height={height_}
+          cursor="pointer"
         >
-          {/* @ts-ignore */}
-          {piedata.map((entry, index) => (
-            // @ts-ignore
-            <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
-          ))}
-        </Pie>
-        <Tooltip
-          content={
-            <CustomTooltip
-              display={activeTooltip}
-              active={activeTooltip}
-              payload={[]}
-            />
-          }
-        />
-      </PieChart>
-      <div className="w-full h-[65px] hidden md:block">
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            isAnimationActive={true}
+            dataKey="count"
+            nameKey="display"
+            data={piedata}
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={80}
+            fill="#82ca9d"
+            onMouseLeave={onPieExit}
+            onMouseDown={onPieExit}
+            onMouseOut={onPieExit}
+            onMouseMove={onPieEnter}
+            onMouseDownCapture={onPieExit}
+            onMouseMoveCapture={onPieExit}
+            labelLine={false}
+            label={labelPieChart}
+          >
+            {/* @ts-ignore */}
+            {piedata.map((entry, index) => (
+              // @ts-ignore
+              <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+            ))}
+          </Pie>
+          <Tooltip
+            content={
+              <CustomTooltip
+                display={activeTooltip}
+                active={activeTooltip}
+                payload={[]}
+              />
+            }
+          />
+        </PieChart>
+      </div>
+      <div className="w-full h-[65px] hidden middle:block">
         <div className="bg-boxDivider h-[1px] "></div>
         <div className="flex w-full h-full">
           {piedata.slice(0, 3).map((item, index, array) => (
@@ -211,7 +213,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

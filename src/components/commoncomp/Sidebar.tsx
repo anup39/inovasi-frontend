@@ -52,7 +52,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   };
   return (
     <div
-      className={`relative flex flex-col gap-[40px] border-r-2 border-gray-100 z-30 h-full bg-white text-sidebarText transition-all  ease-out duration-75  ${
+      className={`relative flex flex-col gap-[40px] border-r-2 border-gray-100 z-30 min-h-[1080px] h-full bg-white text-sidebarText transition-all  ease-out duration-75  ${
         sidebarOpened ? "w-[256px] p-[24px]" : "w-[50px] py-[18px]"
       }`}
     >

@@ -1,8 +1,8 @@
 function Footer() {
   return (
-    <div className="flex flex-col min-h-[297px] bg-footerBg  text-white py-[10px] px-[20px] md:px-[100px] lg:px-[195px] gap-[30px]">
-      <div className="flex flex-col md:flex-row md:gap-8 gap-5 justify-between items-start">
-        <div className="flex flex-col items-start md:gap-4 gap-0 ">
+    <div className="flex flex-col min-h-[297px] bg-footerBg  text-creamGray py-[10px] middle:py-[20px] px-[20px] md:px-[100px] middle:px-[195px] gap-[30px]">
+      <div className="flex flex-col md:flex-row gap-5 justify-between items-start max-w-[1530px]">
+        <div className="flex flex-col items-start md:gap-4 gap-0 max-w-[361px]">
           <img
             className="scale-50 md:scale-75 lg:scale-100 w-[170px] h-[64px]"
             src="inovasilogo.svg"

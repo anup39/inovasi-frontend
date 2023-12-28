@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavBar from "./NavBar";
 import Sidebar from "./Sidebar";
+import "../../css/common/Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,7 +26,14 @@ function Layout({ children }: LayoutProps) {
           sidebarOpened={sidebarOpened}
         />
       </div>
-      <div className={`w-full ml-[50px] sm:ml-0 `}>
+      <div
+        // style={{
+        //   width: `calc(100% - ${sidebarWidth})`,
+        // }}
+        className={`custom-div ${
+          sidebarOpened ? "custom-divOpen" : "custom-divClose"
+        } ml-[50px] md:ml-0  md:px-0 `}
+      >
         <div className="sticky">
           <NavBar />
         </div>

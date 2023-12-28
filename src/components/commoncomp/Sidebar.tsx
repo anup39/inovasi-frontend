@@ -391,7 +391,9 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
         </div>
       </div>
       {/* horizontal divider */}
-      <div className=" h-0.5 bg-dashDivider"></div>
+      <div
+        className={`${sidebarOpened ? "" : "hidden"} h-0.5 bg-dashDivider`}
+      ></div>
       {/* div with settings */}
       <div className="flex flex-col h-[296px] gap-2">
         <p

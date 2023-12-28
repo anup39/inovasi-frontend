@@ -1,0 +1,11 @@
+.custom-div {
+  width: calc(100% - 50px);
+}
+@media (min-width: 768px) {
+  .custom-divOpen {
+    width: calc(100% - 256px);
+  }
+  .custom-divClose {
+    width: calc(100% - 50px);
+  }
+}

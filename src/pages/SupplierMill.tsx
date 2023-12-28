@@ -175,8 +175,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="overflow-scroll min-h-[984px]">
-        <div className="flex items-center justify-end mt-[15px]">
+      <div className="min-h-[984px]">
+        <div className="items-center flex justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -229,7 +229,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-            <div className=" mb-[24px] w-[98%] middle:w-full">
+            <div className=" mb-[24px] w-full">
               <TableComp
                 tableColumn={tableColumn}
                 // @ts-ignore
@@ -252,7 +252,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   </span>{" "}
                   <Pagination />{" "}
                 </div>
-                <div className="w-[30%]">
+                <div className="w-full">
                   <TableComp
                     // @ts-ignore
 
@@ -274,7 +274,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-1/4 lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
+                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
               >
                 <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
                   <div className="flex justify-between items-center w-full ">

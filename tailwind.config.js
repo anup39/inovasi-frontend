@@ -56,6 +56,7 @@ export default {
         inputGrey: "#6C6C6C",
         popupTxt: "#252525",
         dashDivider: "#F6F6F6",
+        plantationListTitle: "#9B9D9D",
       },
     },
   },

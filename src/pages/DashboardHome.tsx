@@ -20,26 +20,12 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
     dispatch(setselectedDataFormat("Metric"));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (map) {
-  //     const legend_name: string = "LegendControl";
-  //     // @ts-ignore
-  //     const legend_index = map._controls.indexOf(legend_name);
-
-  //     if (legend_index) {
-  //       const legend_control = map._controls[map._controls.length - 3];
-  //       // @ts-ignore
-  //       legend_control.updateLegend("dashboard");
-  //     }
-  //   }
-  // }, []);
-  // const pageHeight = `calc(100vh - 60px)`;
   return (
     <Layout>
-      <div className="flex overflow-scroll flex-col ">
+      <div className=" ">
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" flex-1 pt-[26px] mb-[34px]">
+        <div className="pt-[10px] md:pt-[26px] pb-[10px] md:pb-[34px] ">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </div>

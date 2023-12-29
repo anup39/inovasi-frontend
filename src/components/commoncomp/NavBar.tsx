@@ -2,7 +2,7 @@ import "../../css/common/NavBar.css";
 
 function NavBar() {
   return (
-    <div className="px-[10px] md:px-[47px] py-[20px] flex items-center justify-start md:justify-between bg-gray-50 border-b-2 h-[50px] md:h-[96px]">
+    <div className="px-[10px] md:px-[47px] py-[10px] lg:py-[20px] flex items-center justify-start md:justify-between bg-gray-50 border-b-2 h-[50px] md:h-[96px]">
       <div className="hidden md:block">
         <h1 className="font-semibold text-[30px] text-semiBlackText">
           Dashboard

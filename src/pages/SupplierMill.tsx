@@ -175,8 +175,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col overflow-scroll min-h-[1080px]">
-        <div className="flex items-center justify-end mt-[15px]">
+      <div className="min-h-[984px]">
+        <div className="items-center flex justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
               label="Map"
@@ -186,22 +186,18 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             />
           </ThemeProvider>
         </div>
-        <div
-          className={`${
-            showMap ? "block" : "hidden"
-          }  lg:min-w-[1566px] mt-[14px] h-[464px]`}
-        >
+        <div className={`${showMap ? "block" : "hidden"}  mt-[14px] `}>
           <MapComponent map={map} onSetMap={onSetMap} component={"mill"} />
         </div>
         {/* div that keeps metric selector and pages */}
         <div
-          className={`flex my-[16px] w-full justify-between items-center ${
+          className={`flex py-[16px] w-full justify-between items-center ${
             showMap ? "block" : "hidden"
           }`}
         >
           {/* the metric select button */}
           <div
-            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 
+            className={`flex py-2 p-2 gap-2 transition-all ease-in delay-100 
           
           bg-white w-2/3 max-w-[330px] rounded-[16px] h-[53px]`}
           >
@@ -233,7 +229,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-            <div className="w-full">
+            <div className=" mb-[24px] w-full">
               <TableComp
                 tableColumn={tableColumn}
                 // @ts-ignore
@@ -249,38 +245,40 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {is_agriplot ? (
               <>
                 {" "}
-                <div className=" flex justify-between items-center">
+                <div className=" flex justify-between items-center mb-[24px]">
                   <span className="bg-gray">
                     Supplier Plantaton for {mill_name}:{" "}
                     <b>Total :{tableData?.length}</b>
                   </span>{" "}
                   <Pagination />{" "}
                 </div>
-                <TableComp
-                  // @ts-ignore
+                <div className="w-full">
+                  <TableComp
+                    // @ts-ignore
 
-                  tableColumn={tableColumnRedux}
-                  // @ts-ignore
-                  tableData={tableData}
-                  map={map}
-                  component={"agriplot"}
-                  height="300px"
-                  width="1566px"
-                  pageSize={4}
-                />
+                    tableColumn={tableColumnRedux}
+                    // @ts-ignore
+                    tableData={tableData}
+                    map={map}
+                    component={"agriplot"}
+                    height="300px"
+                    // width="1566px"
+                    pageSize={4}
+                  />{" "}
+                </div>
               </>
             ) : null}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-[28px]">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white flex items-start rounded-[20px] p-1  w-[370px] h-[340px]  "
+                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
               >
                 <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
                   <div className="flex justify-between items-center w-full ">
-                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[18px] p-1">
+                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
                       {item.name}
                     </h1>
                     <img

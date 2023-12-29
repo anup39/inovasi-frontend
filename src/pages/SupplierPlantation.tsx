@@ -195,7 +195,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   return (
     <Layout>
       <Toast />
-      <div className="flex flex-col min-h-[1080px] ">
+      <div className=" min-h-[984px] ">
         <div className="flex items-center justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
             <SwitchComp
@@ -206,11 +206,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
             />
           </ThemeProvider>
         </div>
-        <div
-          className={`mt-[14px] h-[464px] w-full lg:min-w-[1566px]  ${
-            showMap ? "block" : "hidden"
-          } `}
-        >
+        <div className={`${showMap ? "block" : "hidden"}  mt-[14px] `}>
           <MapComponent
             map={map}
             onSetMap={onSetMap}
@@ -220,7 +216,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         <div className="flex my-[16px] items-center justify-between">
           {/* div for the list/metric selector */}
           <div
-            className={`flex my-2 p-2 gap-2 transition-all ease-in delay-100 
+            className={`flex py-2 p-2 gap-2 transition-all ease-in delay-100 
           
           bg-white w-2/3 max-w-[330px] rounded-[16px] h-[53px]`}
           >
@@ -258,53 +254,35 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
         </div>
         {selectedDataFormat && selectedDataFormat === "Table" ? (
           <>
-            <div className="w-full">
+            <div className="mb-[24px] w-full">
               <TableComp
                 tableColumn={tablecolumn}
                 // @ts-ignore
                 tableData={tableData}
                 map={map}
                 component={"agriplot"}
-                height="300px"
+                height="328px"
                 // width="1569px"
-                pageSize={4}
+                pageSize={5}
               />
             </div>
-
-            {/* <div className=" flex m-3 justify-between items-center">
-              <span className="bg-gray">
-                Supplier : <b>200</b>
-              </span>{" "}
-              <Pagination />{" "}
-            </div> */}
-            {/* 
-            <TableComp
-              tableColumn={tablecolumn}
-              // @ts-ignore
-              tableData={tableData}
-              map={map}
-              component={"agriplot"}
-              height="300px"
-              width="1569px"
-              pageSize={4}
-            /> */}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row w-full my-1 justify-center  items-center  gap-8">
+          <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white relative xl:w-[768px] xl:h-[340px] flex flex-col gap-4 p-3 w-full lg:w-1/2 rounded-[20px]"
+                className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
               >
                 <h1 className="text-semiBlackText font-bold min-w-fit">
                   {item.name}
                 </h1>
                 <img
-                  className="absolute top-2 right-2"
+                  className="absolute top-2 right-2 cursor-pointer"
                   src="moreinfo.svg"
                   alt=""
                 />
-                <div className="flex items-center justify-around  gap-2 md:gap-10 lg:gap-20 px-2 py-5">
+                <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
                   <div>
                     <PieChartComp
                       params={params}
@@ -316,7 +294,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                     />
                   </div>
                   {/* div for those list */}
-                  <div className="flex scale-50 md:scale-90 lg:scale-100 flex-col gap-[20px] ">
+                  <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
                     {lists.map((list) => (
                       <div
                         key={list.listTitle}
@@ -330,9 +308,13 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                             }}
                             className={`w-[10px] h-[10px] ]`}
                           ></div>
-                          <h1>{list.listTitle}</h1>
+                          <h1 className="text-plantationListTitle">
+                            {list.listTitle}
+                          </h1>
                         </div>
-                        <div>{list.listValue}</div>
+                        <div className="text-semiBlackText">
+                          {list.listValue}
+                        </div>
                       </div>
                     ))}
                   </div>

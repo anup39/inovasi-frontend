@@ -1,5 +1,6 @@
 import { FormControlLabel, Switch, Theme, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import "../../css/common/SwitchComp.css";
 
 interface StyledSwitchProps {
   theme: Theme;
@@ -63,11 +64,11 @@ function SwitchComp({ label, defaultChecked, onChange }: SwitchCompProps) {
 
   return (
     <FormControlLabel
-      className="bg-searchGray text-semiBlackText bg-opacity-70 w-[122px] items-center justify-center h-[42px] rounded-lg"
+      className="bg-searchGray custom-form-control-label text-semiBlackText bg-opacity-70 w-[122px] justify-center h-[42px] rounded-lg mx-0"
       control={
         // @ts-ignore
         <AntSwitch
-          sx={{ mx: 1 }}
+          sx={{ ml: 1 }}
           defaultChecked={defaultChecked}
           size="small"
           // theme={theme} // Pass the 'theme' prop here
@@ -82,7 +83,7 @@ function SwitchComp({ label, defaultChecked, onChange }: SwitchCompProps) {
             fontSize: "16px",
             lineHeight: "22.4px",
             color: "#848686",
-          }} // Add this to make the styles inline
+          }}
         >
           {label}
         </Typography>

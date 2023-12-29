@@ -6,12 +6,12 @@ function HomeHero() {
 
   const navigate = useNavigate();
   return (
-    <div className=" md:ml-[50px] middle:ml-[97px] relative overflow-x-hidden middle:h-[1186px]">
+    <div className=" md:ml-[50px] pb-28 lg:py-0 middle:ml-[97px] relative overflow-x-hidden middle:h-[1186px]">
       {/* this bg */}
-      <div className="hidden middle:block absolute top-[25px] left-[1055px] w-[922px]  h-[1028px] rounded-[25px] bg-gradient-to-r from-footerHeading to-parrot z-0 "></div>
+      <div className="hidden middle:block absolute top-[25px] left-[1055px] middle:w-5/6 xl:w-[922px]  h-[1028px] rounded-[25px] bg-gradient-to-r from-footerHeading to-parrot z-0 "></div>
 
       <img
-        className="absolute hidden middle:block  left-[839px] top-[169px]  z-99"
+        className="absolute hidden middle:block left-[839px] top-[169px] z-99"
         src="heroIpad.png"
         alt=""
       />
@@ -57,7 +57,7 @@ function HomeHero() {
           </div>
         </div>
       </div>
-      <h1 className="px-[20px] middle:px-0 md:ml-[1px] text-popupTxt py-[30px] md:py-[50px] middle:py-0 middle:mt-[298px] middle:w-[693px] middle:h-[244px] font-bold middle:text-[50px] middle:leading-[60.95px]">
+      <h1 className="px-[20px] middle:px-0 md:ml-[1px] md:max-w-sm middle:max-w-full text-popupTxt py-[30px] md:py-[50px] middle:py-0 middle:mt-[298px] middle:w-[693px] middle:h-[244px] font-bold middle:text-[50px] middle:leading-[60.95px]">
         Ensure Compliance Regulation Effortlessly with Agriplot's Due Diligence
         System
       </h1>

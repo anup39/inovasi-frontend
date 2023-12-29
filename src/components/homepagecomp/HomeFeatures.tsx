@@ -27,7 +27,7 @@ const data = [
 
 function HomeFeatures() {
   return (
-    <div className="py-32 px-14 xl:py-0 xl:px-0 xl:h-[965px]">
+    <div className="py-32px-14 xl:py-0 xl:px-0 xl:h-[965px]">
       <div className="text-center space-y-4 xl:space-y-[18px] xl:pt-[131px]">
         <h1 className="font-bold xl:text-[40px] xl:leading-[48.76px]">
           Our Solution for Your Business
@@ -37,10 +37,10 @@ function HomeFeatures() {
           this benefit
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row  gap-6 justify-center py-10 px-4 xl:w-[1582.82px] xl:mx-auto xl:gap-[40px]">
+      <div className="flex flex-col lg:flex-row  gap-5 justify-center py-10 px-4 xl:w-[1582.82px] xl:mx-auto xl:gap-[40px]">
         {data.map((item) => (
           <div
-            className="flex border hover:shadow-lg border-featuresBorder cursor-pointer flex-col items-start  justify-between gap-5 bg-white p-10 rounded-xl xl:w-[365.7px] xl:rounded-[15px] xl:h-[455.81px] xl:p-[42px] "
+            className="flex border hover:shadow-lg border-featuresBorder cursor-pointer flex-col items-start  justify-between gap-4 bg-white p-7 rounded-xl xl:w-[365.7px] xl:rounded-[15px] xl:h-[455.81px] xl:p-[42px] "
             key={item.title}
           >
             <img
@@ -49,7 +49,7 @@ function HomeFeatures() {
               alt=""
             />
             <h1 className="font-semibold ">{item.title}</h1>
-            <p className="max-w-xs md:max-w-xl xl:w-[281px] xl:h-[189px] xl:text-justify text-subTextHome">
+            <p className="max-w-xs md:max-w-lg xl:w-[281px] xl:h-[189px] xl:text-justify text-subTextHome">
               {item.body}
             </p>
             <a className="underline text-footerHeading font-semibold" href="#">

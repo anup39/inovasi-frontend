@@ -57,6 +57,7 @@ export default {
         popupTxt: "#252525",
         dashDivider: "#F6F6F6",
         plantationListTitle: "#9B9D9D",
+        graysBlue: "#151D48",
       },
     },
   },

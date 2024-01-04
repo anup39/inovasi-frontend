@@ -185,7 +185,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           />
         </PieChart>
       </div>
-      <div className="w-full xl:h-[65px] hidden middle:block">
+      <div className="w-full xl:h-[45px] hidden middle:block">
         <div className="bg-boxDivider h-[1px] "></div>
         <div className="flex w-full h-full">
           {piedata.slice(0, 3).map((item, index, array) => (
@@ -200,12 +200,12 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
               <p
                 //  @ts-ignore
                 style={{ color: gradientColor(item.count) }}
-                className="text-[10px]  lg:text-[14px] middle:text-[20px] mx-auto font-normal lg:font-semibold"
+                className="text-[8px]  lg:text-[8px] middle:text-[8px] mx-auto font-normal lg:font-semibold"
               >
                 {/* @ts-ignore */}
                 {item.percentage.toFixed(2)}
               </p>
-              <p className="text-[14px] lg:text-[12px] middle:text-[14px] m-1">
+              <p className="text-[9px] lg:text-[9px] middle:text-[9px] m-1">
                 {/* @ts-ignore */}
                 {item.display === "0" ? "Others" : item.display}
               </p>

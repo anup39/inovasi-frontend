@@ -65,8 +65,8 @@ function DashPieItem() {
               <PieChartComp
                 params={params}
                 data={item}
-                width_={160}
-                height_={160}
+                width_={180}
+                height_={180}
                 params_include={false}
                 gradient_start={[159, 83]}
               />

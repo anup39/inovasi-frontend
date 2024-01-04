@@ -17,6 +17,8 @@ function HomePage() {
       <BusinessColab />
 
       <Avaibility />
+
+      {/* new test  */}
       {/* <EUDRTable /> */}
       <Footer />
     </div>

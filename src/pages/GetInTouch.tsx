@@ -3,10 +3,12 @@ import PhoneInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
 import Footer from "../components/homepagecomp/Footer";
+import { useNavigate } from "react-router-dom";
 
 function GetInTouch() {
   const [mobMenu, setMobMenu] = useState(false);
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -19,10 +21,10 @@ function GetInTouch() {
         />
         {/* normal menu */}
         <div className="hidden text-[18px] leading-[21.94px] font-[400] md:flex gap-[72px] items-center text-creamGray text-opacity-60">
-          <button>Home</button>
-          <button>Dashboard</button>
+          <button onClick={() => navigate("/")}>Home</button>
+          <button onClick={() => navigate("/dashboard")}>Dashboard</button>
           <button>News</button>
-          <button>About</button>
+          <button onClick={() => navigate("/aboutus")}>About</button>
         </div>
         {/* mobile menu */}
         <div
@@ -35,16 +37,25 @@ function GetInTouch() {
               mobMenu ? "flex flex-col gap-4 " : "hidden"
             } absolute inset-0 top-20  left-0 w-screen h-full py-10 px-2  bg-gray-600 bg-opacity-80 text-white font-semibold `}
           >
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               HOME
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               DASHBOARD
             </button>
             <button className="bg-gradient-to-r from-footerHeading to-parrot px-4 py-2 rounded-lg ">
               NEWS
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/aboutus")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               ABOUT
             </button>
           </div>

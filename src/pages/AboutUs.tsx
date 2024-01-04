@@ -2,9 +2,11 @@ import { useState } from "react";
 import FAQ from "../components/aboutuscomp/FAQ";
 import BusinessColab from "../components/homepagecomp/BusinessColab";
 import Footer from "../components/homepagecomp/Footer";
+import { useNavigate } from "react-router-dom";
 
 function AboutUs() {
   const [mobMenu, setMobMenu] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -16,11 +18,16 @@ function AboutUs() {
           alt=""
         />
         <div className=" items-center gap-[40px] lg:gap-[72px] hidden md:flex font-normal text-[18px] text-footerHeading ">
-          <button>Home</button>
-          <button>Dashboard</button>
+          <button onClick={() => navigate("/")}>Home</button>
+          <button onClick={() => navigate("/dashboard")}>Dashboard</button>
           <button>News</button>
-          <button className="font-bold ">About</button>
-          <button className="w-[152px] h-[50px] font-semibold shadow-lg bg-white rounded-lg">
+          <button onClick={() => navigate("/aboutus")} className="font-bold ">
+            About
+          </button>
+          <button
+            onClick={() => navigate("/getintouch")}
+            className="w-[152px] h-[50px] font-semibold shadow-lg bg-white rounded-lg"
+          >
             Get in touch
           </button>
         </div>
@@ -35,16 +42,25 @@ function AboutUs() {
               mobMenu ? "flex flex-col gap-4 " : "hidden"
             } absolute inset-0 top-20  left-0 w-screen h-full py-10 px-2  bg-gray-600 bg-opacity-80 text-white font-semibold `}
           >
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               HOME
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               DASHBOARD
             </button>
             <button className="bg-gradient-to-r from-footerHeading to-parrot px-4 py-2 rounded-lg ">
               NEWS
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/aboutus")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               ABOUT
             </button>
           </div>

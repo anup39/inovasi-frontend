@@ -24,11 +24,29 @@ function HomeHero() {
         />
         {/* menu */}
         <div className="middle:mt-[57px] md:scale-75 middle:scale-100 items-center bg-gradient-to-r text-[18px] from-footerHeading to-parrot gap-3 hidden md:flex lg:gap-[72px] z-10  bg-opacity-20 px-4 rounded-lg py-4">
-          <button className="font-bold text-creamGray">Home</button>
-          <button className="font-normal text-creamGray">Features</button>
+          <button
+            onClick={() => navigate("/")}
+            className="font-bold text-creamGray"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="font-normal text-creamGray"
+          >
+            Features
+          </button>
           <button className="font-normal text-creamGray">News</button>
-          <button className="font-normal text-creamGray">About</button>
-          <button className="text-footerHeading bg-white py-[15px] px-[25px] rounded-lg text-[16px] font-semibold">
+          <button
+            onClick={() => navigate("/aboutus")}
+            className="font-normal text-creamGray"
+          >
+            About
+          </button>
+          <button
+            onClick={() => navigate("/getintouch")}
+            className="text-footerHeading bg-white py-[15px] px-[25px] rounded-lg text-[16px] font-semibold"
+          >
             Get in touch
           </button>
         </div>
@@ -42,16 +60,25 @@ function HomeHero() {
               mobMenu ? "flex flex-col gap-4 " : "hidden"
             } absolute inset-0 top-20  left-0 w-screen h-full py-10 px-2  bg-gray-600 bg-opacity-80 text-white font-semibold `}
           >
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               HOME
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               FEATURES
             </button>
             <button className="bg-gradient-to-r from-footerHeading to-parrot px-4 py-2 rounded-lg ">
               NEWS
             </button>
-            <button className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg">
+            <button
+              onClick={() => navigate("/aboutus")}
+              className="bg-gradient-to-r from-footerHeading to-parrot  px-4 py-2 rounded-lg"
+            >
               ABOUT
             </button>
           </div>

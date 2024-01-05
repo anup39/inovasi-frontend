@@ -22,6 +22,19 @@ import Toast from "../components/commoncomp/Toast";
 import Dropdown from "../components/commoncomp/Dropdown";
 import Pagination from "../components/commoncomp/Pagination";
 
+const lists = [
+  { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
+  { listTitle: "3rd Party Plantation", listValue: "1.232 ha", opacity: "0.85" },
+  { listTitle: "Scheme Smallholder", listValue: "2.311 ha", opacity: "0.7" },
+  {
+    listTitle: "Independent Smallholder",
+    listValue: "120 ha",
+    opacity: "0.55",
+  },
+  { listTitle: "POD", listValue: "374 ha", opacity: "0.4" },
+  { listTitle: "3rd Party Mill", listValue: "231 ha", opacity: "0.25" },
+];
+
 const items = [
   {
     id: 1,

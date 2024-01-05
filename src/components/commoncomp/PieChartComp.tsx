@@ -27,6 +27,10 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
+  const selectedDashboardPage = useSelector(
+    (state) => state.displaySettings.selectedDashboardPage
+  );
+
   let total = 0;
   if (piechartfor === "facility") {
     total = 299;
@@ -185,7 +189,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           />
         </PieChart>
       </div>
-      <div className="w-full xl:h-[45px] hidden middle:block">
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "none" : "block",
+        }}
+        className="w-full xl:h-[45px] hidden middle:block"
+      >
         <div className="bg-boxDivider h-[1px] "></div>
         <div className="flex w-full h-full">
           {piedata.slice(0, 3).map((item, index, array) => (

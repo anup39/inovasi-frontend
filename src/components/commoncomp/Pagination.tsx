@@ -3,7 +3,7 @@ import { useState } from "react";
 function Pagination({ changeThePage, totalpage }) {
   // const totalpage = totalpage;
   const pagesToShow = 3;
-  const [activePage, setActivePage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
   // @ts-ignore
   const handlePageClick = (page) => {

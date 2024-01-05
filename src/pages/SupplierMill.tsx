@@ -293,145 +293,140 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             <Pagination />
           </div>
         </div>
-        {selectedDataFormat && selectedDataFormat === "Table" ? (
-          <>
-            <div className=" mb-[24px] w-full">
-              <TableComp
-                tableColumn={tableColumn}
-                // @ts-ignore
-                tableData={milltabledata}
-                map={map}
-                component={"mill"}
-                height="334px"
-                // width="1580px"
-                pageSize={5}
-              />
-            </div>
 
-            {is_agriplot ? (
-              <>
-                {" "}
-                <div className=" flex justify-between items-center mb-[24px]">
-                  <span className="bg-gray">
-                    Supplier Plantaton for {mill_name}:{" "}
-                    <b>Total :{tableData?.length}</b>
-                  </span>{" "}
-                  <Pagination />{" "}
-                </div>
-                <div className="w-full">
-                  <TableComp
-                    // @ts-ignore
+        <div className=" mb-[24px] w-full">
+          <TableComp
+            tableColumn={tableColumn}
+            // @ts-ignore
+            tableData={milltabledata}
+            map={map}
+            component={"mill"}
+            height="334px"
+            // width="1580px"
+            pageSize={5}
+          />
+        </div>
 
-                    tableColumn={tableColumnRedux}
-                    // @ts-ignore
-                    tableData={tableData}
-                    map={map}
-                    component={"agriplot"}
-                    height="300px"
-                    // width="1566px"
-                    pageSize={4}
-                  />{" "}
-                </div>
-              </>
-            ) : null}
-          </>
-        ) : (
-          <>
-            {selectedDashboardPage === "suppliermill" ? (
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
-                  >
-                    <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
-                      <div className="flex justify-between items-center w-full ">
-                        <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
-                          {item.name}
-                        </h1>
-                        <img
-                          className=" cursor-pointer"
-                          src="moreinfo.svg"
-                          alt=""
-                        />
-                      </div>
-                      {/* <LineBarComp
+        {selectedDashboardPage === "suppliermill" ? (
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
+              >
+                <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
+                  <div className="flex justify-between items-center w-full ">
+                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
+                      {item.name}
+                    </h1>
+                    <img
+                      className=" cursor-pointer"
+                      src="moreinfo.svg"
+                      alt=""
+                    />
+                  </div>
+                  {/* <LineBarComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
                   /> */}
-                      <PieChartComp
-                        params={params}
-                        data={item}
-                        width_={180}
-                        height_={180}
-                        params_include={false}
-                        gradient_start={[25, 96]}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  <PieChartComp
+                    params={params}
+                    data={item}
+                    width_={180}
+                    height_={180}
+                    params_include={false}
+                    gradient_start={[25, 96]}
+                  />
+                </div>
               </div>
-            ) : (
-              <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-                {items_plantation.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-                  >
-                    <h1 className="text-semiBlackText font-bold min-w-fit">
-                      {item.name}
-                    </h1>
-                    <img
-                      className="absolute top-2 right-2 cursor-pointer"
-                      src="moreinfo.svg"
-                      alt=""
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+            {items_plantation.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+              >
+                <h1 className="text-semiBlackText font-bold min-w-fit">
+                  {item.name}
+                </h1>
+                <img
+                  className="absolute top-2 right-2 cursor-pointer"
+                  src="moreinfo.svg"
+                  alt=""
+                />
+                <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                  <div>
+                    <PieChartComp
+                      params={params}
+                      data={item}
+                      width_={200}
+                      height_={200}
+                      params_include={false}
+                      gradient_start={[159, 83]}
                     />
-                    <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                      <div>
-                        <PieChartComp
-                          params={params}
-                          data={item}
-                          width_={200}
-                          height_={200}
-                          params_include={false}
-                          gradient_start={[159, 83]}
-                        />
-                      </div>
-                      {/* div for those list */}
-                      <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
-                        {lists.map((list) => (
-                          <div
-                            key={list.listTitle}
-                            className="flex gap-4 justify-between"
-                          >
-                            <div className="flex  gap-3 items-center">
-                              <div
-                                style={{
-                                  backgroundColor: `${item.listColor}`,
-                                  opacity: `${Number(list.opacity)}`,
-                                }}
-                                className={`w-[10px] h-[10px] ]`}
-                              ></div>
-                              <h1 className="text-plantationListTitle">
-                                {list.listTitle}
-                              </h1>
-                            </div>
-                            <div className="text-semiBlackText">
-                              {list.listValue}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   </div>
-                ))}
+                  {/* div for those list */}
+                  <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
+                    {lists.map((list) => (
+                      <div
+                        key={list.listTitle}
+                        className="flex gap-4 justify-between"
+                      >
+                        <div className="flex  gap-3 items-center">
+                          <div
+                            style={{
+                              backgroundColor: `${item.listColor}`,
+                              opacity: `${Number(list.opacity)}`,
+                            }}
+                            className={`w-[10px] h-[10px] ]`}
+                          ></div>
+                          <h1 className="text-plantationListTitle">
+                            {list.listTitle}
+                          </h1>
+                        </div>
+                        <div className="text-semiBlackText">
+                          {list.listValue}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            )}
-          </>
+            ))}
+          </div>
         )}
+
+        {is_agriplot ? (
+          <>
+            {" "}
+            <div className=" flex justify-between items-center mb-[24px]">
+              <span className="bg-gray">
+                Supplier Plantaton for {mill_name}:{" "}
+                <b>Total :{tableData?.length}</b>
+              </span>{" "}
+              <Pagination />{" "}
+            </div>
+            <div className="w-full">
+              <TableComp
+                // @ts-ignore
+
+                tableColumn={tableColumnRedux}
+                // @ts-ignore
+                tableData={tableData}
+                map={map}
+                component={"agriplot"}
+                height="300px"
+                // width="1566px"
+                pageSize={4}
+              />{" "}
+            </div>
+          </>
+        ) : null}
       </div>
     </Layout>
   );

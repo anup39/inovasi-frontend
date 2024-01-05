@@ -130,7 +130,9 @@ export default function Lenged({ component, map }) {
         <div
           style={{
             display:
-              component === "dashboard" || component === "millsupplier"
+              component === "dashboard" ||
+              component === "millsupplier" ||
+              component === "supplierplantation"
                 ? "flex"
                 : "none",
           }}

@@ -20,6 +20,7 @@ import PieChartComp from "../components/commoncomp/PieChartComp";
 import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
+import Dropdown from "../components/commoncomp/Dropdown";
 
 const lists = [
   { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
@@ -289,6 +290,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             </div>
           </div>
           {/* pages */}
+
+          <div
+            className={`w-[114px] ${
+              selectedOption === "metric" && is_agriplot ? "block" : "hidden"
+            }`}
+          >
+            <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
+          </div>
           <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
             <Pagination />
           </div>

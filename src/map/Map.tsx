@@ -121,6 +121,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       // Point on click
 
       // Points from Table
+
       map_.addSource("point-table", {
         type: "geojson",
         data: geojson,

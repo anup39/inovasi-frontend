@@ -9,6 +9,7 @@ interface DisplaySettingsState {
   toastType: string;
   selectedDashboardPage: string;
   is_agriplot: boolean;
+  layers_in_map: string[];
 }
 
 const initialState: DisplaySettingsState = {
@@ -18,6 +19,7 @@ const initialState: DisplaySettingsState = {
   toastType: "info",
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
+  layers_in_map: [],
 };
 
 export const DisplaySettings = createSlice({

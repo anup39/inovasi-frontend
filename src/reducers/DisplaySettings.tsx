@@ -45,6 +45,16 @@ export const DisplaySettings = createSlice({
     setIsAgriplot: (state, action: PayloadAction<boolean>) => {
       state.is_agriplot = action.payload;
     },
+    addLayerName: (state, action) => {
+      const newLayer = action.payload;
+      state.layers_in_map.push(newLayer);
+    },
+    removelayerName: (state, action) => {
+      const layerToRemove = action.payload;
+      state.layers_in_map = state.layers_in_map.filter(
+        (name) => name !== layerToRemove
+      );
+    },
   },
 });
 
@@ -56,6 +66,8 @@ export const {
   setselectedDataFormat,
   setselectedDashboardPage,
   setIsAgriplot,
+  addLayerName,
+  removelayerName,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

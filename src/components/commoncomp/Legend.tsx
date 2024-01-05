@@ -4,7 +4,7 @@ import Switch from "@mui/material/Switch";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
-  // console.log(component, "compoenent ");
+  console.log(component, "compoenent ");
   // console.log(map, "map ");
 
   const [showLegend, setShowLegend] = useState(false);
@@ -56,7 +56,7 @@ export default function Lenged({ component, map }) {
 
   useEffect(() => {
     if (component === "dashboard") {
-      setShowMore(true);
+      setShowMore(false);
     }
     if (component === "millsupplier") {
       setShowMore(false);
@@ -85,15 +85,21 @@ export default function Lenged({ component, map }) {
           <h1 className="font-semibold text-lg">Legend</h1>
           {showMore ? (
             <p
+              style={{
+                display: component === "supplierplantation" ? "block" : "none",
+              }}
               onClick={() => setShowMore(false)}
-              className="underline cursor-pointer text-darkGreen"
+              className={`underline cursor-pointer text-darkGreen`}
             >
               See less
             </p>
           ) : (
             <p
+              style={{
+                display: component === "supplierplantation" ? "block" : "none",
+              }}
               onClick={() => setShowMore(true)}
-              className="underline cursor-pointer text-darkGreen"
+              className={`underline cursor-pointer text-darkGreen`}
             >
               See more
             </p>
@@ -101,28 +107,50 @@ export default function Lenged({ component, map }) {
         </div>
 
         <div className="h-[1px] items-center justify-start bg-legendDivider"></div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{ display: component === "dashboard" ? "block" : "none" }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="facilitieslegend.svg" alt="" />
             <p className="text-homeSubText">Facilities</p>
           </div>
           <AntSwitch defaultChecked />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{ display: component === "dashboard" ? "block" : "none" }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="refinerylegend.svg" alt="" />
             <p className="text-homeSubText">Refinery</p>
           </div>
           <AntSwitch />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{
+            display:
+              component === "dashboard" || component === "millsupplier"
+                ? "block"
+                : "none",
+          }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="milllegend.svg" alt="" />
             <p className="text-homeSubText">Mill</p>
           </div>
           <AntSwitch />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{
+            display:
+              component === "millsupplier" || component === "supplierplantation"
+                ? "block"
+                : "none",
+          }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="plantationlegend.svg" alt="" />
             <p className="text-homeSubText">Traced to Plantation Mill</p>

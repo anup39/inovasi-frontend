@@ -16,6 +16,7 @@ import {
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { GeoJSONSource } from "maplibre-gl";
+import { IControl } from "maplibre-gl";
 
 interface PopupProps {
   properties: {
@@ -96,6 +97,13 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
 
                 // window.location.replace(`/supplierplantation`);
                 dispatch(setselectedDashboardPage("supplierplantation"));
+
+                const legend_control: IControl =
+                  map._controls[map._controls.length - 2];
+                console.log(legend_control, "legend control");
+                // @ts-ignore
+                legend_control.updateLegend("supplierplantation");
+
                 dispatch(setIsAgriplot(true));
                 AddLayerAndSourceToMap({
                   map: map,

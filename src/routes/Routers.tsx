@@ -41,7 +41,6 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           <Route path="/login" element={<Login />} />;
           <Route path="/register" element={<Register />} />
           <Route path="/loginnew" element={<NewLogin />} />
-
           <Route
             path="/dashboard"
             element={<DashBoardHome map={map} onSetMap={onSetMap} />}
@@ -53,7 +52,7 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           <Route
             path="/supplierplantation"
             element={<SupplierPlantation map={map} onSetMap={onSetMap} />}
-          /> */}
+          />
           <Route
             path="/reporting"
             element={<Reporting map={map} onSetMap={onSetMap} />}

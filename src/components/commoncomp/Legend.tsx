@@ -4,7 +4,7 @@ import Switch from "@mui/material/Switch";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
-  // console.log(component, "compoenent ");
+  console.log(component, "compoenent ");
   // console.log(map, "map ");
 
   const [showLegend, setShowLegend] = useState(false);
@@ -56,7 +56,7 @@ export default function Lenged({ component, map }) {
 
   useEffect(() => {
     if (component === "dashboard") {
-      setShowMore(true);
+      setShowMore(false);
     }
     if (component === "millsupplier") {
       setShowMore(false);
@@ -78,22 +78,28 @@ export default function Lenged({ component, map }) {
         className={`shadow p-3 -top-5 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
         } rounded-[10px] flex-col gap-[17px] bg-white absolute z-20 md:top-2 -left-16 md:left-10 ${
-          showMore ? "h-[350px] md:h-[417px] -top-5" : "h-[240px] top-2"
+          showMore ? "h-[300px] md:h-[300px] -top-5" : "h-[200px] top-2"
         } w-[310px] sm:w-[356px]`}
       >
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-lg">Legend</h1>
           {showMore ? (
             <p
+              style={{
+                display: component === "supplierplantation" ? "block" : "none",
+              }}
               onClick={() => setShowMore(false)}
-              className="underline cursor-pointer text-darkGreen"
+              className={`underline cursor-pointer text-darkGreen`}
             >
               See less
             </p>
           ) : (
             <p
+              style={{
+                display: component === "supplierplantation" ? "block" : "none",
+              }}
               onClick={() => setShowMore(true)}
-              className="underline cursor-pointer text-darkGreen"
+              className={`underline cursor-pointer text-darkGreen`}
             >
               See more
             </p>
@@ -101,28 +107,52 @@ export default function Lenged({ component, map }) {
         </div>
 
         <div className="h-[1px] items-center justify-start bg-legendDivider"></div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{ display: component === "dashboard" ? "flex" : "none" }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="facilitieslegend.svg" alt="" />
             <p className="text-homeSubText">Facilities</p>
           </div>
           <AntSwitch defaultChecked />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{ display: component === "dashboard" ? "flex" : "none" }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="refinerylegend.svg" alt="" />
             <p className="text-homeSubText">Refinery</p>
           </div>
           <AntSwitch />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{
+            display:
+              component === "dashboard" ||
+              component === "millsupplier" ||
+              component === "supplierplantation"
+                ? "flex"
+                : "none",
+          }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="milllegend.svg" alt="" />
             <p className="text-homeSubText">Mill</p>
           </div>
           <AntSwitch />
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          style={{
+            display:
+              component === "millsupplier" || component === "supplierplantation"
+                ? "flex"
+                : "none",
+          }}
+          className="flex justify-between items-center"
+        >
           <div className="flex gap-3">
             <img src="plantationlegend.svg" alt="" />
             <p className="text-homeSubText">Traced to Plantation Mill</p>

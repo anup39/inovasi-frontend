@@ -6,7 +6,11 @@ import Toast from "../components/commoncomp/Toast";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../reducers/Auth";
-import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  setselectedDashboardPage,
+  setselectedDataFormat,
+} from "../reducers/DisplaySettings";
+import { IControl } from "maplibre-gl";
 
 interface DashboardHomeProps {
   map: Map | null;
@@ -18,7 +22,21 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   useEffect(() => {
     dispatch(setpiechartfor("facility"));
     dispatch(setselectedDataFormat("Metric"));
+    dispatch(setselectedDashboardPage("dashboard"));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        console.log(map._controls);
+        const legend_control: IControl =
+          map._controls[map._controls.length - 2];
+        console.log(legend_control, "legend control");
+        // @ts-ignore
+        legend_control.updateLegend("dashboard");
+      });
+    }
+  }, [map]);
 
   return (
     <Layout>

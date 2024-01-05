@@ -73,6 +73,8 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     const navigationcontrol = new NavigationControl();
     map_.addControl(navigationcontrol, "top-right");
 
+    map_.addControl(new maplibregl.FullscreenControl());
+
     // @ts-ignore
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,

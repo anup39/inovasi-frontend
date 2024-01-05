@@ -10,13 +10,57 @@ import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
 import { setmilltabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
-import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  setselectedDashboardPage,
+  setselectedDataFormat,
+} from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import PieChartComp from "../components/commoncomp/PieChartComp";
 import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
+import Dropdown from "../components/commoncomp/Dropdown";
+
+const lists = [
+  { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
+  { listTitle: "3rd Party Plantation", listValue: "1.232 ha", opacity: "0.85" },
+  { listTitle: "Scheme Smallholder", listValue: "2.311 ha", opacity: "0.7" },
+  {
+    listTitle: "Independent Smallholder",
+    listValue: "120 ha",
+    opacity: "0.55",
+  },
+  { listTitle: "POD", listValue: "374 ha", opacity: "0.4" },
+  { listTitle: "3rd Party Mill", listValue: "231 ha", opacity: "0.25" },
+];
+
+const items_plantation = [
+  {
+    id: 1,
+    name: "Deforestation Risk",
+    selected: false,
+    distinct: "mill_deforestation_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#FFAD33B2",
+  },
+  {
+    id: 2,
+    name: "Legal PRF Risk",
+    selected: false,
+    distinct: "mill_legal_prf_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48%", "22%"],
+      colors: ["#10BD82", "#B8E500"],
+    },
+    listColor: "#FFAD33B2",
+  },
+];
 
 const items = [
   {
@@ -29,6 +73,7 @@ const items = [
       numbers: ["48%", "22%", "30%"],
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
+    listColor: "#FFAD33B2",
   },
   {
     id: 2,
@@ -40,6 +85,7 @@ const items = [
       numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
   },
   {
     id: 3,
@@ -51,6 +97,7 @@ const items = [
       numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
   },
   {
     id: 4,
@@ -62,6 +109,7 @@ const items = [
       numbers: ["48%", "22%", "30%"],
       colors: ["#10BD82", "#83DE60", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
   },
 ];
 
@@ -133,6 +181,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
+    dispatch(setselectedDashboardPage("suppliermill"));
   }, [dispatch]);
 
   const params = {
@@ -144,6 +193,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [showMap, setShowMap] = useState(true);
   const [selectedOption, setSelectedOption] = useState("list");
 
+  const selectedDashboardPage = useSelector(
+    (state) => state.displaySettings.selectedDashboardPage
+  );
+
+  console.log(selectedDashboardPage, "selected dasborad page");
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
   }
@@ -171,6 +225,19 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   //     }
   //   }
   // }, []);
+
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        console.log(map._controls);
+        const legend_control: IControl =
+          map._controls[map._controls.length - 2];
+        console.log(legend_control, "legend control");
+        // @ts-ignore
+        legend_control.updateLegend("millsupplier");
+      });
+    }
+  }, [map]);
 
   return (
     <Layout>
@@ -223,53 +290,36 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             </div>
           </div>
           {/* pages */}
+
+          <div
+            className={`w-[114px] ${
+              selectedOption === "metric" && is_agriplot ? "block" : "hidden"
+            }`}
+          >
+            <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
+          </div>
           <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
             <Pagination />
           </div>
         </div>
-        {selectedDataFormat && selectedDataFormat === "Table" ? (
-          <>
-            <div className=" mb-[24px] w-full">
-              <TableComp
-                tableColumn={tableColumn}
-                // @ts-ignore
-                tableData={milltabledata}
-                map={map}
-                component={"mill"}
-                height="334px"
-                // width="1580px"
-                pageSize={5}
-              />
-            </div>
 
-            {is_agriplot ? (
-              <>
-                {" "}
-                <div className=" flex justify-between items-center mb-[24px]">
-                  <span className="bg-gray">
-                    Supplier Plantaton for {mill_name}:{" "}
-                    <b>Total :{tableData?.length}</b>
-                  </span>{" "}
-                  <Pagination />{" "}
-                </div>
-                <div className="w-full">
-                  <TableComp
-                    // @ts-ignore
+        {selectedDataFormat === "Table" || !showMap ? (
+          <div className=" mb-[24px] w-full">
+            <TableComp
+              tableColumn={tableColumn}
+              // @ts-ignore
+              tableData={milltabledata}
+              map={map}
+              component={"mill"}
+              height="334px"
+              // width="1580px"
+              pageSize={5}
+            />
+          </div>
+        ) : null}
 
-                    tableColumn={tableColumnRedux}
-                    // @ts-ignore
-                    tableData={tableData}
-                    map={map}
-                    component={"agriplot"}
-                    height="300px"
-                    // width="1566px"
-                    pageSize={4}
-                  />{" "}
-                </div>
-              </>
-            ) : null}
-          </>
-        ) : (
+        {(selectedDataFormat !== "Table" || !showMap) &&
+        selectedDashboardPage === "suppliermill" ? (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
             {items.map((item) => (
               <div
@@ -297,8 +347,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                   <PieChartComp
                     params={params}
                     data={item}
-                    width_={170}
-                    height_={170}
+                    width_={180}
+                    height_={180}
                     params_include={false}
                     gradient_start={[25, 96]}
                   />
@@ -306,7 +356,92 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               </div>
             ))}
           </div>
-        )}
+        ) : null}
+
+        {(selectedDataFormat !== "Table" || !showMap) &&
+        selectedDashboardPage === "supplierplantation" ? (
+          <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+            {items_plantation.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+              >
+                <h1 className="text-semiBlackText font-bold min-w-fit">
+                  {item.name}
+                </h1>
+                <img
+                  className="absolute top-2 right-2 cursor-pointer"
+                  src="moreinfo.svg"
+                  alt=""
+                />
+                <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                  <div>
+                    <PieChartComp
+                      params={params}
+                      data={item}
+                      width_={200}
+                      height_={200}
+                      params_include={false}
+                      gradient_start={[159, 83]}
+                    />
+                  </div>
+                  {/* div for those list */}
+                  <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
+                    {lists.map((list) => (
+                      <div
+                        key={list.listTitle}
+                        className="flex gap-4 justify-between"
+                      >
+                        <div className="flex  gap-3 items-center">
+                          <div
+                            style={{
+                              backgroundColor: `${item.listColor}`,
+                              opacity: `${Number(list.opacity)}`,
+                            }}
+                            className={`w-[10px] h-[10px] ]`}
+                          ></div>
+                          <h1 className="text-plantationListTitle">
+                            {list.listTitle}
+                          </h1>
+                        </div>
+                        <div className="text-semiBlackText">
+                          {list.listValue}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {(selectedDataFormat === "Table" || !showMap) && is_agriplot ? (
+          <>
+            {" "}
+            <div className=" flex justify-between items-center mb-[24px]">
+              <span className="bg-gray">
+                Supplier Plantaton for {mill_name}:{" "}
+                <b>Total :{tableData?.length}</b>
+              </span>{" "}
+              <Pagination />{" "}
+            </div>
+            <div className="w-full">
+              <TableComp
+                // @ts-ignore
+
+                tableColumn={tableColumnRedux}
+                // @ts-ignore
+                tableData={tableData}
+                map={map}
+                component={"agriplot"}
+                height="300px"
+                // width="1566px"
+                pageSize={4}
+              />{" "}
+            </div>
+          </>
+        ) : null}
       </div>
     </Layout>
   );

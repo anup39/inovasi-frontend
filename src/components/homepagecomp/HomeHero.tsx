@@ -94,7 +94,7 @@ function HomeHero() {
       </p>
       <div className="flex flex-col md:flex-row gap-3 px-[20px] middle:px-0 middle:gap-[16px] justify-center md:justify-start middle:mt-[50px]">
         <button
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/login")}
           className="text-white hover:animate-pulse px-4 py-3 middle:px-0  middle:py-0 flex justify-center items-center bg-gradient-to-r from-footerHeading to-parrot  middle:w-[137px] middle:h-[45px] leading-[17.07px] text-[14px] rounded-lg"
         >
           Book a Demo

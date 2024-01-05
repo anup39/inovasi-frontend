@@ -21,7 +21,20 @@ import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
 
-const items = [
+const lists = [
+  { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
+  { listTitle: "3rd Party Plantation", listValue: "1.232 ha", opacity: "0.85" },
+  { listTitle: "Scheme Smallholder", listValue: "2.311 ha", opacity: "0.7" },
+  {
+    listTitle: "Independent Smallholder",
+    listValue: "120 ha",
+    opacity: "0.55",
+  },
+  { listTitle: "POD", listValue: "374 ha", opacity: "0.4" },
+  { listTitle: "3rd Party Mill", listValue: "231 ha", opacity: "0.25" },
+];
+
+const items_plantation = [
   {
     id: 1,
     name: "Deforestation Risk",
@@ -32,6 +45,7 @@ const items = [
       numbers: ["48%", "22%", "30%"],
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
+    listColor: "#FFAD33B2",
   },
   {
     id: 2,
@@ -43,6 +57,34 @@ const items = [
       numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
+  },
+];
+
+const items = [
+  {
+    id: 1,
+    name: "Deforestation Risk",
+    selected: false,
+    distinct: "mill_deforestation_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#FFAD33B2",
+  },
+  {
+    id: 2,
+    name: "Legal PRF Risk",
+    selected: false,
+    distinct: "mill_legal_prf_risk",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48%", "22%"],
+      colors: ["#10BD82", "#B8E500"],
+    },
+    listColor: "#FFAD33B2",
   },
   {
     id: 3,
@@ -54,6 +96,7 @@ const items = [
       numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
   },
   {
     id: 4,
@@ -65,6 +108,7 @@ const items = [
       numbers: ["48%", "22%", "30%"],
       colors: ["#10BD82", "#83DE60", "#B8E500"],
     },
+    listColor: "#FFAD33B2",
   },
 ];
 
@@ -148,6 +192,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [showMap, setShowMap] = useState(true);
   const [selectedOption, setSelectedOption] = useState("list");
 
+  const selectedDashboardPage = useSelector(
+    (state) => state.displaySettings.selectedDashboardPage
+  );
+
+  console.log(selectedDashboardPage, "selected dasborad page");
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
   }
@@ -287,42 +336,101 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             ) : null}
           </>
         ) : (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
-              >
-                <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
-                  <div className="flex justify-between items-center w-full ">
-                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
-                      {item.name}
-                    </h1>
-                    <img
-                      className=" cursor-pointer"
-                      src="moreinfo.svg"
-                      alt=""
-                    />
-                  </div>
-                  {/* <LineBarComp
+          <>
+            {selectedDashboardPage === "suppliermill" ? (
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
+                {items.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
+                  >
+                    <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
+                      <div className="flex justify-between items-center w-full ">
+                        <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
+                          {item.name}
+                        </h1>
+                        <img
+                          className=" cursor-pointer"
+                          src="moreinfo.svg"
+                          alt=""
+                        />
+                      </div>
+                      {/* <LineBarComp
                     params={params}
                     data={item}
                     width_={200}
                     height_={200}
                     params_include={false}
                   /> */}
-                  <PieChartComp
-                    params={params}
-                    data={item}
-                    width_={180}
-                    height_={180}
-                    params_include={false}
-                    gradient_start={[25, 96]}
-                  />
-                </div>
+                      <PieChartComp
+                        params={params}
+                        data={item}
+                        width_={180}
+                        height_={180}
+                        params_include={false}
+                        gradient_start={[25, 96]}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+                {items_plantation.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+                  >
+                    <h1 className="text-semiBlackText font-bold min-w-fit">
+                      {item.name}
+                    </h1>
+                    <img
+                      className="absolute top-2 right-2 cursor-pointer"
+                      src="moreinfo.svg"
+                      alt=""
+                    />
+                    <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                      <div>
+                        <PieChartComp
+                          params={params}
+                          data={item}
+                          width_={200}
+                          height_={200}
+                          params_include={false}
+                          gradient_start={[159, 83]}
+                        />
+                      </div>
+                      {/* div for those list */}
+                      <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
+                        {lists.map((list) => (
+                          <div
+                            key={list.listTitle}
+                            className="flex gap-4 justify-between"
+                          >
+                            <div className="flex  gap-3 items-center">
+                              <div
+                                style={{
+                                  backgroundColor: `${item.listColor}`,
+                                  opacity: `${Number(list.opacity)}`,
+                                }}
+                                className={`w-[10px] h-[10px] ]`}
+                              ></div>
+                              <h1 className="text-plantationListTitle">
+                                {list.listTitle}
+                              </h1>
+                            </div>
+                            <div className="text-semiBlackText">
+                              {list.listValue}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </Layout>

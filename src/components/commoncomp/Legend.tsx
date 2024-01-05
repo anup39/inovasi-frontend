@@ -78,7 +78,7 @@ export default function Lenged({ component, map }) {
         className={`shadow p-3 -top-5 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
         } rounded-[10px] flex-col gap-[17px] bg-white absolute z-20 md:top-2 -left-16 md:left-10 ${
-          showMore ? "h-[350px] md:h-[417px] -top-5" : "h-[240px] top-2"
+          showMore ? "h-[300px] md:h-[300px] -top-5" : "h-[200px] top-2"
         } w-[310px] sm:w-[356px]`}
       >
         <div className="flex justify-between items-center">
@@ -108,7 +108,7 @@ export default function Lenged({ component, map }) {
 
         <div className="h-[1px] items-center justify-start bg-legendDivider"></div>
         <div
-          style={{ display: component === "dashboard" ? "block" : "none" }}
+          style={{ display: component === "dashboard" ? "flex" : "none" }}
           className="flex justify-between items-center"
         >
           <div className="flex gap-3">
@@ -118,7 +118,7 @@ export default function Lenged({ component, map }) {
           <AntSwitch defaultChecked />
         </div>
         <div
-          style={{ display: component === "dashboard" ? "block" : "none" }}
+          style={{ display: component === "dashboard" ? "flex" : "none" }}
           className="flex justify-between items-center"
         >
           <div className="flex gap-3">
@@ -131,7 +131,7 @@ export default function Lenged({ component, map }) {
           style={{
             display:
               component === "dashboard" || component === "millsupplier"
-                ? "block"
+                ? "flex"
                 : "none",
           }}
           className="flex justify-between items-center"
@@ -146,7 +146,7 @@ export default function Lenged({ component, map }) {
           style={{
             display:
               component === "millsupplier" || component === "supplierplantation"
-                ? "block"
+                ? "flex"
                 : "none",
           }}
           className="flex justify-between items-center"

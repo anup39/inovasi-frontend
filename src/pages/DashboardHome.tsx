@@ -6,7 +6,10 @@ import Toast from "../components/commoncomp/Toast";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../reducers/Auth";
-import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  setselectedDashboardPage,
+  setselectedDataFormat,
+} from "../reducers/DisplaySettings";
 import { IControl } from "maplibre-gl";
 
 interface DashboardHomeProps {
@@ -19,6 +22,7 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   useEffect(() => {
     dispatch(setpiechartfor("facility"));
     dispatch(setselectedDataFormat("Metric"));
+    dispatch(setselectedDashboardPage("dashboard"));
   }, [dispatch]);
 
   useEffect(() => {

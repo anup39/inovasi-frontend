@@ -47,8 +47,14 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
   // }, []);
 
   const handleItemClick = (item: string) => {
+    console.log("here");
     dispatch(setselectedDashboardPage(item));
-    navigate(`/${item}`);
+
+    if (item === "suppliermill") {
+      window.location.replace(`/${item}`);
+    } else {
+      navigate(`/${item}`);
+    }
   };
   return (
     <div

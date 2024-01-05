@@ -10,7 +10,10 @@ import Toast from "../components/commoncomp/Toast";
 import { RootState } from "../store";
 import { setmilltabledata } from "../reducers/SupplierPlantation";
 import { setpiechartfor } from "../reducers/Auth";
-import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  setselectedDashboardPage,
+  setselectedDataFormat,
+} from "../reducers/DisplaySettings";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import SwitchComp from "../components/commoncomp/SwitchComp";
 import PieChartComp from "../components/commoncomp/PieChartComp";
@@ -133,6 +136,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
+    dispatch(setselectedDashboardPage("suppliermill"));
   }, [dispatch]);
 
   const params = {

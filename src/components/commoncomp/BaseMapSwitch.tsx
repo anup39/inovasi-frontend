@@ -1,12 +1,23 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function BaseMapSwitch() {
   const [selectedView, setSelectedView] = useState("satellite");
   const [showViews, setShowViews] = useState(false);
 
+  const selectedDashboardPage = useSelector(
+    (state) => state.displaySettings.selectedDashboardPage
+  );
+
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
-      <div className="flex absolute top-12 -right-5 z-9 md:static scale-[0.6] md:scale-100 items-center rounded-xl bg-white gap-2  px-2 py-1 border-2 border-darkGreen text-grayText text-lg">
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "flex" : "none",
+        }}
+        className="flex absolute top-12 -right-5 z-9 md:static scale-[0.6] md:scale-100 items-center rounded-xl bg-white gap-2  px-2 py-1 border-2 border-darkGreen text-grayText text-lg"
+      >
         <h1 className="scale-90 md:scale-100">Radius</h1>
         <input
           style={{
@@ -57,13 +68,14 @@ function BaseMapSwitch() {
         <img className="cursor-pointer" src="mapzoomout.svg" alt="" />
       </div> */}
       <div
-        onMouseOver={() => setShowViews(true)}
-        onMouseOut={() => setShowViews(false)}
+        // onMouseOver={() => setShowViews(true)}
+        // onMouseOut={() => setShowViews(false)}
+        onClick={() => setShowViews(!showViews)}
         className="h-[55px] cursor-pointer"
       >
         <img className="scale-90 md:scale-105" src="mapselectview.svg" alt="" />
       </div>
-      <div className="md:border border-darkGreen rounded-xl cursor-pointer">
+      {/* <div className="md:border border-darkGreen rounded-xl cursor-pointer">
         <img className="scale-90 md:scale-105" src="mapruler.svg" alt="" />
       </div>
       <div className="md:border cursor-pointer border-darkGreen rounded-xl">
@@ -72,12 +84,14 @@ function BaseMapSwitch() {
           src="mapfullscreen.svg"
           alt=""
         />
-      </div>
+      </div> */}
       {/* div that opens up */}
       <div
         className={`${
           showViews ? "flex" : "hidden"
-        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform -translate-x-[42%] translate-y-[78%]`}
+        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform -translate-x-[${
+          selectedDashboardPage === "supplierplantation" ? "25%" : "42%"
+        }] translate-y-[78%]`}
       >
         <div
           onClick={() => setSelectedView("opensteet")}

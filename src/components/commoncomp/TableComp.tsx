@@ -9,6 +9,7 @@ import maplibregl, {
 } from "maplibre-gl";
 import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoundingBoxPolygonfromGeojson";
 import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
+import { useEffect, useState } from "react";
 // @ts-ignore
 // import getGeojsonFromwktTableWithLatlong from "../../maputils/getGeojsonFromwktTablewithLatlong";
 
@@ -70,6 +71,7 @@ interface DataGridDemoProps {
   height: string;
   width: string;
   pageSize: number;
+  page: number;
 }
 
 export default function DataGridDemo({
@@ -80,11 +82,13 @@ export default function DataGridDemo({
   height,
   width,
   pageSize,
+  page,
 }: DataGridDemoProps) {
   const capitalizedColumns = tableColumn.map((col) => ({
     ...col,
     headerName: col.headerName.toUpperCase(),
   }));
+
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
       if (rows.length > 0 && map) {
@@ -187,10 +191,12 @@ export default function DataGridDemo({
           initialState={{
             pagination: {
               paginationModel: {
+                page: page,
                 pageSize: pageSize,
               },
             },
           }}
+          paginationModel={{ page: page, pageSize: pageSize }}
           pageSizeOptions={[pageSize]}
           checkboxSelection={true}
           disableRowSelectionOnClick

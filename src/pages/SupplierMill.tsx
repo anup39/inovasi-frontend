@@ -122,6 +122,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const dispatch = useDispatch();
   const [tableColumn, settableColumn] = useState([]);
   // const [tableData, settableData] = useState([]);
+  const [pageMill, setPageMill] = useState(0);
+  const [pageActualPlant, setPageActualPlant] = useState(0);
+
   const tableData = useSelector(
     (state: RootState) => state.supplierPlantation.tabledata
   );
@@ -133,6 +136,15 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const tableColumnRedux = useSelector(
     (state: RootState) => state.supplierPlantation.tableColumn
   );
+
+  const changeThePageMill = (evpage: number) => {
+    console.log(evpage, "evpage");
+    setPageMill(evpage);
+  };
+  const changeThePageActualPlant = (evpage: number) => {
+    console.log(evpage, "evpage");
+    setPageActualPlant(evpage);
+  };
 
   const selectedDataFormat = useSelector(
     (state: RootState) => state.displaySettings.selectedDataFormat
@@ -299,7 +311,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
           </div>
           <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
-            <Pagination />
+            <Pagination
+              totalpage={Math.floor(milltabledata.length / 5)}
+              changeThePage={changeThePageMill}
+            />
           </div>
         </div>
 
@@ -314,6 +329,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               height="334px"
               // width="1580px"
               pageSize={5}
+              page={pageMill}
             />
           </div>
         ) : null}
@@ -424,7 +440,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 Supplier Plantaton for {mill_name}:{" "}
                 <b>Total :{tableData?.length}</b>
               </span>{" "}
-              <Pagination />{" "}
+              <Pagination
+                totalpage={Math.floor(tableData.length / 5)}
+                changeThePage={changeThePageActualPlant}
+              />{" "}
             </div>
             <div className="w-full">
               <TableComp
@@ -438,6 +457,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 height="300px"
                 // width="1566px"
                 pageSize={4}
+                page={pageActualPlant}
               />{" "}
             </div>
           </>

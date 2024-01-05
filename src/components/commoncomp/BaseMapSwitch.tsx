@@ -89,9 +89,11 @@ function BaseMapSwitch() {
       <div
         className={`${
           showViews ? "flex" : "hidden"
-        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform -translate-x-[${
-          selectedDashboardPage === "supplierplantation" ? "25%" : "42%"
-        }] translate-y-[78%]`}
+        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform  ${
+          selectedDashboardPage === "supplierplantation"
+            ? "-translate-x-[5%]"
+            : "-translate-x-[42%]"
+        }  translate-y-[78%]`}
       >
         <div
           onClick={() => setSelectedView("opensteet")}

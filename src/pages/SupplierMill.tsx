@@ -294,20 +294,23 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           </div>
         </div>
 
-        <div className=" mb-[24px] w-full">
-          <TableComp
-            tableColumn={tableColumn}
-            // @ts-ignore
-            tableData={milltabledata}
-            map={map}
-            component={"mill"}
-            height="334px"
-            // width="1580px"
-            pageSize={5}
-          />
-        </div>
+        {selectedDataFormat === "Table" || !showMap ? (
+          <div className=" mb-[24px] w-full">
+            <TableComp
+              tableColumn={tableColumn}
+              // @ts-ignore
+              tableData={milltabledata}
+              map={map}
+              component={"mill"}
+              height="334px"
+              // width="1580px"
+              pageSize={5}
+            />
+          </div>
+        ) : null}
 
-        {selectedDashboardPage === "suppliermill" ? (
+        {(selectedDataFormat !== "Table" || !showMap) &&
+        selectedDashboardPage === "suppliermill" ? (
           <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
             {items.map((item) => (
               <div
@@ -344,7 +347,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               </div>
             ))}
           </div>
-        ) : (
+        ) : null}
+
+        {(selectedDataFormat !== "Table" || !showMap) &&
+        selectedDashboardPage === "supplierplantation" ? (
           <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
             {items_plantation.map((item) => (
               <div
@@ -399,9 +405,9 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               </div>
             ))}
           </div>
-        )}
+        ) : null}
 
-        {is_agriplot ? (
+        {(selectedDataFormat === "Table" || !showMap) && is_agriplot ? (
           <>
             {" "}
             <div className=" flex justify-between items-center mb-[24px]">

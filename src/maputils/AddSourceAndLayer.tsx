@@ -145,7 +145,7 @@ function AddLayerAndSourceToMap({
       id: layerId,
       type: "fill",
       source: sourceId,
-      "source-layer": source_layer,
+      // "source-layer": source_layer,
       layout: {},
       paint: {
         "fill-color": style.fill_color,

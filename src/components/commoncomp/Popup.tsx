@@ -105,31 +105,31 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 legend_control.updateLegend("supplierplantation");
 
                 dispatch(setIsAgriplot(true));
-                // AddLayerAndSourceToMap({
-                //   map: map,
-                //   layerId: "actual-agriplot-registered-layer",
-                //   sourceId: "actual-agriplot-registered",
-                //   url: `${
-                //     import.meta.env.VITE_API_MAP_URL
-                //   }/function_zxy_query_app_agriplot_by_mill_eq_id/{z}/{x}/{y}?mill_eq_id=${
-                //     properties.mill_eq_id
-                //   }&status_of_plot=Registered
-                //   `,
+                AddLayerAndSourceToMap({
+                  map: map,
+                  layerId: "actual-agriplot-registered-layer",
+                  sourceId: "actual-agriplot-registered",
+                  url: `${
+                    import.meta.env.VITE_API_DASHBOARD_URL
+                  }/agriplot-geojson/?status=Registered&mill_eq_id=${
+                    properties.mill_eq_id
+                  }`,
+                  source_layer: "actual-agriplot-registered-layer",
+                  showPopup: true,
+                  style: {
+                    fill_color: "green",
+                    fill_opacity: "0",
+                    stroke_color: "black",
+                  },
+                  image_path: "",
+                  zoomToLayer: false,
+                  center: [103.8574, 2.2739],
+                  geomType: "geojson",
+                  fillType: "fill",
+                  trace: false,
+                  component: "agriplot",
+                });
 
-                //   source_layer: "function_zxy_query_app_agriplot_by_mill_eq_id",
-                //   showPopup: true,
-                //   style: {
-                //     fill_color: "green",
-                //     fill_opacity: "0",
-                //     stroke_color: "black",
-                //   },
-                //   image_path: "",
-                //   zoomToLayer: false,
-                //   center: [103.8574, 2.2739],
-                //   fillType: "fill",
-                //   trace: false,
-                //   component: "agriplot",
-                // });
                 // AddLayerAndSourceToMap({
                 //   map: map,
                 //   layerId: "actual-agriplot-unregistered-layer",

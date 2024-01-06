@@ -155,31 +155,31 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const mill_name: string | null = localStorage.getItem("mill_name");
 
-  useEffect(() => {
-    if (map) {
-      map.on("load", () => {
-        AddLayerAndSourceToMap({
-          map: map,
-          layerId: "mill-layer",
-          sourceId: "mill",
-          url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-          source_layer: "app_mill",
-          showPopup: true,
-          style: {
-            fill_color: "blue",
-            fill_opacity: "0",
-            stroke_color: "",
-          },
-          image_path: "millnew.png",
-          zoomToLayer: true,
-          center: [103.8574, 2.2739],
-          fillType: "point",
-          trace: true,
-          component: "mill",
-        });
-      });
-    }
-  }, [map]);
+  // useEffect(() => {
+  // if (map) {
+  //   map.on("load", () => {
+  //     AddLayerAndSourceToMap({
+  //       map: map,
+  //       layerId: "mill-layer",
+  //       sourceId: "mill",
+  //       url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+  //       source_layer: "app_mill",
+  //       showPopup: true,
+  //       style: {
+  //         fill_color: "blue",
+  //         fill_opacity: "0",
+  //         stroke_color: "",
+  //       },
+  //       image_path: "millnew.png",
+  //       zoomToLayer: true,
+  //       center: [103.8574, 2.2739],
+  //       fillType: "point",
+  //       trace: true,
+  //       component: "mill",
+  //     });
+  //   });
+  // }
+  // }, [map]);
 
   useEffect(() => {
     axios
@@ -250,8 +250,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       });
     }
   }, [map]);
-
-  useEffect(() => {}, []);
 
   return (
     <Layout>

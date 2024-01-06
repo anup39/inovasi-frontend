@@ -75,6 +75,7 @@ const Buffer = ({ map }: BufferProps) => {
           zoomToLayer: false,
           center: [103.8574, 2.2739],
           fillType: "fill",
+          geomType: "tile",
           trace: false,
           component: "agriplot",
         });
@@ -109,6 +110,7 @@ const Buffer = ({ map }: BufferProps) => {
         zoomToLayer: false,
         center: [103.8574, 2.2739],
         fillType: "fill",
+        geomType: "tile",
         trace: false,
         component: "plantedoutside",
       });

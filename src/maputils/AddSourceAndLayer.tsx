@@ -19,6 +19,7 @@ interface AddLayerProps {
   style: { fill_color: string; fill_opacity: string; stroke_color: string };
   zoomToLayer: boolean;
   center: LngLatLike;
+  geomType: string;
   fillType: string;
   trace: boolean;
   component: string;
@@ -35,6 +36,7 @@ function AddLayerAndSourceToMap({
   style,
   zoomToLayer,
   center,
+  geomType,
   fillType,
   trace,
 }: AddLayerProps) {
@@ -57,13 +59,21 @@ function AddLayerAndSourceToMap({
       .catch(function () {});
   }
 
-  const newSource: SourceSpecification = {
-    type: "vector",
-    tiles: [url],
-    promoteId: "id",
-  };
+  if (geomType && geomType === "geojson") {
+    const newSourceGeojson: SourceSpecification = {
+      type: "geojson",
+      data: url,
+    };
+    map.addSource(sourceId, newSourceGeojson);
+  } else {
+    const newSource: SourceSpecification = {
+      type: "vector",
+      tiles: [url],
+      promoteId: "id",
+    };
 
-  map.addSource(sourceId, newSource);
+    map.addSource(sourceId, newSource);
+  }
 
   if (fillType && fillType === "point") {
     map.loadImage(image_path, (error, image) => {
@@ -131,25 +141,46 @@ function AddLayerAndSourceToMap({
 
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   } else {
-    const newLayer: LayerSpecification = {
-      id: layerId,
-      type: "fill",
-      source: sourceId,
-      "source-layer": source_layer,
-      layout: {},
-      paint: {
-        "fill-color": style.fill_color,
-        "fill-outline-color": style.stroke_color,
-        "fill-opacity": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          1,
-          0.5,
-        ],
-      },
-    };
-    map.addLayer(newLayer);
-    // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
+    if (geomType && geomType === "geojson") {
+      const newLayerGeojson: LayerSpecification = {
+        id: layerId,
+        type: "fill",
+        source: sourceId,
+        // "source-layer": source_layer,
+        layout: {},
+        paint: {
+          "fill-color": style.fill_color,
+          "fill-outline-color": style.stroke_color,
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            1,
+            0.5,
+          ],
+        },
+      };
+      map.addLayer(newLayerGeojson);
+      // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
+    } else {
+      const newLayer: LayerSpecification = {
+        id: layerId,
+        type: "fill",
+        source: sourceId,
+        "source-layer": source_layer,
+        layout: {},
+        paint: {
+          "fill-color": style.fill_color,
+          "fill-outline-color": style.stroke_color,
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            1,
+            0.5,
+          ],
+        },
+      };
+      map.addLayer(newLayer);
+    }
   }
   let hoveredStateId: null = null!;
 
@@ -178,7 +209,7 @@ function AddLayerAndSourceToMap({
             {
               source: sourceId,
               id: hoveredStateId,
-              sourceLayer: source_layer,
+              // sourceLayer: source_layer,
             },
             { hover: false }
           );
@@ -190,7 +221,7 @@ function AddLayerAndSourceToMap({
             source: sourceId,
             // @ts-ignore
             id: hoveredStateId,
-            sourceLayer: source_layer,
+            // sourceLayer: source_layer,
           },
           { hover: true }
         );

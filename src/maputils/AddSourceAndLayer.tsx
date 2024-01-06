@@ -141,25 +141,46 @@ function AddLayerAndSourceToMap({
 
     // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
   } else {
-    const newLayer: LayerSpecification = {
-      id: layerId,
-      type: "fill",
-      source: sourceId,
-      // "source-layer": source_layer,
-      layout: {},
-      paint: {
-        "fill-color": style.fill_color,
-        "fill-outline-color": style.stroke_color,
-        "fill-opacity": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          1,
-          0.5,
-        ],
-      },
-    };
-    map.addLayer(newLayer);
-    // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
+    if (geomType && geomType === "geojson") {
+      const newLayerGeojson: LayerSpecification = {
+        id: layerId,
+        type: "fill",
+        source: sourceId,
+        // "source-layer": source_layer,
+        layout: {},
+        paint: {
+          "fill-color": style.fill_color,
+          "fill-outline-color": style.stroke_color,
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            1,
+            0.5,
+          ],
+        },
+      };
+      map.addLayer(newLayerGeojson);
+      // map.moveLayer(layerId, "gl-draw-polygon-fill-inactive.cold");
+    } else {
+      const newLayer: LayerSpecification = {
+        id: layerId,
+        type: "fill",
+        source: sourceId,
+        "source-layer": source_layer,
+        layout: {},
+        paint: {
+          "fill-color": style.fill_color,
+          "fill-outline-color": style.stroke_color,
+          "fill-opacity": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            1,
+            0.5,
+          ],
+        },
+      };
+      map.addLayer(newLayer);
+    }
   }
   let hoveredStateId: null = null!;
 

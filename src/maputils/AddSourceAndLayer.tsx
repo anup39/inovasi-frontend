@@ -209,7 +209,7 @@ function AddLayerAndSourceToMap({
             {
               source: sourceId,
               id: hoveredStateId,
-              sourceLayer: source_layer,
+              // sourceLayer: source_layer,
             },
             { hover: false }
           );
@@ -221,7 +221,7 @@ function AddLayerAndSourceToMap({
             source: sourceId,
             // @ts-ignore
             id: hoveredStateId,
-            sourceLayer: source_layer,
+            // sourceLayer: source_layer,
           },
           { hover: true }
         );

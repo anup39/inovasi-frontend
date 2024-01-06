@@ -173,6 +173,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           image_path: "millnew.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
+          geomType: "tile",
           fillType: "point",
           trace: true,
           component: "mill",

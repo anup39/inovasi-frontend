@@ -19,6 +19,7 @@ interface AddLayerProps {
   style: { fill_color: string; fill_opacity: string; stroke_color: string };
   zoomToLayer: boolean;
   center: LngLatLike;
+  geomType: string;
   fillType: string;
   trace: boolean;
   component: string;
@@ -35,6 +36,7 @@ function AddLayerAndSourceToMap({
   style,
   zoomToLayer,
   center,
+  geomType,
   fillType,
   trace,
 }: AddLayerProps) {
@@ -57,13 +59,21 @@ function AddLayerAndSourceToMap({
       .catch(function () {});
   }
 
-  const newSource: SourceSpecification = {
-    type: "vector",
-    tiles: [url],
-    promoteId: "id",
-  };
+  if (geomType && geomType === "geojson") {
+    const newSourceGeojson: SourceSpecification = {
+      type: "geojson",
+      data: url,
+    };
+    map.addSource(sourceId, newSourceGeojson);
+  } else {
+    const newSource: SourceSpecification = {
+      type: "vector",
+      tiles: [url],
+      promoteId: "id",
+    };
 
-  map.addSource(sourceId, newSource);
+    map.addSource(sourceId, newSource);
+  }
 
   if (fillType && fillType === "point") {
     map.loadImage(image_path, (error, image) => {

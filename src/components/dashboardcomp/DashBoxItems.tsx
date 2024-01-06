@@ -74,6 +74,44 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           trace: false,
           component: "facilities",
         });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "refinery-layer",
+          sourceId: "refinery",
+          url: `${import.meta.env.VITE_API_MAP_URL}/app_refinery/{z}/{x}/{y}`,
+          source_layer: "app_refinery",
+          showPopup: true,
+          style: {
+            fill_color: "green",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          image_path: "refinery.png",
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+          trace: false,
+          component: "refinery",
+        });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "mill-layer",
+          sourceId: "mill",
+          url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+          source_layer: "app_mill",
+          showPopup: true,
+          style: {
+            fill_color: "blue",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          image_path: "millnew.png",
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+          trace: false,
+          component: "mill",
+        });
       });
     }
   }, [map, dispatch]);

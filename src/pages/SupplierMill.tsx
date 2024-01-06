@@ -251,6 +251,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     }
   }, [map]);
 
+  useEffect(() => {}, []);
+
   return (
     <Layout>
       <Toast />

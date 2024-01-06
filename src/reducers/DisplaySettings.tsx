@@ -19,7 +19,7 @@ const initialState: DisplaySettingsState = {
   toastType: "info",
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
-  layers_in_map: [],
+  layers_in_map: ["Facilities", "Refinery Supplier", "Mill Supplier"],
 };
 
 export const DisplaySettings = createSlice({
@@ -47,7 +47,9 @@ export const DisplaySettings = createSlice({
     },
     addLayerName: (state, action) => {
       const newLayer = action.payload;
-      state.layers_in_map.push(newLayer);
+      if (!state.layers_in_map.includes(newLayer)) {
+        state.layers_in_map.push(newLayer);
+      }
     },
     removelayerName: (state, action) => {
       const layerToRemove = action.payload;

@@ -3,14 +3,21 @@ import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
+import { useDispatch, useSelector } from "react-redux";
+import { addLayerName, removelayerName } from "../../reducers/DisplaySettings";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
   console.log(component, "compoenent ");
   // console.log(map, "map ");
-
-  const [showLegend, setShowLegend] = useState(false);
+  const dispatch = useDispatch();
+  const [showLegend, setShowLegend] = useState(true);
   const [showMore, setShowMore] = useState(true);
+  const layers_in_map = useSelector(
+    (state) => state.displaySettings.layers_in_map
+  );
+
+  console.log(layers_in_map);
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -78,6 +85,7 @@ export default function Lenged({ component, map }) {
           if (map.getSource("point") && map.getLayer("point-layer")) {
             map.setLayoutProperty("point-layer", "visibility", "none");
           }
+          dispatch(addLayerName("Facilities"));
           AddLayerAndSourceToMap({
             map: map,
             layerId: "facility-layer",
@@ -104,6 +112,7 @@ export default function Lenged({ component, map }) {
           if (map.getSource("point") && map.getLayer("point-layer")) {
             map.setLayoutProperty("point-layer", "visibility", "none");
           }
+          dispatch(addLayerName("Refinery Supplier"));
           AddLayerAndSourceToMap({
             map: map,
             layerId: "refinery-layer",
@@ -130,6 +139,7 @@ export default function Lenged({ component, map }) {
           if (map.getSource("point") && map.getLayer("point-layer")) {
             map.setLayoutProperty("point-layer", "visibility", "none");
           }
+          dispatch(addLayerName("Mill Supplier"));
           AddLayerAndSourceToMap({
             map: map,
             layerId: "mill-layer",
@@ -159,6 +169,7 @@ export default function Lenged({ component, map }) {
           layerId: "facility-layer",
           sourceId: "facility",
         });
+        dispatch(removelayerName("Facilities"));
       }
       if (layer == "Refinery Supplier") {
         RemoveSourceAndLayerFromMap({
@@ -166,6 +177,7 @@ export default function Lenged({ component, map }) {
           layerId: "refinery-layer",
           sourceId: "refinery",
         });
+        dispatch(removelayerName("Refinery Supplier"));
       }
       if (layer == "Mill Supplier") {
         RemoveSourceAndLayerFromMap({
@@ -173,6 +185,7 @@ export default function Lenged({ component, map }) {
           layerId: "mill-layer",
           sourceId: "mill",
         });
+        dispatch(removelayerName("Mill Supplier"));
       }
     }
   };
@@ -228,7 +241,7 @@ export default function Lenged({ component, map }) {
           </div>
           <AntSwitch
             onClick={(event) => handleLayerChecked(event, "Facilities")}
-            defaultChecked
+            defaultChecked={layers_in_map.includes("Facilities")}
           />
         </div>
         <div
@@ -241,7 +254,7 @@ export default function Lenged({ component, map }) {
           </div>
           <AntSwitch
             onClick={(event) => handleLayerChecked(event, "Refinery Supplier")}
-            defaultChecked
+            defaultChecked={layers_in_map.includes("Refinery Supplier")}
           />
         </div>
         <div
@@ -261,7 +274,7 @@ export default function Lenged({ component, map }) {
           </div>
           <AntSwitch
             onClick={(event) => handleLayerChecked(event, "Mill Supplier")}
-            defaultChecked
+            defaultChecked={layers_in_map.includes("Mill Supplier")}
           />
         </div>
         <div

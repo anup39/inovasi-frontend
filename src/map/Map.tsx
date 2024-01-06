@@ -13,6 +13,8 @@ import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
 import { NavigationControl } from "maplibre-gl";
+import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
+
 const geojson = {
   type: "FeatureCollection",
   features: [
@@ -118,9 +120,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-right");
 
-      // Point on click
-
-      // Points from Table
+      // Point Table layer
       map_.addSource("point-table", {
         type: "geojson",
         data: geojson,
@@ -135,7 +135,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      // Polygon from Table
+      // Polygon Table Layer
       map_.addSource("polygon-table", {
         type: "geojson",
         data: geojson_polygon,
@@ -150,7 +150,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      // Polygon from Table
+      // Radius of the circle layer
       map_.addSource("polygon-radius", {
         type: "geojson",
         data: geojson_polygon,
@@ -165,21 +165,15 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
-
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
       map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
+      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
     });
 
     return () => {
       map_.remove();
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (map) {
-  //   }
-  // }, [map]);
 
   return (
     <div

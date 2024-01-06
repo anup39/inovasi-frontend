@@ -9,6 +9,7 @@ interface DisplaySettingsState {
   toastType: string;
   selectedDashboardPage: string;
   is_agriplot: boolean;
+  layers_in_map: string[];
 }
 
 const initialState: DisplaySettingsState = {
@@ -18,6 +19,7 @@ const initialState: DisplaySettingsState = {
   toastType: "info",
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
+  layers_in_map: ["Facilities", "Refinery Supplier", "Mill Supplier"],
 };
 
 export const DisplaySettings = createSlice({
@@ -43,6 +45,18 @@ export const DisplaySettings = createSlice({
     setIsAgriplot: (state, action: PayloadAction<boolean>) => {
       state.is_agriplot = action.payload;
     },
+    addLayerName: (state, action) => {
+      const newLayer = action.payload;
+      if (!state.layers_in_map.includes(newLayer)) {
+        state.layers_in_map.push(newLayer);
+      }
+    },
+    removelayerName: (state, action) => {
+      const layerToRemove = action.payload;
+      state.layers_in_map = state.layers_in_map.filter(
+        (name) => name !== layerToRemove
+      );
+    },
   },
 });
 
@@ -54,6 +68,8 @@ export const {
   setselectedDataFormat,
   setselectedDashboardPage,
   setIsAgriplot,
+  addLayerName,
+  removelayerName,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

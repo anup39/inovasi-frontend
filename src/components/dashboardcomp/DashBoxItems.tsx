@@ -74,6 +74,44 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           trace: false,
           component: "facilities",
         });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "refinery-layer",
+          sourceId: "refinery",
+          url: `${import.meta.env.VITE_API_MAP_URL}/app_refinery/{z}/{x}/{y}`,
+          source_layer: "app_refinery",
+          showPopup: true,
+          style: {
+            fill_color: "green",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          image_path: "refinery.png",
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+          trace: false,
+          component: "refinery",
+        });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "mill-layer",
+          sourceId: "mill",
+          url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+          source_layer: "app_mill",
+          showPopup: true,
+          style: {
+            fill_color: "blue",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          image_path: "millnew.png",
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          fillType: "point",
+          trace: false,
+          component: "mill",
+        });
       });
     }
   }, [map, dispatch]);
@@ -82,151 +120,151 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
     const updatedItems = items.map((item) => {
       if (item.id === clickedItem.id) {
         if (item.name == "Facilities") {
-          if (map) {
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "facility-layer",
-              sourceId: "facility",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "refinery-layer",
-              sourceId: "refinery",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "mill-layer",
-              sourceId: "mill",
-            });
-            if (map.getSource("point") && map.getLayer("point-layer")) {
-              map.setLayoutProperty("point-layer", "visibility", "none");
-            }
-            const popup_control: IControl =
-              map._controls[map._controls.length - 1];
+          // if (map) {
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "facility-layer",
+          //     sourceId: "facility",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "refinery-layer",
+          //     sourceId: "refinery",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "mill-layer",
+          //     sourceId: "mill",
+          //   });
+          //   if (map.getSource("point") && map.getLayer("point-layer")) {
+          //     map.setLayoutProperty("point-layer", "visibility", "none");
+          //   }
+          //   const popup_control: IControl =
+          //     map._controls[map._controls.length - 1];
 
-            // @ts-ignore
-            popup_control.updatePopup({}, false);
+          //   // @ts-ignore
+          //   popup_control.updatePopup({}, false);
 
-            AddLayerAndSourceToMap({
-              map: map,
-              layerId: "facility-layer",
-              sourceId: "facility",
-              url: `${
-                import.meta.env.VITE_API_MAP_URL
-              }/app_facility/{z}/{x}/{y}`,
-              source_layer: "app_facility",
-              showPopup: true,
-              style: {
-                fill_color: "red",
-                fill_opacity: "0",
-                stroke_color: "",
-              },
-              image_path: "facilities.png",
-              zoomToLayer: true,
-              center: [103.8574, 2.2739],
-              fillType: "point",
-              trace: false,
-              component: "facilities",
-            });
-          }
+          //   AddLayerAndSourceToMap({
+          //     map: map,
+          //     layerId: "facility-layer",
+          //     sourceId: "facility",
+          //     url: `${
+          //       import.meta.env.VITE_API_MAP_URL
+          //     }/app_facility/{z}/{x}/{y}`,
+          //     source_layer: "app_facility",
+          //     showPopup: true,
+          //     style: {
+          //       fill_color: "red",
+          //       fill_opacity: "0",
+          //       stroke_color: "",
+          //     },
+          //     image_path: "facilities.png",
+          //     zoomToLayer: true,
+          //     center: [103.8574, 2.2739],
+          //     fillType: "point",
+          //     trace: false,
+          //     component: "facilities",
+          //   });
+          // }
           dispatch(setpiechartfor("facility"));
         }
         if (item.name == "Refinery Supplier") {
-          if (map) {
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "facility-layer",
-              sourceId: "facility",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "refinery-layer",
-              sourceId: "refinery",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "mill-layer",
-              sourceId: "mill",
-            });
-            if (map.getSource("point") && map.getLayer("point-layer")) {
-              map.setLayoutProperty("point-layer", "visibility", "none");
-            }
-            const popup_control: IControl =
-              map._controls[map._controls.length - 1];
+          // if (map) {
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "facility-layer",
+          //     sourceId: "facility",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "refinery-layer",
+          //     sourceId: "refinery",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "mill-layer",
+          //     sourceId: "mill",
+          //   });
+          //   if (map.getSource("point") && map.getLayer("point-layer")) {
+          //     map.setLayoutProperty("point-layer", "visibility", "none");
+          //   }
+          //   const popup_control: IControl =
+          //     map._controls[map._controls.length - 1];
 
-            // @ts-ignore
-            popup_control.updatePopup({}, false);
+          //   // @ts-ignore
+          //   popup_control.updatePopup({}, false);
 
-            AddLayerAndSourceToMap({
-              map: map,
-              layerId: "refinery-layer",
-              sourceId: "refinery",
-              url: `${
-                import.meta.env.VITE_API_MAP_URL
-              }/app_refinery/{z}/{x}/{y}`,
-              source_layer: "app_refinery",
-              showPopup: true,
-              style: {
-                fill_color: "green",
-                fill_opacity: "0",
-                stroke_color: "",
-              },
-              image_path: "refinery.png",
-              zoomToLayer: true,
-              center: [103.8574, 2.2739],
-              fillType: "point",
-              trace: false,
-              component: "refinery",
-            });
-          }
+          //   AddLayerAndSourceToMap({
+          //     map: map,
+          //     layerId: "refinery-layer",
+          //     sourceId: "refinery",
+          //     url: `${
+          //       import.meta.env.VITE_API_MAP_URL
+          //     }/app_refinery/{z}/{x}/{y}`,
+          //     source_layer: "app_refinery",
+          //     showPopup: true,
+          //     style: {
+          //       fill_color: "green",
+          //       fill_opacity: "0",
+          //       stroke_color: "",
+          //     },
+          //     image_path: "refinery.png",
+          //     zoomToLayer: true,
+          //     center: [103.8574, 2.2739],
+          //     fillType: "point",
+          //     trace: false,
+          //     component: "refinery",
+          //   });
+          // }
           dispatch(setpiechartfor("refinery"));
         }
         if (item.name == "Mill Supplier") {
-          if (map) {
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "facility-layer",
-              sourceId: "facility",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "refinery-layer",
-              sourceId: "refinery",
-            });
-            RemoveSourceAndLayerFromMap({
-              map: map,
-              layerId: "mill-layer",
-              sourceId: "mill",
-            });
-            if (map.getSource("point") && map.getLayer("point-layer")) {
-              map.setLayoutProperty("point-layer", "visibility", "none");
-            }
-            const popup_control: IControl =
-              map._controls[map._controls.length - 1];
+          // if (map) {
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "facility-layer",
+          //     sourceId: "facility",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "refinery-layer",
+          //     sourceId: "refinery",
+          //   });
+          //   RemoveSourceAndLayerFromMap({
+          //     map: map,
+          //     layerId: "mill-layer",
+          //     sourceId: "mill",
+          //   });
+          //   if (map.getSource("point") && map.getLayer("point-layer")) {
+          //     map.setLayoutProperty("point-layer", "visibility", "none");
+          //   }
+          //   const popup_control: IControl =
+          //     map._controls[map._controls.length - 1];
 
-            // @ts-ignore
-            popup_control.updatePopup({}, false);
+          //   // @ts-ignore
+          //   popup_control.updatePopup({}, false);
 
-            AddLayerAndSourceToMap({
-              map: map,
-              layerId: "mill-layer",
-              sourceId: "mill",
-              url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-              source_layer: "app_mill",
-              showPopup: true,
-              style: {
-                fill_color: "blue",
-                fill_opacity: "0",
-                stroke_color: "",
-              },
-              image_path: "millnew.png",
-              zoomToLayer: true,
-              center: [103.8574, 2.2739],
-              fillType: "point",
-              trace: false,
-              component: "mill",
-            });
-          }
+          //   AddLayerAndSourceToMap({
+          //     map: map,
+          //     layerId: "mill-layer",
+          //     sourceId: "mill",
+          //     url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+          //     source_layer: "app_mill",
+          //     showPopup: true,
+          //     style: {
+          //       fill_color: "blue",
+          //       fill_opacity: "0",
+          //       stroke_color: "",
+          //     },
+          //     image_path: "millnew.png",
+          //     zoomToLayer: true,
+          //     center: [103.8574, 2.2739],
+          //     fillType: "point",
+          //     trace: false,
+          //     component: "mill",
+          //   });
+          // }
           dispatch(setpiechartfor("mill"));
         }
         return { ...item, bgcolor: "#CCB848", selected: true };

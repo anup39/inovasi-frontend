@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
+import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
+import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
+import { useDispatch, useSelector } from "react-redux";
+import { addLayerName, removelayerName } from "../../reducers/DisplaySettings";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
   console.log(component, "compoenent ");
   // console.log(map, "map ");
-
-  const [showLegend, setShowLegend] = useState(false);
+  const dispatch = useDispatch();
+  const [showLegend, setShowLegend] = useState(true);
   const [showMore, setShowMore] = useState(true);
+  const layers_in_map = useSelector(
+    (state) => state.displaySettings.layers_in_map
+  );
+
+  console.log(layers_in_map);
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -65,6 +74,121 @@ export default function Lenged({ component, map }) {
       setShowMore(true);
     }
   }, [component]);
+
+  // @ts-ignore
+  const handleLayerChecked = (event, layer) => {
+    console.log(event, layer);
+    // @ts-ignore
+    if (event.target.checked) {
+      if (layer === "Facilities") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Facilities"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "facility-layer",
+            sourceId: "facility",
+            url: `${import.meta.env.VITE_API_MAP_URL}/app_facility/{z}/{x}/{y}`,
+            source_layer: "app_facility",
+            showPopup: true,
+            style: {
+              fill_color: "red",
+              fill_opacity: "0",
+              stroke_color: "",
+            },
+            image_path: "facilities.png",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            fillType: "point",
+            trace: false,
+            component: "facilities",
+          });
+        }
+      }
+      if (layer === "Refinery Supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Refinery Supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "refinery-layer",
+            sourceId: "refinery",
+            url: `${import.meta.env.VITE_API_MAP_URL}/app_refinery/{z}/{x}/{y}`,
+            source_layer: "app_refinery",
+            showPopup: true,
+            style: {
+              fill_color: "green",
+              fill_opacity: "0",
+              stroke_color: "",
+            },
+            image_path: "refinery.png",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            fillType: "point",
+            trace: false,
+            component: "refinery",
+          });
+        }
+      }
+      if (layer === "Mill Supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Mill Supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "mill-layer",
+            sourceId: "mill",
+            url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
+            source_layer: "app_mill",
+            showPopup: true,
+            style: {
+              fill_color: "blue",
+              fill_opacity: "0",
+              stroke_color: "",
+            },
+            image_path: "millnew.png",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            fillType: "point",
+            trace: true,
+            component: "mill",
+          });
+        }
+      }
+    } else {
+      // map.setLayoutProperty(`${layer}_layer`, "visibility", "none");
+      if (layer == "Facilities") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "facility-layer",
+          sourceId: "facility",
+        });
+        dispatch(removelayerName("Facilities"));
+      }
+      if (layer == "Refinery Supplier") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "refinery-layer",
+          sourceId: "refinery",
+        });
+        dispatch(removelayerName("Refinery Supplier"));
+      }
+      if (layer == "Mill Supplier") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "mill-layer",
+          sourceId: "mill",
+        });
+        dispatch(removelayerName("Mill Supplier"));
+      }
+    }
+  };
   return (
     <div>
       <div
@@ -78,7 +202,7 @@ export default function Lenged({ component, map }) {
         className={`shadow p-3 -top-5 scale-[0.6] md:scale-100 transition-all ease-in-out delay-100 ${
           showLegend ? "flex" : "hidden"
         } rounded-[10px] flex-col gap-[17px] bg-white absolute z-20 md:top-2 -left-16 md:left-10 ${
-          showMore ? "h-[300px] md:h-[300px] -top-5" : "h-[200px] top-2"
+          showMore ? "h-[300px] md:h-[350px] -top-5" : "h-[200px] top-2"
         } w-[310px] sm:w-[356px]`}
       >
         <div className="flex justify-between items-center">
@@ -115,7 +239,10 @@ export default function Lenged({ component, map }) {
             <img src="facilitieslegend.svg" alt="" />
             <p className="text-homeSubText">Facilities</p>
           </div>
-          <AntSwitch defaultChecked />
+          <AntSwitch
+            onClick={(event) => handleLayerChecked(event, "Facilities")}
+            defaultChecked={layers_in_map.includes("Facilities")}
+          />
         </div>
         <div
           style={{ display: component === "dashboard" ? "flex" : "none" }}
@@ -125,7 +252,10 @@ export default function Lenged({ component, map }) {
             <img src="refinerylegend.svg" alt="" />
             <p className="text-homeSubText">Refinery</p>
           </div>
-          <AntSwitch />
+          <AntSwitch
+            onClick={(event) => handleLayerChecked(event, "Refinery Supplier")}
+            defaultChecked={layers_in_map.includes("Refinery Supplier")}
+          />
         </div>
         <div
           style={{
@@ -142,7 +272,10 @@ export default function Lenged({ component, map }) {
             <img src="milllegend.svg" alt="" />
             <p className="text-homeSubText">Mill</p>
           </div>
-          <AntSwitch />
+          <AntSwitch
+            onClick={(event) => handleLayerChecked(event, "Mill Supplier")}
+            defaultChecked={layers_in_map.includes("Mill Supplier")}
+          />
         </div>
         <div
           style={{

@@ -35,17 +35,20 @@ function BaseMapSwitch() {
       >
         <h1 className="scale-90 md:scale-100">Radius</h1>
         <input
+          type="number"
           style={{
             boxShadow: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
           }}
           className="w-[80px] relative rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
-          type="name"
-          name=""
-          id=""
-          value={50}
-          disabled
+          // name=""
+          // id=""
+          defaultValue={50}
+          min="50"
+          max="100"
+          // disabled
         />
         <p>km</p>
+        <button className="bg-green-500 p-2 rounded text-white">Apply</button>
         {/* <div className="hidden md:flex absolute  flex-col items-center w-12 px-4 scale-50 gap-2 left-32 bg-boxDivider">
           <svg
             className="cursor-pointer"
@@ -110,7 +113,7 @@ function BaseMapSwitch() {
           selectedDashboardPage === "supplierplantation"
             ? "-translate-x-[5%]"
             : "-translate-x-[42%]"
-        }  translate-y-[78%]`}
+        }  translate-y-[81%]`}
       >
         <div
           onClick={() => handleBaseMapChange("basic")}

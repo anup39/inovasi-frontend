@@ -8,6 +8,7 @@ interface DisplaySettingsState {
   toastMessage: string;
   toastType: string;
   selectedDashboardPage: string;
+  showMapLoader: boolean;
   is_agriplot: boolean;
   layers_in_map: string[];
   current_mill_eq_id: string | null;
@@ -21,6 +22,7 @@ const initialState: DisplaySettingsState = {
   toastMessage: "Click on point to see the data",
   toastType: "info",
   selectedDashboardPage: "dashboard",
+  showMapLoader: false,
   is_agriplot: false,
   layers_in_map: [
     "Facilities",
@@ -77,6 +79,9 @@ export const DisplaySettings = createSlice({
     setMillCoordinates: (state, action) => {
       state.current_mill_coordinates = action.payload;
     },
+    setshowMapLoader: (state, action) => {
+      state.showMapLoader = action.payload;
+    },
   },
 });
 
@@ -93,6 +98,7 @@ export const {
   setCurrentMillEqId,
   setCurrentRadiusWkt,
   setMillCoordinates,
+  setshowMapLoader,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

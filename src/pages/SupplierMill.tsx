@@ -21,6 +21,8 @@ import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
 import Dropdown from "../components/commoncomp/Dropdown";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { Tooltip } from "@mui/material";
 
 const lists = [
   { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
@@ -124,6 +126,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   // const [tableData, settableData] = useState([]);
   const [pageMill, setPageMill] = useState(0);
   const [pageActualPlant, setPageActualPlant] = useState(0);
+  const [pagePotentialPlant, setPagePotentialPlant] = useState(0);
 
   const tableData = useSelector(
     (state: RootState) => state.supplierPlantation.tabledata
@@ -131,6 +134,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
   const milltabledata = useSelector(
     (state: RootState) => state.supplierPlantation.milltabledata
+  );
+
+  const tabledataPotential = useSelector(
+    (state: RootState) => state.supplierPlantation.tabledataPotential
   );
 
   const tableColumnRedux = useSelector(
@@ -144,6 +151,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const changeThePageActualPlant = (evpage: number) => {
     console.log(evpage, "evpage");
     setPageActualPlant(evpage);
+  };
+  const changeThePagePotentialPlant = (evpage: number) => {
+    console.log(evpage, "evpage");
+    setPagePotentialPlant(evpage);
   };
 
   const selectedDataFormat = useSelector(
@@ -282,6 +293,18 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       <div className="min-h-[984px]">
         <div className="items-center flex justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
+            <Tooltip title="Reset Map">
+              <RestartAltIcon
+                onClick={() => {
+                  window.location.replace("/suppliermill");
+                }}
+                sx={{
+                  "&:hover": { cursor: "pointer" },
+                  marginRight: 1,
+                  color: "#72D86A",
+                }}
+              />
+            </Tooltip>
             <SwitchComp
               label="Map"
               defaultChecked={showMap}
@@ -462,7 +485,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             {" "}
             <div className=" flex justify-between items-center mb-[24px]">
               <span className="bg-gray">
-                Supplier Plantaton for {mill_name}:{" "}
+                Actual registered Supplier Plantaton for {mill_name}:{" "}
                 <b>Total :{tableData?.length}</b>
               </span>{" "}
               <Pagination
@@ -483,6 +506,31 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 // width="1566px"
                 pageSize={4}
                 page={pageActualPlant}
+              />{" "}
+            </div>
+            <div className=" flex justify-between items-center mb-[24px] mt-[24px]">
+              <span className="bg-gray">
+                Potential registered Supplier Plantaton for {mill_name}:{" "}
+                <b>Total :{tabledataPotential?.length}</b>
+              </span>{" "}
+              <Pagination
+                totalpage={Math.floor(tabledataPotential.length / 5)}
+                changeThePage={changeThePagePotentialPlant}
+              />{" "}
+            </div>
+            <div className="w-full">
+              <TableComp
+                // @ts-ignore
+
+                tableColumn={tableColumnRedux}
+                // @ts-ignore
+                tableData={tabledataPotential}
+                map={map}
+                component={"agriplot"}
+                height="300px"
+                // width="1566px"
+                pageSize={4}
+                page={pagePotentialPlant}
               />{" "}
             </div>
           </>

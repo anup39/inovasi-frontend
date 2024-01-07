@@ -4,7 +4,11 @@ import Switch from "@mui/material/Switch";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 import { useDispatch, useSelector } from "react-redux";
-import { addLayerName, removelayerName } from "../../reducers/DisplaySettings";
+import {
+  addLayerName,
+  removelayerName,
+  setshowMapLoader,
+} from "../../reducers/DisplaySettings";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {

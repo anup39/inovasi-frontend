@@ -18,20 +18,20 @@ function NavBar() {
           <p className="text-grayText text-xs md:text-normal">Commodity</p>
           <img src="dropdownIcon.svg" alt="" />
         </div>
-        {/* <div className="relative">
-          <div
-            // className="bg-searchGray rounded-lg p-2 md:pl-10 md:min-w-[400px] w-5/6  placeholder:text-grayText placeholder:text-xs"
-            // placeholder="Search here..."
-            // type="search"
-            // name=""
-            id="geocoding-search"
-          />
-          <img
-            className="scale-90 hidden md:block absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"
-            src="SearchIcon.svg"
-            alt=""
-          />
-        </div> */}
+        {/* <div className="relative"> */}
+        {/* <div
+          // className="bg-searchGray rounded-lg p-2 md:pl-10 md:min-w-[400px] w-5/6  placeholder:text-grayText placeholder:text-xs"
+          // placeholder="Search here..."
+          // type="search"
+          // name=""
+          id="geocoding-search"
+        /> */}
+        {/* <img
+          className="scale-90 hidden md:block absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer"
+          src="SearchIcon.svg"
+          alt=""
+        /> */}
+        {/* </div> */}
         <div className="relative scale-75 md:scale-100 w-[42px] flex items-center justify-center h-[42px] bg-veryLightGreen rounded-lg cursor-pointer">
           <img className="" src="bellIcon.svg" alt="" />
           <div className=" absolute h-[6.67px] w-[6.67px] rounded-full top-[6px] right-[6px] bg-bellRed"></div>

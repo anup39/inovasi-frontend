@@ -5,6 +5,8 @@ import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import { GeoJSONSource } from "maplibre-gl";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { setCurrentRadiusWkt } from "../../reducers/DisplaySettings";
+import axios from "axios";
+import { settabledataPotential } from "../../reducers/SupplierPlantation";
 
 function BaseMapSwitch() {
   const dispatch = useDispatch();
@@ -53,6 +55,17 @@ function BaseMapSwitch() {
       const map = window.mapglobal;
       const wkt_final = convertGeojsonToWKT(buffered);
       dispatch(setCurrentRadiusWkt(wkt_final));
+
+      // fetch potential registered for table
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-result-wkt/?mill_eq_id=${current_mill_eq_id}&geometry_wkt=${wkt_final}`
+        )
+        .then((res) => {
+          dispatch(settabledataPotential(res.data));
+        });
 
       if (
         map.getSource("polygon-radius") &&
@@ -166,7 +179,7 @@ function BaseMapSwitch() {
         // onMouseOver={() => setShowViews(true)}
         // onMouseOut={() => setShowViews(false)}
         onClick={() => setShowViews(!showViews)}
-        className="h-[55px] cursor-pointer"
+        className="h-[55px] cursor-pointer mr-56"
       >
         <img className="scale-90 md:scale-105" src="mapselectview.svg" alt="" />
       </div>
@@ -187,7 +200,7 @@ function BaseMapSwitch() {
         } absolute items-center justify-center gap-2 h-[90px] rounded-xl bg-white px-2 py-0.5 transition-all ease-in-out transform  ${
           selectedDashboardPage === "supplierplantation"
             ? "-translate-x-[5%]"
-            : "-translate-x-[42%]"
+            : "-translate-x-[100%]"
         }  translate-y-[81%]`}
       >
         <div

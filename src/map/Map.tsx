@@ -162,7 +162,8 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         source: "polygon-radius",
         paint: {
           "fill-color": "red",
-          "fill-opacity": 0.2,
+          "fill-opacity": 0.1,
+          "fill-outline-color": "red",
         },
       });
 

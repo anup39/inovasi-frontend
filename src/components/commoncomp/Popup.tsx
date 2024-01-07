@@ -16,6 +16,7 @@ import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import {
   settableColumn,
   settabledata,
+  settabledataPotential,
 } from "../../reducers/SupplierPlantation";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
@@ -74,6 +75,27 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
         }
         if (res.data.length > 0) {
           const estateids = res.data;
+          const radius = 50;
+          const { buffered, extent } = makeRadiusfrompoint(
+            [parseFloat(properties.mill_long), parseFloat(properties.mill_lat)],
+            radius * 1000
+          );
+
+          if (
+            map.getSource("polygon-radius") &&
+            map.getLayer("polygon-radius-layer")
+          ) {
+            const source = map.getSource("polygon-radius") as GeoJSONSource;
+            source.setData(buffered);
+
+            map.setLayoutProperty(
+              "polygon-radius-layer",
+              "visibility",
+              "visible"
+            );
+            map.fitBounds(extent);
+          }
+          const wkt_final = convertGeojsonToWKT(buffered);
           axios
             .get(
               `${
@@ -88,6 +110,18 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 localStorage.setItem("mill_long", properties.mill_long);
                 localStorage.setItem("mill_lat", properties.mill_lat);
                 dispatch(settabledata(res.data));
+                // fetch potential registered for table
+                axios
+                  .get(
+                    `${
+                      import.meta.env.VITE_API_DASHBOARD_URL
+                    }/agriplot-result-wkt/?mill_eq_id=${
+                      properties.mill_eq_id
+                    }&geometry_wkt=${wkt_final}`
+                  )
+                  .then((res) => {
+                    dispatch(settabledataPotential(res.data));
+                  });
 
                 axios
                   .get(
@@ -109,34 +143,6 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 legend_control.updateLegend("supplierplantation");
 
                 dispatch(setIsAgriplot(true));
-
-                const radius = 50;
-                const { buffered, extent } = makeRadiusfrompoint(
-                  [
-                    parseFloat(properties.mill_long),
-                    parseFloat(properties.mill_lat),
-                  ],
-                  radius * 1000
-                );
-
-                if (
-                  map.getSource("polygon-radius") &&
-                  map.getLayer("polygon-radius-layer")
-                ) {
-                  const source = map.getSource(
-                    "polygon-radius"
-                  ) as GeoJSONSource;
-                  source.setData(buffered);
-
-                  map.setLayoutProperty(
-                    "polygon-radius-layer",
-                    "visibility",
-                    "visible"
-                  );
-                  map.fitBounds(extent);
-                }
-                const wkt_final = convertGeojsonToWKT(buffered);
-
                 dispatch(
                   setMillCoordinates([
                     parseFloat(properties.mill_long),

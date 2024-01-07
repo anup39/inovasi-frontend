@@ -5,6 +5,7 @@ interface SupplierPlantationState {
   milltabledata: [] | null;
   tabledata: [] | null;
   tableColumn: [] | null;
+  tabledataPotential: [] | null;
 }
 
 const initialState: SupplierPlantationState = {
@@ -12,6 +13,7 @@ const initialState: SupplierPlantationState = {
   milltabledata: [],
   tabledata: [],
   tableColumn: [],
+  tabledataPotential: [],
 };
 
 export const SupplierPlantation = createSlice({
@@ -27,6 +29,9 @@ export const SupplierPlantation = createSlice({
     setmilltabledata: (state, action: PayloadAction<[] | null>) => {
       state.milltabledata = action.payload;
     },
+    settabledataPotential: (state, action: PayloadAction<[] | null>) => {
+      state.tabledataPotential = action.payload;
+    },
     settableColumn: (state, action: PayloadAction<[] | null>) => {
       state.tableColumn = action.payload;
     },
@@ -34,7 +39,12 @@ export const SupplierPlantation = createSlice({
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const { setestateids, settabledata, setmilltabledata, settableColumn } =
-  SupplierPlantation.actions;
+export const {
+  setestateids,
+  settabledata,
+  setmilltabledata,
+  settableColumn,
+  settabledataPotential,
+} = SupplierPlantation.actions;
 
 export default SupplierPlantation.reducer;

@@ -4,6 +4,9 @@ import {
   settoastMessage,
   setshowToast,
   setIsAgriplot,
+  addLayerName,
+  setCurrentRadiusWkt,
+  setCurrentMillEqId,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -133,6 +136,9 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 }
                 const wkt_final = convertGeojsonToWKT(buffered);
 
+                dispatch(setCurrentRadiusWkt(wkt_final));
+                dispatch(setCurrentMillEqId(properties.mill_eq_id));
+
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "potential-agriplot-registered-layer",
@@ -231,6 +237,10 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                   trace: false,
                   component: "agriplot",
                 });
+                dispatch(addLayerName("Actual registered supplier"));
+                dispatch(addLayerName("Actual unregistered supplier"));
+                dispatch(addLayerName("Potential registered supplier"));
+                dispatch(addLayerName("Potential unregistered supplier"));
               } else {
                 dispatch(setshowToast(true));
                 dispatch(

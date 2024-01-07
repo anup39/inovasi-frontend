@@ -10,6 +10,8 @@ interface DisplaySettingsState {
   selectedDashboardPage: string;
   is_agriplot: boolean;
   layers_in_map: string[];
+  current_mill_eq_id: string | null;
+  current_radius_wkt: string | null;
 }
 
 const initialState: DisplaySettingsState = {
@@ -20,6 +22,8 @@ const initialState: DisplaySettingsState = {
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
   layers_in_map: ["Facilities", "Refinery Supplier", "Mill Supplier"],
+  current_mill_eq_id: null,
+  current_radius_wkt: null,
 };
 
 export const DisplaySettings = createSlice({
@@ -57,6 +61,12 @@ export const DisplaySettings = createSlice({
         (name) => name !== layerToRemove
       );
     },
+    setCurrentMillEqId: (state, action: PayloadAction<string>) => {
+      state.current_mill_eq_id = action.payload;
+    },
+    setCurrentRadiusWkt: (state, action: PayloadAction<string>) => {
+      state.current_radius_wkt = action.payload;
+    },
   },
 });
 
@@ -70,6 +80,8 @@ export const {
   setIsAgriplot,
   addLayerName,
   removelayerName,
+  setCurrentMillEqId,
+  setCurrentRadiusWkt,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

@@ -139,7 +139,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
           type: "raster",
           source: "satellite_source",
         },
-        "point-table-layer"
+        "housenumber"
       );
 
       // Add streets source
@@ -158,7 +158,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
           type: "raster",
           source: "basic_source",
         },
-        "point-table-layer"
+        "housenumber"
       );
 
       // Add dark source
@@ -177,7 +177,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
           type: "raster",
           source: "dark_source",
         },
-        "point-table-layer"
+        "housenumber"
       );
 
       console.log(map_, "map_");

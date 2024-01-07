@@ -14,15 +14,14 @@ function BaseMapSwitch() {
     // @ts-ignore
     const map = window.mapglobal;
     console.log(map, basemap);
-    map.on("load", () => {
-      if (
-        map.getSource(`${basemap}_source`) &&
-        map.getLayer(`${basemap}_layer`)
-      ) {
-        map.moveLayer(`${basemap}_layer`, "point-table-layer");
-        map.setLayoutProperty(`${basemap}_layer`, "visibility", "visible");
-      }
-    });
+
+    if (
+      map.getSource(`${basemap}_source`) &&
+      map.getLayer(`${basemap}_layer`)
+    ) {
+      map.moveLayer(`${basemap}_layer`, "housenumber");
+      map.setLayoutProperty(`${basemap}_layer`, "visibility", "visible");
+    }
   };
 
   return (
@@ -107,7 +106,7 @@ function BaseMapSwitch() {
       <div
         className={`${
           showViews ? "flex" : "hidden"
-        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform  ${
+        } absolute items-center justify-center gap-2 h-[90px] rounded-xl bg-white px-2 py-0.5 transition-all ease-in-out transform  ${
           selectedDashboardPage === "supplierplantation"
             ? "-translate-x-[5%]"
             : "-translate-x-[42%]"
@@ -125,11 +124,11 @@ function BaseMapSwitch() {
           <p
             className={`${
               selectedView === "basic"
-                ? "text-darkGreen font-bold"
-                : "text-homeSubText"
+                ? "text-darkGreen font-bold text-sm"
+                : "text-homeSubText text-sm"
             }`}
           >
-            Openstreet
+            Basic
           </p>
         </div>
         <div
@@ -144,8 +143,8 @@ function BaseMapSwitch() {
           <p
             className={`${
               selectedView === "satellite"
-                ? "text-darkGreen font-bold"
-                : "text-homeSubText"
+                ? "text-darkGreen font-bold text-sm"
+                : "text-homeSubText text-sm"
             }`}
           >
             Satellite
@@ -163,11 +162,11 @@ function BaseMapSwitch() {
           <p
             className={`${
               selectedView === "dark"
-                ? "text-darkGreen font-bold  "
-                : "text-homeSubText"
+                ? "text-darkGreen font-bold text-sm "
+                : "text-homeSubText text-sm"
             }`}
           >
-            Terrain
+            Dark
           </p>
         </div>
       </div>

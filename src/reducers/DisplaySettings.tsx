@@ -12,6 +12,7 @@ interface DisplaySettingsState {
   layers_in_map: string[];
   current_mill_eq_id: string | null;
   current_radius_wkt: string | null;
+  current_mill_coordinates: number[] | null;
 }
 
 const initialState: DisplaySettingsState = {
@@ -29,6 +30,7 @@ const initialState: DisplaySettingsState = {
   ],
   current_mill_eq_id: null,
   current_radius_wkt: null,
+  current_mill_coordinates: null,
 };
 
 export const DisplaySettings = createSlice({
@@ -72,6 +74,9 @@ export const DisplaySettings = createSlice({
     setCurrentRadiusWkt: (state, action: PayloadAction<string>) => {
       state.current_radius_wkt = action.payload;
     },
+    setMillCoordinates: (state, action) => {
+      state.current_mill_coordinates = action.payload;
+    },
   },
 });
 
@@ -87,6 +92,7 @@ export const {
   removelayerName,
   setCurrentMillEqId,
   setCurrentRadiusWkt,
+  setMillCoordinates,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

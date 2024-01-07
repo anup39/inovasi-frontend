@@ -7,6 +7,7 @@ import {
   addLayerName,
   setCurrentRadiusWkt,
   setCurrentMillEqId,
+  setMillCoordinates,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -136,6 +137,12 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 }
                 const wkt_final = convertGeojsonToWKT(buffered);
 
+                dispatch(
+                  setMillCoordinates([
+                    parseFloat(properties.mill_long),
+                    parseFloat(properties.mill_lat),
+                  ])
+                );
                 dispatch(setCurrentRadiusWkt(wkt_final));
                 dispatch(setCurrentMillEqId(properties.mill_eq_id));
 

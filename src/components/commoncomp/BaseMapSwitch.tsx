@@ -1,14 +1,25 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ChangeEvent } from "react";
+import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
+import { GeoJSONSource } from "maplibre-gl";
+import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
+import { setCurrentRadiusWkt } from "../../reducers/DisplaySettings";
 
 function BaseMapSwitch() {
+  const dispatch = useDispatch();
   const [selectedView, setSelectedView] = useState("basic");
   const [showViews, setShowViews] = useState(false);
   const [radius, setradius] = useState<number>(50);
+  const current_mill_coordinates = useSelector(
+    (state) => state.displaySettings.current_mill_coordinates
+  );
 
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
+  );
+  const current_mill_eq_id = useSelector(
+    (state) => state.displaySettings.current_mill_eq_id
   );
 
   const handleBaseMapChange = (basemap: string) => {
@@ -31,7 +42,55 @@ function BaseMapSwitch() {
   };
 
   const handleApplyBuffer = () => {
-    console.log(radius, "radius");
+    if (current_mill_coordinates) {
+      const { buffered, extent } = makeRadiusfrompoint(
+        [
+          parseFloat(current_mill_coordinates[0]),
+          parseFloat(current_mill_coordinates[1]),
+        ],
+        radius * 1000
+      );
+      const map = window.mapglobal;
+      const wkt_final = convertGeojsonToWKT(buffered);
+      dispatch(setCurrentRadiusWkt(wkt_final));
+
+      if (
+        map.getSource("polygon-radius") &&
+        map.getLayer("polygon-radius-layer")
+      ) {
+        const source = map.getSource("polygon-radius") as GeoJSONSource;
+        source.setData(buffered);
+
+        map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+        map.fitBounds(extent);
+      }
+      if (
+        map.getSource("potential-agriplot-registered") &&
+        map.getLayer("potential-agriplot-registered-layer")
+      ) {
+        const source = map.getSource(
+          "potential-agriplot-registered"
+        ) as GeoJSONSource;
+        source.setData(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
+        );
+      }
+      if (
+        map.getSource("potential-agriplot-unregistered") &&
+        map.getLayer("potential-agriplot-unregistered-layer")
+      ) {
+        const source = map.getSource(
+          "potential-agriplot-unregistered"
+        ) as GeoJSONSource;
+        source.setData(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
+        );
+      }
+    }
   };
 
   return (

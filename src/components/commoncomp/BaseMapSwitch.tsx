@@ -179,7 +179,7 @@ function BaseMapSwitch() {
         // onMouseOver={() => setShowViews(true)}
         // onMouseOut={() => setShowViews(false)}
         onClick={() => setShowViews(!showViews)}
-        className="h-[55px] cursor-pointer"
+        className="h-[55px] cursor-pointer mr-56"
       >
         <img className="scale-90 md:scale-105" src="mapselectview.svg" alt="" />
       </div>
@@ -200,7 +200,7 @@ function BaseMapSwitch() {
         } absolute items-center justify-center gap-2 h-[90px] rounded-xl bg-white px-2 py-0.5 transition-all ease-in-out transform  ${
           selectedDashboardPage === "supplierplantation"
             ? "-translate-x-[5%]"
-            : "-translate-x-[42%]"
+            : "-translate-x-[100%]"
         }  translate-y-[81%]`}
       >
         <div

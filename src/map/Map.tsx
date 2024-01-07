@@ -77,17 +77,13 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       attributionControl: false,
     });
 
-    const navigationcontrol = new NavigationControl();
-    map_.addControl(navigationcontrol, "top-right");
-
-    map_.addControl(new maplibregl.FullscreenControl());
-
     // @ts-ignore
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,
       showResultsWhileTyping: true,
       flyTo: true,
     });
+    map_.addControl(geocoder, "top-right");
 
     // geocoder.addTo(document.getElementById("geocoding-search"));
     // @ts-ignore
@@ -95,6 +91,26 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       const coords = ev.result.geometry.coordinates;
       map_.flyTo({ center: coords });
     });
+
+    const navigationcontrol = new NavigationControl();
+    map_.addControl(navigationcontrol, "top-right");
+
+    map_.addControl(new maplibregl.FullscreenControl());
+
+    // // @ts-ignore
+    // const geocoder = new MaplibreGeocoder(GeocoderApi, {
+    //   maplibregl: maplibregl,
+    //   showResultsWhileTyping: true,
+    //   flyTo: true,
+    // });
+    // map_.addControl(geocoder, "top-right");
+
+    // // geocoder.addTo(document.getElementById("geocoding-search"));
+    // // @ts-ignore
+    // geocoder.on("result", function (ev) {
+    //   const coords = ev.result.geometry.coordinates;
+    //   map_.flyTo({ center: coords });
+    // });
 
     onSetMap(map_);
     window.mapglobal = map_;
@@ -273,7 +289,10 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         </div>
       ) : null}
 
-      <div className="absolute top- right-[25px] md:right-12 z-10">
+      <div
+        style={{ zIndex: 1 }}
+        className="absolute top- right-[25px] md:right-12 "
+      >
         <BaseMapSwitch />
       </div>
     </div>

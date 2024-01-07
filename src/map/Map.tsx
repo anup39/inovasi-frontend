@@ -15,6 +15,7 @@ import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 import { NavigationControl } from "maplibre-gl";
 import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import { CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const geojson = {
   type: "FeatureCollection",
@@ -59,6 +60,9 @@ interface MapProps {
 
 export default function MapComponent({ onSetMap, component }: MapProps) {
   const [height, setHeight] = useState("min-h-[630px]");
+  const showMapLoader = useSelector(
+    (state) => state.displaySettings.showMapLoader
+  );
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -259,13 +263,16 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       id="map"
       className={`map rounded-[20px] relative w-full ${height} `}
     >
-      <div className="absolute top-1/2 right-1/2  md:right-1/2 z-10 bg-white h-24 w-24 rounded-xl">
-        <CircularProgress
-          color="success"
-          sx={{ color: "#37CC7D", marginTop: "25%", marginLeft: "25%" }}
-        />
-        <p style={{ color: "black", marginLeft: "15%" }}>Please Wait..</p>
-      </div>
+      {showMapLoader ? (
+        <div className="absolute top-1/2 right-1/2  md:right-1/2 z-10 bg-white h-24 w-24 rounded-xl">
+          <CircularProgress
+            color="success"
+            sx={{ color: "#37CC7D", marginTop: "25%", marginLeft: "25%" }}
+          />
+          <p style={{ color: "black", marginLeft: "15%" }}>Please Wait..</p>
+        </div>
+      ) : null}
+
       <div className="absolute top- right-[25px] md:right-12 z-10">
         <BaseMapSwitch />
       </div>

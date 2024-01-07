@@ -254,6 +254,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 dispatch(addLayerName("Actual unregistered supplier"));
                 dispatch(addLayerName("Potential registered supplier"));
                 dispatch(addLayerName("Potential unregistered supplier"));
+                axios.get();
               } else {
                 dispatch(setshowToast(true));
                 dispatch(

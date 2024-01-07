@@ -154,8 +154,40 @@ export default function Lenged({ component, map }) {
             map: map,
             layerId: "mill-layer",
             sourceId: "mill",
-            url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-            source_layer: "app_mill",
+            url: `${
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_app_mill_by_unplanted/{z}/{x}/{y}`,
+            source_layer: "function_zxy_query_app_mill_by_unplanted",
+            showPopup: true,
+            style: {
+              fill_color: "blue",
+              fill_opacity: "0",
+              stroke_color: "",
+            },
+            image_path: "millnew.png",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "tile",
+            fillType: "point",
+            trace: true,
+            component: "mill",
+          });
+        }
+      }
+      if (layer === "Traced to Plantation Mill") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Traced to Plantation Mill"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "mill-layer-planted",
+            sourceId: "mill-planted",
+            url: `${
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_app_mill_by_planted/{z}/{x}/{y}`,
+            source_layer: "function_zxy_query_app_mill_by_planted",
             showPopup: true,
             style: {
               fill_color: "blue",
@@ -324,6 +356,14 @@ export default function Lenged({ component, map }) {
         });
         dispatch(removelayerName("Mill Supplier"));
       }
+      if (layer == "Traced to Plantation Mill") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "mill-layer-planted",
+          sourceId: "mill-planted",
+        });
+        dispatch(removelayerName("Traced to Plantation Mill"));
+      }
       if (layer == "Actual registered supplier") {
         // if (
         //   map.getSource("polygon-table") &&
@@ -465,7 +505,12 @@ export default function Lenged({ component, map }) {
             <img src="plantationlegend.svg" alt="" />
             <p className="text-homeSubText">Traced to Plantation Mill</p>
           </div>
-          <AntSwitch />
+          <AntSwitch
+            onClick={(event) =>
+              handleLayerChecked(event, "Traced to Plantation Mill")
+            }
+            defaultChecked={layers_in_map.includes("Traced to Plantation Mill")}
+          />
         </div>
         {/* div that appears after see all */}
         {showMore ? (

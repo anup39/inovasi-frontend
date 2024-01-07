@@ -99,8 +99,10 @@ const DashBoxItems: React.FC<DashBoxItemsProps> = ({ map }) => {
           map: map,
           layerId: "mill-layer",
           sourceId: "mill",
-          url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-          source_layer: "app_mill",
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_mill_by_unplanted/{z}/{x}/{y}`,
+          source_layer: "function_zxy_query_app_mill_by_unplanted",
           showPopup: true,
           style: {
             fill_color: "blue",

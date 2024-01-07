@@ -21,7 +21,12 @@ const initialState: DisplaySettingsState = {
   toastType: "info",
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
-  layers_in_map: ["Facilities", "Refinery Supplier", "Mill Supplier"],
+  layers_in_map: [
+    "Facilities",
+    "Refinery Supplier",
+    "Mill Supplier",
+    "Traced to Plantation Mill",
+  ],
   current_mill_eq_id: null,
   current_radius_wkt: null,
 };

@@ -1,13 +1,97 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { ChangeEvent } from "react";
+import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
+import { GeoJSONSource } from "maplibre-gl";
+import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
+import { setCurrentRadiusWkt } from "../../reducers/DisplaySettings";
 
 function BaseMapSwitch() {
-  const [selectedView, setSelectedView] = useState("satellite");
+  const dispatch = useDispatch();
+  const [selectedView, setSelectedView] = useState("basic");
   const [showViews, setShowViews] = useState(false);
+  const [radius, setradius] = useState<number>(50);
+  const current_mill_coordinates = useSelector(
+    (state) => state.displaySettings.current_mill_coordinates
+  );
 
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
   );
+  const current_mill_eq_id = useSelector(
+    (state) => state.displaySettings.current_mill_eq_id
+  );
+
+  const handleBaseMapChange = (basemap: string) => {
+    setSelectedView(basemap);
+    // @ts-ignore
+    const map = window.mapglobal;
+    console.log(map, basemap);
+
+    if (
+      map.getSource(`${basemap}_source`) &&
+      map.getLayer(`${basemap}_layer`)
+    ) {
+      map.moveLayer(`${basemap}_layer`, "housenumber");
+      map.setLayoutProperty(`${basemap}_layer`, "visibility", "visible");
+    }
+  };
+
+  const handleRadiusChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setradius(parseInt(event.target.value));
+  };
+
+  const handleApplyBuffer = () => {
+    if (current_mill_coordinates) {
+      const { buffered, extent } = makeRadiusfrompoint(
+        [
+          parseFloat(current_mill_coordinates[0]),
+          parseFloat(current_mill_coordinates[1]),
+        ],
+        radius * 1000
+      );
+      const map = window.mapglobal;
+      const wkt_final = convertGeojsonToWKT(buffered);
+      dispatch(setCurrentRadiusWkt(wkt_final));
+
+      if (
+        map.getSource("polygon-radius") &&
+        map.getLayer("polygon-radius-layer")
+      ) {
+        const source = map.getSource("polygon-radius") as GeoJSONSource;
+        source.setData(buffered);
+
+        map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+        map.fitBounds(extent);
+      }
+      if (
+        map.getSource("potential-agriplot-registered") &&
+        map.getLayer("potential-agriplot-registered-layer")
+      ) {
+        const source = map.getSource(
+          "potential-agriplot-registered"
+        ) as GeoJSONSource;
+        source.setData(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
+        );
+      }
+      if (
+        map.getSource("potential-agriplot-unregistered") &&
+        map.getLayer("potential-agriplot-unregistered-layer")
+      ) {
+        const source = map.getSource(
+          "potential-agriplot-unregistered"
+        ) as GeoJSONSource;
+        source.setData(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
+        );
+      }
+    }
+  };
 
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
@@ -20,16 +104,27 @@ function BaseMapSwitch() {
       >
         <h1 className="scale-90 md:scale-100">Radius</h1>
         <input
+          onChange={handleRadiusChange}
+          type="number"
           style={{
             boxShadow: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
           }}
           className="w-[80px] relative rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
-          type="name"
-          name=""
-          id=""
+          // name=""
+          // id=""
+          defaultValue={radius}
+          min="50"
+          max="100"
+          // disabled
         />
         <p>km</p>
-        <div className="hidden md:flex absolute  flex-col items-center w-12 px-4 scale-50 gap-2 left-32 bg-boxDivider">
+        <button
+          onClick={handleApplyBuffer}
+          className="bg-green-500 p-2 rounded text-white"
+        >
+          Apply
+        </button>
+        {/* <div className="hidden md:flex absolute  flex-col items-center w-12 px-4 scale-50 gap-2 left-32 bg-boxDivider">
           <svg
             className="cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +154,7 @@ function BaseMapSwitch() {
           >
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>
-        </div>
+        </div> */}
       </div>
 
       {/* <div className="flex rounded-xl scale-[0.8] md:scale-100 gap-1 md:gap-2 bg-white  md:border border-darkGreen px-3 py-2 h-[48px]">
@@ -89,33 +184,33 @@ function BaseMapSwitch() {
       <div
         className={`${
           showViews ? "flex" : "hidden"
-        } absolute items-center justify-center gap-3 h-[90px] rounded-xl bg-white px-3 py-0.5 transition-all ease-in-out transform  ${
+        } absolute items-center justify-center gap-2 h-[90px] rounded-xl bg-white px-2 py-0.5 transition-all ease-in-out transform  ${
           selectedDashboardPage === "supplierplantation"
             ? "-translate-x-[5%]"
             : "-translate-x-[42%]"
-        }  translate-y-[78%]`}
+        }  translate-y-[81%]`}
       >
         <div
-          onClick={() => setSelectedView("opensteet")}
+          onClick={() => handleBaseMapChange("basic")}
           className="flex flex-col items-center cursor-pointer "
         >
           <img
-            className={`${selectedView === "opensteet" ? "" : ""} h-[50px]`}
+            className={`${selectedView === "basic" ? "" : ""} h-[50px]`}
             src="openstreet.png"
             alt=""
           />
           <p
             className={`${
-              selectedView === "opensteet"
-                ? "text-darkGreen font-bold"
-                : "text-homeSubText"
+              selectedView === "basic"
+                ? "text-darkGreen font-bold text-sm"
+                : "text-homeSubText text-sm"
             }`}
           >
-            Openstreet
+            Basic
           </p>
         </div>
         <div
-          onClick={() => setSelectedView("satellite")}
+          onClick={() => handleBaseMapChange("satellite")}
           className="flex flex-col items-center cursor-pointer"
         >
           <img
@@ -126,30 +221,30 @@ function BaseMapSwitch() {
           <p
             className={`${
               selectedView === "satellite"
-                ? "text-darkGreen font-bold"
-                : "text-homeSubText"
+                ? "text-darkGreen font-bold text-sm"
+                : "text-homeSubText text-sm"
             }`}
           >
             Satellite
           </p>
         </div>
         <div
-          onClick={() => setSelectedView("terrain")}
+          onClick={() => handleBaseMapChange("dark")}
           className="flex flex-col items-center cursor-pointer"
         >
           <img
-            className={`${selectedView === "terrain" ? "" : ""} h-[50px]`}
+            className={`${selectedView === "dark" ? "" : ""} h-[50px]`}
             src="terrain.png"
             alt=""
           />
           <p
             className={`${
-              selectedView === "terrain"
-                ? "text-darkGreen font-bold  "
-                : "text-homeSubText"
+              selectedView === "dark"
+                ? "text-darkGreen font-bold text-sm "
+                : "text-homeSubText text-sm"
             }`}
           >
-            Terrain
+            Dark
           </p>
         </div>
       </div>

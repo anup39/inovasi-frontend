@@ -92,6 +92,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     onSetMap(map_);
+    window.mapglobal = map_;
     if (component === "dashboard") {
       setHeight("min-h-[630px]");
     }
@@ -120,6 +121,80 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-right");
 
+      // Add satellite source
+      map_.addSource("satellite_source", {
+        type: "raster",
+        tiles: [
+          `https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=${
+            import.meta.env.VITE_MAPTILER_TOKEN
+          }`,
+        ],
+        tileSize: 256,
+      });
+
+      // Add satellite layer
+      map_.addLayer(
+        {
+          id: "satellite_layer",
+          type: "raster",
+          source: "satellite_source",
+        },
+        "housenumber"
+      );
+
+      // Add streets source
+      map_.addSource("basic_source", {
+        type: "raster",
+        tiles: [
+          "https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=l0YRm3kb0FVo9JhCP3Ia",
+        ],
+        tileSize: 256,
+      });
+
+      // Add satellite layer
+      map_.addLayer(
+        {
+          id: "basic_layer",
+          type: "raster",
+          source: "basic_source",
+        },
+        "housenumber"
+      );
+
+      // Add dark source
+      map_.addSource("dark_source", {
+        type: "raster",
+        tiles: [
+          `https://cartodb-basemaps-d.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png`,
+        ],
+        tileSize: 256,
+      });
+
+      // Add dark layer
+      map_.addLayer(
+        {
+          id: "dark_layer",
+          type: "raster",
+          source: "dark_source",
+        },
+        "housenumber"
+      );
+
+      console.log(map_, "map_");
+
+      if (
+        map_.getSource("satellite_source") &&
+        map_.getLayer("satellite_layer")
+      ) {
+        map_.setLayoutProperty("satellite_layer", "visibility", "none");
+      }
+      if (map_.getSource("basic_source") && map_.getLayer("basic_layer")) {
+        map_.setLayoutProperty("basic_layer", "visibility", "none");
+      }
+      if (map_.getSource("dark_source") && map_.getLayer("dark_layer")) {
+        map_.setLayoutProperty("dark_layer", "visibility", "none");
+      }
+
       // Point Table layer
       map_.addSource("point-table", {
         type: "geojson",
@@ -142,11 +217,12 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       } as GeoJSONSourceOptions);
       map_.addLayer({
         id: "polygon-table-layer",
-        type: "fill",
+        type: "line",
         source: "polygon-table",
         paint: {
-          "fill-color": "red",
-          "fill-opacity": 0.5,
+          "line-color": "red",
+          "line-width": 4,
+          "line-dasharray": [1, 1],
         },
       });
 
@@ -161,7 +237,8 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         source: "polygon-radius",
         paint: {
           "fill-color": "red",
-          "fill-opacity": 0.2,
+          "fill-opacity": 0.1,
+          "fill-outline-color": "red",
         },
       });
 

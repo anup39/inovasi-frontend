@@ -10,6 +10,9 @@ interface DisplaySettingsState {
   selectedDashboardPage: string;
   is_agriplot: boolean;
   layers_in_map: string[];
+  current_mill_eq_id: string | null;
+  current_radius_wkt: string | null;
+  current_mill_coordinates: number[] | null;
 }
 
 const initialState: DisplaySettingsState = {
@@ -19,7 +22,15 @@ const initialState: DisplaySettingsState = {
   toastType: "info",
   selectedDashboardPage: "dashboard",
   is_agriplot: false,
-  layers_in_map: ["Facilities", "Refinery Supplier", "Mill Supplier"],
+  layers_in_map: [
+    "Facilities",
+    "Refinery Supplier",
+    "Mill Supplier",
+    "Traced to Plantation Mill",
+  ],
+  current_mill_eq_id: null,
+  current_radius_wkt: null,
+  current_mill_coordinates: null,
 };
 
 export const DisplaySettings = createSlice({
@@ -57,6 +68,15 @@ export const DisplaySettings = createSlice({
         (name) => name !== layerToRemove
       );
     },
+    setCurrentMillEqId: (state, action: PayloadAction<string>) => {
+      state.current_mill_eq_id = action.payload;
+    },
+    setCurrentRadiusWkt: (state, action: PayloadAction<string>) => {
+      state.current_radius_wkt = action.payload;
+    },
+    setMillCoordinates: (state, action) => {
+      state.current_mill_coordinates = action.payload;
+    },
   },
 });
 
@@ -70,6 +90,9 @@ export const {
   setIsAgriplot,
   addLayerName,
   removelayerName,
+  setCurrentMillEqId,
+  setCurrentRadiusWkt,
+  setMillCoordinates,
 } = DisplaySettings.actions;
 
 export default DisplaySettings.reducer;

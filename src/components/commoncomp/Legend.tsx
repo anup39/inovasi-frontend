@@ -17,6 +17,14 @@ export default function Lenged({ component, map }) {
     (state) => state.displaySettings.layers_in_map
   );
 
+  const current_mill_eq_id = useSelector(
+    (state) => state.displaySettings.current_mill_eq_id
+  );
+
+  const current_radius_wkt = useSelector(
+    (state) => state.displaySettings.current_radius_wkt
+  );
+
   console.log(layers_in_map);
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
@@ -146,8 +154,10 @@ export default function Lenged({ component, map }) {
             map: map,
             layerId: "mill-layer",
             sourceId: "mill",
-            url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-            source_layer: "app_mill",
+            url: `${
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_app_mill_by_unplanted/{z}/{x}/{y}`,
+            source_layer: "function_zxy_query_app_mill_by_unplanted",
             showPopup: true,
             style: {
               fill_color: "blue",
@@ -161,6 +171,162 @@ export default function Lenged({ component, map }) {
             fillType: "point",
             trace: true,
             component: "mill",
+          });
+        }
+      }
+      if (layer === "Traced to Plantation Mill") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Traced to Plantation Mill"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "mill-layer-planted",
+            sourceId: "mill-planted",
+            url: `${
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_app_mill_by_planted/{z}/{x}/{y}`,
+            source_layer: "function_zxy_query_app_mill_by_planted",
+            showPopup: true,
+            style: {
+              fill_color: "blue",
+              fill_opacity: "0",
+              stroke_color: "",
+            },
+            image_path: "planted.png",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "tile",
+            fillType: "point",
+            trace: true,
+            component: "mill",
+          });
+        }
+      }
+      if (layer === "Actual registered supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          // if (
+          //   map.getSource("polygon-table") &&
+          //   map.getLayer("polygon-table-layer")
+          // ) {
+          //   map.setLayoutProperty("polygon-table-layer", "visibility", "none");
+          // }
+          dispatch(addLayerName("Actual registered supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "actual-agriplot-registered-layer",
+            sourceId: "actual-agriplot-registered",
+            url: `${
+              import.meta.env.VITE_API_DASHBOARD_URL
+            }/agriplot-geojson/?status=Registered&mill_eq_id=${current_mill_eq_id}`,
+            source_layer: "actual-agriplot-registered-layer",
+            showPopup: true,
+            style: {
+              fill_color: "green",
+              fill_opacity: "0",
+              stroke_color: "black",
+            },
+            image_path: "",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "geojson",
+            fillType: "fill",
+            trace: false,
+            component: "agriplot",
+          });
+        }
+      }
+      if (layer === "Actual unregistered supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Actual unregistered supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "actual-agriplot-unregistered-layer",
+            sourceId: "actual-agriplot-unregistered",
+            url: `${
+              import.meta.env.VITE_API_DASHBOARD_URL
+            }/agriplot-geojson/?status=Unregistered&mill_eq_id=${current_mill_eq_id}`,
+            source_layer: "actual-agriplot-unregistered-layer",
+            showPopup: true,
+            style: {
+              fill_color: "#ffad33",
+              fill_opacity: "0",
+              stroke_color: "black",
+            },
+            image_path: "",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "geojson",
+            fillType: "fill",
+            trace: false,
+            component: "agriplot",
+          });
+        }
+      }
+      if (layer === "Potential registered supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Potential registered supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "potential-agriplot-registered-layer",
+            sourceId: "potential-agriplot-registered",
+            url: `${
+              import.meta.env.VITE_API_DASHBOARD_URL
+            }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${current_radius_wkt}&mill_eq_id=${current_mill_eq_id}`,
+            source_layer: "potential-agriplot-registered-layer",
+            showPopup: true,
+            style: {
+              fill_color: "#ef38ff",
+              fill_opacity: "0",
+              stroke_color: "black",
+            },
+            image_path: "",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "geojson",
+            fillType: "fill",
+            trace: false,
+            component: "agriplot",
+          });
+        }
+      }
+      if (layer === "Potential unregistered supplier") {
+        if (map) {
+          if (map.getSource("point") && map.getLayer("point-layer")) {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+          }
+          dispatch(addLayerName("Potential unregistered supplier"));
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "potential-agriplot-unregistered-layer",
+            sourceId: "potential-agriplot-unregistered",
+            url: `${
+              import.meta.env.VITE_API_DASHBOARD_URL
+            }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${current_radius_wkt}&mill_eq_id=${current_mill_eq_id}`,
+            source_layer: "potential-agriplot-unregistered-layer",
+            showPopup: true,
+            style: {
+              fill_color: "red",
+              fill_opacity: "0",
+              stroke_color: "black",
+            },
+            image_path: "",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "geojson",
+            fillType: "fill",
+            trace: false,
+            component: "agriplot",
           });
         }
       }
@@ -189,6 +355,52 @@ export default function Lenged({ component, map }) {
           sourceId: "mill",
         });
         dispatch(removelayerName("Mill Supplier"));
+      }
+      if (layer == "Traced to Plantation Mill") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "mill-layer-planted",
+          sourceId: "mill-planted",
+        });
+        dispatch(removelayerName("Traced to Plantation Mill"));
+      }
+      if (layer == "Actual registered supplier") {
+        // if (
+        //   map.getSource("polygon-table") &&
+        //   map.getLayer("polygon-table-layer")
+        // ) {
+        //   map.setLayoutProperty("polygon-table-layer", "visibility", "none");
+        // }
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "actual-agriplot-registered-layer",
+          sourceId: "actual-agriplot-registered",
+        });
+        dispatch(removelayerName("Actual registered supplier"));
+      }
+      if (layer == "Actual unregistered supplier") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "actual-agriplot-unregistered-layer",
+          sourceId: "actual-agriplot-unregistered",
+        });
+        dispatch(removelayerName("Actual unregistered supplier"));
+      }
+      if (layer == "Potential registered supplier") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "potential-agriplot-registered-layer",
+          sourceId: "potential-agriplot-registered",
+        });
+        dispatch(removelayerName("Potential registered supplier"));
+      }
+      if (layer == "Potential unregistered supplier") {
+        RemoveSourceAndLayerFromMap({
+          map: map,
+          layerId: "potential-agriplot-unregistered-layer",
+          sourceId: "potential-agriplot-unregistered",
+        });
+        dispatch(removelayerName("Potential unregistered supplier"));
       }
     }
   };
@@ -293,7 +505,12 @@ export default function Lenged({ component, map }) {
             <img src="plantationlegend.svg" alt="" />
             <p className="text-homeSubText">Traced to Plantation Mill</p>
           </div>
-          <AntSwitch />
+          <AntSwitch
+            onClick={(event) =>
+              handleLayerChecked(event, "Traced to Plantation Mill")
+            }
+            defaultChecked={layers_in_map.includes("Traced to Plantation Mill")}
+          />
         </div>
         {/* div that appears after see all */}
         {showMore ? (
@@ -304,28 +521,56 @@ export default function Lenged({ component, map }) {
                 <div className="h-4 aspect-square bg-footerHeading"></div>
                 <p className="">Actual registered supplier</p>
               </div>
-              <AntSwitch />
+              <AntSwitch
+                onClick={(event) =>
+                  handleLayerChecked(event, "Actual registered supplier")
+                }
+                defaultChecked={layers_in_map.includes(
+                  "Actual registered supplier"
+                )}
+              />
             </div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
                 <div className="h-4 aspect-square bg-[#FFAD33]"></div>
                 <p className="">Actual unregistered supplier</p>
               </div>
-              <AntSwitch />
+              <AntSwitch
+                onClick={(event) =>
+                  handleLayerChecked(event, "Actual unregistered supplier")
+                }
+                defaultChecked={layers_in_map.includes(
+                  "Actual unregistered supplier"
+                )}
+              />
             </div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
                 <div className="h-4 aspect-square bg-[#EF38FF]"></div>
                 <p>Potential registered supplier</p>
               </div>
-              <AntSwitch />
+              <AntSwitch
+                onClick={(event) =>
+                  handleLayerChecked(event, "Potential registered supplier")
+                }
+                defaultChecked={layers_in_map.includes(
+                  "Potential registered supplier"
+                )}
+              />
             </div>
             <div className="flex justify-between items-center">
               <div className="flex gap-3 items-center">
                 <div className="h-4 aspect-square bg-potentialUnSupp"></div>
                 <p>Potential unregistered supplier</p>
               </div>
-              <AntSwitch />
+              <AntSwitch
+                onClick={(event) =>
+                  handleLayerChecked(event, "Potential unregistered supplier")
+                }
+                defaultChecked={layers_in_map.includes(
+                  "Potential unregistered supplier"
+                )}
+              />
             </div>
           </div>
         ) : (

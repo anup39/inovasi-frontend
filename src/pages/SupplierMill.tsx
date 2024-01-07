@@ -162,8 +162,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           map: map,
           layerId: "mill-layer",
           sourceId: "mill",
-          url: `${import.meta.env.VITE_API_MAP_URL}/app_mill/{z}/{x}/{y}`,
-          source_layer: "app_mill",
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_mill_by_unplanted/{z}/{x}/{y}`,
+          source_layer: "function_zxy_query_app_mill_by_unplanted",
           showPopup: true,
           style: {
             fill_color: "blue",
@@ -171,6 +173,28 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
             stroke_color: "",
           },
           image_path: "millnew.png",
+          zoomToLayer: true,
+          center: [103.8574, 2.2739],
+          geomType: "tile",
+          fillType: "point",
+          trace: true,
+          component: "mill",
+        });
+        AddLayerAndSourceToMap({
+          map: map,
+          layerId: "mill-layer-planted",
+          sourceId: "mill-planted",
+          url: `${
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_app_mill_by_planted/{z}/{x}/{y}`,
+          source_layer: "function_zxy_query_app_mill_by_planted",
+          showPopup: true,
+          style: {
+            fill_color: "blue",
+            fill_opacity: "0",
+            stroke_color: "",
+          },
+          image_path: "planted.png",
           zoomToLayer: true,
           center: [103.8574, 2.2739],
           geomType: "tile",

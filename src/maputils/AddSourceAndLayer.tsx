@@ -127,6 +127,21 @@ function AddLayerAndSourceToMap({
         };
         map.addLayer(newLayer);
       }
+      if (image_path === "planted.png") {
+        // @ts-ignore
+        map.addImage("planted", image);
+        const newLayer: SymbolLayerSpecification = {
+          id: layerId,
+          type: "symbol",
+          source: sourceId,
+          "source-layer": source_layer,
+          layout: {
+            "icon-image": "planted",
+            "icon-size": 1,
+          },
+        };
+        map.addLayer(newLayer);
+      }
 
       // map.addLayer({
       //   id: "points",

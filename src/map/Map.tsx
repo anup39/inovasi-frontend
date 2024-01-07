@@ -92,6 +92,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     });
 
     onSetMap(map_);
+    window.mapglobal = map_;
     if (component === "dashboard") {
       setHeight("min-h-[630px]");
     }

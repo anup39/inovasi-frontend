@@ -2,12 +2,28 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function BaseMapSwitch() {
-  const [selectedView, setSelectedView] = useState("satellite");
+  const [selectedView, setSelectedView] = useState("basic");
   const [showViews, setShowViews] = useState(false);
 
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
   );
+
+  const handleBaseMapChange = (basemap: string) => {
+    setSelectedView(basemap);
+    // @ts-ignore
+    const map = window.mapglobal;
+    console.log(map, basemap);
+    map.on("load", () => {
+      if (
+        map.getSource(`${basemap}_source`) &&
+        map.getLayer(`${basemap}_layer`)
+      ) {
+        map.moveLayer(`${basemap}_layer`, "point-table-layer");
+        map.setLayoutProperty(`${basemap}_layer`, "visibility", "visible");
+      }
+    });
+  };
 
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
@@ -98,17 +114,17 @@ function BaseMapSwitch() {
         }  translate-y-[78%]`}
       >
         <div
-          onClick={() => setSelectedView("opensteet")}
+          onClick={() => handleBaseMapChange("basic")}
           className="flex flex-col items-center cursor-pointer "
         >
           <img
-            className={`${selectedView === "opensteet" ? "" : ""} h-[50px]`}
+            className={`${selectedView === "basic" ? "" : ""} h-[50px]`}
             src="openstreet.png"
             alt=""
           />
           <p
             className={`${
-              selectedView === "opensteet"
+              selectedView === "basic"
                 ? "text-darkGreen font-bold"
                 : "text-homeSubText"
             }`}
@@ -117,7 +133,7 @@ function BaseMapSwitch() {
           </p>
         </div>
         <div
-          onClick={() => setSelectedView("satellite")}
+          onClick={() => handleBaseMapChange("satellite")}
           className="flex flex-col items-center cursor-pointer"
         >
           <img
@@ -136,17 +152,17 @@ function BaseMapSwitch() {
           </p>
         </div>
         <div
-          onClick={() => setSelectedView("terrain")}
+          onClick={() => handleBaseMapChange("dark")}
           className="flex flex-col items-center cursor-pointer"
         >
           <img
-            className={`${selectedView === "terrain" ? "" : ""} h-[50px]`}
+            className={`${selectedView === "dark" ? "" : ""} h-[50px]`}
             src="terrain.png"
             alt=""
           />
           <p
             className={`${
-              selectedView === "terrain"
+              selectedView === "dark"
                 ? "text-darkGreen font-bold  "
                 : "text-homeSubText"
             }`}

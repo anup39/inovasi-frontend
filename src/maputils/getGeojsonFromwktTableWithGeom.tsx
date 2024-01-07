@@ -12,13 +12,13 @@ type PolygonFeature = {
   };
 };
 
-function parseCoordinates(coordString: string) {
-  // Remove Z value and filter out null coordinates
-  const pairs = coordString
-    .split(",")
-    .map((pair) => pair.trim().split(/\s+/).slice(0, 2).map(parseFloat));
-  return pairs.filter((pair) => pair.every((coord) => !isNaN(coord)));
-}
+// function parseCoordinates(coordString: string) {
+//   // Remove Z value and filter out null coordinates
+//   const pairs = coordString
+//     .split(",")
+//     .map((pair) => pair.trim().split(/\s+/).slice(0, 2).map(parseFloat));
+//   return pairs.filter((pair) => pair.every((coord) => !isNaN(coord)));
+// }
 const getGeojsonFromwktTableWithGeom = (
   data: DataItem[],
   indices: number[]

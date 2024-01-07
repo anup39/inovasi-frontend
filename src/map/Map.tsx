@@ -142,11 +142,12 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       } as GeoJSONSourceOptions);
       map_.addLayer({
         id: "polygon-table-layer",
-        type: "fill",
+        type: "line",
         source: "polygon-table",
         paint: {
-          "fill-color": "red",
-          "fill-opacity": 0.5,
+          "line-color": "red",
+          "line-width": 4,
+          "line-dasharray": [1, 1],
         },
       });
 

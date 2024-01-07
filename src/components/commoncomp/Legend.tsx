@@ -194,7 +194,7 @@ export default function Lenged({ component, map }) {
               fill_opacity: "0",
               stroke_color: "",
             },
-            image_path: "millnew.png",
+            image_path: "planted.png",
             zoomToLayer: false,
             center: [103.8574, 2.2739],
             geomType: "tile",

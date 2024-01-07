@@ -5,6 +5,8 @@ import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import { GeoJSONSource } from "maplibre-gl";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { setCurrentRadiusWkt } from "../../reducers/DisplaySettings";
+import axios from "axios";
+import { settabledataPotential } from "../../reducers/SupplierPlantation";
 
 function BaseMapSwitch() {
   const dispatch = useDispatch();
@@ -53,6 +55,17 @@ function BaseMapSwitch() {
       const map = window.mapglobal;
       const wkt_final = convertGeojsonToWKT(buffered);
       dispatch(setCurrentRadiusWkt(wkt_final));
+
+      // fetch potential registered for table
+      axios
+        .get(
+          `${
+            import.meta.env.VITE_API_DASHBOARD_URL
+          }/agriplot-result-wkt/?mill_eq_id=${current_mill_eq_id}&geometry_wkt=${wkt_final}`
+        )
+        .then((res) => {
+          dispatch(settabledataPotential(res.data));
+        });
 
       if (
         map.getSource("polygon-radius") &&

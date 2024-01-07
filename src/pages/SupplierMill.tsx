@@ -21,6 +21,8 @@ import Pagination from "../components/commoncomp/Pagination";
 // import LineBar from "../components/commoncomp/LineBar";
 // import LineBarComp from "../components/commoncomp/LineBarNew";
 import Dropdown from "../components/commoncomp/Dropdown";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { Tooltip } from "@mui/material";
 
 const lists = [
   { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
@@ -291,6 +293,18 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
       <div className="min-h-[984px]">
         <div className="items-center flex justify-end mt-[15px]">
           <ThemeProvider theme={theme}>
+            <Tooltip title="Reset Map">
+              <RestartAltIcon
+                onClick={() => {
+                  window.location.replace("/suppliermill");
+                }}
+                sx={{
+                  "&:hover": { cursor: "pointer" },
+                  marginRight: 1,
+                  color: "#72D86A",
+                }}
+              />
+            </Tooltip>
             <SwitchComp
               label="Map"
               defaultChecked={showMap}

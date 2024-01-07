@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { ChangeEvent } from "react";
 
 function BaseMapSwitch() {
   const [selectedView, setSelectedView] = useState("basic");
   const [showViews, setShowViews] = useState(false);
+  const [radius, setradius] = useState<number>(50);
 
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
@@ -24,6 +26,14 @@ function BaseMapSwitch() {
     }
   };
 
+  const handleRadiusChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setradius(parseInt(event.target.value));
+  };
+
+  const handleApplyBuffer = () => {
+    console.log(radius, "radius");
+  };
+
   return (
     <div className="relative scale-75 flex gap-0 md:gap-2  items-center justify-center transition-all ease-in-out ">
       <div
@@ -35,6 +45,7 @@ function BaseMapSwitch() {
       >
         <h1 className="scale-90 md:scale-100">Radius</h1>
         <input
+          onChange={handleRadiusChange}
           type="number"
           style={{
             boxShadow: "inset 0 0 5px rgba(0, 0, 0, 0.2)",
@@ -42,13 +53,18 @@ function BaseMapSwitch() {
           className="w-[80px] relative rounded-lg outline-none bg-white text-darkGreen px-3 py-1 font-normal ring-0 focus:ring-0 "
           // name=""
           // id=""
-          defaultValue={50}
+          defaultValue={radius}
           min="50"
           max="100"
           // disabled
         />
         <p>km</p>
-        <button className="bg-green-500 p-2 rounded text-white">Apply</button>
+        <button
+          onClick={handleApplyBuffer}
+          className="bg-green-500 p-2 rounded text-white"
+        >
+          Apply
+        </button>
         {/* <div className="hidden md:flex absolute  flex-col items-center w-12 px-4 scale-50 gap-2 left-32 bg-boxDivider">
           <svg
             className="cursor-pointer"

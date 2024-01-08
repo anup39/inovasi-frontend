@@ -8,7 +8,7 @@ function Pagination({ changeThePage, totalpage }) {
   // @ts-ignore
   const handlePageClick = (page) => {
     setActivePage(page);
-    console.log(page);
+
     changeThePage(page - 1);
     // Add any additional logic you need when a page is clicked
   };

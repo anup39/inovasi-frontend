@@ -8,7 +8,7 @@ import { useState } from "react";
 function Register() {
   const [phone, setPhone] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(true);
-  console.log(passwordVisible);
+
   return (
     <div className="flex max-w-[1920px]  items-center bg-white overflow-hidden ">
       <div className="w-full lg:w-[1217px] bg-white ">

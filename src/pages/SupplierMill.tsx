@@ -195,15 +195,12 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   );
 
   const changeThePageMill = (evpage: number) => {
-    console.log(evpage, "evpage");
     setPageMill(evpage);
   };
   const changeThePageActualPlant = (evpage: number) => {
-    console.log(evpage, "evpage");
     setPageActualPlant(evpage);
   };
   const changeThePagePotentialPlant = (evpage: number) => {
-    console.log(evpage, "evpage");
     setPagePotentialPlant(evpage);
   };
 
@@ -295,7 +292,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
     (state) => state.displaySettings.selectedDashboardPage
   );
 
-  console.log(selectedDashboardPage, "selected dasborad page");
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
   }
@@ -335,10 +331,8 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   useEffect(() => {
     if (map) {
       map.on("load", () => {
-        console.log(map._controls);
         const legend_control: IControl =
           map._controls[map._controls.length - 2];
-        console.log(legend_control, "legend control");
         // @ts-ignore
         legend_control.updateLegend("millsupplier");
       });

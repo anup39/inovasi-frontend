@@ -12,8 +12,6 @@ import {
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
-  console.log(component, "compoenent ");
-  // console.log(map, "map ");
   const dispatch = useDispatch();
   const [showLegend, setShowLegend] = useState(true);
   const [showMore, setShowMore] = useState(true);
@@ -29,7 +27,6 @@ export default function Lenged({ component, map }) {
     (state) => state.displaySettings.current_radius_wkt
   );
 
-  console.log(layers_in_map);
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -89,7 +86,6 @@ export default function Lenged({ component, map }) {
 
   // @ts-ignore
   const handleLayerChecked = (event, layer) => {
-    console.log(event, layer);
     // @ts-ignore
     if (event.target.checked) {
       if (layer === "Facilities") {
@@ -242,6 +238,10 @@ export default function Lenged({ component, map }) {
             trace: false,
             component: "agriplot",
           });
+          dispatch(setshowMapLoader(true));
+          setTimeout(() => {
+            dispatch(setshowMapLoader(false));
+          }, 3000);
         }
       }
       if (layer === "Actual unregistered supplier") {
@@ -272,6 +272,10 @@ export default function Lenged({ component, map }) {
             trace: false,
             component: "agriplot",
           });
+          dispatch(setshowMapLoader(true));
+          setTimeout(() => {
+            dispatch(setshowMapLoader(false));
+          }, 2000);
         }
       }
       if (layer === "Potential registered supplier") {
@@ -302,6 +306,10 @@ export default function Lenged({ component, map }) {
             trace: false,
             component: "agriplot",
           });
+          dispatch(setshowMapLoader(true));
+          setTimeout(() => {
+            dispatch(setshowMapLoader(false));
+          }, 10000);
         }
       }
       if (layer === "Potential unregistered supplier") {
@@ -332,6 +340,10 @@ export default function Lenged({ component, map }) {
             trace: false,
             component: "agriplot",
           });
+          dispatch(setshowMapLoader(true));
+          setTimeout(() => {
+            dispatch(setshowMapLoader(false));
+          }, 10000);
         }
       }
     } else {

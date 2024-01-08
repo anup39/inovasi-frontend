@@ -23,7 +23,6 @@ const getGeojsonFromwktTableWithGeom = (
   data: DataItem[],
   indices: number[]
 ): GeoJSON.FeatureCollection<GeoJSON.Polygon, GeoJSON.GeoJsonProperties> => {
-  console.log(data, indices);
   const filteredData = data.filter((item) => indices.includes(item.id));
 
   const features: PolygonFeature[] = filteredData

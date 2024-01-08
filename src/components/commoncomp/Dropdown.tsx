@@ -15,7 +15,6 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
   // Again test
 
   const handleItemClick = (item: string) => {
-    console.log(item, "item");
     dispatch(setselectedPlantationType(item));
     setSelectedItem(item);
     setIsOpen(false);

@@ -197,10 +197,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   useEffect(() => {
     if (map) {
       map.on("load", () => {
-        console.log(map._controls);
         const legend_control: IControl =
           map._controls[map._controls.length - 2];
-        console.log(legend_control, "legend control");
         // @ts-ignore
         legend_control.updateLegend("supplierplantation");
       });

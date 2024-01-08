@@ -140,7 +140,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
 
                 const legend_control: IControl =
                   map._controls[map._controls.length - 2];
-                console.log(legend_control, "legend control");
+
                 // @ts-ignore
                 legend_control.updateLegend("supplierplantation");
 

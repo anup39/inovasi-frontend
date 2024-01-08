@@ -31,7 +31,6 @@ function BaseMapSwitch() {
     setSelectedView(basemap);
     // @ts-ignore
     const map = window.mapglobal;
-    console.log(map, basemap);
 
     if (
       map.getSource(`${basemap}_source`) &&
@@ -109,7 +108,7 @@ function BaseMapSwitch() {
       dispatch(setshowMapLoader(true));
       setTimeout(() => {
         dispatch(setshowMapLoader(false));
-      }, 20000);
+      }, 15000);
     }
   };
 

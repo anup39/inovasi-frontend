@@ -36,8 +36,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     (state) => state.displaySettings.current_radius_wkt
   );
 
-  // console.log(piedata, "data");
-
   useEffect(() => {
     if (!params_include) {
       axios

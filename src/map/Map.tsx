@@ -201,8 +201,6 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         "housenumber"
       );
 
-      console.log(map_, "map_");
-
       if (
         map_.getSource("satellite_source") &&
         map_.getLayer("satellite_layer")

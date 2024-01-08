@@ -285,7 +285,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
             color="success"
             sx={{ color: "#37CC7D", marginTop: "25%", marginLeft: "25%" }}
           />
-          <p style={{ color: "black", marginLeft: "15%" }}>Please Wait..</p>
+          <p style={{ color: "black", marginLeft: "15%" }}>Loading..</p>
         </div>
       ) : null}
 

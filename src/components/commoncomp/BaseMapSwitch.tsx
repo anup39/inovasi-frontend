@@ -4,7 +4,10 @@ import { ChangeEvent } from "react";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import { GeoJSONSource } from "maplibre-gl";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
-import { setCurrentRadiusWkt } from "../../reducers/DisplaySettings";
+import {
+  setCurrentRadiusWkt,
+  setshowMapLoader,
+} from "../../reducers/DisplaySettings";
 import axios from "axios";
 import { settabledataPotential } from "../../reducers/SupplierPlantation";
 
@@ -103,6 +106,10 @@ function BaseMapSwitch() {
           }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
         );
       }
+      dispatch(setshowMapLoader(true));
+      setTimeout(() => {
+        dispatch(setshowMapLoader(false));
+      }, 20000);
     }
   };
 

@@ -8,6 +8,7 @@ import {
   setCurrentRadiusWkt,
   setCurrentMillEqId,
   setMillCoordinates,
+  setshowMapLoader,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -256,6 +257,10 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 dispatch(addLayerName("Potential registered supplier"));
                 dispatch(addLayerName("Potential unregistered supplier"));
                 dispatch(setpiechartfor("agriplot"));
+                dispatch(setshowMapLoader(true));
+                setTimeout(() => {
+                  dispatch(setshowMapLoader(false));
+                }, 10000);
               } else {
                 dispatch(setshowToast(true));
                 dispatch(

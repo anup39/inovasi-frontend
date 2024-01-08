@@ -42,6 +42,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     total = 2381;
   }
 
+  // console.log(piedata, "data");
+
   useEffect(() => {
     if (!params_include) {
       axios
@@ -135,7 +137,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
-          {total}
+          {piedata[0].total}
         </text>
       </g>
     );

@@ -40,9 +40,9 @@ const lists = [
 const items_plantation = [
   {
     id: 1,
-    name: "Deforestation Risk",
+    name: "Actual registered Suppplier",
     selected: false,
-    distinct: "mill_deforestation_risk",
+    distinct: "type_of_supplier",
     lowerBoxes: {
       title: ["Category 1", "Category 2", "Category 3"],
       numbers: ["48%", "22%", "30%"],
@@ -52,9 +52,9 @@ const items_plantation = [
   },
   {
     id: 2,
-    name: "Legal PRF Risk",
+    name: "Actual unregistered Suppplier",
     selected: false,
-    distinct: "mill_legal_prf_risk",
+    distinct: "type_of_supplier",
     lowerBoxes: {
       title: ["Category 1", "Category 2"],
       numbers: ["48%", "22%"],

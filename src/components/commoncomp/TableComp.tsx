@@ -9,8 +9,6 @@ import maplibregl, {
 } from "maplibre-gl";
 import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoundingBoxPolygonfromGeojson";
 import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
-// @ts-ignore
-// import getGeojsonFromwktTableWithLatlong from "../../maputils/getGeojsonFromwktTablewithLatlong";
 
 interface DataItem {
   id: number;
@@ -70,6 +68,7 @@ interface DataGridDemoProps {
   height: string;
   width: string;
   pageSize: number;
+  page: number;
 }
 
 export default function DataGridDemo({
@@ -78,8 +77,8 @@ export default function DataGridDemo({
   map,
   component,
   height,
-  width,
   pageSize,
+  page,
 }: DataGridDemoProps) {
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
@@ -158,23 +157,44 @@ export default function DataGridDemo({
   };
 
   return (
-    <Box sx={{ height: height, minWidth: "1568px", width: width }}>
-      <DataGrid
-        hideFooter={true}
-        rows={tableData}
-        columns={tableColumn}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: pageSize,
-            },
-          },
+    <div className="max-w-[1772px]">
+      <Box
+        sx={{
+          height: height,
+          // maxWidth: "1772px",
+          // minWidth: "1566px",
+          // width: "100%",
+          // width: width,
+          backgroundColor: "#EFEFEF",
         }}
-        pageSizeOptions={[pageSize]}
-        checkboxSelection={true}
-        disableRowSelectionOnClick
-        onRowSelectionModelChange={handleonRowSelectionModelChange}
-      />
-    </Box>
+      >
+        <DataGrid
+          hideFooter={true}
+          rows={tableData}
+          columns={tableColumn.map((col) => ({
+            ...col,
+            // @ts-ignore
+            headerName: col.headerName.toUpperCase(),
+            sx: {
+              color: "#848686", // Set the text color
+              fontWeight: 700, // Set font weight directly
+            },
+          }))}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                page: page,
+                pageSize: pageSize,
+              },
+            },
+          }}
+          paginationModel={{ page: page, pageSize: pageSize }}
+          pageSizeOptions={[pageSize]}
+          checkboxSelection={true}
+          disableRowSelectionOnClick
+          onRowSelectionModelChange={handleonRowSelectionModelChange}
+        />
+      </Box>
+    </div>
   );
 }

@@ -13,6 +13,10 @@ import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
 import { NavigationControl } from "maplibre-gl";
+import { CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
 const geojson = {
   type: "FeatureCollection",
   features: [
@@ -56,6 +60,9 @@ interface MapProps {
 
 export default function MapComponent({ onSetMap, component }: MapProps) {
   const [height, setHeight] = useState("min-h-[630px]");
+  const showMapLoader = useSelector(
+    (state: RootState) => state.displaySettings.showMapLoader
+  );
 
   const mapContainer = useRef<HTMLDivElement>(null);
 
@@ -70,15 +77,13 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       attributionControl: false,
     });
 
-    const navigationcontrol = new NavigationControl();
-    map_.addControl(navigationcontrol, "top-right");
-
     // @ts-ignore
     const geocoder = new MaplibreGeocoder(GeocoderApi, {
       maplibregl: maplibregl,
       showResultsWhileTyping: true,
       flyTo: true,
     });
+    map_.addControl(geocoder, "top-right");
 
     // geocoder.addTo(document.getElementById("geocoding-search"));
     // @ts-ignore
@@ -87,7 +92,29 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       map_.flyTo({ center: coords });
     });
 
+    const navigationcontrol = new NavigationControl();
+    map_.addControl(navigationcontrol, "top-right");
+
+    map_.addControl(new maplibregl.FullscreenControl());
+
+    // // @ts-ignore
+    // const geocoder = new MaplibreGeocoder(GeocoderApi, {
+    //   maplibregl: maplibregl,
+    //   showResultsWhileTyping: true,
+    //   flyTo: true,
+    // });
+    // map_.addControl(geocoder, "top-right");
+
+    // // geocoder.addTo(document.getElementById("geocoding-search"));
+    // // @ts-ignore
+    // geocoder.on("result", function (ev) {
+    //   const coords = ev.result.geometry.coordinates;
+    //   map_.flyTo({ center: coords });
+    // });
+
     onSetMap(map_);
+    // @ts-ignore
+    window.mapglobal = map_;
     if (component === "dashboard") {
       setHeight("min-h-[630px]");
     }
@@ -116,9 +143,79 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
       const popup_control: IControl = new PopupControl();
       map_.addControl(popup_control, "bottom-right");
 
-      // Point on click
+      // Add satellite source
+      map_.addSource("satellite_source", {
+        type: "raster",
+        tiles: [
+          `https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=${
+            import.meta.env.VITE_MAPTILER_TOKEN
+          }`,
+        ],
+        tileSize: 256,
+      });
 
-      // Points from Table
+      // Add satellite layer
+      map_.addLayer(
+        {
+          id: "satellite_layer",
+          type: "raster",
+          source: "satellite_source",
+        },
+        "housenumber"
+      );
+
+      // Add streets source
+      map_.addSource("basic_source", {
+        type: "raster",
+        tiles: [
+          "https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=l0YRm3kb0FVo9JhCP3Ia",
+        ],
+        tileSize: 256,
+      });
+
+      // Add satellite layer
+      map_.addLayer(
+        {
+          id: "basic_layer",
+          type: "raster",
+          source: "basic_source",
+        },
+        "housenumber"
+      );
+
+      // Add dark source
+      map_.addSource("dark_source", {
+        type: "raster",
+        tiles: [
+          `https://cartodb-basemaps-d.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png`,
+        ],
+        tileSize: 256,
+      });
+
+      // Add dark layer
+      map_.addLayer(
+        {
+          id: "dark_layer",
+          type: "raster",
+          source: "dark_source",
+        },
+        "housenumber"
+      );
+
+      if (
+        map_.getSource("satellite_source") &&
+        map_.getLayer("satellite_layer")
+      ) {
+        map_.setLayoutProperty("satellite_layer", "visibility", "none");
+      }
+      if (map_.getSource("basic_source") && map_.getLayer("basic_layer")) {
+        map_.setLayoutProperty("basic_layer", "visibility", "none");
+      }
+      if (map_.getSource("dark_source") && map_.getLayer("dark_layer")) {
+        map_.setLayoutProperty("dark_layer", "visibility", "none");
+      }
+
+      // Point Table layer
       map_.addSource("point-table", {
         type: "geojson",
         data: geojson,
@@ -133,22 +230,23 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         },
       });
 
-      // Polygon from Table
+      // Polygon Table Layer
       map_.addSource("polygon-table", {
         type: "geojson",
         data: geojson_polygon,
       } as GeoJSONSourceOptions);
       map_.addLayer({
         id: "polygon-table-layer",
-        type: "fill",
+        type: "line",
         source: "polygon-table",
         paint: {
-          "fill-color": "red",
-          "fill-opacity": 0.5,
+          "line-color": "red",
+          "line-width": 4,
+          "line-dasharray": [1, 1],
         },
       });
 
-      // Polygon from Table
+      // Radius of the circle layer
       map_.addSource("polygon-radius", {
         type: "geojson",
         data: geojson_polygon,
@@ -159,14 +257,14 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         source: "polygon-radius",
         paint: {
           "fill-color": "red",
-          "fill-opacity": 0.2,
+          "fill-opacity": 0.1,
+          "fill-outline-color": "red",
         },
       });
 
-      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
-
       map_.setLayoutProperty("point-table-layer", "visibility", "none");
       map_.setLayoutProperty("polygon-table-layer", "visibility", "none");
+      map_.setLayoutProperty("polygon-radius-layer", "visibility", "none");
     });
 
     return () => {
@@ -174,18 +272,26 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (map) {
-  //   }
-  // }, [map]);
-
   return (
     <div
       ref={mapContainer}
       id="map"
-      className={`map rounded-lg relative w-full ${height} `}
+      className={`map rounded-[20px] relative w-full ${height} `}
     >
-      <div className="absolute top-0 -right-12 md:right-12 z-10">
+      {showMapLoader ? (
+        <div className="absolute top-1/2 right-1/2  md:right-1/2 z-10 bg-white h-24 w-24 rounded-xl">
+          <CircularProgress
+            color="success"
+            sx={{ color: "#37CC7D", marginTop: "25%", marginLeft: "25%" }}
+          />
+          <p style={{ color: "black", marginLeft: "15%" }}>Loading..</p>
+        </div>
+      ) : null}
+
+      <div
+        style={{ zIndex: 1 }}
+        className="absolute top- right-[25px] md:right-12 "
+      >
         <BaseMapSwitch />
       </div>
     </div>

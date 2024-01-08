@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DashBoardHome from "../pages/DashboardHome";
 import Register from "../pages/Register";
 import Reporting from "../pages/Reporting";
-// import SupplierPlantation from "../pages/SupplierPlantation";
 import SupplierMill from "../pages/SupplierMill";
 import HomePage from "../pages/HomePage";
 import Upload from "../pages/Upload";
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
-import Login from "../pages/Login";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import AboutUs from "../pages/AboutUs";
+import GetInTouch from "../pages/GetInTouch";
+import NewLogin from "../pages/NewLogin";
 
 interface RoutersProps {
   map: Map | null;
@@ -25,8 +26,9 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/*" element={<Login />} />
+          <Route path="/login" element={<NewLogin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/*" element={<NewLogin />} />
         </Routes>
       </Router>
     );
@@ -35,8 +37,9 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />;
+          <Route path="/login" element={<NewLogin />} />;
           <Route path="/register" element={<Register />} />
+          {/* <Route path="/loginnew" element={<NewLogin />} /> */}
           <Route
             path="/dashboard"
             element={<DashBoardHome map={map} onSetMap={onSetMap} />}
@@ -45,15 +48,13 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
             path="/suppliermill"
             element={<SupplierMill map={map} onSetMap={onSetMap} />}
           />
-          {/* <Route
-            path='/supplierplantation'
-            element={<SupplierPlantation map={map} onSetMap={onSetMap} />}
-          /> */}
           <Route
             path="/reporting"
             element={<Reporting map={map} onSetMap={onSetMap} />}
           />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/getintouch" element={<GetInTouch />} />
         </Routes>
       </Router>
     );

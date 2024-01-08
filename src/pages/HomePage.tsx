@@ -9,7 +9,7 @@ import Testimonials from "../components/homepagecomp/Testimonials";
 
 function HomePage() {
   return (
-    <div className="bg-gray-50 max-w-screen">
+    <div className="bg-bgPage ">
       <HomeHero />
       <HomeFeatures />
       <DdsSection />
@@ -17,6 +17,8 @@ function HomePage() {
       <BusinessColab />
 
       <Avaibility />
+
+      {/* new test  */}
       {/* <EUDRTable /> */}
       <Footer />
     </div>

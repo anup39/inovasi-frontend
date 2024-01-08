@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,7 +19,7 @@ body {
 }
 
 .MuiDataGrid-columnHeaderTitle {
-  font-weight: 500 !important;
+  font-weight: 700 !important;
 }
 
 .MuiDataGrid-root .MuiDataGrid-columnHeader .MuiDataGrid-menuIcon {
@@ -44,10 +43,9 @@ body {
 }
 
 .MuiDataGrid-columnHeaderTitle {
-  color: #858686;
+  color: #848686;
+  line-height: 17.07px;
 }
-
-
 
 .MuiDataGrid-actionsCell {
   background-color: bisque;
@@ -56,4 +54,33 @@ body {
 .MuiDataGrid-columnHeader {
   background-color: #efefef;
 }
+.MuiDataGrid-row {
+  cursor: pointer;
+  background-color: #fff !important;
+}
+.MuiDataGrid-row:hover {
+  background-color: #e9ffe7 !important;
+}
 
+.MuiDataGrid-cellContent {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17.07px;
+}
+.MuiDataGrid-main {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+.MuiDataGrid-root {
+  border: none !important;
+}
+.MuiDataGrid-columnHeaders {
+  border-bottom: none !important;
+}
+.MuiDataGrid-row {
+  border-bottom: 1px solid #efefef;
+}
+
+.MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+  background-color: #e9ffe7 !important;
+}

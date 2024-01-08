@@ -1,5 +1,5 @@
 .maplibregl-popup-content {
-  max-height: 200px;
+  max-height: 182px;
   overflow: scroll;
 }
 
@@ -19,11 +19,17 @@
 
 .maplibregl-ctrl-bottom-right .maplibregl-ctrl {
   margin-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
 }
 
 .maplibregl-ctrl-group {
   background-color: #5bd273;
   // margin: 5px;
+}
+
+.suggestions-wrapper {
+  z-index: 9999999;
 }
 
 .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {

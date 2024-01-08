@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setselectedDataFormat } from "../../reducers/DisplaySettings";
+import { setselectedPlantationType } from "../../reducers/DisplaySettings";
 
 interface DropdownProps {
   options: string[];
@@ -12,18 +12,20 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string>("");
 
+  // Again test
+
   const handleItemClick = (item: string) => {
-    dispatch(setselectedDataFormat(item));
+    dispatch(setselectedPlantationType(item));
     setSelectedItem(item);
     setIsOpen(false);
   };
   return (
-    <div className="relative inline-block my-1">
+    <div className="relative inline-block w-full">
       <div>
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="inline-flex justify-center w-16 md:w-24 lg:w-28  items-center rounded-xl border border-gray-300 px-4 py-2 bg-white text-sm  text-grayText  font-normal "
+          className="inline-flex justify-center w-16 md:w-24 lg:w-full  items-center rounded-lg border border-gray-300 h-[42px] bg-white text-sm  text-grayText  font-normal "
         >
           {selectedItem || placeholder}
           <svg
@@ -42,7 +44,7 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
       </div>
 
       {isOpen && (
-        <div className="absolute z-20 left-1/2 text-grayText  font-normal transform -translate-x-1/2 text-center w-14 md:w-24 lg:w-28 rounded-lg shadow-lg bg-white focus:outline-none transition-all duration-300 ease-in-out ">
+        <div className="absolute z-20 left-1/2 text-grayText  font-normal transform -translate-x-1/2 text-center w-14 md:w-24 lg:w-full rounded-lg shadow-lg bg-white focus:outline-none transition-all duration-300 ease-in-out ">
           <ul role="list" className=" overflow-y-auto max-h-48 ">
             {options.map((item) => (
               <li

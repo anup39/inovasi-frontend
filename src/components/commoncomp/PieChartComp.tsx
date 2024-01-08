@@ -20,23 +20,21 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
   params,
   params_include,
-  gradient_start,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
   const [piedata, setpieData] = useState([]);
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
-  let total = 0;
-  if (piechartfor === "facility") {
-    total = 299;
-  }
-  if (piechartfor === "refinery") {
-    total = 1034;
-  }
-  if (piechartfor === "mill") {
-    total = 2381;
-  }
+  const selectedDashboardPage = useSelector(
+    (state: RootState) => state.displaySettings.selectedDashboardPage
+  );
+  const current_mill_eq_id = useSelector(
+    (state: RootState) => state.displaySettings.current_mill_eq_id
+  );
+  const current_radius_wkt = useSelector(
+    (state: RootState) => state.displaySettings.current_radius_wkt
+  );
 
   useEffect(() => {
     if (!params_include) {
@@ -56,7 +54,11 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         .get(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
             data.distinct
-          }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
+            // @ts-ignore
+          }/?plantation=${data.params.plantation}&status=${
+            // @ts-ignore
+            data.params.status
+          }&mill_eq_id=${current_mill_eq_id}&geometry_wkt=${current_radius_wkt}`
         )
         .then((res) => {
           // @ts-ignore
@@ -70,7 +72,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       setActiveIndex(undefined);
       setActiveTooltip(false);
     };
-  }, [data.distinct, piechartfor, params, params_include]);
+  }, [
+    piechartfor,
+    params,
+    params_include,
+    current_mill_eq_id,
+    current_radius_wkt,
+    data,
+  ]);
 
   // @ts-ignore
   const renderActiveShape = (props: any) => {
@@ -100,7 +109,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
-    return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
+    // @ts-ignore
+    return `hsl(${data.gradient_start[0]}, ${data.gradient_start[1]}%, ${lightness}%)`;
   };
 
   // @ts-ignore
@@ -131,87 +141,126 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
-          {total}
+          {/* @ts-ignore */}
+          {piedata[0].total}
         </text>
       </g>
     );
   };
   return (
-    <>
-      <PieChart
-        onMouseLeave={onPieExit}
-        // @ts-ignore
-        onMouseOut={onPieExit}
-        width={width_}
-        height={height_}
-        cursor="pointer"
-      >
-        <Pie
-          activeIndex={activeIndex}
-          activeShape={renderActiveShape}
-          isAnimationActive={true}
-          dataKey="count"
-          nameKey="display"
-          data={piedata}
-          cx="50%"
-          cy="50%"
-          innerRadius={60}
-          outerRadius={80}
-          fill="#82ca9d"
+    <div
+      className={`flex flex-${
+        selectedDashboardPage === "supplierplantation" ? "row" : "col"
+      } items-center justify-center`}
+    >
+      <div className="scale-[0.45] md:scale-[0.55] lg:scale-[0.8] middle:scale-100">
+        <PieChart
           onMouseLeave={onPieExit}
-          onMouseDown={onPieExit}
+          // @ts-ignore
           onMouseOut={onPieExit}
-          onMouseMove={onPieEnter}
-          onMouseDownCapture={onPieExit}
-          onMouseMoveCapture={onPieExit}
-          labelLine={false}
-          label={labelPieChart}
+          width={width_}
+          height={height_}
+          cursor="pointer"
         >
-          {/* @ts-ignore */}
-          {piedata.map((entry, index) => (
-            // @ts-ignore
-            <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
-          ))}
-        </Pie>
-        <Tooltip
-          content={
-            <CustomTooltip
-              display={activeTooltip}
-              active={activeTooltip}
-              payload={[]}
-            />
-          }
-        />
-      </PieChart>
-
-      <div
-        style={{ height: "0.7px" }}
-        className="bg-boxDivider hidden md:flex  w-full"
-      ></div>
-      <div className=" hidden md:flex w-full max-h-full">
-        {piedata.slice(0, 3).map((item, index) => (
-          <div
-            key={index}
-            className={`flex flex-col items-center justify-center ${"border-r-[0.7px] border-boxDivider mx-auto"}`}
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            isAnimationActive={true}
+            dataKey="count"
+            nameKey="display"
+            data={piedata}
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={80}
+            fill="#82ca9d"
+            onMouseLeave={onPieExit}
+            onMouseDown={onPieExit}
+            onMouseOut={onPieExit}
+            onMouseMove={onPieEnter}
+            onMouseDownCapture={onPieExit}
+            onMouseMoveCapture={onPieExit}
+            labelLine={false}
+            label={labelPieChart}
           >
-            <p
-              //  @ts-ignore
-
-              style={{ color: gradientColor(item.count) }}
-              className=" text-[10px] md:text-[12px] font-normal lg:font-semibold "
+            {/* @ts-ignore */}
+            {piedata.map((entry, index) => (
+              // @ts-ignore
+              <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+            ))}
+          </Pie>
+          <Tooltip
+            content={
+              <CustomTooltip
+                display={activeTooltip}
+                active={activeTooltip}
+                payload={[]}
+              />
+            }
+          />
+        </PieChart>
+      </div>
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "none" : "block",
+        }}
+        className="w-full xl:h-[45px] hidden middle:block"
+      >
+        <div className="bg-boxDivider h-[1px] "></div>
+        <div className="flex w-full h-full">
+          {piedata.slice(0, 3).map((item, index, array) => (
+            <div
+              key={index}
+              className={`flex flex-col w-1/3 items-center justify-center text-center ${
+                array.length > 1 && index < array.length - 1
+                  ? "border-r-[0.7px] border-boxDivider"
+                  : ""
+              } mx-auto`}
             >
-              {/* @ts-ignore  */}
-              {item.percentage.toFixed(2)}
-            </p>
-            <p className=" text-[7px] m-3 ">
+              <p
+                //  @ts-ignore
+                style={{ color: gradientColor(item.count) }}
+                className="text-[8px]  lg:text-[8px] middle:text-[8px] mx-auto font-normal lg:font-semibold"
+              >
+                {/* @ts-ignore */}
+                {item.percentage.toFixed(2)}
+              </p>
+              <p className="text-[9px] lg:text-[9px] middle:text-[9px] m-1">
+                {/* @ts-ignore */}
+                {item.display === "0" ? "Others" : item.display}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "block" : "none",
+        }}
+        className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] "
+      >
+        {piedata.slice(0, 5).map((item, index) => (
+          <div key={index} className="flex gap-4 justify-between">
+            <div className="flex  gap-3 items-center">
+              <div
+                style={{
+                  // @ts-ignore
+                  backgroundColor: gradientColor(item.count),
+                  // opacity: item.opacity,
+                }}
+                className={`w-[10px] h-[10px] ]`}
+              ></div>
               {/* @ts-ignore */}
-
-              {item.display === "0" ? "Others" : item.display}
-            </p>
+              <h1 className="text-plantationListTitle">{item.display}</h1>
+            </div>
+            {/* @ts-ignore */}
+            <div className="text-semiBlackText">{item.area} ha</div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

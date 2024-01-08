@@ -1,11 +1,11 @@
 function DdsSection() {
   return (
-    <div className=" bg-gradient-to-r from-footerHeading to-parrot px-5 md:px-10 lg:px-28 py-5 md:py-16 lg:py-56  flex flex-col lg:flex-row gap-20  lg:gap-72 justify-center items-center">
-      <div className="flex flex-col gap-10 text-white max-w-md">
-        <h1 className="font-bold text-xl">
+    <div className="relative bg-gradient-to-r from-footerHeading to-parrot px-5 md:px-10 lg:px-28 py-5 md:py-16 lg:py-56  flex flex-col lg:flex-row gap-20 xl:gap-[330px] lg:gap-72 justify-around items-center xl:justify-between xl:h-[900px] xl:p-0">
+      <div className="flex flex-col gap-10 text-white max-w-md xl:ml-[201px]">
+        <h1 className="font-bold text-xl middle:text-[40px] middle:leading-[48.76px] xl:w-[800px]">
           EUDR Agriplot Due-Diligence System
         </h1>
-        <p className="font-mono">
+        <p className=" font-[400] middle:text-[24px] middle:leading-[29.26px] xl:h-[145px] xl:w-[780px] middle:text-justify">
           As the European Union's Deforestation Regulation (EUDR) takes effect,
           businessesoperating within Europe need robust solutions to ensure
           compliance. The Agriplot Due Diligence system, brought to you by
@@ -13,32 +13,10 @@ function DdsSection() {
           commodities covered under the EUDR.
         </p>
       </div>
-      <div className="">
+      <div className="xl:absolute left-[1335px]">
         <img className="scale-75 lg:scale-100" src="playButton.svg" alt="" />
       </div>
     </div>
-    // old code, just leaving it here if sometimes later needed, will delete when final design is done
-    // <div className="space-y-7 pt-5 lg:pt-20 pb-6 px-9 flex items-center flex-col">
-    //   <h1 className="text-center font-bold text-3xl max-w-xl lg:text-left">
-    //     Agriplot Due Dilligence System (DDS) Platform: How to use for reporting
-    //   </h1>
-    //   <p className="max-w-md text-center lg:text-left">
-    //     Agriplot's Due Diligence System simplifies agricultural compliance,
-    //     making it effortless for your business.
-    //   </p>
-
-    //   {/* <div className=" w-5/6 mx-auto ml-50"> */}
-    //   {/* <div className="relative bg-black aspect-video h-auto w-full "> */}
-    //   {/* <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"> */}
-    //   <iframe
-    //     width="560"
-    //     height="315"
-    //     src="https://www.youtube.com/embed/CslE7W1X4io"
-    //   ></iframe>
-    //   {/* </div> */}
-    //   {/* </div> */}
-    //   {/* </div> */}
-    // </div>
   );
 }
 export default DdsSection;

@@ -13,6 +13,7 @@ function DashPieItem() {
         numbers: ["48", "22%", "30%"],
         colors: ["#FB9347", "#FBDE47", "#72E005"],
       },
+      gradient_start: [159, 83],
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ function DashPieItem() {
         numbers: ["48", "22%"],
         colors: ["#10BD82", "#B8E500"],
       },
+      gradient_start: [159, 83],
     },
     {
       id: 3,
@@ -35,6 +37,7 @@ function DashPieItem() {
         numbers: ["48", "22%", "30%"],
         colors: ["#10BD82", "#83DE60", "#B8E500"],
       },
+      gradient_start: [159, 83],
     },
   ];
 
@@ -44,34 +47,32 @@ function DashPieItem() {
   };
 
   return (
-    <div className="flex items-center justify-center  gap-[28px] ">
+    <div className="flex items-center md:justify-center middle:justify-start md:w-full middle:w-1/2 gap-[10px] md:gap-[20px] middle:gap-[24px]  xl:gap-[28px] xl:w-full">
       {items.map((item) => (
         <div
           key={item.id}
-          className="bg-white rounded-md w-[238px] lg:h-[266px]"
+          className="bg-white rounded-[20px] md:w-1/3 xl:w-[238px] middle:h-[266px] md:min-h-[200px] md:max-w-[280px] min-h-[100px] w-[95px]"
         >
-          <div className="p-1 flex flex-col justify-between items-center h-full">
-            <div className="p-1 flex w-full justify-between items-center">
-              <h1 className="text-semiBlackText font-medium md:font-bold text-[8px] md:text-medium lg:text-sm">
+          <div className="p-1 flex flex-col justify-center w-full items-center h-full">
+            <div className="p-1 flex w-full justify-between items-center ">
+              <h1 className="text-semiBlackText font-medium md:font-bold text-[8px] md:text-sm xl:text-[18px] xl:leading-[21.6px]">
                 {item.name}
               </h1>
               <img
-                className="scale-75 md:scale-100"
+                className="scale-90 md:scale-100 cursor-pointer"
                 src="moreinfo.svg"
                 alt=""
               />
             </div>
-            <div className="">
+            <div className=" ">
               <PieChartComp
                 params={params}
                 data={item}
-                width_={180}
-                height_={180}
+                width_={170}
+                height_={170}
                 params_include={false}
                 gradient_start={[159, 83]}
               />
-
-              {/* <PieChartCompUpdated /> */}
             </div>
           </div>
         </div>

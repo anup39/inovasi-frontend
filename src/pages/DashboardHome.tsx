@@ -6,7 +6,11 @@ import Toast from "../components/commoncomp/Toast";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setpiechartfor } from "../reducers/Auth";
-import { setselectedDataFormat } from "../reducers/DisplaySettings";
+import {
+  setselectedDashboardPage,
+  setselectedDataFormat,
+} from "../reducers/DisplaySettings";
+import { IControl } from "maplibre-gl";
 
 interface DashboardHomeProps {
   map: Map | null;
@@ -18,28 +22,27 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ map, onSetMap }) => {
   useEffect(() => {
     dispatch(setpiechartfor("facility"));
     dispatch(setselectedDataFormat("Metric"));
+    dispatch(setselectedDashboardPage("dashboard"));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (map) {
-  //     const legend_name: string = "LegendControl";
-  //     // @ts-ignore
-  //     const legend_index = map._controls.indexOf(legend_name);
+  useEffect(() => {
+    if (map) {
+      map.on("load", () => {
+        const legend_control: IControl =
+          map._controls[map._controls.length - 2];
 
-  //     if (legend_index) {
-  //       const legend_control = map._controls[map._controls.length - 3];
-  //       // @ts-ignore
-  //       legend_control.updateLegend("dashboard");
-  //     }
-  //   }
-  // }, []);
-  // const pageHeight = `calc(100vh - 60px)`;
+        // @ts-ignore
+        legend_control.updateLegend("dashboard");
+      });
+    }
+  }, [map]);
+
   return (
     <Layout>
-      <div className="flex flex-col">
+      <div className=" ">
         <Toast />
         <DashBoardItem map={map} />
-        <div className=" flex-1 ">
+        <div className="pt-[10px] md:pt-[26px] pb-[10px] md:pb-[34px] ">
           <MapComponent map={map} onSetMap={onSetMap} component="dashboard" />
         </div>
       </div>

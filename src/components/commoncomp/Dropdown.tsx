@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setselectedDataFormat } from "../../reducers/DisplaySettings";
+import { setselectedPlantationType } from "../../reducers/DisplaySettings";
 
 interface DropdownProps {
   options: string[];
@@ -15,7 +15,8 @@ const Dropdown = ({ options, placeholder }: DropdownProps) => {
   // Again test
 
   const handleItemClick = (item: string) => {
-    dispatch(setselectedDataFormat(item));
+    console.log(item, "item");
+    dispatch(setselectedPlantationType(item));
     setSelectedItem(item);
     setIsOpen(false);
   };

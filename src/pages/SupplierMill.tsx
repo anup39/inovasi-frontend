@@ -24,20 +24,7 @@ import Dropdown from "../components/commoncomp/Dropdown";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { Tooltip } from "@mui/material";
 
-const lists = [
-  { listTitle: "Managed Plantation", listValue: "2.300 ha", opacity: "1" },
-  { listTitle: "3rd Party Plantation", listValue: "1.232 ha", opacity: "0.85" },
-  { listTitle: "Scheme Smallholder", listValue: "2.311 ha", opacity: "0.7" },
-  {
-    listTitle: "Independent Smallholder",
-    listValue: "120 ha",
-    opacity: "0.55",
-  },
-  { listTitle: "POD", listValue: "374 ha", opacity: "0.4" },
-  { listTitle: "3rd Party Mill", listValue: "231 ha", opacity: "0.25" },
-];
-
-const items_plantation = [
+const items_plantation_actual = [
   {
     id: 1,
     name: "Actual registered Suppplier",
@@ -48,10 +35,12 @@ const items_plantation = [
       numbers: ["48%", "22%", "30%"],
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
+    listColor: "#00C685",
+    gradient_start: [159, 83],
     params: {
-      estateids: [],
+      plantation: "actual",
+      status: "Registered",
+      mill_eq_id: "GML1412",
       geometry_wkt: "",
     },
   },
@@ -65,10 +54,53 @@ const items_plantation = [
       numbers: ["48%", "22%"],
       colors: ["#10BD82", "#B8E500"],
     },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
+    listColor: "#FFAD33",
+    gradient_start: [36, 100],
     params: {
-      estateids: [],
+      plantation: "actual",
+      status: "Unregistered",
+      mill_eq_id: "GML1412",
+      geometry_wkt: "",
+    },
+  },
+];
+
+const items_plantation_potential = [
+  {
+    id: 1,
+    name: "Potential registered Suppplier",
+    selected: false,
+    distinct: "type_of_supplier",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#EF38FF",
+    gradient_start: [295, 100],
+    params: {
+      plantation: "potential",
+      status: "Registered",
+      mill_eq_id: "GML1412",
+      geometry_wkt: "",
+    },
+  },
+  {
+    id: 2,
+    name: "Potential unregistered Suppplier",
+    selected: false,
+    distinct: "type_of_supplier",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2"],
+      numbers: ["48%", "22%"],
+      colors: ["#10BD82", "#B8E500"],
+    },
+    listColor: "#FF3D00",
+    gradient_start: [14, 100],
+    params: {
+      plantation: "potential",
+      status: "Unregistered",
+      mill_eq_id: "GML1412",
       geometry_wkt: "",
     },
   },
@@ -141,6 +173,10 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [pageMill, setPageMill] = useState(0);
   const [pageActualPlant, setPageActualPlant] = useState(0);
   const [pagePotentialPlant, setPagePotentialPlant] = useState(0);
+  const [itemplantation, setItemPlantation] = useState(items_plantation_actual);
+  const selectedPlantationType = useSelector(
+    (state) => state.displaySettings.selectedPlantationType
+  );
 
   const tableData = useSelector(
     (state: RootState) => state.supplierPlantation.tabledata
@@ -287,6 +323,14 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   //     }
   //   }
   // }, []);
+
+  useEffect(() => {
+    if (selectedPlantationType === "Actual") {
+      setItemPlantation(items_plantation_actual);
+    } else {
+      setItemPlantation(items_plantation_potential);
+    }
+  }, [selectedPlantationType]);
 
   useEffect(() => {
     if (map) {
@@ -439,7 +483,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
         {(selectedDataFormat !== "Table" || !showMap) &&
         selectedDashboardPage === "supplierplantation" ? (
           <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-            {items_plantation.map((item) => (
+            {itemplantation.map((item) => (
               <div
                 key={item.id}
                 className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
@@ -459,35 +503,11 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                       data={item}
                       width_={200}
                       height_={200}
-                      params_include={false}
+                      params_include={true}
                       gradient_start={[159, 83]}
                     />
                   </div>
                   {/* div for those list */}
-                  <div className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] ">
-                    {lists.map((list) => (
-                      <div
-                        key={list.listTitle}
-                        className="flex gap-4 justify-between"
-                      >
-                        <div className="flex  gap-3 items-center">
-                          <div
-                            style={{
-                              backgroundColor: `${item.listColor}`,
-                              opacity: `${Number(list.opacity)}`,
-                            }}
-                            className={`w-[10px] h-[10px] ]`}
-                          ></div>
-                          <h1 className="text-plantationListTitle">
-                            {list.listTitle}
-                          </h1>
-                        </div>
-                        <div className="text-semiBlackText">
-                          {list.listValue}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             ))}

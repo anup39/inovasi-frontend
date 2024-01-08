@@ -29,6 +29,12 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
   );
+  const current_mill_eq_id = useSelector(
+    (state) => state.displaySettings.current_mill_eq_id
+  );
+  const current_radius_wkt = useSelector(
+    (state) => state.displaySettings.current_radius_wkt
+  );
 
   // console.log(piedata, "data");
 
@@ -50,7 +56,9 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         .get(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
             data.distinct
-          }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
+          }/?plantation=${data.params.plantation}&status=${
+            data.params.status
+          }&mill_eq_id=${current_mill_eq_id}&geometry_wkt=${current_radius_wkt}`
         )
         .then((res) => {
           // @ts-ignore
@@ -131,7 +139,11 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     );
   };
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div
+      className={`flex flex-${
+        selectedDashboardPage === "supplierplantation" ? "row" : "col"
+      } items-center justify-center`}
+    >
       <div className="scale-[0.45] md:scale-[0.55] lg:scale-[0.8] middle:scale-100">
         <PieChart
           onMouseLeave={onPieExit}
@@ -212,6 +224,29 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
             </div>
           ))}
         </div>
+      </div>
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "block" : "none",
+        }}
+        className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] "
+      >
+        {piedata.slice(0, 5).map((item, index) => (
+          <div key={index} className="flex gap-4 justify-between">
+            <div className="flex  gap-3 items-center">
+              <div
+                style={{
+                  backgroundColor: gradientColor(item.count),
+                  // opacity: item.opacity,
+                }}
+                className={`w-[10px] h-[10px] ]`}
+              ></div>
+              <h1 className="text-plantationListTitle">{item.display}</h1>
+            </div>
+            <div className="text-semiBlackText">{item.area} ha</div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import "../../css/common/NavBar.css";
 import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 function NavBar() {
   const selectedDashboardPage = useSelector(
-    (state) => state.displaySettings.selectedDashboardPage
+    (state: RootState) => state.displaySettings.selectedDashboardPage
   );
   return (
     <div className="px-[10px] md:px-[47px] py-[10px] lg:py-[20px] flex items-center justify-start md:justify-between bg-gray-50 border-b-2 h-[50px] md:h-[96px]">

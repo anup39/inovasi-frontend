@@ -13,9 +13,9 @@ import BaseMapSwitch from "../components/commoncomp/BaseMapSwitch";
 // import LabelControl from "./LabelControl";
 // import { createTheme } from "@mui/material/styles";
 import { NavigationControl } from "maplibre-gl";
-import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import { CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const geojson = {
   type: "FeatureCollection",
@@ -61,7 +61,7 @@ interface MapProps {
 export default function MapComponent({ onSetMap, component }: MapProps) {
   const [height, setHeight] = useState("min-h-[630px]");
   const showMapLoader = useSelector(
-    (state) => state.displaySettings.showMapLoader
+    (state: RootState) => state.displaySettings.showMapLoader
   );
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -113,6 +113,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
     // });
 
     onSetMap(map_);
+    // @ts-ignore
     window.mapglobal = map_;
     if (component === "dashboard") {
       setHeight("min-h-[630px]");
@@ -201,8 +202,6 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
         "housenumber"
       );
 
-      console.log(map_, "map_");
-
       if (
         map_.getSource("satellite_source") &&
         map_.getLayer("satellite_layer")
@@ -285,7 +284,7 @@ export default function MapComponent({ onSetMap, component }: MapProps) {
             color="success"
             sx={{ color: "#37CC7D", marginTop: "25%", marginLeft: "25%" }}
           />
-          <p style={{ color: "black", marginLeft: "15%" }}>Please Wait..</p>
+          <p style={{ color: "black", marginLeft: "15%" }}>Loading..</p>
         </div>
       ) : null}
 

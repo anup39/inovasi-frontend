@@ -8,6 +8,7 @@ import {
   setCurrentRadiusWkt,
   setCurrentMillEqId,
   setMillCoordinates,
+  setshowMapLoader,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -22,6 +23,7 @@ import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { GeoJSONSource } from "maplibre-gl";
 import { IControl } from "maplibre-gl";
+import { setpiechartfor } from "../../reducers/Auth";
 
 interface PopupProps {
   properties: {
@@ -138,7 +140,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
 
                 const legend_control: IControl =
                   map._controls[map._controls.length - 2];
-                console.log(legend_control, "legend control");
+
                 // @ts-ignore
                 legend_control.updateLegend("supplierplantation");
 
@@ -254,7 +256,11 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 dispatch(addLayerName("Actual unregistered supplier"));
                 dispatch(addLayerName("Potential registered supplier"));
                 dispatch(addLayerName("Potential unregistered supplier"));
-                axios.get();
+                dispatch(setpiechartfor("agriplot"));
+                dispatch(setshowMapLoader(true));
+                setTimeout(() => {
+                  dispatch(setshowMapLoader(false));
+                }, 10000);
               } else {
                 dispatch(setshowToast(true));
                 dispatch(
@@ -272,7 +278,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
   return (
     <div
       className={`flex-1 bg-white w-[270px] sm:w-[310px] md:min-w-[389px] font-[Montserrat] ${
-        popup ? "h-[300px] lg:h-[353px]" : "h-[52px]"
+        popup ? "h-[270px] lg:h-[333px]" : "h-[52px]"
       } max-w-xs rounded-[10px] `}
     >
       <div className="flex flex-col relative items-center justify-between  p-3">

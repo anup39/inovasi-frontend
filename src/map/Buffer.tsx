@@ -34,9 +34,13 @@ const Buffer = ({ map }: BufferProps) => {
       map.getLayer("polygon-radius-layer")
     ) {
       const source = map.getSource("polygon-radius") as GeoJSONSource;
+      // @ts-ignore
+
       source.setData(buffered);
 
       map.setLayoutProperty("polygon-radius-layer", "visibility", "visible");
+      // @ts-ignore
+
       const wkt_final = convertCoordinatesToWKT(buffered);
       axios
         .get(

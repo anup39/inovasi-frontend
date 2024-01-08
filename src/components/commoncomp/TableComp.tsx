@@ -9,9 +9,6 @@ import maplibregl, {
 } from "maplibre-gl";
 import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoundingBoxPolygonfromGeojson";
 import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
-import { useEffect, useState } from "react";
-// @ts-ignore
-// import getGeojsonFromwktTableWithLatlong from "../../maputils/getGeojsonFromwktTablewithLatlong";
 
 interface DataItem {
   id: number;
@@ -80,15 +77,9 @@ export default function DataGridDemo({
   map,
   component,
   height,
-  width,
   pageSize,
   page,
 }: DataGridDemoProps) {
-  const capitalizedColumns = tableColumn.map((col) => ({
-    ...col,
-    headerName: col.headerName.toUpperCase(),
-  }));
-
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
     if (component === "mill") {
       if (rows.length > 0 && map) {
@@ -182,6 +173,7 @@ export default function DataGridDemo({
           rows={tableData}
           columns={tableColumn.map((col) => ({
             ...col,
+            // @ts-ignore
             headerName: col.headerName.toUpperCase(),
             sx: {
               color: "#848686", // Set the text color

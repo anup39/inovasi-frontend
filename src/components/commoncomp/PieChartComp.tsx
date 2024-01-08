@@ -20,7 +20,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
   params,
   params_include,
-  gradient_start,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
@@ -28,19 +27,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
   const selectedDashboardPage = useSelector(
-    (state) => state.displaySettings.selectedDashboardPage
+    (state: RootState) => state.displaySettings.selectedDashboardPage
   );
-
-  let total = 0;
-  if (piechartfor === "facility") {
-    total = 299;
-  }
-  if (piechartfor === "refinery") {
-    total = 1034;
-  }
-  if (piechartfor === "mill") {
-    total = 2381;
-  }
+  const current_mill_eq_id = useSelector(
+    (state: RootState) => state.displaySettings.current_mill_eq_id
+  );
+  const current_radius_wkt = useSelector(
+    (state: RootState) => state.displaySettings.current_radius_wkt
+  );
 
   useEffect(() => {
     if (!params_include) {
@@ -60,7 +54,11 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         .get(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
             data.distinct
-          }/?estateids=${params.estateids}&geometry_wkt=${params.geometry_wkt}`
+            // @ts-ignore
+          }/?plantation=${data.params.plantation}&status=${
+            // @ts-ignore
+            data.params.status
+          }&mill_eq_id=${current_mill_eq_id}&geometry_wkt=${current_radius_wkt}`
         )
         .then((res) => {
           // @ts-ignore
@@ -74,7 +72,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       setActiveIndex(undefined);
       setActiveTooltip(false);
     };
-  }, [data.distinct, piechartfor, params, params_include]);
+  }, [
+    piechartfor,
+    params,
+    params_include,
+    current_mill_eq_id,
+    current_radius_wkt,
+    data,
+  ]);
 
   // @ts-ignore
   const renderActiveShape = (props: any) => {
@@ -104,7 +109,8 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
-    return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
+    // @ts-ignore
+    return `hsl(${data.gradient_start[0]}, ${data.gradient_start[1]}%, ${lightness}%)`;
   };
 
   // @ts-ignore
@@ -135,13 +141,18 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
-          {total}
+          {/* @ts-ignore */}
+          {piedata[0].total}
         </text>
       </g>
     );
   };
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div
+      className={`flex flex-${
+        selectedDashboardPage === "supplierplantation" ? "row" : "col"
+      } items-center justify-center`}
+    >
       <div className="scale-[0.45] md:scale-[0.55] lg:scale-[0.8] middle:scale-100">
         <PieChart
           onMouseLeave={onPieExit}
@@ -222,6 +233,32 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
             </div>
           ))}
         </div>
+      </div>
+      <div
+        style={{
+          display:
+            selectedDashboardPage === "supplierplantation" ? "block" : "none",
+        }}
+        className="flex scale-90 lg:scale-100 flex-col md:gap-[20px] middle:gap-[4px] xl:gap-[20px] "
+      >
+        {piedata.slice(0, 5).map((item, index) => (
+          <div key={index} className="flex gap-4 justify-between">
+            <div className="flex  gap-3 items-center">
+              <div
+                style={{
+                  // @ts-ignore
+                  backgroundColor: gradientColor(item.count),
+                  // opacity: item.opacity,
+                }}
+                className={`w-[10px] h-[10px] ]`}
+              ></div>
+              {/* @ts-ignore */}
+              <h1 className="text-plantationListTitle">{item.display}</h1>
+            </div>
+            {/* @ts-ignore */}
+            <div className="text-semiBlackText">{item.area} ha</div>
+          </div>
+        ))}
       </div>
     </div>
   );

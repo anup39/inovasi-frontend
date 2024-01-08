@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// @ts-ignore
 function Pagination({ changeThePage, totalpage }) {
   // const totalpage = totalpage;
   const pagesToShow = 3;
@@ -8,7 +9,7 @@ function Pagination({ changeThePage, totalpage }) {
   // @ts-ignore
   const handlePageClick = (page) => {
     setActivePage(page);
-    console.log(page);
+
     changeThePage(page - 1);
     // Add any additional logic you need when a page is clicked
   };

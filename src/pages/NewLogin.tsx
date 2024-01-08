@@ -54,7 +54,7 @@ function NewLogin() {
         });
     }
   };
-  console.log(passwordVisible);
+
   return (
     <>
       <Toast />

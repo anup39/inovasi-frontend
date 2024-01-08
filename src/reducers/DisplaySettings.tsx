@@ -14,6 +14,7 @@ interface DisplaySettingsState {
   current_mill_eq_id: string | null;
   current_radius_wkt: string | null;
   current_mill_coordinates: number[] | null;
+  selectedPlantationType: string | null;
 }
 
 const initialState: DisplaySettingsState = {
@@ -33,6 +34,7 @@ const initialState: DisplaySettingsState = {
   current_mill_eq_id: null,
   current_radius_wkt: null,
   current_mill_coordinates: null,
+  selectedPlantationType: "Actual",
 };
 
 export const DisplaySettings = createSlice({
@@ -51,6 +53,12 @@ export const DisplaySettings = createSlice({
     },
     setselectedDataFormat: (state, action: PayloadAction<string | null>) => {
       state.selectedDataFormat = action.payload;
+    },
+    setselectedPlantationType: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
+      state.selectedPlantationType = action.payload;
     },
     setselectedDashboardPage: (state, action: PayloadAction<string>) => {
       state.selectedDashboardPage = action.payload;
@@ -91,6 +99,7 @@ export const {
   settoastMessage,
   settoastType,
   setselectedDataFormat,
+  setselectedPlantationType,
   setselectedDashboardPage,
   setIsAgriplot,
   addLayerName,

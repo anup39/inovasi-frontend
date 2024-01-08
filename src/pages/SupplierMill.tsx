@@ -175,7 +175,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [pagePotentialPlant, setPagePotentialPlant] = useState(0);
   const [itemplantation, setItemPlantation] = useState(items_plantation_actual);
   const selectedPlantationType = useSelector(
-    (state) => state.displaySettings.selectedPlantationType
+    (state: RootState) => state.displaySettings.selectedPlantationType
   );
 
   const tableData = useSelector(
@@ -289,7 +289,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [selectedOption, setSelectedOption] = useState("list");
 
   const selectedDashboardPage = useSelector(
-    (state) => state.displaySettings.selectedDashboardPage
+    (state: RootState) => state.displaySettings.selectedDashboardPage
   );
 
   function handleSwitchChange(checked: boolean) {
@@ -331,6 +331,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   useEffect(() => {
     if (map) {
       map.on("load", () => {
+        // @ts-ignore
         const legend_control: IControl =
           map._controls[map._controls.length - 2];
         // @ts-ignore
@@ -412,6 +413,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           </div>
           <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
             <Pagination
+              // @ts-ignore
               totalpage={Math.floor(milltabledata.length / 5)}
               changeThePage={changeThePageMill}
             />
@@ -517,6 +519,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 <b>Total :{tableData?.length}</b>
               </span>{" "}
               <Pagination
+                // @ts-ignore
                 totalpage={Math.floor(tableData.length / 5)}
                 changeThePage={changeThePageActualPlant}
               />{" "}
@@ -542,6 +545,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
                 <b>Total :{tabledataPotential?.length}</b>
               </span>{" "}
               <Pagination
+                // @ts-ignore
                 totalpage={Math.floor(tabledataPotential.length / 5)}
                 changeThePage={changeThePagePotentialPlant}
               />{" "}

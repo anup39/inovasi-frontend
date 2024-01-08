@@ -9,6 +9,7 @@ import {
   removelayerName,
   setshowMapLoader,
 } from "../../reducers/DisplaySettings";
+import { RootState } from "../../store";
 
 // @ts-ignore
 export default function Lenged({ component, map }) {
@@ -16,15 +17,15 @@ export default function Lenged({ component, map }) {
   const [showLegend, setShowLegend] = useState(true);
   const [showMore, setShowMore] = useState(true);
   const layers_in_map = useSelector(
-    (state) => state.displaySettings.layers_in_map
+    (state: RootState) => state.displaySettings.layers_in_map
   );
 
   const current_mill_eq_id = useSelector(
-    (state) => state.displaySettings.current_mill_eq_id
+    (state: RootState) => state.displaySettings.current_mill_eq_id
   );
 
   const current_radius_wkt = useSelector(
-    (state) => state.displaySettings.current_radius_wkt
+    (state: RootState) => state.displaySettings.current_radius_wkt
   );
 
   const AntSwitch = styled(Switch)(({ theme }) => ({

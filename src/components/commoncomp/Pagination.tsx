@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// @ts-ignore
 function Pagination({ changeThePage, totalpage }) {
   // const totalpage = totalpage;
   const pagesToShow = 3;

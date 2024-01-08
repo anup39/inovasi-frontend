@@ -10,6 +10,7 @@ import {
 } from "../../reducers/DisplaySettings";
 import axios from "axios";
 import { settabledataPotential } from "../../reducers/SupplierPlantation";
+import { RootState } from "../../store";
 
 function BaseMapSwitch() {
   const dispatch = useDispatch();
@@ -17,14 +18,14 @@ function BaseMapSwitch() {
   const [showViews, setShowViews] = useState(false);
   const [radius, setradius] = useState<number>(50);
   const current_mill_coordinates = useSelector(
-    (state) => state.displaySettings.current_mill_coordinates
+    (state: RootState) => state.displaySettings.current_mill_coordinates
   );
 
   const selectedDashboardPage = useSelector(
-    (state) => state.displaySettings.selectedDashboardPage
+    (state: RootState) => state.displaySettings.selectedDashboardPage
   );
   const current_mill_eq_id = useSelector(
-    (state) => state.displaySettings.current_mill_eq_id
+    (state: RootState) => state.displaySettings.current_mill_eq_id
   );
 
   const handleBaseMapChange = (basemap: string) => {
@@ -49,11 +50,14 @@ function BaseMapSwitch() {
     if (current_mill_coordinates) {
       const { buffered, extent } = makeRadiusfrompoint(
         [
+          // @ts-ignore
           parseFloat(current_mill_coordinates[0]),
+          // @ts-ignore
           parseFloat(current_mill_coordinates[1]),
         ],
         radius * 1000
       );
+      // @ts-ignore
       const map = window.mapglobal;
       const wkt_final = convertGeojsonToWKT(buffered);
       dispatch(setCurrentRadiusWkt(wkt_final));

@@ -27,13 +27,13 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const piechartfor = useSelector((state: RootState) => state.auth.piechartfor);
 
   const selectedDashboardPage = useSelector(
-    (state) => state.displaySettings.selectedDashboardPage
+    (state: RootState) => state.displaySettings.selectedDashboardPage
   );
   const current_mill_eq_id = useSelector(
-    (state) => state.displaySettings.current_mill_eq_id
+    (state: RootState) => state.displaySettings.current_mill_eq_id
   );
   const current_radius_wkt = useSelector(
-    (state) => state.displaySettings.current_radius_wkt
+    (state: RootState) => state.displaySettings.current_radius_wkt
   );
 
   useEffect(() => {
@@ -54,7 +54,9 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
         .get(
           `${import.meta.env.VITE_API_DASHBOARD_URL}/pie-chart/${piechartfor}/${
             data.distinct
+            // @ts-ignore
           }/?plantation=${data.params.plantation}&status=${
+            // @ts-ignore
             data.params.status
           }&mill_eq_id=${current_mill_eq_id}&geometry_wkt=${current_radius_wkt}`
         )
@@ -70,7 +72,14 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       setActiveIndex(undefined);
       setActiveTooltip(false);
     };
-  }, [data.distinct, piechartfor, params, params_include]);
+  }, [
+    piechartfor,
+    params,
+    params_include,
+    current_mill_eq_id,
+    current_radius_wkt,
+    data,
+  ]);
 
   // @ts-ignore
   const renderActiveShape = (props: any) => {
@@ -100,6 +109,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
+    // @ts-ignore
     return `hsl(${data.gradient_start[0]}, ${data.gradient_start[1]}%, ${lightness}%)`;
   };
 
@@ -131,6 +141,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           fill={"#858686"}
           style={{ fontWeight: "bold", fontSize: "20px" }}
         >
+          {/* @ts-ignore */}
           {piedata[0].total}
         </text>
       </g>
@@ -235,13 +246,16 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
             <div className="flex  gap-3 items-center">
               <div
                 style={{
+                  // @ts-ignore
                   backgroundColor: gradientColor(item.count),
                   // opacity: item.opacity,
                 }}
                 className={`w-[10px] h-[10px] ]`}
               ></div>
+              {/* @ts-ignore */}
               <h1 className="text-plantationListTitle">{item.display}</h1>
             </div>
+            {/* @ts-ignore */}
             <div className="text-semiBlackText">{item.area} ha</div>
           </div>
         ))}

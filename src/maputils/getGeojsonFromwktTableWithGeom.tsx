@@ -40,6 +40,7 @@ const getGeojsonFromwktTableWithGeom = (
         properties: {},
         geometry: {
           type: "Polygon",
+          // @ts-ignore
           coordinates: item.geom.coordinates,
         },
       };

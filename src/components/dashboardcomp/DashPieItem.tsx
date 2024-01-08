@@ -13,6 +13,7 @@ function DashPieItem() {
         numbers: ["48", "22%", "30%"],
         colors: ["#FB9347", "#FBDE47", "#72E005"],
       },
+      gradient_start: [159, 83],
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ function DashPieItem() {
         numbers: ["48", "22%"],
         colors: ["#10BD82", "#B8E500"],
       },
+      gradient_start: [159, 83],
     },
     {
       id: 3,
@@ -35,6 +37,7 @@ function DashPieItem() {
         numbers: ["48", "22%", "30%"],
         colors: ["#10BD82", "#83DE60", "#B8E500"],
       },
+      gradient_start: [159, 83],
     },
   ];
 

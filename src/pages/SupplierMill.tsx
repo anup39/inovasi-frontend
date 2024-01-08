@@ -49,6 +49,11 @@ const items_plantation = [
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
+    params: {
+      estateids: [],
+      geometry_wkt: "",
+    },
   },
   {
     id: 2,
@@ -61,6 +66,11 @@ const items_plantation = [
       colors: ["#10BD82", "#B8E500"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
+    params: {
+      estateids: [],
+      geometry_wkt: "",
+    },
   },
 ];
 
@@ -76,6 +86,7 @@ const items = [
       colors: ["#FB9347", "#FBDE47", "#72E005"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
   },
   {
     id: 2,
@@ -88,6 +99,7 @@ const items = [
       colors: ["#10BD82", "#B8E500"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
   },
   {
     id: 3,
@@ -100,6 +112,7 @@ const items = [
       colors: ["#10BD82", "#B8E500"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
   },
   {
     id: 4,
@@ -112,6 +125,7 @@ const items = [
       colors: ["#10BD82", "#83DE60", "#B8E500"],
     },
     listColor: "#FFAD33B2",
+    gradient_start: [25, 96],
   },
 ];
 

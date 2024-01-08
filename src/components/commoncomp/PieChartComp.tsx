@@ -20,7 +20,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   height_,
   params,
   params_include,
-  gradient_start,
 }) => {
   const [activeTooltip, setActiveTooltip] = useState(false);
   const [activeIndex, setActiveIndex] = useState(undefined);
@@ -30,17 +29,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
   const selectedDashboardPage = useSelector(
     (state) => state.displaySettings.selectedDashboardPage
   );
-
-  let total = 0;
-  if (piechartfor === "facility") {
-    total = 299;
-  }
-  if (piechartfor === "refinery") {
-    total = 1034;
-  }
-  if (piechartfor === "mill") {
-    total = 2381;
-  }
 
   // console.log(piedata, "data");
 
@@ -106,7 +94,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
     const maxCount = Math.max(...piedata.map((item) => item.count));
     const lightness =
       minLightness - (count / maxCount) * (minLightness - maxLightness);
-    return `hsl(${gradient_start[0]}, ${gradient_start[1]}%, ${lightness}%)`;
+    return `hsl(${data.gradient_start[0]}, ${data.gradient_start[1]}%, ${lightness}%)`;
   };
 
   // @ts-ignore

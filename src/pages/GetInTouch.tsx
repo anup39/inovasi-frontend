@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
@@ -142,10 +142,7 @@ function GetInTouch() {
           </div>
           <div className="flex flex-col gap-[6px] ">
             <label htmlFor="">Message </label>
-            <textarea
-              className="placeholder:text-inputGrey lg:w-[913px] h-[128px] placeholder:font-[400] font-[400] py-[10px] px-[14px] bg-white border border-registerInputBorder rounded-lg ring-0 focus:ring-0 focus:outline-none active:ring-0 content-start items-start flex"
-              type="text"
-            />
+            <textarea className="placeholder:text-inputGrey lg:w-[913px] h-[128px] placeholder:font-[400] font-[400] py-[10px] px-[14px] bg-white border border-registerInputBorder rounded-lg ring-0 focus:ring-0 focus:outline-none active:ring-0 content-start items-start flex" />
           </div>{" "}
           <button className="bg-gradient-to-r hover:animate-pulse  duration-[100ms] from-footerHeading to-parrot py-[14px] px-[132px] max-w-[301px] mx-auto rounded-lg text-creamGray leading-[17.07px] text-[14px] font-semibold">
             Send

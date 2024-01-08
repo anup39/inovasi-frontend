@@ -3,6 +3,7 @@ import { useState } from "react";
 function FAQ() {
   const [activeAccordion, setActiveAccordion] = useState(null);
 
+  // @ts-ignore
   const toggleAccordion = (index) => {
     if (activeAccordion === index) {
       setActiveAccordion(null);

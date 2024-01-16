@@ -256,7 +256,6 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
               <h1 className="text-plantationListTitle">{item.display}</h1>
             </div>
             {/* @ts-ignore */}
-            <div className="text-semiBlackText">{item.area} ha</div>
           </div>
         ))}
       </div>

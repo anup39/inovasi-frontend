@@ -65,6 +65,72 @@ const items_plantation_actual = [
   },
 ];
 
+const items_plantation_compliance = [
+  {
+    id: 1,
+    name: "Compliance",
+    selected: false,
+    distinct: "compliance",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#E6F542",
+    gradient_start: [59, 83],
+    params: {
+      plantation: "potential",
+      status: "Registered",
+      mill_eq_id: "GML1412",
+      geometry_wkt: "",
+    },
+  },
+];
+
+const items_plantation_def_free = [
+  {
+    id: 1,
+    name: "Deforestation Free",
+    selected: false,
+    distinct: "def_free",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#70468C",
+    gradient_start: [14, 83],
+    params: {
+      plantation: "potential",
+      status: "Registered",
+      mill_eq_id: "GML1412",
+      geometry_wkt: "",
+    },
+  },
+];
+
+const items_plantation_legal_comp = [
+  {
+    id: 1,
+    name: "Legal Compliance",
+    selected: false,
+    distinct: "def_free",
+    lowerBoxes: {
+      title: ["Category 1", "Category 2", "Category 3"],
+      numbers: ["48%", "22%", "30%"],
+      colors: ["#FB9347", "#FBDE47", "#72E005"],
+    },
+    listColor: "#70468C",
+    gradient_start: [67, 83],
+    params: {
+      plantation: "potential",
+      status: "Registered",
+      mill_eq_id: "GML1412",
+      geometry_wkt: "",
+    },
+  },
+];
+
 const items_plantation_potential = [
   {
     id: 1,
@@ -478,36 +544,134 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
 
         {(selectedDataFormat !== "Table" || !showMap) &&
         selectedDashboardPage === "supplierplantation" ? (
-          <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-            {itemplantation.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-              >
-                <h1 className="text-semiBlackText font-bold min-w-fit">
-                  {item.name}
-                </h1>
-                <img
-                  className="absolute top-2 right-2 cursor-pointer"
-                  src="moreinfo.svg"
-                  alt=""
-                />
-                <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                  <div>
-                    <PieChartComp
-                      params={params}
-                      data={item}
-                      width_={200}
-                      height_={200}
-                      params_include={true}
-                      gradient_start={[159, 83]}
-                    />
+          <>
+            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+              {itemplantation.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+                >
+                  <h1 className="text-semiBlackText font-bold min-w-fit">
+                    {item.name}
+                  </h1>
+                  <img
+                    className="absolute top-2 right-2 cursor-pointer"
+                    src="moreinfo.svg"
+                    alt=""
+                  />
+                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                    <div>
+                      <PieChartComp
+                        params={params}
+                        data={item}
+                        width_={200}
+                        height_={200}
+                        params_include={true}
+                        gradient_start={[159, 83]}
+                      />
+                    </div>
+
+                    {/* div for those list */}
                   </div>
-                  {/* div for those list */}
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+              {items_plantation_compliance.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+                >
+                  <h1 className="text-semiBlackText font-bold min-w-fit">
+                    {item.name}
+                  </h1>
+                  <img
+                    className="absolute top-2 right-2 cursor-pointer"
+                    src="moreinfo.svg"
+                    alt=""
+                  />
+                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                    <div>
+                      <PieChartComp
+                        params={params}
+                        data={item}
+                        width_={200}
+                        height_={200}
+                        params_include={true}
+                        gradient_start={[159, 83]}
+                      />
+                    </div>
+
+                    {/* div for those list */}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+              {items_plantation_def_free.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+                >
+                  <h1 className="text-semiBlackText font-bold min-w-fit">
+                    {item.name}
+                  </h1>
+                  <img
+                    className="absolute top-2 right-2 cursor-pointer"
+                    src="moreinfo.svg"
+                    alt=""
+                  />
+                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                    <div>
+                      <PieChartComp
+                        params={params}
+                        data={item}
+                        width_={200}
+                        height_={200}
+                        params_include={true}
+                        gradient_start={[159, 83]}
+                      />
+                    </div>
+
+                    {/* div for those list */}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
+              {items_plantation_legal_comp.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
+                >
+                  <h1 className="text-semiBlackText font-bold min-w-fit">
+                    {item.name}
+                  </h1>
+                  <img
+                    className="absolute top-2 right-2 cursor-pointer"
+                    src="moreinfo.svg"
+                    alt=""
+                  />
+                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
+                    <div>
+                      <PieChartComp
+                        params={params}
+                        data={item}
+                        width_={200}
+                        height_={200}
+                        params_include={true}
+                        gradient_start={[159, 83]}
+                      />
+                    </div>
+
+                    {/* div for those list */}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         ) : null}
 
         {(selectedDataFormat === "Table" || !showMap) && is_agriplot ? (

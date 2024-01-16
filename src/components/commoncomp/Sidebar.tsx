@@ -443,7 +443,7 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
           className={` ${sidebarOpened ? "flex flex-col gap-1" : "hidden"} `}
         >
           <h1 className="font-semibold text-sm leading-[20px] text-black">
-            Beni Beni
+            Inovasi Digital
           </h1>
           <p className="text-[10px] leading-[12px] uppercase font-medium text-grayText">
             Company Name

@@ -136,7 +136,7 @@ function BaseMapSwitch() {
           // name=""
           // id=""
           defaultValue={radius}
-          min="50"
+          min="10"
           max="100"
           // disabled
         />

@@ -154,16 +154,32 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                 dispatch(setCurrentRadiusWkt(wkt_final));
                 dispatch(setCurrentMillEqId(properties.mill_eq_id));
 
+                const mill_point = `POINT (${parseFloat(
+                  properties.mill_long
+                )} ${parseFloat(properties.mill_lat)})`;
+
+                const latRadians =
+                  (parseFloat(properties.mill_lat) * 3.14) / 180;
+                // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
+                const radius = 50000 / (111319.5 * Math.cos(latRadians));
+
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "potential-agriplot-registered-layer",
                   sourceId: "potential-agriplot-registered",
+                  // url: `${
+                  //   import.meta.env.VITE_API_DASHBOARD_URL
+                  // }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${
+                  //   properties.mill_eq_id
+                  // }`,
                   url: `${
-                    import.meta.env.VITE_API_DASHBOARD_URL
-                  }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${
-                    properties.mill_eq_id
-                  }`,
-                  source_layer: "potential-agriplot-registered-layer",
+                    import.meta.env.VITE_API_MAP_URL
+                  }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Registered&radius=${String(
+                    radius
+                  )}&mill_point=${mill_point}`,
+                  // source_layer: "potential-agriplot-registered-layer",
+                  source_layer:
+                    "function_zxy_query_test_agriplot_by_radius_and_status",
                   showPopup: true,
                   style: {
                     fill_color: "#ef38ff",
@@ -173,7 +189,7 @@ const Popup = ({ properties, trace, map }: PopupProps) => {
                   image_path: "",
                   zoomToLayer: false,
                   center: [103.8574, 2.2739],
-                  geomType: "geojson",
+                  geomType: "tile",
                   fillType: "fill",
                   trace: false,
                   component: "agriplot",

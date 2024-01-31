@@ -173,61 +173,6 @@ const items_plantation_potential = [
   },
 ];
 
-const items = [
-  {
-    id: 1,
-    name: "Deforestation Risk",
-    selected: false,
-    distinct: "mill_deforestation_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 2,
-    name: "Legal PRF Risk",
-    selected: false,
-    distinct: "mill_legal_prf_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 3,
-    name: "Legal Landuse Risk",
-    selected: false,
-    distinct: "mill_legal_landuse_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 4,
-    name: "Complex Supplybase Risk",
-    selected: false,
-    distinct: "mill_complex_supplybase_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#10BD82", "#83DE60", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-];
-
 interface SupplierPlantationProps {
   map: Map | null;
   onSetMap: (evmap: Map) => void;
@@ -346,7 +291,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
-    dispatch(setselectedDashboardPage("suppliermill"));
+    dispatch(setselectedDashboardPage("supplierplantation"));
   }, [dispatch]);
 
   const params = {
@@ -503,46 +448,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               pageSize={5}
               page={pageMill}
             />
-          </div>
-        ) : null}
-
-        {(selectedDataFormat !== "Table" || !showMap) &&
-        selectedDashboardPage === "suppliermill" ? (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
-              >
-                <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
-                  <div className="flex justify-between items-center w-full ">
-                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
-                      {item.name}
-                    </h1>
-                    <img
-                      className=" cursor-pointer"
-                      src="moreinfo.svg"
-                      alt=""
-                    />
-                  </div>
-                  {/* <LineBarComp
-                    params={params}
-                    data={item}
-                    width_={200}
-                    height_={200}
-                    params_include={false}
-                  /> */}
-                  <PieChartComp
-                    params={params}
-                    data={item}
-                    width_={180}
-                    height_={180}
-                    params_include={false}
-                    gradient_start={[25, 96]}
-                  />
-                </div>
-              </div>
-            ))}
           </div>
         ) : null}
 

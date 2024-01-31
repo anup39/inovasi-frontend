@@ -212,12 +212,12 @@ function Sidebar({ setSidebarOpened, sidebarOpened }: MyComponentProps) {
         {/* <div className={`pl-9 ${millActive ? "block " : "hidden"}`}></div> */}
         {/* supplier plantation */}
         <div
-          // onClick={() => {
-          //   // window.location.replace("/supplierplantation");
-          //   // setSelectedItem("plantation");
-          //   // navigate("/supplierplantation");
-          //   handleItemClick("supplierplantation");
-          // }}
+          onClick={() => {
+            // window.location.replace("/supplierplantation");
+            // setSelectedItem("plantation");
+            // navigate("/supplierplantation");
+            handleItemClick("supplierplantation");
+          }}
           className={`py-[10px] h-[40px] px-[12px] hover:bg-boxDivider gap-3 cursor-pointer rounded-lg flex items-center ${
             selectedDashboardPage === "supplierplantation"
               ? "bg-gradient-to-r from-footerHeading to-parrot text-white font-semibold"

@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import { useState } from "react";
 import { DataGrid, GridColDef, GridRowId } from "@mui/x-data-grid";
 
 import maplibregl, {
@@ -59,7 +60,7 @@ const getGeojsonFromwktTableWithLatlong = (
 
 // export default getGeojsonFromwktTableWithLatlong;
 
-interface DataGridDemoProps {
+interface DataGridSingleDemoProps {
   // @ts-ignore
   tableColumn: GridColDef[];
   tableData: [];
@@ -71,7 +72,7 @@ interface DataGridDemoProps {
   page: number;
 }
 
-export default function DataGridDemo({
+export default function DataGridSingleDemo({
   tableColumn,
   tableData,
   map,
@@ -79,81 +80,45 @@ export default function DataGridDemo({
   height,
   pageSize,
   page,
-}: DataGridDemoProps) {
+}: DataGridSingleDemoProps) {
+  const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
-    if (component === "mill") {
-      if (rows.length > 0 && map) {
-        const numericRows: number[] = rows.map((rowId) =>
-          parseInt(rowId as string, 10)
-        );
-        console.log("numericRows", numericRows);
-        const geojson = getGeojsonFromwktTableWithLatlong(
-          tableData,
-          numericRows,
-          component
-        );
-        const padding = { top: 25, bottom: 25, left: 25, right: 25 };
-        const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
+    if (rows.length > 1 && map) {
+      const selectionSet = new Set(selectionModel);
+      const result = rows.filter((s) => !selectionSet.has(s));
+      console.log(result, "selection");
+      const numericRows: number[] = rows.map((rowId) =>
+        parseInt(rowId as string, 10)
+      );
+      console.log("numericRows", numericRows);
+      setSelectionModel(result);
+      const geojson = getGeojsonFromwktTableWithLatlong(
+        tableData,
+        numericRows,
+        component
+      );
+      const padding = { top: 25, bottom: 25, left: 25, right: 25 };
+      const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
 
-        // @ts-ignore
-        geojson.features.forEach((feature) => {
-          if (feature.geometry.type === "Point") {
-            const pointCoordinates = feature.geometry.coordinates as [
-              number,
-              number
-            ];
-            bounds.extend(pointCoordinates);
-          }
-        });
-
-        if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
-          const source = map.getSource("point-table") as GeoJSONSource;
-          source.setData(geojson);
-          map.fitBounds(bounds, { padding });
-          map.setLayoutProperty("point-table-layer", "visibility", "visible");
+      // @ts-ignore
+      geojson.features.forEach((feature) => {
+        if (feature.geometry.type === "Point") {
+          const pointCoordinates = feature.geometry.coordinates as [
+            number,
+            number
+          ];
+          bounds.extend(pointCoordinates);
         }
-      } else if (
-        map &&
-        map.getSource("point-table") &&
-        map.getLayer("point-table-layer")
-      ) {
-        map.setLayoutProperty("point-table-layer", "visibility", "none");
+      });
+
+      if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
+        const source = map.getSource("point-table") as GeoJSONSource;
+        source.setData(geojson);
+        map.fitBounds(bounds, { padding });
+        map.setLayoutProperty("point-table-layer", "visibility", "visible");
       }
     } else {
-      if (rows.length > 0 && map) {
-        const numericRows: number[] = rows.map((rowId) =>
-          parseInt(rowId as string, 10)
-        );
-        const geojson_polygon = getGeojsonFromwktTableWithGeom(
-          tableData,
-          numericRows
-        );
-        const padding = { top: 25, bottom: 25, left: 25, right: 25 };
-        const boundingBox =
-          calculateBoundingBoxPolygonfromGeojson(geojson_polygon);
-        const bounds: LngLatBoundsLike = [
-          boundingBox[0][0],
-          boundingBox[0][1],
-          boundingBox[1][0],
-          boundingBox[1][1],
-        ];
-
-        if (
-          map.getSource("polygon-table") &&
-          map.getLayer("polygon-table-layer")
-        ) {
-          const source = map.getSource("polygon-table") as GeoJSONSource;
-          source.setData(geojson_polygon);
-          map.fitBounds(bounds, { padding });
-          map.setLayoutProperty("polygon-table-layer", "visibility", "visible");
-        }
-      } else if (
-        map &&
-        map.getSource("polygon-table") &&
-        map.getLayer("polygon-table-layer")
-      ) {
-        map.setLayoutProperty("polygon-table-layer", "visibility", "none");
-      }
+      setSelectionModel(rows);
     }
   };
 
@@ -170,6 +135,12 @@ export default function DataGridDemo({
         }}
       >
         <DataGrid
+          sx={{
+            "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer":
+              {
+                display: "none",
+              },
+          }}
           hideFooter={true}
           rows={tableData}
           columns={tableColumn.map((col) => ({
@@ -193,7 +164,9 @@ export default function DataGridDemo({
           pageSizeOptions={[pageSize]}
           checkboxSelection={true}
           disableRowSelectionOnClick
+          rowSelectionModel={selectionModel}
           onRowSelectionModelChange={handleonRowSelectionModelChange}
+          disableColumnSelector={true}
         />
       </Box>
     </div>

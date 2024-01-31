@@ -4,6 +4,7 @@ import DashBoardHome from "../pages/DashboardHome";
 import Register from "../pages/Register";
 import Reporting from "../pages/Reporting";
 import SupplierMill from "../pages/SupplierMill";
+import SupplierPlantation from "../pages/SupplierPlantation";
 import HomePage from "../pages/HomePage";
 import Upload from "../pages/Upload";
 import { Map } from "maplibre-gl"; // Import 'Map' from 'maplibre-gl'
@@ -47,6 +48,10 @@ const Routers: React.FC<RoutersProps> = ({ map, onSetMap }) => {
           <Route
             path="/suppliermill"
             element={<SupplierMill map={map} onSetMap={onSetMap} />}
+          />
+          <Route
+            path="/supplierplantation"
+            element={<SupplierPlantation map={map} onSetMap={onSetMap} />}
           />
           <Route
             path="/reporting"

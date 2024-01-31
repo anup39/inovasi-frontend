@@ -86,6 +86,7 @@ export default function DataGridDemo({
         const numericRows: number[] = rows.map((rowId) =>
           parseInt(rowId as string, 10)
         );
+        console.log("numericRows", numericRows);
         const geojson = getGeojsonFromwktTableWithLatlong(
           tableData,
           numericRows,

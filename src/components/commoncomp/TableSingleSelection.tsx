@@ -82,15 +82,19 @@ export default function DataGridSingleDemo({
   page,
 }: DataGridSingleDemoProps) {
   const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
-  const handleonRowSelectionModelChange = (selection: GridRowId[]) => {
-    if (selection.length > 1) {
+  const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
+    if (rows.length > 1 && map) {
       const selectionSet = new Set(selectionModel);
-      const result = selection.filter((s) => !selectionSet.has(s));
+      const result = rows.filter((s) => !selectionSet.has(s));
       console.log(result, "selection");
+      const numericRows: number[] = rows.map((rowId) =>
+        parseInt(rowId as string, 10)
+      );
+      console.log("numericRows", numericRows);
 
       setSelectionModel(result);
     } else {
-      setSelectionModel(selection);
+      setSelectionModel(rows);
     }
   };
 

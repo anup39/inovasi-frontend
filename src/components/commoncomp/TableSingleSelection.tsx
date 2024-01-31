@@ -83,14 +83,14 @@ export default function DataGridSingleDemo({
 }: DataGridSingleDemoProps) {
   const [selectionModel, setSelectionModel] = useState<GridRowId[]>([]);
   const handleonRowSelectionModelChange = (rows: GridRowId[]) => {
-    if (rows.length > 1 && map) {
+    console.log(rows, "rows");
+    if (rows.length > 0 && map) {
       const selectionSet = new Set(selectionModel);
       const result = rows.filter((s) => !selectionSet.has(s));
       console.log(result, "selection");
-      const numericRows: number[] = rows.map((rowId) =>
-        parseInt(rowId as string, 10)
-      );
-      console.log("numericRows", numericRows);
+
+      const numericRows = [rows[rows.length - 1]];
+      console.log("numericsRows", numericRows);
       setSelectionModel(result);
       const geojson = getGeojsonFromwktTableWithLatlong(
         tableData,

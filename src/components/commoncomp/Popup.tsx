@@ -129,7 +129,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                       import.meta.env.VITE_API_DASHBOARD_URL
                     }/agriplot-result-wkt/?mill_eq_id=${
                       properties.mill_eq_id
-                    }&geometry_wkt=${wkt_final}`
+                    }&radius=${String(50000)}&status=Registered`
                   )
                   .then((res) => {
                     dispatch(settabledataPotential(res.data));
@@ -179,9 +179,9 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   sourceId: "potential-agriplot-registered",
                   // url: `${
                   //   import.meta.env.VITE_API_DASHBOARD_URL
-                  // }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${
-                  //   properties.mill_eq_id
-                  // }`,
+                  // }/agriplot-geojson-wkt/?status=Registered&radius=${String(
+                  //   radius
+                  // )}&mill_eq_id=${properties.mill_eq_id}`,
                   url: `${
                     import.meta.env.VITE_API_MAP_URL
                   }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Registered&radius=${String(
@@ -200,7 +200,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   zoomToLayer: false,
                   center: [103.8574, 2.2739],
                   geomType: "tile",
-                  fillType: "fill",
+                  fillType: "geojson",
                   trace: false,
                   component: "agriplot",
                 });
@@ -209,11 +209,12 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   layerId: "potential-agriplot-unregistered-layer",
                   sourceId: "potential-agriplot-unregistered",
                   url: `${
-                    import.meta.env.VITE_API_DASHBOARD_URL
-                  }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${
-                    properties.mill_eq_id
-                  }`,
-                  source_layer: "potential-agriplot-unregistered-layer",
+                    import.meta.env.VITE_API_MAP_URL
+                  }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Unregistered&radius=${String(
+                    radius
+                  )}&mill_point=${mill_point}`,
+                  source_layer:
+                    "function_zxy_query_test_agriplot_by_radius_and_status",
                   showPopup: true,
                   style: {
                     fill_color: "red",
@@ -223,7 +224,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   image_path: "",
                   zoomToLayer: false,
                   center: [103.8574, 2.2739],
-                  geomType: "geojson",
+                  geomType: "tile",
                   fillType: "fill",
                   trace: false,
                   component: "agriplot",

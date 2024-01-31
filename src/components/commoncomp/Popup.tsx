@@ -66,6 +66,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
       ))
     : null; // Or a default value if appropriate
   const handleTraceplantation = () => {
+    dispatch(setshowMapLoader(true));
     axios
       .get(
         `${
@@ -84,6 +85,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             )
           );
           dispatch(settoastType("error"));
+          dispatch(setshowMapLoader(false));
         }
         if (res.data.features.length > 0) {
           // const estateids = res.data;

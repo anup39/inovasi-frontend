@@ -11,7 +11,7 @@ import {
   setshowMapLoader,
 } from "../../reducers/DisplaySettings";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { setselectedDashboardPage } from "../../reducers/DisplaySettings";
 import AddLayerAndSourceToMap from "../../maputils/AddSourceAndLayer";
 import {
@@ -35,13 +35,19 @@ interface PopupProps {
     mill_lat: string;
   };
   trace: boolean;
+  open: boolean;
 }
 
 // @ts-ignore
-const Popup = ({ properties, trace, map }: PopupProps) => {
+const Popup = ({ properties, trace, map, open }: PopupProps) => {
   const [popup, setPopup] = useState(false);
   const dispatch = useDispatch();
   // const navigation = useNavigation();
+  console.log(open);
+
+  useEffect(() => {
+    setPopup(open);
+  }, [properties]);
   const propertyElements = properties
     ? Object.entries(properties).map(([key, value]) => (
         <div

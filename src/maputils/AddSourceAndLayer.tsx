@@ -137,7 +137,7 @@ function AddLayerAndSourceToMap({
           "source-layer": source_layer,
           layout: {
             "icon-image": "planted",
-            "icon-size": 1,
+            "icon-size": 0.5,
           },
         };
         map.addLayer(newLayer);

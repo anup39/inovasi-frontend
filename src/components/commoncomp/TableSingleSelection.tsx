@@ -91,8 +91,32 @@ export default function DataGridSingleDemo({
         parseInt(rowId as string, 10)
       );
       console.log("numericRows", numericRows);
-
       setSelectionModel(result);
+      const geojson = getGeojsonFromwktTableWithLatlong(
+        tableData,
+        numericRows,
+        component
+      );
+      const padding = { top: 25, bottom: 25, left: 25, right: 25 };
+      const bounds = new maplibregl.LngLatBounds() as LngLatBounds;
+
+      // @ts-ignore
+      geojson.features.forEach((feature) => {
+        if (feature.geometry.type === "Point") {
+          const pointCoordinates = feature.geometry.coordinates as [
+            number,
+            number
+          ];
+          bounds.extend(pointCoordinates);
+        }
+      });
+
+      if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
+        const source = map.getSource("point-table") as GeoJSONSource;
+        source.setData(geojson);
+        map.fitBounds(bounds, { padding });
+        map.setLayoutProperty("point-table-layer", "visibility", "visible");
+      }
     } else {
       setSelectionModel(rows);
     }

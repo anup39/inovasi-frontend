@@ -67,12 +67,15 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
   const handleTraceplantation = () => {
     axios
       .get(
-        `${import.meta.env.VITE_API_DASHBOARD_URL}/ttp/?mill_eq_id=${
+        `${
+          import.meta.env.VITE_API_DASHBOARD_URL
+        }/agriplot-geojson/?mill_eq_id=${
           properties.mill_eq_id
-        }`
+        }&status=Registered`
       )
       .then((res) => {
-        if (res.data.length == 0) {
+        console.log(res, "res");
+        if (res.data.features.length == 0) {
           dispatch(setshowToast(true));
           dispatch(
             settoastMessage(
@@ -81,8 +84,8 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
           );
           dispatch(settoastType("error"));
         }
-        if (res.data.length > 0) {
-          const estateids = res.data;
+        if (res.data.features.length > 0) {
+          // const estateids = res.data;
           const radius = 50;
           const { buffered, extent } = makeRadiusfrompoint(
             [parseFloat(properties.mill_long), parseFloat(properties.mill_lat)],
@@ -108,11 +111,12 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             .get(
               `${
                 import.meta.env.VITE_API_DASHBOARD_URL
-              }/agriplot-result/?estateids=${JSON.stringify(estateids)}`
+              }/agriplot-result/?mill_eq_id=${
+                properties.mill_eq_id
+              }&status=Registered`
             )
             .then((res) => {
               if (res.data.length > 0) {
-                localStorage.setItem("estateids", JSON.stringify(estateids));
                 localStorage.setItem("mill_name", properties.mill_name);
                 localStorage.setItem("mill_id", properties.mill_eq_id);
                 localStorage.setItem("mill_long", properties.mill_long);

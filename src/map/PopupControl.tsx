@@ -18,6 +18,7 @@ export default class PopupControl {
   };
   private _trace: boolean = false;
   private _root: Root | undefined;
+  private _open: boolean = false;
 
   onAdd(map: Map) {
     this._map = map;
@@ -26,7 +27,11 @@ export default class PopupControl {
     this._root = ReactDOM.createRoot(this._container);
     this._root.render(
       <Provider store={store}>
-        <Popup properties={this._properties} trace={this._trace} />
+        <Popup
+          properties={this._properties}
+          trace={this._trace}
+          open={this._open}
+        />
       </Provider>
     );
 
@@ -42,10 +47,12 @@ export default class PopupControl {
       mill_long: string;
       mill_lat: string;
     },
-    trace: boolean
+    trace: boolean,
+    open: boolean
   ) {
     this._properties = properties;
     this._trace = trace;
+    this._open = open;
 
     if (this._root) {
       const updatedPopup = (
@@ -55,6 +62,7 @@ export default class PopupControl {
             trace={this._trace}
             // @ts-ignore
             map={this._map}
+            open={this._open}
           />
         </Provider>
       );

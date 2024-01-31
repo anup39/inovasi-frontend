@@ -214,7 +214,7 @@ function AddLayerAndSourceToMap({
           const popup_control: IControl =
             map._controls[map._controls.length - 1];
           // @ts-ignore
-          popup_control.updatePopup(feature.properties, trace);
+          popup_control.updatePopup(feature.properties, trace, true);
         }
       }
       // @ts-ignore

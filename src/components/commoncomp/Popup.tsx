@@ -24,6 +24,7 @@ import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { GeoJSONSource } from "maplibre-gl";
 import { IControl } from "maplibre-gl";
 import { setpiechartfor } from "../../reducers/Auth";
+import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 
 interface PopupProps {
   properties: {
@@ -117,6 +118,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             )
             .then((res) => {
               if (res.data.length > 0) {
+                dispatch(setshowMapLoader(true));
                 localStorage.setItem("mill_name", properties.mill_name);
                 localStorage.setItem("mill_id", properties.mill_eq_id);
                 localStorage.setItem("mill_long", properties.mill_long);
@@ -170,8 +172,14 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                     parseFloat(properties.mill_lat),
                   ])
                 );
-                dispatch(setCurrentRadiusWkt(wkt_final));
+                dispatch(setCurrentRadiusWkt(String(radius)));
                 dispatch(setCurrentMillEqId(properties.mill_eq_id));
+
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "potential-agriplot-registered-layer",
+                  sourceId: "potential-agriplot-registered",
+                });
 
                 AddLayerAndSourceToMap({
                   map: map,
@@ -204,6 +212,12 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   trace: false,
                   component: "agriplot",
                 });
+
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "potential-agriplot-unregistered-layer",
+                  sourceId: "potential-agriplot-unregistered",
+                });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "potential-agriplot-unregistered-layer",
@@ -230,6 +244,11 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   component: "agriplot",
                 });
 
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "actual-agriplot-unregistered-layer",
+                  sourceId: "actual-agriplot-unregistered",
+                });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "actual-agriplot-unregistered-layer",
@@ -255,6 +274,11 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   component: "agriplot",
                 });
 
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "actual-agriplot-registered-layer",
+                  sourceId: "actual-agriplot-registered",
+                });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "actual-agriplot-registered-layer",
@@ -284,7 +308,6 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                 dispatch(addLayerName("Potential registered supplier"));
                 dispatch(addLayerName("Potential unregistered supplier"));
                 dispatch(setpiechartfor("agriplot"));
-                dispatch(setshowMapLoader(true));
                 setTimeout(() => {
                   dispatch(setshowMapLoader(false));
                 }, 10000);

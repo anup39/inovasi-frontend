@@ -3,6 +3,7 @@ import AddLayerAndSourceToMap from "../maputils/AddSourceAndLayer";
 import MapComponent from "../map/Map";
 import Layout from "../components/commoncomp/Layout";
 import TableComp from "../components/commoncomp/TableComp";
+import TableSingleSelection from "../components/commoncomp/TableSingleSelection";
 import { Map } from "maplibre-gl";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -491,7 +492,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
         {selectedDataFormat === "Table" || !showMap ? (
           <div className=" mb-[24px] w-full">
-            <TableComp
+            <TableSingleSelection
               tableColumn={tableColumn}
               // @ts-ignore
               tableData={milltabledata}

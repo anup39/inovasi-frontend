@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ChangeEvent } from "react";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
-import { GeoJSONSource } from "maplibre-gl";
+import { GeoJSONSource, VectorTileSource } from "maplibre-gl";
 import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import {
   setCurrentRadiusWkt,
@@ -59,15 +59,27 @@ function BaseMapSwitch() {
       );
       // @ts-ignore
       const map = window.mapglobal;
-      const wkt_final = convertGeojsonToWKT(buffered);
-      dispatch(setCurrentRadiusWkt(wkt_final));
+
+      const mill_point = `POINT (${parseFloat(
+        current_mill_coordinates[0]
+      )} ${parseFloat(current_mill_coordinates[1])})`;
+
+      const latRadians = (parseFloat(current_mill_coordinates[1]) * 3.14) / 180;
+      // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
+      const radius_ = (radius * 1000) / (111319.5 * Math.cos(latRadians));
+
+      console.log(radius_, "radius");
+      // const wkt_final = convertGeojsonToWKT(buffered);
+      dispatch(setCurrentRadiusWkt(String(radius_)));
 
       // fetch potential registered for table
       axios
         .get(
           `${
             import.meta.env.VITE_API_DASHBOARD_URL
-          }/agriplot-result-wkt/?mill_eq_id=${current_mill_eq_id}&geometry_wkt=${wkt_final}`
+          }/agriplot-result-wkt/?mill_eq_id=${current_mill_eq_id}&radius=${String(
+            radius_
+          )}&status=Registered`
         )
         .then((res) => {
           dispatch(settabledataPotential(res.data));
@@ -89,12 +101,14 @@ function BaseMapSwitch() {
       ) {
         const source = map.getSource(
           "potential-agriplot-registered"
-        ) as GeoJSONSource;
-        source.setData(
+        ) as VectorTileSource;
+        source.setTiles([
           `${
-            import.meta.env.VITE_API_DASHBOARD_URL
-          }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
-        );
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Registered&radius=${String(
+            radius_
+          )}&mill_point=${mill_point}`,
+        ]);
       }
       if (
         map.getSource("potential-agriplot-unregistered") &&
@@ -102,12 +116,14 @@ function BaseMapSwitch() {
       ) {
         const source = map.getSource(
           "potential-agriplot-unregistered"
-        ) as GeoJSONSource;
-        source.setData(
+        ) as VectorTileSource;
+        source.setTiles([
           `${
-            import.meta.env.VITE_API_DASHBOARD_URL
-          }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${current_mill_eq_id}`
-        );
+            import.meta.env.VITE_API_MAP_URL
+          }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Unregistered&radius=${String(
+            radius_
+          )}&mill_point=${mill_point}`,
+        ]);
       }
       dispatch(setshowMapLoader(true));
       setTimeout(() => {

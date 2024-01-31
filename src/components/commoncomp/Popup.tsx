@@ -123,13 +123,22 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                 localStorage.setItem("mill_lat", properties.mill_lat);
                 dispatch(settabledata(res.data));
                 // fetch potential registered for table
+                const mill_point = `POINT (${parseFloat(
+                  properties.mill_long
+                )} ${parseFloat(properties.mill_lat)})`;
+
+                const latRadians =
+                  (parseFloat(properties.mill_lat) * 3.14) / 180;
+                // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
+                const radius = 50000 / (111319.5 * Math.cos(latRadians));
+
                 axios
                   .get(
                     `${
                       import.meta.env.VITE_API_DASHBOARD_URL
                     }/agriplot-result-wkt/?mill_eq_id=${
                       properties.mill_eq_id
-                    }&radius=${String(50000)}&status=Registered`
+                    }&radius=${radius}&status=Registered`
                   )
                   .then((res) => {
                     dispatch(settabledataPotential(res.data));
@@ -163,15 +172,6 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                 );
                 dispatch(setCurrentRadiusWkt(wkt_final));
                 dispatch(setCurrentMillEqId(properties.mill_eq_id));
-
-                const mill_point = `POINT (${parseFloat(
-                  properties.mill_long
-                )} ${parseFloat(properties.mill_lat)})`;
-
-                const latRadians =
-                  (parseFloat(properties.mill_lat) * 3.14) / 180;
-                // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
-                const radius = 50000 / (111319.5 * Math.cos(latRadians));
 
                 AddLayerAndSourceToMap({
                   map: map,

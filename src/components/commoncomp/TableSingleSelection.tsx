@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { DataGrid, GridColDef, GridRowId } from "@mui/x-data-grid";
+import { IControl } from "maplibre-gl";
 
 import maplibregl, {
   Map,
@@ -111,6 +112,21 @@ export default function DataGridSingleDemo({
           bounds.extend(pointCoordinates);
         }
       });
+
+      const filteredData = tableData.filter((item) =>
+        numericRows.includes(item.id)
+      );
+
+      const popup_name: string = "PopupControl";
+      // @ts-ignore
+      const popup_index = map._controls.indexOf(popup_name);
+
+      if (popup_index) {
+        const popup_control: IControl = map._controls[map._controls.length - 1];
+        // @ts-ignore
+        popup_control.updatePopup(filteredData[0], true, true);
+      }
+      console.log(filteredData, "filtered data");
 
       if (map.getSource("point-table") && map.getLayer("point-table-layer")) {
         const source = map.getSource("point-table") as GeoJSONSource;

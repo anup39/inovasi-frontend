@@ -27,7 +27,7 @@ type PointFeature = {
 
 const getGeojsonFromwktTableWithLatlong = (
   data: DataItem[],
-  indices: number[],
+  indices: GridRowId[],
   component: string
 ): GeoJSON.FeatureCollection<GeoJSON.Geometry, GeoJSON.GeoJsonProperties> => {
   const filteredData = data.filter((item) => indices.includes(item.id));
@@ -89,7 +89,8 @@ export default function DataGridSingleDemo({
       const result = rows.filter((s) => !selectionSet.has(s));
       console.log(result, "selection");
 
-      const numericRows = [rows[rows.length - 1]];
+      const numericRows: GridRowId[] = [rows[rows.length - 1]];
+
       console.log("numericsRows", numericRows);
       setSelectionModel(result);
       const geojson = getGeojsonFromwktTableWithLatlong(

@@ -58,7 +58,7 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
           }/?plantation=${data.params.plantation}&status=${
             // @ts-ignore
             data.params.status
-          }&mill_eq_id=${current_mill_eq_id}&geometry_wkt=${current_radius_wkt}`
+          }&mill_eq_id=${current_mill_eq_id}&radius=${current_radius_wkt}`
         )
         .then((res) => {
           // @ts-ignore
@@ -154,51 +154,55 @@ const PieChartComp: React.FC<PieChartCompProps> = ({
       } items-center justify-center`}
     >
       <div className="scale-[0.45] md:scale-[0.55] lg:scale-[0.8] middle:scale-100">
-        <PieChart
-          onMouseLeave={onPieExit}
-          // @ts-ignore
-          onMouseOut={onPieExit}
-          width={width_}
-          height={height_}
-          cursor="pointer"
-        >
-          <Pie
-            activeIndex={activeIndex}
-            activeShape={renderActiveShape}
-            isAnimationActive={true}
-            dataKey="count"
-            nameKey="display"
-            data={piedata}
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#82ca9d"
+        {piedata.length > 0 ? (
+          <PieChart
             onMouseLeave={onPieExit}
-            onMouseDown={onPieExit}
+            // @ts-ignore
             onMouseOut={onPieExit}
-            onMouseMove={onPieEnter}
-            onMouseDownCapture={onPieExit}
-            onMouseMoveCapture={onPieExit}
-            labelLine={false}
-            label={labelPieChart}
+            width={width_}
+            height={height_}
+            cursor="pointer"
           >
-            {/* @ts-ignore */}
-            {piedata.map((entry, index) => (
-              // @ts-ignore
-              <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
-            ))}
-          </Pie>
-          <Tooltip
-            content={
-              <CustomTooltip
-                display={activeTooltip}
-                active={activeTooltip}
-                payload={[]}
-              />
-            }
-          />
-        </PieChart>
+            <Pie
+              activeIndex={activeIndex}
+              activeShape={renderActiveShape}
+              isAnimationActive={true}
+              dataKey="count"
+              nameKey="display"
+              data={piedata}
+              cx="50%"
+              cy="50%"
+              innerRadius={60}
+              outerRadius={80}
+              fill="#82ca9d"
+              onMouseLeave={onPieExit}
+              onMouseDown={onPieExit}
+              onMouseOut={onPieExit}
+              onMouseMove={onPieEnter}
+              onMouseDownCapture={onPieExit}
+              onMouseMoveCapture={onPieExit}
+              labelLine={false}
+              label={labelPieChart}
+            >
+              {/* @ts-ignore */}
+              {piedata.map((entry, index) => (
+                // @ts-ignore
+                <Cell key={`cell-${index}`} fill={gradientColor(entry.count)} />
+              ))}
+            </Pie>
+            <Tooltip
+              content={
+                <CustomTooltip
+                  display={activeTooltip}
+                  active={activeTooltip}
+                  payload={[]}
+                />
+              }
+            />
+          </PieChart>
+        ) : (
+          <div>No data yet. Trace the plantation</div>
+        )}
       </div>
       <div
         style={{

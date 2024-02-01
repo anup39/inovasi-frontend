@@ -444,14 +444,16 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               />
             ) : null}
 
-            <ThemeProvider theme={theme}>
-              <SwitchComp
-                label="Mill List"
-                defaultChecked={showMillList}
-                // @ts-ignore
-                onChange={handleSwitchChangeMillList}
-              />
-            </ThemeProvider>
+            {is_agriplot ? (
+              <ThemeProvider theme={theme}>
+                <SwitchComp
+                  label="Mill List"
+                  defaultChecked={showMillList}
+                  // @ts-ignore
+                  onChange={handleSwitchChangeMillList}
+                />
+              </ThemeProvider>
+            ) : null}
           </div>
         </div>
 

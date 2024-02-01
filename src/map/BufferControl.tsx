@@ -3,6 +3,8 @@ import { store } from "../store";
 import { Provider } from "react-redux";
 import { Map } from "maplibre-gl";
 export default class BufferControl {
+  // @ts-ignore
+
   private _map: Map | undefined;
   private _container: HTMLDivElement | null = null;
 

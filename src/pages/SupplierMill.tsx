@@ -89,9 +89,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [tableColumn, settableColumn] = useState([]);
   // const [tableData, settableData] = useState([]);
   const [pageMill, setPageMill] = useState(0);
-  const selectedPlantationType = useSelector(
-    (state: RootState) => state.displaySettings.selectedPlantationType
-  );
 
   const milltabledata = useSelector(
     (state: RootState) => state.supplierPlantation.milltabledata

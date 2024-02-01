@@ -3,14 +3,7 @@ import { useState } from "react";
 import { DataGrid, GridColDef, GridRowId } from "@mui/x-data-grid";
 import { IControl } from "maplibre-gl";
 
-import maplibregl, {
-  Map,
-  GeoJSONSource,
-  LngLatBounds,
-  LngLatBoundsLike,
-} from "maplibre-gl";
-import calculateBoundingBoxPolygonfromGeojson from "../../maputils/calculateBoundingBoxPolygonfromGeojson";
-import getGeojsonFromwktTableWithGeom from "../../maputils/getGeojsonFromwktTableWithGeom";
+import maplibregl, { Map, GeoJSONSource, LngLatBounds } from "maplibre-gl";
 
 interface DataItem {
   id: number;
@@ -114,6 +107,8 @@ export default function DataGridSingleDemo({
       });
 
       const filteredData = tableData.filter((item) =>
+        // @ts-ignore
+
         numericRows.includes(item.id)
       );
 

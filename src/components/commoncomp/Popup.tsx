@@ -20,7 +20,6 @@ import {
   settabledataPotential,
 } from "../../reducers/SupplierPlantation";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
-import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { GeoJSONSource } from "maplibre-gl";
 import { IControl } from "maplibre-gl";
 import { setpiechartfor } from "../../reducers/Auth";
@@ -109,7 +108,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             );
             map.fitBounds(extent);
           }
-          const wkt_final = convertGeojsonToWKT(buffered);
+
           axios
             .get(
               `${

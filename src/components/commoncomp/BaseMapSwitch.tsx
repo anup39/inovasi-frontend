@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { ChangeEvent } from "react";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
 import { GeoJSONSource, VectorTileSource } from "maplibre-gl";
-import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import {
   setCurrentRadiusWkt,
   setshowMapLoader,
@@ -61,8 +60,13 @@ function BaseMapSwitch() {
       const map = window.mapglobal;
 
       const mill_point = `POINT (${parseFloat(
+        // @ts-ignore
+
         current_mill_coordinates[0]
+        // @ts-ignore
       )} ${parseFloat(current_mill_coordinates[1])})`;
+
+      // @ts-ignore
 
       const latRadians = (parseFloat(current_mill_coordinates[1]) * 3.14) / 180;
       // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km

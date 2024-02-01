@@ -287,7 +287,11 @@ export default function Lenged({ component, map }) {
           dispatch(addLayerName("Potential registered supplier"));
           const mill_long = localStorage.getItem("mill_long");
           const mill_lat = localStorage.getItem("mill_lat");
+          // @ts-ignore
+
           const mill_point = `POINT (${parseFloat(mill_long)} ${parseFloat(
+            // @ts-ignore
+
             mill_lat
           )})`;
 
@@ -337,7 +341,10 @@ export default function Lenged({ component, map }) {
           dispatch(addLayerName("Potential unregistered supplier"));
           const mill_long = localStorage.getItem("mill_long");
           const mill_lat = localStorage.getItem("mill_lat");
+          // @ts-ignore
           const mill_point = `POINT (${parseFloat(mill_long)} ${parseFloat(
+            // @ts-ignore
+
             mill_lat
           )})`;
 

@@ -20,10 +20,10 @@ import {
   settabledataPotential,
 } from "../../reducers/SupplierPlantation";
 import makeRadiusfrompoint from "../../maputils/makeRadiusfrompoint";
-import convertGeojsonToWKT from "../../maputils/convertGeojsonToWkt";
 import { GeoJSONSource } from "maplibre-gl";
 import { IControl } from "maplibre-gl";
 import { setpiechartfor } from "../../reducers/Auth";
+import RemoveSourceAndLayerFromMap from "../../maputils/RemoveSourceAndLayer";
 
 interface PopupProps {
   properties: {
@@ -65,6 +65,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
       ))
     : null; // Or a default value if appropriate
   const handleTraceplantation = () => {
+    dispatch(setshowMapLoader(true));
     axios
       .get(
         `${
@@ -83,6 +84,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             )
           );
           dispatch(settoastType("error"));
+          dispatch(setshowMapLoader(false));
         }
         if (res.data.features.length > 0) {
           // const estateids = res.data;
@@ -106,7 +108,7 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             );
             map.fitBounds(extent);
           }
-          const wkt_final = convertGeojsonToWKT(buffered);
+
           axios
             .get(
               `${
@@ -117,19 +119,29 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
             )
             .then((res) => {
               if (res.data.length > 0) {
+                dispatch(setshowMapLoader(true));
                 localStorage.setItem("mill_name", properties.mill_name);
                 localStorage.setItem("mill_id", properties.mill_eq_id);
                 localStorage.setItem("mill_long", properties.mill_long);
                 localStorage.setItem("mill_lat", properties.mill_lat);
                 dispatch(settabledata(res.data));
                 // fetch potential registered for table
+                const mill_point = `POINT (${parseFloat(
+                  properties.mill_long
+                )} ${parseFloat(properties.mill_lat)})`;
+
+                const latRadians =
+                  (parseFloat(properties.mill_lat) * 3.14) / 180;
+                // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
+                const radius = 50000 / (111319.5 * Math.cos(latRadians));
+
                 axios
                   .get(
                     `${
                       import.meta.env.VITE_API_DASHBOARD_URL
                     }/agriplot-result-wkt/?mill_eq_id=${
                       properties.mill_eq_id
-                    }&geometry_wkt=${wkt_final}`
+                    }&radius=${radius}&status=Registered`
                   )
                   .then((res) => {
                     dispatch(settabledataPotential(res.data));
@@ -161,17 +173,14 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                     parseFloat(properties.mill_lat),
                   ])
                 );
-                dispatch(setCurrentRadiusWkt(wkt_final));
+                dispatch(setCurrentRadiusWkt(String(radius)));
                 dispatch(setCurrentMillEqId(properties.mill_eq_id));
 
-                const mill_point = `POINT (${parseFloat(
-                  properties.mill_long
-                )} ${parseFloat(properties.mill_lat)})`;
-
-                const latRadians =
-                  (parseFloat(properties.mill_lat) * 3.14) / 180;
-                // 1 longitudinal degree at the equator equals 111,319.5m equivalent to 111.32km
-                const radius = 50000 / (111319.5 * Math.cos(latRadians));
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "potential-agriplot-registered-layer",
+                  sourceId: "potential-agriplot-registered",
+                });
 
                 AddLayerAndSourceToMap({
                   map: map,
@@ -179,9 +188,9 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   sourceId: "potential-agriplot-registered",
                   // url: `${
                   //   import.meta.env.VITE_API_DASHBOARD_URL
-                  // }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${wkt_final}&mill_eq_id=${
-                  //   properties.mill_eq_id
-                  // }`,
+                  // }/agriplot-geojson-wkt/?status=Registered&radius=${String(
+                  //   radius
+                  // )}&mill_eq_id=${properties.mill_eq_id}`,
                   url: `${
                     import.meta.env.VITE_API_MAP_URL
                   }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Registered&radius=${String(
@@ -200,20 +209,27 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   zoomToLayer: false,
                   center: [103.8574, 2.2739],
                   geomType: "tile",
-                  fillType: "fill",
+                  fillType: "geojson",
                   trace: false,
                   component: "agriplot",
+                });
+
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "potential-agriplot-unregistered-layer",
+                  sourceId: "potential-agriplot-unregistered",
                 });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "potential-agriplot-unregistered-layer",
                   sourceId: "potential-agriplot-unregistered",
                   url: `${
-                    import.meta.env.VITE_API_DASHBOARD_URL
-                  }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${wkt_final}&mill_eq_id=${
-                    properties.mill_eq_id
-                  }`,
-                  source_layer: "potential-agriplot-unregistered-layer",
+                    import.meta.env.VITE_API_MAP_URL
+                  }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Unregistered&radius=${String(
+                    radius
+                  )}&mill_point=${mill_point}`,
+                  source_layer:
+                    "function_zxy_query_test_agriplot_by_radius_and_status",
                   showPopup: true,
                   style: {
                     fill_color: "red",
@@ -223,12 +239,17 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   image_path: "",
                   zoomToLayer: false,
                   center: [103.8574, 2.2739],
-                  geomType: "geojson",
+                  geomType: "tile",
                   fillType: "fill",
                   trace: false,
                   component: "agriplot",
                 });
 
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "actual-agriplot-unregistered-layer",
+                  sourceId: "actual-agriplot-unregistered",
+                });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "actual-agriplot-unregistered-layer",
@@ -254,6 +275,11 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                   component: "agriplot",
                 });
 
+                RemoveSourceAndLayerFromMap({
+                  map: map,
+                  layerId: "actual-agriplot-registered-layer",
+                  sourceId: "actual-agriplot-registered",
+                });
                 AddLayerAndSourceToMap({
                   map: map,
                   layerId: "actual-agriplot-registered-layer",
@@ -283,7 +309,6 @@ const Popup = ({ properties, trace, map, open }: PopupProps) => {
                 dispatch(addLayerName("Potential registered supplier"));
                 dispatch(addLayerName("Potential unregistered supplier"));
                 dispatch(setpiechartfor("agriplot"));
-                dispatch(setshowMapLoader(true));
                 setTimeout(() => {
                   dispatch(setshowMapLoader(false));
                 }, 10000);

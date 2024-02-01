@@ -285,50 +285,48 @@ export default function Lenged({ component, map }) {
             map.setLayoutProperty("point-layer", "visibility", "none");
           }
           dispatch(addLayerName("Potential registered supplier"));
-          // AddLayerAndSourceToMap({
-          //   map: map,
-          //   layerId: "potential-agriplot-registered-layer",
-          //   sourceId: "potential-agriplot-registered",
-          //   url: `${
-          //     import.meta.env.VITE_API_DASHBOARD_URL
-          //   }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${current_radius_wkt}&mill_eq_id=${current_mill_eq_id}`,
-          //   source_layer: "potential-agriplot-registered-layer",
-          //   showPopup: true,
-          //   style: {
-          //     fill_color: "#ef38ff",
-          //     fill_opacity: "0",
-          //     stroke_color: "black",
-          //   },
-          //   image_path: "",
-          //   zoomToLayer: false,
-          //   center: [103.8574, 2.2739],
-          //   geomType: "geojson",
-          //   fillType: "fill",
-          //   trace: false,
-          //   component: "agriplot",
-          // });
-          // AddLayerAndSourceToMap({
-          //   map: map,
-          //   layerId: "potential-agriplot-registered-layer",
-          //   sourceId: "potential-agriplot-registered",
-          //   url: `${
-          //     import.meta.env.VITE_API_DASHBOARD_URL
-          //   }/agriplot-geojson-wkt/?status=Registered&geometry_wkt=${current_radius_wkt}&mill_eq_id=${current_mill_eq_id}`,
-          //   source_layer: "potential-agriplot-registered-layer",
-          //   showPopup: true,
-          //   style: {
-          //     fill_color: "#ef38ff",
-          //     fill_opacity: "0",
-          //     stroke_color: "black",
-          //   },
-          //   image_path: "",
-          //   zoomToLayer: false,
-          //   center: [103.8574, 2.2739],
-          //   geomType: "geojson",
-          //   fillType: "fill",
-          //   trace: false,
-          //   component: "agriplot",
-          // });
+          const mill_long = localStorage.getItem("mill_long");
+          const mill_lat = localStorage.getItem("mill_lat");
+          // @ts-ignore
+
+          const mill_point = `POINT (${parseFloat(mill_long)} ${parseFloat(
+            // @ts-ignore
+
+            mill_lat
+          )})`;
+
+          AddLayerAndSourceToMap({
+            map: map,
+            layerId: "potential-agriplot-registered-layer",
+            sourceId: "potential-agriplot-registered",
+            // url: `${
+            //   import.meta.env.VITE_API_DASHBOARD_URL
+            // }/agriplot-geojson-wkt/?status=Registered&radius=${String(
+            //   radius
+            // )}&mill_eq_id=${properties.mill_eq_id}`,
+            url: `${
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Registered&radius=${String(
+              current_radius_wkt
+            )}&mill_point=${mill_point}`,
+            // source_layer: "potential-agriplot-registered-layer",
+            source_layer:
+              "function_zxy_query_test_agriplot_by_radius_and_status",
+            showPopup: true,
+            style: {
+              fill_color: "#ef38ff",
+              fill_opacity: "0",
+              stroke_color: "black",
+            },
+            image_path: "",
+            zoomToLayer: false,
+            center: [103.8574, 2.2739],
+            geomType: "tile",
+            fillType: "geojson",
+            trace: false,
+            component: "agriplot",
+          });
+
           dispatch(setshowMapLoader(true));
           setTimeout(() => {
             dispatch(setshowMapLoader(false));
@@ -341,14 +339,26 @@ export default function Lenged({ component, map }) {
             map.setLayoutProperty("point-layer", "visibility", "none");
           }
           dispatch(addLayerName("Potential unregistered supplier"));
+          const mill_long = localStorage.getItem("mill_long");
+          const mill_lat = localStorage.getItem("mill_lat");
+          // @ts-ignore
+          const mill_point = `POINT (${parseFloat(mill_long)} ${parseFloat(
+            // @ts-ignore
+
+            mill_lat
+          )})`;
+
           AddLayerAndSourceToMap({
             map: map,
             layerId: "potential-agriplot-unregistered-layer",
             sourceId: "potential-agriplot-unregistered",
             url: `${
-              import.meta.env.VITE_API_DASHBOARD_URL
-            }/agriplot-geojson-wkt/?status=Unregistered&geometry_wkt=${current_radius_wkt}&mill_eq_id=${current_mill_eq_id}`,
-            source_layer: "potential-agriplot-unregistered-layer",
+              import.meta.env.VITE_API_MAP_URL
+            }/function_zxy_query_test_agriplot_by_radius_and_status/{z}/{x}/{y}?status=Unregistered&radius=${String(
+              current_radius_wkt
+            )}&mill_point=${mill_point}`,
+            source_layer:
+              "function_zxy_query_test_agriplot_by_radius_and_status",
             showPopup: true,
             style: {
               fill_color: "red",
@@ -358,11 +368,12 @@ export default function Lenged({ component, map }) {
             image_path: "",
             zoomToLayer: false,
             center: [103.8574, 2.2739],
-            geomType: "geojson",
+            geomType: "tile",
             fillType: "fill",
             trace: false,
             component: "agriplot",
           });
+
           dispatch(setshowMapLoader(true));
           setTimeout(() => {
             dispatch(setshowMapLoader(false));

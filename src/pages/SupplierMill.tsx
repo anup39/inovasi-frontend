@@ -24,154 +24,6 @@ import Dropdown from "../components/commoncomp/Dropdown";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { Tooltip } from "@mui/material";
 
-const items_plantation_actual = [
-  {
-    id: 1,
-    name: "Actual registered Suppplier",
-    selected: false,
-    distinct: "type_of_supplier",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#00C685",
-    gradient_start: [159, 83],
-    params: {
-      plantation: "actual",
-      status: "Registered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-  {
-    id: 2,
-    name: "Actual unregistered Suppplier",
-    selected: false,
-    distinct: "type_of_supplier",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FFAD33",
-    gradient_start: [36, 100],
-    params: {
-      plantation: "actual",
-      status: "Unregistered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-];
-
-const items_plantation_compliance = [
-  {
-    id: 1,
-    name: "Compliance",
-    selected: false,
-    distinct: "compliance",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#E6F542",
-    gradient_start: [59, 83],
-    params: {
-      plantation: "potential",
-      status: "Registered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-];
-
-const items_plantation_def_free = [
-  {
-    id: 1,
-    name: "Deforestation Free",
-    selected: false,
-    distinct: "def_free",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#70468C",
-    gradient_start: [14, 83],
-    params: {
-      plantation: "potential",
-      status: "Registered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-];
-
-const items_plantation_legal_comp = [
-  {
-    id: 1,
-    name: "Legal Compliance",
-    selected: false,
-    distinct: "def_free",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#70468C",
-    gradient_start: [67, 83],
-    params: {
-      plantation: "potential",
-      status: "Registered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-];
-
-const items_plantation_potential = [
-  {
-    id: 1,
-    name: "Potential registered Suppplier",
-    selected: false,
-    distinct: "type_of_supplier",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#EF38FF",
-    gradient_start: [295, 100],
-    params: {
-      plantation: "potential",
-      status: "Registered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-  {
-    id: 2,
-    name: "Potential unregistered Suppplier",
-    selected: false,
-    distinct: "type_of_supplier",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FF3D00",
-    gradient_start: [14, 100],
-    params: {
-      plantation: "potential",
-      status: "Unregistered",
-      mill_eq_id: "GML1412",
-      geometry_wkt: "",
-    },
-  },
-];
-
 const items = [
   {
     id: 1,
@@ -237,37 +89,13 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const [tableColumn, settableColumn] = useState([]);
   // const [tableData, settableData] = useState([]);
   const [pageMill, setPageMill] = useState(0);
-  const [pageActualPlant, setPageActualPlant] = useState(0);
-  const [pagePotentialPlant, setPagePotentialPlant] = useState(0);
-  const [itemplantation, setItemPlantation] = useState(items_plantation_actual);
-  const selectedPlantationType = useSelector(
-    (state: RootState) => state.displaySettings.selectedPlantationType
-  );
-
-  const tableData = useSelector(
-    (state: RootState) => state.supplierPlantation.tabledata
-  );
 
   const milltabledata = useSelector(
     (state: RootState) => state.supplierPlantation.milltabledata
   );
 
-  const tabledataPotential = useSelector(
-    (state: RootState) => state.supplierPlantation.tabledataPotential
-  );
-
-  const tableColumnRedux = useSelector(
-    (state: RootState) => state.supplierPlantation.tableColumn
-  );
-
   const changeThePageMill = (evpage: number) => {
     setPageMill(evpage);
-  };
-  const changeThePageActualPlant = (evpage: number) => {
-    setPageActualPlant(evpage);
-  };
-  const changeThePagePotentialPlant = (evpage: number) => {
-    setPagePotentialPlant(evpage);
   };
 
   const selectedDataFormat = useSelector(
@@ -276,8 +104,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   const is_agriplot = useSelector(
     (state: RootState) => state.displaySettings.is_agriplot
   );
-
-  const mill_name: string | null = localStorage.getItem("mill_name");
 
   useEffect(() => {
     if (map) {
@@ -301,7 +127,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           center: [103.8574, 2.2739],
           geomType: "tile",
           fillType: "point",
-          trace: true,
+          trace: false,
           component: "mill",
         });
         AddLayerAndSourceToMap({
@@ -323,7 +149,7 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
           center: [103.8574, 2.2739],
           geomType: "tile",
           fillType: "point",
-          trace: true,
+          trace: false,
           component: "mill",
         });
       });
@@ -385,14 +211,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
   //     }
   //   }
   // }, []);
-
-  useEffect(() => {
-    if (selectedPlantationType === "Actual") {
-      setItemPlantation(items_plantation_actual);
-    } else {
-      setItemPlantation(items_plantation_potential);
-    }
-  }, [selectedPlantationType]);
 
   useEffect(() => {
     if (map) {
@@ -540,196 +358,6 @@ const SupplierMill: React.FC<SupplierMillProps> = ({ map, onSetMap }) => {
               </div>
             ))}
           </div>
-        ) : null}
-
-        {(selectedDataFormat !== "Table" || !showMap) &&
-        selectedDashboardPage === "supplierplantation" ? (
-          <>
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-              {itemplantation.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-                >
-                  <h1 className="text-semiBlackText font-bold min-w-fit">
-                    {item.name}
-                  </h1>
-                  <img
-                    className="absolute top-2 right-2 cursor-pointer"
-                    src="moreinfo.svg"
-                    alt=""
-                  />
-                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                    <div>
-                      <PieChartComp
-                        params={params}
-                        data={item}
-                        width_={200}
-                        height_={200}
-                        params_include={true}
-                        gradient_start={[159, 83]}
-                      />
-                    </div>
-
-                    {/* div for those list */}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-              {items_plantation_compliance.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-                >
-                  <h1 className="text-semiBlackText font-bold min-w-fit">
-                    {item.name}
-                  </h1>
-                  <img
-                    className="absolute top-2 right-2 cursor-pointer"
-                    src="moreinfo.svg"
-                    alt=""
-                  />
-                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                    <div>
-                      <PieChartComp
-                        params={params}
-                        data={item}
-                        width_={200}
-                        height_={200}
-                        params_include={true}
-                        gradient_start={[159, 83]}
-                      />
-                    </div>
-
-                    {/* div for those list */}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-              {items_plantation_def_free.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-                >
-                  <h1 className="text-semiBlackText font-bold min-w-fit">
-                    {item.name}
-                  </h1>
-                  <img
-                    className="absolute top-2 right-2 cursor-pointer"
-                    src="moreinfo.svg"
-                    alt=""
-                  />
-                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                    <div>
-                      <PieChartComp
-                        params={params}
-                        data={item}
-                        width_={200}
-                        height_={200}
-                        params_include={true}
-                        gradient_start={[159, 83]}
-                      />
-                    </div>
-
-                    {/* div for those list */}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
-              {items_plantation_legal_comp.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white relative h-full xl:w-[768px] middle:h-[340px] flex flex-col gap-4 p-3 w-full middle:w-1/2 rounded-[20px]"
-                >
-                  <h1 className="text-semiBlackText font-bold min-w-fit">
-                    {item.name}
-                  </h1>
-                  <img
-                    className="absolute top-2 right-2 cursor-pointer"
-                    src="moreinfo.svg"
-                    alt=""
-                  />
-                  <div className="flex items-center flex-col md:flex-row justify-around  gap-1 md:gap-[10px] lg:gap-20 middle:gap-[40px] xl:gap-20 px-2 py-5">
-                    <div>
-                      <PieChartComp
-                        params={params}
-                        data={item}
-                        width_={200}
-                        height_={200}
-                        params_include={true}
-                        gradient_start={[159, 83]}
-                      />
-                    </div>
-
-                    {/* div for those list */}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        ) : null}
-
-        {(selectedDataFormat === "Table" || !showMap) && is_agriplot ? (
-          <>
-            {" "}
-            <div className=" flex justify-between items-center mb-[24px]">
-              <span className="bg-gray">
-                Actual registered Supplier Plantaton for {mill_name}:{" "}
-                <b>Total :{tableData?.length}</b>
-              </span>{" "}
-              <Pagination
-                // @ts-ignore
-                totalpage={Math.floor(tableData.length / 5)}
-                changeThePage={changeThePageActualPlant}
-              />{" "}
-            </div>
-            <div className="w-full">
-              <TableComp
-                // @ts-ignore
-
-                tableColumn={tableColumnRedux}
-                // @ts-ignore
-                tableData={tableData}
-                map={map}
-                component={"agriplot"}
-                height="300px"
-                // width="1566px"
-                pageSize={4}
-                page={pageActualPlant}
-              />{" "}
-            </div>
-            <div className=" flex justify-between items-center mb-[24px] mt-[24px]">
-              <span className="bg-gray">
-                Potential registered Supplier Plantaton for {mill_name}:{" "}
-                <b>Total :{tabledataPotential?.length}</b>
-              </span>{" "}
-              <Pagination
-                // @ts-ignore
-                totalpage={Math.floor(tabledataPotential.length / 5)}
-                changeThePage={changeThePagePotentialPlant}
-              />{" "}
-            </div>
-            <div className="w-full">
-              <TableComp
-                // @ts-ignore
-
-                tableColumn={tableColumnRedux}
-                // @ts-ignore
-                tableData={tabledataPotential}
-                map={map}
-                component={"agriplot"}
-                height="300px"
-                // width="1566px"
-                pageSize={4}
-                page={pagePotentialPlant}
-              />{" "}
-            </div>
-          </>
         ) : null}
       </div>
     </Layout>

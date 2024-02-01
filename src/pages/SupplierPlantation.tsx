@@ -173,61 +173,6 @@ const items_plantation_potential = [
   },
 ];
 
-const items = [
-  {
-    id: 1,
-    name: "Deforestation Risk",
-    selected: false,
-    distinct: "mill_deforestation_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#FB9347", "#FBDE47", "#72E005"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 2,
-    name: "Legal PRF Risk",
-    selected: false,
-    distinct: "mill_legal_prf_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 3,
-    name: "Legal Landuse Risk",
-    selected: false,
-    distinct: "mill_legal_landuse_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2"],
-      numbers: ["48%", "22%"],
-      colors: ["#10BD82", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-  {
-    id: 4,
-    name: "Complex Supplybase Risk",
-    selected: false,
-    distinct: "mill_complex_supplybase_risk",
-    lowerBoxes: {
-      title: ["Category 1", "Category 2", "Category 3"],
-      numbers: ["48%", "22%", "30%"],
-      colors: ["#10BD82", "#83DE60", "#B8E500"],
-    },
-    listColor: "#FFAD33B2",
-    gradient_start: [25, 96],
-  },
-];
-
 interface SupplierPlantationProps {
   map: Map | null;
   onSetMap: (evmap: Map) => void;
@@ -346,7 +291,7 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
     });
     dispatch(setpiechartfor("mill"));
     dispatch(setselectedDataFormat("Table"));
-    dispatch(setselectedDashboardPage("suppliermill"));
+    dispatch(setselectedDashboardPage("supplierplantation"));
   }, [dispatch]);
 
   const params = {
@@ -356,6 +301,10 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
+  const [showMillList, setShowMillList] = useState(true);
+  const [showActualList, setShowActualList] = useState(true);
+  const [showPotentialList, setShowPotentialList] = useState(true);
+
   const [selectedOption, setSelectedOption] = useState("list");
 
   const selectedDashboardPage = useSelector(
@@ -364,6 +313,15 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
+  }
+  function handleSwitchChangeMillList(checked: boolean) {
+    setShowMillList(checked);
+  }
+  function handleSwitchChangeActualList(checked: boolean) {
+    setShowActualList(checked);
+  }
+  function handleSwitchChangePotentialList(checked: boolean) {
+    setShowPotentialList(checked);
   }
   function handleMetricChange(option: string) {
     if (option === "metric") {
@@ -481,16 +439,33 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           >
             <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
           </div>
-          <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
-            <Pagination
-              // @ts-ignore
-              totalpage={Math.floor(milltabledata.length / 5)}
-              changeThePage={changeThePageMill}
-            />
+          <div
+            className={`${
+              selectedOption === "list" ? "block" : "hidden"
+            } flex items-center justify-between gap-2`}
+          >
+            {showMillList ? (
+              <Pagination
+                // @ts-ignore
+                totalpage={Math.floor(milltabledata.length / 5)}
+                changeThePage={changeThePageMill}
+              />
+            ) : null}
+
+            {is_agriplot ? (
+              <ThemeProvider theme={theme}>
+                <SwitchComp
+                  label="Mill List"
+                  defaultChecked={showMillList}
+                  // @ts-ignore
+                  onChange={handleSwitchChangeMillList}
+                />
+              </ThemeProvider>
+            ) : null}
           </div>
         </div>
 
-        {selectedDataFormat === "Table" || !showMap ? (
+        {(selectedDataFormat === "Table" || !showMap) && showMillList ? (
           <div className=" mb-[24px] w-full">
             <TableSingleSelection
               tableColumn={tableColumn}
@@ -503,46 +478,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
               pageSize={5}
               page={pageMill}
             />
-          </div>
-        ) : null}
-
-        {(selectedDataFormat !== "Table" || !showMap) &&
-        selectedDashboardPage === "suppliermill" ? (
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-[10px] lg:gap-[20px] xl:gap-[28px] middle:mb-[24px]">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white flex items-start rounded-[20px] p-1 w-[200px] md:w-[370px] md:h-[340px] lg:w-[23%] lg:h-[230px]  xl:w-[370px] middle:h-[340px]  "
-              >
-                <div className="py-2 px-2 flex items-center flex-col w-full h-full justify-between">
-                  <div className="flex justify-between items-center w-full ">
-                    <h1 className="text-semiBlackText font-semibold md:font-bold text-[12px] middle:text-[18px] p-1">
-                      {item.name}
-                    </h1>
-                    <img
-                      className=" cursor-pointer"
-                      src="moreinfo.svg"
-                      alt=""
-                    />
-                  </div>
-                  {/* <LineBarComp
-                    params={params}
-                    data={item}
-                    width_={200}
-                    height_={200}
-                    params_include={false}
-                  /> */}
-                  <PieChartComp
-                    params={params}
-                    data={item}
-                    width_={180}
-                    height_={180}
-                    params_include={false}
-                    gradient_start={[25, 96]}
-                  />
-                </div>
-              </div>
-            ))}
           </div>
         ) : null}
 
@@ -611,8 +546,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
               {items_plantation_def_free.map((item) => (
                 <div
                   key={item.id}
@@ -686,52 +619,81 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                 Actual registered Supplier Plantaton for {mill_name}:{" "}
                 <b>Total :{tableData?.length}</b>
               </span>{" "}
-              <Pagination
-                // @ts-ignore
-                totalpage={Math.floor(tableData.length / 5)}
-                changeThePage={changeThePageActualPlant}
-              />{" "}
+              <div className="flex items-center gap-2">
+                {showActualList ? (
+                  <Pagination
+                    // @ts-ignore
+                    totalpage={Math.floor(tableData.length / 5)}
+                    changeThePage={changeThePageActualPlant}
+                  />
+                ) : null}
+                <ThemeProvider theme={theme}>
+                  <SwitchComp
+                    label="Actual"
+                    defaultChecked={showActualList}
+                    // @ts-ignore
+                    onChange={handleSwitchChangeActualList}
+                  />
+                </ThemeProvider>
+              </div>
             </div>
             <div className="w-full">
-              <TableComp
-                // @ts-ignore
+              {showActualList ? (
+                <TableComp
+                  // @ts-ignore
 
-                tableColumn={tableColumnRedux}
-                // @ts-ignore
-                tableData={tableData}
-                map={map}
-                component={"agriplot"}
-                height="300px"
-                // width="1566px"
-                pageSize={4}
-                page={pageActualPlant}
-              />{" "}
+                  tableColumn={tableColumnRedux}
+                  // @ts-ignore
+                  tableData={tableData}
+                  map={map}
+                  component={"agriplot"}
+                  height="300px"
+                  // width="1566px"
+                  pageSize={4}
+                  page={pageActualPlant}
+                />
+              ) : null}
             </div>
             <div className=" flex justify-between items-center mb-[24px] mt-[24px]">
               <span className="bg-gray">
                 Potential registered Supplier Plantaton for {mill_name}:{" "}
                 <b>Total :{tabledataPotential?.length}</b>
-              </span>{" "}
-              <Pagination
-                // @ts-ignore
-                totalpage={Math.floor(tabledataPotential.length / 5)}
-                changeThePage={changeThePagePotentialPlant}
-              />{" "}
+              </span>
+              <div className="flex items-center gap-2">
+                {showPotentialList ? (
+                  <Pagination
+                    // @ts-ignore
+                    totalpage={Math.floor(tabledataPotential.length / 5)}
+                    changeThePage={changeThePagePotentialPlant}
+                  />
+                ) : null}
+
+                <ThemeProvider theme={theme}>
+                  <SwitchComp
+                    label="Potential"
+                    defaultChecked={showPotentialList}
+                    // @ts-ignore
+                    onChange={handleSwitchChangePotentialList}
+                  />
+                </ThemeProvider>
+              </div>
             </div>
             <div className="w-full">
-              <TableComp
-                // @ts-ignore
+              {showPotentialList ? (
+                <TableComp
+                  // @ts-ignore
 
-                tableColumn={tableColumnRedux}
-                // @ts-ignore
-                tableData={tabledataPotential}
-                map={map}
-                component={"agriplot"}
-                height="300px"
-                // width="1566px"
-                pageSize={4}
-                page={pagePotentialPlant}
-              />{" "}
+                  tableColumn={tableColumnRedux}
+                  // @ts-ignore
+                  tableData={tabledataPotential}
+                  map={map}
+                  component={"agriplot"}
+                  height="300px"
+                  // width="1566px"
+                  pageSize={4}
+                  page={pagePotentialPlant}
+                />
+              ) : null}
             </div>
           </>
         ) : null}

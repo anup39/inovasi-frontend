@@ -301,6 +301,8 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
   const theme = createTheme();
 
   const [showMap, setShowMap] = useState(true);
+  const [showMillList, setShowMillList] = useState(true);
+
   const [selectedOption, setSelectedOption] = useState("list");
 
   const selectedDashboardPage = useSelector(
@@ -309,6 +311,9 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
 
   function handleSwitchChange(checked: boolean) {
     setShowMap(checked);
+  }
+  function handleSwitchChangeMillList(checked: boolean) {
+    setShowMillList(checked);
   }
   function handleMetricChange(option: string) {
     if (option === "metric") {
@@ -426,16 +431,31 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
           >
             <Dropdown options={["Actual", "Potential"]} placeholder="Actual" />
           </div>
-          <div className={`${selectedOption === "list" ? "block" : "hidden"}`}>
-            <Pagination
-              // @ts-ignore
-              totalpage={Math.floor(milltabledata.length / 5)}
-              changeThePage={changeThePageMill}
-            />
+          <div
+            className={`${
+              selectedOption === "list" ? "block" : "hidden"
+            } flex items-center justify-between gap-2`}
+          >
+            {showMillList ? (
+              <Pagination
+                // @ts-ignore
+                totalpage={Math.floor(milltabledata.length / 5)}
+                changeThePage={changeThePageMill}
+              />
+            ) : null}
+
+            <ThemeProvider theme={theme}>
+              <SwitchComp
+                label="Mill List"
+                defaultChecked={showMillList}
+                // @ts-ignore
+                onChange={handleSwitchChangeMillList}
+              />
+            </ThemeProvider>
           </div>
         </div>
 
-        {selectedDataFormat === "Table" || !showMap ? (
+        {(selectedDataFormat === "Table" || !showMap) && showMillList ? (
           <div className=" mb-[24px] w-full">
             <TableSingleSelection
               tableColumn={tableColumn}

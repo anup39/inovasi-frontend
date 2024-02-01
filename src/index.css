@@ -68,8 +68,8 @@ body {
   line-height: 17.07px;
 }
 .MuiDataGrid-main {
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
 }
 .MuiDataGrid-root {
   border: none !important;

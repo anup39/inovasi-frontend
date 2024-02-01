@@ -516,8 +516,6 @@ const SupplierPlantation: React.FC<SupplierPlantationProps> = ({
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="flex flex-col middle:flex-row w-full my-1 justify-center  items-center  gap-8">
               {items_plantation_def_free.map((item) => (
                 <div
                   key={item.id}

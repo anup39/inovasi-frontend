@@ -6,7 +6,7 @@ function HomeHero() {
 
   const navigate = useNavigate();
   return (
-    <div className="flex pb-28  md:h-screen ">
+    <div className="flex pb-28 ">
       <div className="w-1/3">
         <div className="flex-col ml-5">
           <img
@@ -36,7 +36,7 @@ function HomeHero() {
         </div>
       </div>
       <div className="w-2/3">
-        <div className="flex justify-start">
+        <div className="flex justify-start ">
           <div>empty</div>
           <div className="w-full">
             <div className="rounded-lg bg-gradient-to-r from-footerHeading to-parrot">

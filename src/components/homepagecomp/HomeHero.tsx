@@ -7,7 +7,7 @@ function HomeHero() {
   const navigate = useNavigate();
   return (
     <div className="flex pb-28 h-screen">
-      <div className="w-1/3 ml-5">
+      <div className="w-1/2 ml-5">
         <div className="flex flex-col  gap-y-64   ml-5">
           <img
             className="w-40 h-16  scale-50 md:scale-75 lg:scale-100  md:mt-6"
@@ -15,11 +15,11 @@ function HomeHero() {
             alt=""
           />
           <div className="flex flex-col gap-y-5 ">
-            <h1 className="w-full  text-popupTxt font-bold text-3xl leading-normal">
+            <h1 className="w-1/2  text-popupTxt font-bold text-3xl leading-normal">
               Ensure Compliance Regulation Effortlessly with Agriplot's Due
               Diligence System
             </h1>
-            <p className="w-full  text-homeSubText font-medium">
+            <p className="w-1/2  text-homeSubText font-medium">
               Introducing the Agriplot Due-Diligence system: Your partner for
               compliance with EU Deforestation Regulation.
             </p>
@@ -37,7 +37,7 @@ function HomeHero() {
           </div>
         </div>
       </div>
-      <div className="w-2/3">
+      <div className="w-1/2">
         <div className="h-full mt-5 flex flex-row justify-start ">
           <div className="w-1/12"></div>
           <div className="w-full mr-3">
@@ -74,13 +74,9 @@ function HomeHero() {
             </div>
           </div>
         </div>
-        {/* <div>
-          <img
-            className="absolute left-64 top-16 z-99 w-96 h-96"
-            src="heroIpad.png"
-            alt=""
-          />
-        </div> */}
+        <div style={{ top: "10%" }} className="absolute right-3">
+          <img className="w-full " src="heroIpad.png" alt="" />
+        </div>
       </div>
     </div>
   );

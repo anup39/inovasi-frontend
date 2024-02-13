@@ -75,7 +75,7 @@ function HomeHero() {
           </div>
         </div>
         <div style={{ top: "10%" }} className="absolute right-3">
-          <img className="w-full " src="heroIpad.png" alt="" />
+          <img className="" src="heroIpad.png" alt="" />
         </div>
       </div>
     </div>

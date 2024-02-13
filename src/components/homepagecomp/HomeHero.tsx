@@ -14,23 +14,23 @@ function HomeHero() {
             src="inovasilogo.svg"
             alt=""
           />
-          <div>
-            <h1 className="w-24  text-popupTxt font-bold text-2xl leading-normal">
+          <div className="flex flex-col gap-y-5 ">
+            <h1 className="w-full  text-popupTxt font-bold text-3xl leading-normal">
               Ensure Compliance Regulation Effortlessly with Agriplot's Due
               Diligence System
             </h1>
-            <p className="w-64  text-homeSubText font-medium">
+            <p className="w-full  text-homeSubText font-medium">
               Introducing the Agriplot Due-Diligence system: Your partner for
               compliance with EU Deforestation Regulation.
             </p>
-            <div className="flex flex-col md:flex-row ">
+            <div className="flex flex-col md:flex-row  md:gap-3">
               <button
                 onClick={() => navigate("/login")}
-                className="text-white hover:animate-pulse bg-gradient-to-r from-footerHeading to-parrot   text-sm rounded-lg"
+                className="px-6 py-2   text-white hover:animate-pulse bg-gradient-to-r from-footerHeading to-parrot   text-sm rounded-lg"
               >
                 Book a Demo
               </button>
-              <button className="text-homeBtnText text-sm rounded-lg border-2 border-greenLantern">
+              <button className="px-6 py-2 text-homeBtnText text-sm rounded-lg border-2 border-greenLantern">
                 Learn More
               </button>
             </div>

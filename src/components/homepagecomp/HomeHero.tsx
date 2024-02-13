@@ -7,31 +7,33 @@ function HomeHero() {
   const navigate = useNavigate();
   return (
     <div className="flex pb-28 ">
-      <div className="w-1/3">
-        <div className="flex-col ml-5">
+      <div className="w-1/3 ml-5">
+        <div className="flex flex-col  gap-y-64   ml-5">
           <img
             className="w-40 h-16  scale-50 md:scale-75 lg:scale-100  md:mt-6"
             src="inovasilogo.svg"
             alt=""
           />
-          <h1 className="w-24  text-popupTxt font-bold text-2xl leading-normal">
-            Ensure Compliance Regulation Effortlessly with Agriplot's Due
-            Diligence System
-          </h1>
-          <p className="w-64  text-homeSubText font-medium">
-            Introducing the Agriplot Due-Diligence system: Your partner for
-            compliance with EU Deforestation Regulation.
-          </p>
-          <div className="flex flex-col md:flex-row ">
-            <button
-              onClick={() => navigate("/login")}
-              className="text-white hover:animate-pulse bg-gradient-to-r from-footerHeading to-parrot   text-sm rounded-lg"
-            >
-              Book a Demo
-            </button>
-            <button className="text-homeBtnText text-sm rounded-lg border-2 border-greenLantern">
-              Learn More
-            </button>
+          <div>
+            <h1 className="w-24  text-popupTxt font-bold text-2xl leading-normal">
+              Ensure Compliance Regulation Effortlessly with Agriplot's Due
+              Diligence System
+            </h1>
+            <p className="w-64  text-homeSubText font-medium">
+              Introducing the Agriplot Due-Diligence system: Your partner for
+              compliance with EU Deforestation Regulation.
+            </p>
+            <div className="flex flex-col md:flex-row ">
+              <button
+                onClick={() => navigate("/login")}
+                className="text-white hover:animate-pulse bg-gradient-to-r from-footerHeading to-parrot   text-sm rounded-lg"
+              >
+                Book a Demo
+              </button>
+              <button className="text-homeBtnText text-sm rounded-lg border-2 border-greenLantern">
+                Learn More
+              </button>
+            </div>
           </div>
         </div>
       </div>

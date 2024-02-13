@@ -38,8 +38,8 @@ function HomeHero() {
         </div>
       </div>
       <div className="w-2/3">
-        <div className="flex justify-start ">
-          <div>empty</div>
+        <div className="mt-5 flex justify-start ">
+          <div className="w-1/12"></div>
           <div className="w-full">
             <div className="rounded-lg bg-gradient-to-r from-footerHeading to-parrot">
               <div className="flex items-center justify-between ">

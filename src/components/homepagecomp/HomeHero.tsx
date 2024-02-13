@@ -6,7 +6,7 @@ function HomeHero() {
 
   const navigate = useNavigate();
   return (
-    <div className="flex pb-28 ">
+    <div className="flex pb-28 h-screen">
       <div className="w-1/3 ml-5">
         <div className="flex flex-col  gap-y-64   ml-5">
           <img
@@ -38,34 +38,34 @@ function HomeHero() {
         </div>
       </div>
       <div className="w-2/3">
-        <div className="mt-5 flex justify-start ">
+        <div className="h-full mt-5 flex flex-row justify-start ">
           <div className="w-1/12"></div>
-          <div className="w-full">
-            <div className="rounded-lg bg-gradient-to-r from-footerHeading to-parrot">
+          <div className="w-full mr-3">
+            <div className="h-full rounded-[30px] bg-gradient-to-r from-footerHeading to-parrot">
               <div className="flex items-center justify-between ">
-                <div className="flex px-4  py-4 items-center bg-gradient-to-r  from-footerHeading to-parrot gap-3  bg-opacity-20  rounded-lg ">
+                <div className="w-full flex flex-row items-center  justify-between ml-5 mr-5 py-4  bg-gradient-to-r  from-footerHeading to-parrot   bg-opacity-20  rounded-lg ">
                   <button
                     onClick={() => navigate("/")}
-                    className="font-bold text-creamGray"
+                    className="ml-3 font-bold text-creamGray"
                   >
                     Home
                   </button>
                   <button
                     onClick={() => navigate("/dashboard")}
-                    className="font-normal text-creamGray"
+                    className="ml-3 font-normal text-creamGray"
                   >
                     Features
                   </button>
                   <button className="font-normal text-creamGray">News</button>
                   <button
                     onClick={() => navigate("/aboutus")}
-                    className="font-normal text-creamGray"
+                    className="ml-3 font-normal text-creamGray"
                   >
                     About
                   </button>
                   <button
                     onClick={() => navigate("/getintouch")}
-                    className="text-footerHeading bg-white py-4 px-6 rounded-lg text-sm font-semibold"
+                    className="text-footerHeading bg-white py-4 px-6 mr-10 ml-3 rounded-lg text-sm font-semibold"
                   >
                     Get in touch
                   </button>

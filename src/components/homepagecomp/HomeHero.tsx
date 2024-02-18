@@ -1,8 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function HomeHero() {
-  const [mobMenu, setMobMenu] = useState(false);
+  // @ts-ignore
+  // const [mobMenu, setMobMenu] = useState(false);
 
   const navigate = useNavigate();
   return (

@@ -1,8 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function HomeHero() {
-  const [mobMenu, setMobMenu] = useState(false);
+  // @ts-ignore
+  // const [mobMenu, setMobMenu] = useState(false);
 
   const navigate = useNavigate();
   return (
@@ -75,7 +76,7 @@ function HomeHero() {
           </div>
         </div>
         <div style={{ top: "10%" }} className="absolute right-3">
-          <img className="w-full " src="heroIpad.png" alt="" />
+          <img className="" src="heroIpad.png" alt="" />
         </div>
       </div>
     </div>

@@ -3,11 +3,11 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      sm: "640px",
+      sm: "480px",
       md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      lg: "976px",
+      middle: "1300px",
+      xl: "1920px",
     },
     extend: {
       colors: {

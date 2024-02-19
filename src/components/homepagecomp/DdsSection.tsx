@@ -14,7 +14,14 @@ function DdsSection() {
         </p>
       </div>
       <div className="xl:absolute left-[1335px]">
-        <img className="scale-75 lg:scale-100" src="playButton.svg" alt="" />
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/szEdXHM4Vb8"
+          title="Inovasi Agriplot Due-Diligence System"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
     </div>
   );

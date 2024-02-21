@@ -30,7 +30,7 @@ function Testimonials() {
             </p>
           </div>
           <div className="flex flex-col gap-2 text-center">
-            <h1 className="font-bold text-footerHeading">Cha Ji-Hun</h1>
+            <h1 className="font-bold text-footerHeading">Musim Mas</h1>
             <p>Co-founder of Source DS</p>
           </div>
         </div>
